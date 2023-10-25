@@ -16,11 +16,11 @@ class Login extends CI_Controller {
 
 		if(isset($post['submit'])) {
 			$data = [
-				'username' => $post['userName']
+				'email' => $post['email']
 			];
 
-			$this->form_validation->set_rules('userName', 'Username', 'required|callback_is_exists', [
-				'is_exists' => 'Username tidak di kenali !!!'
+			$this->form_validation->set_rules('email', 'email', 'required|callback_is_exists', [
+				'is_exists' => 'email tidak di kenali !!!'
 			]);
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -35,7 +35,7 @@ class Login extends CI_Controller {
 
 			if(!password_verify($post['password'], $user['password']))
 			{
-				$this->session->set_flashdata('error', ['message' => 'Username atau password tidak valid','old' => $_POST]);
+				$this->session->set_flashdata('error', ['message' => 'email atau password tidak valid','old' => $_POST]);
 				redirect('login');
 			}
 
@@ -71,6 +71,14 @@ class Login extends CI_Controller {
 					'active' 		=> 1,
 					'user_level' 	=> 1
 				];
+
+				// simpan user ke tabel members atau instructors
+				if($post['type'] == 2){
+					$this->db->insert('members', ['email' => $post['email'],'last_login_date' => date('Y-m-d H:i:s', time())]);
+				}else{
+					$this->db->insert('instructors', ['email' => $post['email'],'last_login_date' => date('Y-m-d H:i:s', time())]);
+				}
+
 				$insert = $this->db->insert('users', $data);
 
 				if($insert){
@@ -107,7 +115,7 @@ class Login extends CI_Controller {
 	 * @return boolean
 	 */
 	public function is_exists($str): bool {
-		if($this->db->get_where('users', ['username' => $str])->num_rows() == 0)
+		if($this->db->get_where('users', ['email' => $str])->num_rows() == 0)
 			return false;
 		return true;
 	}
@@ -133,7 +141,7 @@ class Login extends CI_Controller {
 		$client_id = '637414319997-bko93nu7v2r6cq0tmig116hkcv370fq3.apps.googleusercontent.com'; // Google client ID
 		// $client_secret = 'qDhnbMmBQOxXipqrysCkmcwu'; // Google Client Secret
 		$client_secret = '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'; // Google Client Secret
-		$redirect_url = 'https://localhost/woowcourse/woowcourse_1_3/admin/login/google_sign_in'; // Callback URL
+		$redirect_url = 'https://localhost/woowcourse/woowcourse_1_3/login/google_sign_in'; // Callback URL
 
 
 		$google_client->setApplicationName('Google Login'); // Set dengan Nama Aplikasi Kalian
@@ -176,7 +184,7 @@ class Login extends CI_Controller {
 		// local config
 		$client_id = '637414319997-bko93nu7v2r6cq0tmig116hkcv370fq3.apps.googleusercontent.com'; // Google client ID
 		$client_secret = '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'; // Google Client Secret
-		$redirect_url = 'https://localhost/woowcourse/woowcourse_1_3/admin/login/google_sign_in'; // Callback URL
+		$redirect_url = 'https://localhost/woowcourse/woowcourse_1_3/login/google_sign_in'; // Callback URL
 			
  			
 					 
@@ -203,6 +211,7 @@ class Login extends CI_Controller {
 				); 
 							
 				$valid_email = $this->user_model->check_user_email($data['email']);
+
 				if($valid_email->num_rows() > 0) {
 					$row_user = $valid_email->result();
 					$data_user['last_login'] = date('d-m-Y h:i:s');
@@ -210,16 +219,17 @@ class Login extends CI_Controller {
 					// update user
 					$this->db->where('userid', $row_user[0]->userid)->update('users', $data_user);
 				}else{
-					$data_user['created_at'] = date('d-m-Y h:i:s');
-					
+					$this->session->set_flashdata('error', ['message' => 'Email tidak ditemukan, Harap melakukan registrasi!']);
+					redirect('login');
+					// $data_user['created_at'] = date('d-m-Y h:i:s');
 					// insert user
-					$result = $this->db->insert('users',$data_user);						
+					// $result = $this->db->insert('users',$data_user);						
 				}
 				
 				$user_rec = $this->user_model->check_user_email($data['email']);
 				$row_user = $user_rec->row_array();
 
-				########## Check data user di table members dan instructor ##########
+				
 
 				// $session_data = array(
 				// 	'c_user_id' => $row_user[0]->user_id,
