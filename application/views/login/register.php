@@ -39,14 +39,14 @@
                             <form class="user" action="<?=base_url('login/register')?>" method="POST">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" name="userName" id="userName"
-                                            placeholder="User Name">
-											<?php echo form_error('userName'); ?>
+                                        <input type="text" class="form-control form-control-user" name="first_name" id="first_name"
+                                            placeholder="First Name">
+											<?php echo form_error('first_name'); ?>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" name="fullName" id="fullName"
-                                            placeholder="Full Name">
-											<?php echo form_error('fullName'); ?>
+                                        <input type="text" class="form-control form-control-user" name="last_name" id="last_name"
+                                            placeholder="Last Name">
+											<?php echo form_error('last_name'); ?>
                                     </div>
                                 </div>
                                 <div class="form-group">
