@@ -56,31 +56,36 @@ class Login extends CI_Controller {
 		$post = $this->input->post();
 		
 		if(isset($post['submit'])){
-			$this->form_validation->set_rules('userName', 'User Name', 'required');
-			$this->form_validation->set_rules('fullName', 'Full Name', 'required');
+
+			$this->form_validation->set_rules('first_name', 'User Name', 'required');
+			$this->form_validation->set_rules('last_name', 'Full Name', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('repeatPassword', 'Repeat Password', 'required|matches[password]');
 
 			if($this->form_validation->run() == TRUE){
 				$data = [
-					'username' 		=> $post['userName'],
-					'full_name' 	=> $post['fullName'],
+					'first_name' 	=> $post['first_name'],
+					'last_name' 	=> $post['last_name'],
 					'email' 		=> $post['email'],
-					'password' 		=> password_hash($post['password'], PASSWORD_DEFAULT),
-					'active' 		=> 1,
-					'user_level' 	=> 1
 				];
 
 				// simpan user ke tabel members atau instructors
 				if($post['type'] == 2){
-					$this->db->insert('members', ['email' => $post['email'],'last_login_date' => date('Y-m-d H:i:s', time())]);
+					$this->db->insert('members', $data);
 				}else{
-					$this->db->insert('instructors', ['email' => $post['email'],'last_login_date' => date('Y-m-d H:i:s', time())]);
+					$this->db->insert('instructors', $data);
 				}
+
+				// simpan ke tabel users
+				$data['active'] 	= 1;
+				$data['password'] 	= password_hash($post['password'], PASSWORD_DEFAULT);
+				$data['user_level'] = $post['type'];
+				$data['last_login'] = date('Y-m-d H:i:s', time());
 
 				$insert = $this->db->insert('users', $data);
 
+				// create session success / error
 				if($insert){
 					$this->session->set_flashdata('success', ['message' => 'Registrasi berhasil']);
 				}else{
@@ -158,15 +163,17 @@ class Login extends CI_Controller {
 
 		// local config
 		$facebook = new Facebook\Facebook ([
-			'app_id' => '671931400184126',
+			// 'app_id' => '671931400184126',
+			'app_id' => '1341891983366621',
 			'app_secret' => '57002c8948829ea5cf24758fc0af215a',
-			'default_graph_version' => 'v9.0'
+			// 'default_graph_version' => 'v9.0'
+			'default_graph_version' => 'v18.0'
 		]);
 
 		$facebook_output = '';
 		$facebook_helper = $facebook->getRedirectLoginHelper();	
 		$facebook_permissions = ['email']; // Optional permissions
-		$facebook_login_url = $facebook_helper->getLoginUrl('http://localhost:82/user/facebook_sign_in', $facebook_permissions); 
+		$facebook_login_url = $facebook_helper->getLoginUrl('http://localhost/woowcourse/woowcourse_1_3/login/facebook_sign_in', $facebook_permissions); 
 		return 		$facebook_login_url;
 	}
 
@@ -205,9 +212,10 @@ class Login extends CI_Controller {
 				$data = $google_oauthv2->userinfo->get();
  
 				$data_user = array(
-					'full_name' => $data['given_name'].' '.$data['family_name'],
-					'email' => $data['email'],
-					'active' => 1,
+					'first_name' 	=> $data['given_name'],
+					'last_name' 	=> $data['family_name'],
+					'email' 		=> $data['email'],
+					'active' 		=> 1,
 				); 
 							
 				$valid_email = $this->user_model->check_user_email($data['email']);
@@ -311,4 +319,21 @@ class Login extends CI_Controller {
 		}
 	}
 
+	public function check_facebook_email(){
+		$post = $this->input->post();
+
+		// check email apakah sudah ada di tabel users
+		// $user = $this->db->where('email', $post['email'])->get('users')->row_array();
+		$user = $this->user_model->login($post['email']);
+		if(!$user){
+			$response = ['success' => false, 'message' => 'Email tidak ditemukan'];
+		}else{
+			unset($user['password']);
+			$this->session->set_userdata('user', $user);
+			$response = ['success' => true, 'message' => 'Email ditemukan'];
+		}
+
+		header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($response);
+	}
 }
