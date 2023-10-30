@@ -165,7 +165,7 @@ class Login extends CI_Controller {
 		$facebook = new Facebook\Facebook ([
 			// 'app_id' => '671931400184126',
 			'app_id' => '1341891983366621',
-			'app_secret' => '57002c8948829ea5cf24758fc0af215a',
+			'app_secret' => 'a38146f41f593d35677427a8abaf7e25',
 			// 'default_graph_version' => 'v9.0'
 			'default_graph_version' => 'v18.0'
 		]);
@@ -173,8 +173,8 @@ class Login extends CI_Controller {
 		$facebook_output = '';
 		$facebook_helper = $facebook->getRedirectLoginHelper();	
 		$facebook_permissions = ['email']; // Optional permissions
-		$facebook_login_url = $facebook_helper->getLoginUrl('http://localhost/woowcourse/woowcourse_1_3/login/facebook_sign_in', $facebook_permissions); 
-		return 		$facebook_login_url;
+		$facebook_login_url = $facebook_helper->getLoginUrl('https://localhost/woowcourse/woowcourse_1_3/login/facebook_sign_in', $facebook_permissions); 
+		return 	$facebook_login_url;
 	}
 
 	public function google_sign_in(){
@@ -262,24 +262,37 @@ class Login extends CI_Controller {
  
 		// local config
 		$facebook = new Facebook\Facebook ([
-			'app_id' => '671931400184126',
-			'app_secret' => '57002c8948829ea5cf24758fc0af215a',
-			'default_graph_version' => 'v9.0'
+			// 'app_id' => '671931400184126',
+			'app_id' => '1341891983366621',
+			'app_secret' => 'a38146f41f593d35677427a8abaf7e25',
+			// 'default_graph_version' => 'v9.0'
+			'default_graph_version' => 'v18.0'
 		]);
-					
+
  
 		$facebook_output = '';
 		$facebook_helper = $facebook->getRedirectLoginHelper();
+
+		try{
+			$access_token = $facebook_helper->getAccessToken();
+		}catch(Facebook\Exceptions\FacebookResponseException $e){
+			echo 'Graph returned an error: ' . $e->getMessage();
+  			exit;
+		}catch(Facebook\Exception\SDKException $e){
+			// When validation fails or other local issues
+			echo 'Facebook SDK returned an error: ' . $e->getMessage();
+			exit;
+		}
 
 		if(isset($_GET['code'])){
 			if(isset($_SESSION['access_token'])){
 				$access_token = $_SESSION['access_token'];
 			} else {
-				$access_token = $facebook_helper->getAccessToken();
-				$_SESSION['access_token'] = $access_token;
-				$facebook->setDefaultAccessToken($_SESSION['access_token']);
+				// $access_token = $facebook_helper->getAccessToken();
+				// $_SESSION['access_token'] = $access_token;
+				$facebook->setDefaultAccessToken($access_token);
 			}
-
+			
 			$graph_response = $facebook->get("/me?fields=name,email", $access_token);
 
 			$facebook_user_info = $graph_response->getGraphUser();
@@ -297,25 +310,31 @@ class Login extends CI_Controller {
 			$valid_email = $this->user_model->check_user_email($facebook_user_info['email']);
 			if($valid_email->num_rows() > 0) {
 				$row_user = $valid_email->result();
-				$data_user['last_login_date'] = date('d-m-Y h:i:s');
-				$this->user_model->update_record($data_user, $row_user[0]->user_id);
+				// $data_user['last_login'] = date('d-m-Y h:i:s');
+				$this->db->where('userid', $row_user[0]->userid)->update('users', ['last_login'=>date('d-m-Y h:i:s')]);
+				// $this->user_model->update_record($data_user, $row_user[0]->user_id);
 			}else{
-				$data_user['created_at'] = date('d-m-Y h:i:s');
-				$result = $this->user_model->add($data_user);						
+				// $data_user['created_at'] = date('d-m-Y h:i:s');
+				// $result = $this->user_model->add($data_user);		
+				$this->session->set_flashdata('error', ['message' => 'Email tidak ditemukan, Harap melakukan registrasi!']);
+				redirect('login');				
 			}
 			
 			$user_rec = $this->user_model->check_user_email($facebook_user_info['email']);
-			$row_user = $user_rec->result();
-			$session_data = array(
-				'c_user_id' => $row_user[0]->user_id,
-				'c_email' => $facebook_user_info['email'],
-				'user_type' => $row_user[0]->user_type
-			);
+			$row_user = $user_rec->row_array();
+			// $session_data = array(
+			// 	'c_user_id' => $row_user[0]->user_id,
+			// 	'c_email' => $facebook_user_info['email'],
+			// 	'user_type' => $row_user[0]->user_type
+			// );
 			// Add user data in session
-			$this->session->set_userdata('c_email', $session_data);
-			$this->session->set_userdata('c_user_id', $session_data);
-			$this->session->set_userdata('user_type', $session_data);
-			redirect('/');	
+			// $this->session->set_userdata('c_email', $session_data);
+			// $this->session->set_userdata('c_user_id', $session_data);
+			// $this->session->set_userdata('user_type', $session_data);
+			// redirect('/');	
+			unset($row_user['password']);
+			$this->session->set_userdata('user', $row_user);
+			redirect('dashboard');
 		}
 	}
 
