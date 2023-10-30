@@ -78,10 +78,10 @@
 
 									<div class="row justify-content-center mt-2 mb-2">
 										<a href="<?=$google_link?>" class="mr-1 pt-1 pr-2 pb-1 pl-2 border rounded"><img src="<?=base_url('assets/img/icon-google.png')?>" alt="" width="25"></a>
-										<!-- <a href="<?//=$facebook_link?>" class="ml-1 pt-1 pr-2 pb-1 pl-2 border rounded"><img src="<?//=base_url('assets/img/icon-fb.png')?>" alt="" width="25"></a> -->
+										<a href="<?=$facebook_link?>" class="ml-1 pt-1 pr-2 pb-1 pl-2 border rounded"><img src="<?=base_url('assets/img/icon-fb.png')?>" alt="" width="25"></a>
 										<!-- <fb:login-button class="ml-1 pt-1 pr-2 pb-1 pl-2 border rounded" scope="public_profile,email" onlogin="checkLoginState();"> -->
-										<fb:login-button class="ml-1 pt-1 pr-2 pb-1 pl-2 border rounded" scope="public_profile,email" onlogin="checkLoginState();">
-										</fb:login-button>
+										<!-- <fb:login-button class="ml-1 pt-1 pr-2 pb-1 pl-2 border rounded" scope="public_profile,email" onlogin="checkLoginState();">
+										</fb:login-button> -->
 
 										<div id="status">
 										</div>
@@ -142,68 +142,68 @@
 	<script>
 
 		// window.fbAsyncInit = function() {
-			FB.init({
-				appId            : '1341891983366621',
-				xfbml            : true,
-				version          : 'v18.0'
-			});
+			// FB.init({
+			// 	appId            : '1341891983366621',
+			// 	xfbml            : true,
+			// 	version          : 'v18.0'
+			// });
 		// };
 
-		function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
-			console.log('statusChangeCallback');
-			console.log(response);                   // The current login status of the person.
-			if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-				// testAPI(); 
-				FB.api('/me?limit=3&fields=email', function(response) {
-					console.log(response);
-					console.log('Successful login for: ' + response.email);
-					document.getElementById('status').innerHTML =
-					'Thanks for logging in, ' + response.email + '!';
+		// function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+		// 	console.log('statusChangeCallback');
+		// 	console.log(response);                   // The current login status of the person.
+		// 	if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+		// 		// testAPI(); 
+		// 		FB.api('/me?limit=3&fields=email', function(response) {
+		// 			console.log(response);
+		// 			console.log('Successful login for: ' + response.email);
+		// 			document.getElementById('status').innerHTML =
+		// 			'Thanks for logging in, ' + response.email + '!';
 
-					$.ajax({
-						type: "POST",
-						url: '<?=base_url()?>' + "login/check_facebook_email",
-						data: {
-							email: response.email
-						},
-						dataType: "JSON",
-						success: function (response) {
-							if(response.success == true){
-								console.log(response.message);
-								setInterval(function(){
-									window.location.href = '<?=base_url('dashboard')?>';
-								}, 3000);
-							}else{
-								console.log(response.message);
-							}
-						}
-					});
+		// 			$.ajax({
+		// 				type: "POST",
+		// 				url: '<?=base_url()?>' + "login/check_facebook_email",
+		// 				data: {
+		// 					email: response.email
+		// 				},
+		// 				dataType: "JSON",
+		// 				success: function (response) {
+		// 					if(response.success == true){
+		// 						console.log(response.message);
+		// 						setInterval(function(){
+		// 							window.location.href = '<?=base_url('dashboard')?>';
+		// 						}, 3000);
+		// 					}else{
+		// 						console.log(response.message);
+		// 					}
+		// 				}
+		// 			});
 
-					// window.location.href = '<?//=base_url()?>' + "login/facebook_sign_in_2?email=" + response.email;
-				});
-			} else {                                 // Not logged into your webpage or we are unable to tell.
-				document.getElementById('status').innerHTML = 'Please log ' +
-				'into this webpage.';
-			}
-		}
+		// 			// window.location.href = '<?//=base_url()?>' + "login/facebook_sign_in_2?email=" + response.email;
+		// 		});
+		// 	} else {                                 // Not logged into your webpage or we are unable to tell.
+		// 		document.getElementById('status').innerHTML = 'Please log ' +
+		// 		'into this webpage.';
+		// 	}
+		// }
 
-		function checkLoginState() {               // Called when a person is finished with the Login Button.
-			FB.getLoginStatus(function(response) {   // See the onlogin handler
-				statusChangeCallback(response);
-			});
-		}
+		// function checkLoginState() {               // Called when a person is finished with the Login Button.
+		// 	FB.getLoginStatus(function(response) {   // See the onlogin handler
+		// 		statusChangeCallback(response);
+		// 	});
+		// }
 
-		FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
-			statusChangeCallback(response);        // Returns the login status.
-		});
+		// FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+		// 	statusChangeCallback(response);        // Returns the login status.
+		// });
 
 		// function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
 			// console.log('Welcome!  Fetching your information.... ');
 			
 		// }
 
-		FB.login(function(response){
-		}, {scope: 'public_profile, email'});
+		// FB.login(function(response){
+		// }, {scope: 'public_profile, email'});
 
 		// const logout = FB.logout(function(response) {
    		// 	// Person is now logged out
