@@ -36,12 +36,10 @@ const getAll = async () => {
                 visible: false
             },
             {
-                data: 'user_name',
-                className: 'align-middle pl-2'
+                data: 'first_name',
             },
             {
-                data: 'full_name',
-                className: 'align-middle pl-2'
+                data: 'last_name',
             },
             {
                 data: 'email',
@@ -53,6 +51,10 @@ const getAll = async () => {
             },
             {
                 data: 'password',
+				visible: false
+            },
+            {
+                data: 'last_login',
 				visible: false
             },
 			{
@@ -111,8 +113,8 @@ const getAll = async () => {
         
         form.reset();
         form['user_id'].value = row.userid;
-        form['user_name'].value = row.user_name;
-        form['full_name'].value = row.full_name;
+        form['first_name'].value = row.first_name;
+        form['last_name'].value = row.last_name;
         form['email'].value = row.email;
         form['user_pass'].value = row.password;
         form['status'].value = row.active;

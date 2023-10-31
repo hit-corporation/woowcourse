@@ -7,7 +7,7 @@ class User_model extends CI_Model {
 	public function get_all(?array $filter = NULL, ?int $limit=NULL, ?int $offset=NULL): array {
         
 		if(!empty($filter[1]['search']['value']))
-		$this->db->where('LOWER(users.username) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
+		$this->db->where('(users.first_name) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
 	
 		if(!empty($limit) && !is_null($offset))
 		$this->db->limit($limit, $offset);

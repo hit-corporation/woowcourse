@@ -60,12 +60,13 @@
 							<thead class="bg-primary text-white">
 								<tr>
 									<th>ID</th>
-									<th>Username</th>
-									<th>Fullname</th>
+									<th>First Name</th>
+									<th>Last Name</th>
 									<th>email</th>
 									<th>User Pass</th>
 									<th>Status</th>
 									<th>User level</th>
+									<th>Last Login</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -95,21 +96,21 @@
 						<input type="text" class="d-none" name="user_id">
 						<div class="form-group">
 							<label>User Name <span class="text-danger">*</span></label>
-							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['user_name'])):?> is-invalid <?php endif ?>" 
-								name="user_name" value="<?=$_SESSION['error']['old']['user_name'] ?? ''?>" required>
+							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['first_name'])):?> is-invalid <?php endif ?>" 
+								name="first_name" value="<?=$_SESSION['error']['old']['first_name'] ?? ''?>" required>
 							
-							<?php if(!empty($_SESSION['error']['errors']['user_name'])): ?>
-								<small class="text-danger"><?=$_SESSION['error']['errors']['user_name']?></small>
+							<?php if(!empty($_SESSION['error']['errors']['first_name'])): ?>
+								<small class="text-danger"><?=$_SESSION['error']['errors']['first_name']?></small>
 							<?php endif ?>
 						</div>
 
 						<div class="form-group">
 							<label>Full Name <span class="text-danger">*</span></label>
-							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['full_name'])):?> is-invalid <?php endif ?>" 
-								name="full_name" value="<?=$_SESSION['error']['old']['full_name'] ?? ''?>" required>
+							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['last_name'])):?> is-invalid <?php endif ?>" 
+								name="last_name" value="<?=$_SESSION['error']['old']['last_name'] ?? ''?>" required>
 							
-							<?php if(!empty($_SESSION['error']['errors']['full_name'])): ?>
-								<small class="text-danger"><?=$_SESSION['error']['errors']['full_name']?></small>
+							<?php if(!empty($_SESSION['error']['errors']['last_name'])): ?>
+								<small class="text-danger"><?=$_SESSION['error']['errors']['last_name']?></small>
 							<?php endif ?>
 						</div>
 						

@@ -55,16 +55,16 @@ class User extends CI_Controller {
      */
     public function edit(): void
     {
-        $userid     		= trim($this->input->post('user_id', TRUE));
-        $user_name   	= trim($this->input->post('user_name', TRUE));
-        $full_name   	= trim($this->input->post('full_name', TRUE));
+        $userid     	= trim($this->input->post('user_id', TRUE));
+        $first_name   	= trim($this->input->post('first_name', TRUE));
+        $last_name   	= trim($this->input->post('last_name', TRUE));
         $email   		= trim($this->input->post('email', TRUE));
         $user_pass   	= trim($this->input->post('user_pass', TRUE));
         $status   		= trim($this->input->post('status', TRUE));
-		$user_level  		= trim($this->input->post('user_level', TRUE));
+		$user_level  	= trim($this->input->post('user_level', TRUE));
 
-		$this->form_validation->set_rules('user_name', 'Username', 'required');
-		$this->form_validation->set_rules('full_name', 'Nama Lengkap', 'required');
+		$this->form_validation->set_rules('first_name', 'Username', 'required');
+		$this->form_validation->set_rules('last_name', 'Nama Lengkap', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required');
 		$this->form_validation->set_rules('user_pass', 'Password', 'required');
 		$this->form_validation->set_rules('user_level', 'User Level', 'required');
@@ -83,8 +83,8 @@ class User extends CI_Controller {
 		}
 
         $data = [
-            'user_name' => $user_name,
-            'full_name' => $full_name,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
             'email' => $email,
             'password' => $user_pass,
             'active' => $status,

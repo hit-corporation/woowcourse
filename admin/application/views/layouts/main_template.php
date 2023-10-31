@@ -96,7 +96,7 @@
                     <i class="fas fa-laugh-wink"></i>
                 </div>
 				
-                <div class="sidebar-brand-text mx-3">Perpustakaan</div>
+                <div class="sidebar-brand-text mx-3">Woowcourse</div>
             </a>
 
             <!-- Divider -->
@@ -148,18 +148,11 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Book -->
-            <li class="nav-item <?=$CI->uri->segment(1) == 'book' ? 'active bg-dark-2' : '' ?>">
-                <a class="nav-link" href="<?=base_url('book')?>">
-                    <i class="fa fa-book" aria-hidden="true"></i>
-                    <span>Buku</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
 			<!-- Nav Item - Pages Collapse Menu Laporan-->
-            <li class="nav-item <?=$CI->uri->segment(1) == 'report' ? 'active' : '' ?>">
+            <li class="nav-item <?=$CI->uri->segment(1) == 'report' ? 'active' : '' ?> d-none">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
                     aria-expanded="true" aria-controls="collapseLaporan">
                     <i class="fa fa-file" aria-hidden="true"></i>
