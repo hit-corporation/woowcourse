@@ -148,13 +148,6 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Book -->
-            <li class="nav-item <?=$CI->uri->segment(1) == 'book' ? 'active bg-dark-2' : '' ?>">
-                <a class="nav-link" href="<?=base_url('book')?>">
-                    <i class="fa fa-book" aria-hidden="true"></i>
-                    <span>Buku</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
