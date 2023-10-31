@@ -42,11 +42,11 @@
                                     </div>
                                     <form class="user" method="POST" action="<?=base_url('login')?>">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user <?php if(isset($_SESSION['error']['errors']['userName'])): ?> is-invalid <?php endif ?>"
-                                                id="userName" name="userName" value="<?=$_SESSION['error']['old']['userName'] ?? '' ?>"
-                                                placeholder="Masukan Username...">
-                                                <?php if(isset($_SESSION['error']['errors']['userName'])): ?>
-                                                <small class="text-danger"><?=$_SESSION['error']['errors']['userName']?></small>
+                                            <input type="text" class="form-control form-control-user <?php if(isset($_SESSION['error']['errors']['email'])): ?> is-invalid <?php endif ?>"
+                                                id="email" name="email" value="<?=$_SESSION['error']['old']['email'] ?? '' ?>"
+                                                placeholder="Masukan email...">
+                                                <?php if(isset($_SESSION['error']['errors']['email'])): ?>
+                                                <small class="text-danger"><?=$_SESSION['error']['errors']['email']?></small>
                                                 <?php endif ?>
                                         </div>
                                         <div class="form-group">
