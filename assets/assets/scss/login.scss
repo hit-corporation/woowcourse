@@ -1,0 +1,32 @@
+#login-body {
+    background-image: url('../images/8886653.jpg');
+    background-size: cover;
+}
+
+#login-card {
+    height: 60vh;
+    img {
+        height: 100%;
+        width: 60%;
+    } 
+
+    .card-body {
+        padding-top: 2.4rem;
+    }
+
+    .form-floating {
+        label {
+            padding-bottom: .8rem;
+        }
+
+        > .form-control {
+            &:focus {
+                &~label::after {
+                    background-color: transparent;
+                }
+            }
+        }
+
+    }
+}
+

@@ -1,0 +1,65 @@
+@use 'sass:color';
+@use 'sass:map';
+
+@import './bootstrap/functions';
+@import './bootstrap/variables';
+@import './bootstrap/variables-dark';
+@import './bootstrap/maps';
+@import './bootstrap/mixins';
+@import './bootstrap/utilities';
+
+@font-face {
+    font-family: 'Bebas-Neue';
+    src: url('../fonts/Bebas_Neue/BebasNeue-Regular.ttf');
+}
+
+
+img {
+    &.profile {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+#content {
+    background-image: url('../images/bg1.jpg');
+    background-blend-mode: overlay;
+    background-color: color.adjust($gray-900, $alpha: -0.4);
+    background-size: cover;
+    min-height: 30vh;
+}
+
+#jumbotron {
+    .text-title {
+        font-family: 'Bebas-Neue';
+        font-size: 48px;
+        color: var(--bs-gray-200);
+    }
+}
+
+.nav-tabs {
+    border-bottom-color: var(--bs-primary);
+
+    .nav-link {
+        font-size: $font-size-lg;
+        font-weight: bold;
+        letter-spacing: .1rem;
+        &.active {
+            background-color: var(--bs-primary);
+            color: var(--bs-light);
+            border-bottom-color: var(--bs-primary);
+        }
+    }
+}
+
+#card-details {
+    font-size: 1rem;
+    dt {
+        font-weight: 600;
+    }
+}
+
+#total-score {
+    font-size: 7rem;
+    text-align: center;
+}

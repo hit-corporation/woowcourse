@@ -1,0 +1,47 @@
+#content {
+  background-image: url("../images/bg1.jpg");
+  background-blend-mode: overlay;
+  background-color: rgba(33, 37, 41, 0.6);
+  background-size: cover;
+  min-height: 30vh;
+}
+
+.txt-teacher-name, .txt-teacher-subject {
+  text-align: center;
+}
+@media (min-width: 992px) {
+  .txt-teacher-name, .txt-teacher-subject {
+    text-align: left;
+  }
+}
+
+.separator {
+  width: 80px;
+  padding-top: 0.345rem;
+  background-color: var(--bs-primary);
+}
+
+.label-harga {
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  padding: 0.2rem 0.325rem;
+  top: 16px;
+  background-color: var(--bs-primary);
+  color: var(--bs-white);
+  right: -7px;
+}
+
+.label-harga::before {
+  border-left: 7px solid rgba(0, 0, 0, 0.45);
+  border-top: 7px solid transparent;
+  content: "";
+  height: 0;
+  position: absolute;
+  right: -1px;
+  top: 0;
+  transform: translateY(-100%);
+  width: 0;
+}
+
+/*# sourceMappingURL=teacher.min.css.map */
