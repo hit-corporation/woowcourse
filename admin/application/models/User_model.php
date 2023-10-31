@@ -31,7 +31,7 @@ class User_model extends CI_Model {
 	public function login($data){
 		$this->db->select('*');
 		$this->db->from('users');
-		$this->db->where('username', $data['username']);
+		$this->db->where('email', $data['email']);
 		$this->db->where('active', '1');
 		// $this->db->where('deleted_at', null);
 		$query = $this->db->get();
