@@ -16,11 +16,11 @@ class Login extends CI_Controller {
 
 		if(isset($post['submit'])) {
 			$data = [
-				'username' => $post['userName']
+				'email' => $post['email']
 			];
 
-			$this->form_validation->set_rules('userName', 'Username', 'required|callback_is_exists', [
-				'is_exists' => 'Username tidak di kenali !!!'
+			$this->form_validation->set_rules('email', 'email', 'required|callback_is_exists', [
+				'is_exists' => 'email tidak di kenali !!!'
 			]);
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -35,7 +35,7 @@ class Login extends CI_Controller {
 
 			if(!password_verify($post['password'], $user['password']))
 			{
-				$this->session->set_flashdata('error', ['message' => 'Username atau password tidak valid','old' => $_POST]);
+				$this->session->set_flashdata('error', ['message' => 'email atau password tidak valid','old' => $_POST]);
 				redirect('login');
 			}
 
@@ -107,7 +107,7 @@ class Login extends CI_Controller {
 	 * @return boolean
 	 */
 	public function is_exists($str): bool {
-		if($this->db->get_where('users', ['username' => $str])->num_rows() == 0)
+		if($this->db->get_where('users', ['email' => $str])->num_rows() == 0)
 			return false;
 		return true;
 	}
