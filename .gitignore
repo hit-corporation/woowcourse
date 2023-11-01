@@ -36,7 +36,6 @@ application/views/book/index copy.php
 /tests/tests/
 /tests/results/
 application/session/
-application/config/database.php
 assets/node_modules
 assets/img/books
 

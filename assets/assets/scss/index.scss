@@ -1,0 +1,130 @@
+@use 'sass:color';
+@use 'sass:map';
+
+@import './bootstrap/functions';
+@import './bootstrap/variables';
+@import './bootstrap/variables-dark';
+@import './bootstrap/maps';
+@import './bootstrap/mixins';
+@import './bootstrap/utilities';
+
+@font-face {
+    font-family: 'Bebas-Neue';
+    src: url('../fonts/Bebas_Neue/BebasNeue-Regular.ttf');
+}
+
+
+/// navbar override
+#nav-bottom {
+    background-color: color.adjust($gray-900, $alpha: -0.6);
+    box-shadow: 0px 1px 2px #{color.adjust($gray-100, $alpha: -0.9)};
+    color: var(--bs-tertiary-bg);
+    transition: background-color 300ms linear, 
+                color 300ms linear;
+    .navbar-brand, #btn-opennav {
+        color: var(--bs-tertiary-bg)
+    }
+}
+
+#content {
+    background-image: url('../images/bg1.jpg');
+    background-blend-mode: overlay;
+    background-color: color.adjust($gray-900, $alpha: -0.4);
+    background-size: cover;
+    min-height: 100vh;
+}
+
+
+/// JUMBOTRON
+#jumbotron {
+    .top {
+        font-family: 'Bebas-Neue', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 72px;
+        text-shadow: 0px 0px 3px rgba(0, 0, 0, .74);
+    }
+    h3 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-shadow: 0px 0px 3px rgba(0, 0, 0, .56);
+    }
+}
+
+/// FOOTER 
+footer {
+    background-color: var(--bs-success-text-emphasis);
+}
+
+
+/// COURSES GRID
+
+.teacher-icon {
+    width: 48px;
+    height: 48px;
+    margin-top: -50px;
+}
+
+.courses-grid-footer {
+    font-size: 10px;
+    box-sizing: border-box;
+    i {
+        font-size: 10px;
+    }
+}
+
+.card-popular-course {
+    .card-body p {
+        height: 85px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+}
+
+.label-harga {
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    padding: .2rem .325rem;
+    top: 16px;
+    background-color: var(--bs-primary);
+    color: var(--bs-white);
+    right: -7px;
+}
+
+.label-harga::before {
+    border-left: 7px solid rgba(0, 0, 0, 0.45);
+    border-top: 7px solid transparent;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: -1px;
+    top: 0;
+    transform: translateY(-100%);
+    width: 0;
+}
+
+/// LABEL HARGA
+figure {
+    overflow: hidden;
+    position: relative;
+    height: 340px;
+    img {
+        object-fit: cover;
+    }
+    .overlay {
+        background-color: var(--bs-white);
+        color: $gray-800;
+        position: absolute;
+        bottom: -138px;
+        left: 0;
+        z-index: 100;
+        width: 100%;
+        height: 210px;
+        transition: bottom 300ms ease-in-out;
+
+        &:hover {
+            bottom: 0;
+            transition: bottom 300ms ease-in-out;
+        }
+    }
+}
+
