@@ -407,7 +407,7 @@ ALTER SEQUENCE public.user_level_id_seq OWNED BY public.user_level.id;
 --
 
 CREATE TABLE public.users (
-    id bigint NOT NULL,
+    userid bigint NOT NULL,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     first_name character varying(255) NOT NULL,
@@ -424,10 +424,10 @@ CREATE TABLE public.users (
 ALTER TABLE public.users OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: users_userid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.users_id_seq
+CREATE SEQUENCE public.users_userid_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -435,13 +435,13 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO postgres;
+ALTER TABLE public.users_userid_seq OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: users_userid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+ALTER SEQUENCE public.users_userid_seq OWNED BY public.users.userid;
 
 
 --
@@ -515,10 +515,10 @@ ALTER TABLE ONLY public.user_level ALTER COLUMN id SET DEFAULT nextval('public.u
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: users userid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+ALTER TABLE ONLY public.users ALTER COLUMN userid SET DEFAULT nextval('public.users_userid_seq'::regclass);
 
 
 --
@@ -552,7 +552,6 @@ COPY public.categories (id, created_at, updated_at, category_name, parent_catego
 16	\N	\N	Manajemen	13
 17	\N	\N	Penjualan	13
 18	\N	\N	Strategi Bisnis	13
-19	\N	\N	Desain Interior	2
 \.
 
 
@@ -634,8 +633,8 @@ COPY public.user_level (id, created_at, updated_at, user_level_id, user_level_na
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, created_at, updated_at, first_name, last_name, email, password, user_level, last_login, active, photo) FROM stdin;
-1	\N	\N	admin	\N	admin@woowcourse.com	$2y$10$8rVXb9J.7NpEegqzvwmYvu8tqj.q7Aezf0C8JTnpdPDTAhT8YBkbG	1	2023-11-01 03:04:49	1	\N
+COPY public.users (userid, created_at, updated_at, first_name, last_name, email, password, user_level, last_login, active, photo) FROM stdin;
+1	\N	\N	admin	\N	admin@woowcourse.com	$2y$10$lxXYtxMhP40u.pBx5Sm5meixFL0K8lBXtxzMPDWd7cb8QLz9eZDU6	1	2023-11-01 03:29:46	1	\N
 \.
 
 
@@ -650,7 +649,7 @@ SELECT pg_catalog.setval('public.actionlogs_id_seq', 1, false);
 -- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.categories_id_seq', 19, true);
+SELECT pg_catalog.setval('public.categories_id_seq', 19, false);
 
 
 --
@@ -710,10 +709,10 @@ SELECT pg_catalog.setval('public.user_level_id_seq', 1, false);
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: users_userid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_userid_seq', 1, true);
 
 
 --
@@ -809,7 +808,7 @@ ALTER TABLE ONLY public.user_level
 --
 
 ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT users_pkey PRIMARY KEY (userid);
 
 
 --
