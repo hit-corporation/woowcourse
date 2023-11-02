@@ -54,11 +54,12 @@ class Login extends CI_Controller {
 
 	public function register(){
 		$post = $this->input->post();
+
 		
 		if(isset($post['submit'])){
 
 			$this->form_validation->set_rules('first_name', 'User Name', 'required');
-			$this->form_validation->set_rules('last_name', 'Full Name', 'required');
+			// $this->form_validation->set_rules('last_name', 'Full Name', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('repeatPassword', 'Repeat Password', 'required|matches[password]');

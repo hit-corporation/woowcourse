@@ -79,25 +79,38 @@
                                 <span class="border border-light position-absolute w-100"></span>
                                 <h6 class="bg-primary top-0 m-0 p-1 z-2 text-white">REGISTER</h6>
                             </div>
-                            <form name="frm-login" class="mt-3">
+                            <form name="frm-login" class="mt-3" method="post" action="<?=base_url('login/register')?>">
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="username-icon"><i class="fa-solid fa-user"></i></span>
-                                    <input type="text" class="form-control" placeholder='Username' id="txt-username">
+                                    <input type="text" class="form-control" placeholder='First Name' id="txt-first-name" name="first_name">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
-                                    <span class="input-group-text" id="email-icon"><i class="fa-solid fa-envelope"></i></span>
-                                    <input type="email" class="form-control" placeholder='Email' id="txt-email">
+                                    <span class="input-group-text" id="username-icon"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" class="form-control" placeholder='Last Name' id="txt-last-name" name="last_name">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
+                                <div class="input-group position-relative custom-float bg-transparent mb-2">
+									<span class="input-group-text" id="email-icon"><i class="fa-solid fa-envelope"></i></span>
+                                    <input type="email" class="form-control" placeholder='Email' id="txt-email" name="email">
+                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
+                                </div>
+								<div class="input-group position-relative custom-float bg-transparent mb-2">
+									<span class="input-group-text" id="type-icon"><i class="fa-solid fa-user-tie"></i></span>
+									<select class="form-select" name="type" id="type">
+										<option value="2">Member</option>
+										<option value="3">Instructor</option>
+									</select>
+									<!--<label class="text-white fw-semibold" for="txt-password"></label>-->
+								</div>
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="password-icon"><i class="fa-solid fa-key"></i></span>
-                                    <input type="password" class="form-control" placeholder='Password' id="txt-password">
+                                    <input type="password" class="form-control" placeholder='Password' id="txt-password" name="password">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="password-confirm-icon"><i class="fa-solid fa-key"></i></span>
-                                    <input type="password" class="form-control" placeholder='Password Confirmation' id="txt-password-confirm">
+                                    <input type="password" class="form-control" placeholder='Password Confirmation' id="txt-password-confirm" name="repeatPassword">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="form-check">
@@ -108,7 +121,7 @@
                                   </div>
                                 
                                 <div class="d-flex flex-wrap mb-3 mt-4 align-items-center">
-                                    <button type="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Register</button>
+                                    <button type="submit" name="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Register</button>
                                 </div>
                                 
                             </form>

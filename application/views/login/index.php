@@ -79,20 +79,20 @@
                                 <span class="border border-light position-absolute w-100"></span>
                                 <h6 class="bg-primary top-0 m-0 p-1 z-2 text-white">OR</h6>
                             </div>
-                            <form name="frm-login" class="mt-3">
+                            <form name="frm-login" class="mt-3" method="post" action="<?=base_url('login')?>">
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                 <span class="input-group-text" id="username-icon"><i class="fa-solid fa-user"></i></span>
-                                    <input type="text" class="form-control" placeholder='Username' id="txt-username">
+                                    <input type="text" class="form-control" placeholder='Username' id="txt-username" name="email">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="input-group position-relative custom-float bg-transparent mb-3">
                                 <span class="input-group-text" id="username-icon"><i class="fa-solid fa-key"></i></span>
-                                    <input type="password" class="form-control" placeholder='Password' id="txt-password">
+                                    <input type="password" class="form-control" placeholder='Password' id="txt-password" name="password">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 
                                 <div class="d-flex flex-wrap mb-3 mt-4 align-items-center">
-                                    <button type="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+                                    <button type="submit" name="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
                                 </div>
                                 
                             </form>
