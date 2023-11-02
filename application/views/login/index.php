@@ -70,32 +70,35 @@
                     <div class="card position-relative border-0 material-shadow-1 flex-row" id="login-card">
                         <img class="overflow-hidden" src="assets/images/5514.jpg">
                         <div class="card-body bg-primary">
-                            <div class="d-flex flex-nowrap mb-2 justify-content-center">
-                                <a href="<?=$facebook_link?>" class="icon-container rounded-circle border border-white text-white me-1"><i class="fa-brands fa-facebook fs-5"></i></a>
-                                <a href="<?=$google_link?>" class="icon-container rounded-circle border border-white text-white"><i class="fa-brands fa-google fs-5"></i></a>
-                            </div>
-                            <div class="position-relative d-flex flex-nowrap justify-content-center align-items-center mt-3" id="login-separator">
-                                <span class="border border-light position-absolute w-100"></span>
-                                <h6 class="bg-primary top-0 m-0 p-1 z-2 text-white">OR</h6>
-                            </div>
-                            <form name="frm-login" class="mt-3">
-                                <div class="position-relative custom-float bg-transparent mb-2">
-                                    <input type="text" class="form-control" placeholder='Username' id="txt-username">
-                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
-                                </div>
-                                <div class="position-relative custom-float bg-transparent mb-3">
-                                    <input type="password" class="form-control" placeholder='Password' id="txt-password">
-                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
-                                </div>
-                                
-                                <div class="d-flex flex-wrap mb-3 mt-4 align-items-center">
-                                    <button type="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
-                                </div>
-                                
-                            </form>
-                            <div class="position-absolute bottom-0 left-0 w-100 py-3">
-                                <small class="text-white fw-semibold text-decoration-none mx-auto">Forgot Password</small>
-                            </div>
+							<form action="<?=base_url('login')?>" method="POST">
+								<div class="d-flex flex-nowrap mb-2 justify-content-center">
+									<a href="<?=$facebook_link?>" class="icon-container rounded-circle border border-white text-white me-1"><i class="fa-brands fa-facebook fs-5"></i></a>
+									<a href="<?=$google_link?>" class="icon-container rounded-circle border border-white text-white"><i class="fa-brands fa-google fs-5"></i></a>
+								</div>
+								<div class="position-relative d-flex flex-nowrap justify-content-center align-items-center mt-3" id="login-separator">
+									<span class="border border-light position-absolute w-100"></span>
+									<h6 class="bg-primary top-0 m-0 p-1 z-2 text-white">OR</h6>
+								</div>
+								<form name="frm-login" class="mt-3">
+									<div class="position-relative custom-float bg-transparent mb-2">
+										<input type="text" class="form-control" placeholder='Username' id="txt-username">
+										<!--<label class="text-white fw-semibold" for="txt-password"></label>-->
+									</div>
+									<div class="position-relative custom-float bg-transparent mb-3">
+										<input type="password" class="form-control" placeholder='Password' id="txt-password">
+										<!--<label class="text-white fw-semibold" for="txt-password"></label>-->
+									</div>
+									
+									<div class="d-flex flex-wrap mb-3 mt-4 align-items-center">
+										<button type="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+									</div>
+									
+								</form>
+								<div class="position-absolute bottom-0 left-0 w-100 py-3">
+									<small class="text-white fw-semibold text-decoration-none mx-auto">Forgot Password</small>
+								</div>
+							
+							</form>
                         </div>
                     </div>
                 </div>
