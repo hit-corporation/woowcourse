@@ -80,10 +80,12 @@
                             </div>
                             <form name="frm-login" class="mt-3">
                                 <div class="position-relative custom-float bg-transparent mb-2">
+                                <span class="input-group-text" id="username-icon"><i class="fa-solid fa-user"></i></span>
                                     <input type="text" class="form-control" placeholder='Username' id="txt-username">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="position-relative custom-float bg-transparent mb-3">
+                                <span class="input-group-text" id="username-icon"><i class="fa-solid fa-key"></i></span>
                                     <input type="password" class="form-control" placeholder='Password' id="txt-password">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
