@@ -21,28 +21,27 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: actionlogs; Type: TABLE; Schema: public; Owner: postgres
+-- Name: actionlog; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.actionlogs (
-    id bigint NOT NULL,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
-    "user" character varying(255) NOT NULL,
-    ipadd character varying(255) NOT NULL,
-    logtime timestamp(0) without time zone NOT NULL,
-    logdetail character varying(255) NOT NULL,
-    info character varying(255) NOT NULL
+CREATE TABLE public.actionlog (
+    id integer NOT NULL,
+    "user" character varying(20),
+    ipadd character varying(20),
+    logtime timestamp(6) without time zone DEFAULT ('now'::text)::timestamp without time zone,
+    logdetail text,
+    info character varying(30)
 );
 
 
-ALTER TABLE public.actionlogs OWNER TO postgres;
+ALTER TABLE public.actionlog OWNER TO postgres;
 
 --
--- Name: actionlogs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: actionlog_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.actionlogs_id_seq
+CREATE SEQUENCE public.actionlog_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -50,13 +49,13 @@ CREATE SEQUENCE public.actionlogs_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.actionlogs_id_seq OWNER TO postgres;
+ALTER TABLE public.actionlog_id_seq OWNER TO postgres;
 
 --
--- Name: actionlogs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: actionlog_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.actionlogs_id_seq OWNED BY public.actionlogs.id;
+ALTER SEQUENCE public.actionlog_id_seq OWNED BY public.actionlog.id;
 
 
 --
@@ -64,11 +63,12 @@ ALTER SEQUENCE public.actionlogs_id_seq OWNED BY public.actionlogs.id;
 --
 
 CREATE TABLE public.categories (
-    id bigint NOT NULL,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
-    category_name character varying(255) NOT NULL,
-    parent_category integer
+    id integer NOT NULL,
+    category_name character varying(240),
+    parent_category integer,
+    deleted_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at timestamp without time zone
 );
 
 
@@ -78,46 +78,38 @@ ALTER TABLE public.categories OWNER TO postgres;
 -- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.categories_id_seq
+ALTER TABLE public.categories ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.categories_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.categories_id_seq OWNER TO postgres;
-
---
--- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.categories_id_seq OWNED BY public.categories.id;
-
-
---
--- Name: instructors; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.instructors (
-    id bigint NOT NULL,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
-    first_name character varying(255) NOT NULL,
-    last_name character varying(255) NOT NULL,
-    email character varying(255) NOT NULL,
-    phone character varying(255) NOT NULL,
-    photo character varying(255) NOT NULL
+    CACHE 1
 );
 
 
-ALTER TABLE public.instructors OWNER TO postgres;
-
 --
--- Name: instructors_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: instructor; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.instructors_id_seq
+CREATE TABLE public.instructor (
+    id integer NOT NULL,
+    first_name character varying(30),
+    last_name character varying(30),
+    email character varying(100) NOT NULL,
+    phone character varying(20),
+    photo character varying(255)
+);
+
+
+ALTER TABLE public.instructor OWNER TO postgres;
+
+--
+-- Name: instructor_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.instructor_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -125,13 +117,13 @@ CREATE SEQUENCE public.instructors_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.instructors_id_seq OWNER TO postgres;
+ALTER TABLE public.instructor_id_seq OWNER TO postgres;
 
 --
--- Name: instructors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: instructor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.instructors_id_seq OWNED BY public.instructors.id;
+ALTER SEQUENCE public.instructor_id_seq OWNED BY public.instructor.id;
 
 
 --
@@ -139,15 +131,15 @@ ALTER SEQUENCE public.instructors_id_seq OWNED BY public.instructors.id;
 --
 
 CREATE TABLE public.members (
-    id bigint NOT NULL,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
-    first_name character varying(255) NOT NULL,
-    last_name character varying(255) NOT NULL,
-    email character varying(255) NOT NULL,
-    photo character varying(255) NOT NULL,
-    phone character varying(255) NOT NULL,
-    last_login_date timestamp(0) without time zone NOT NULL
+    id integer NOT NULL,
+    first_name character varying(50),
+    last_name character varying(50),
+    email character varying,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone,
+    photo character varying DEFAULT 1,
+    phone character varying,
+    last_login_date timestamp without time zone
 );
 
 
@@ -158,6 +150,7 @@ ALTER TABLE public.members OWNER TO postgres;
 --
 
 CREATE SEQUENCE public.members_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -210,57 +203,15 @@ ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
 
 
 --
--- Name: personal_access_tokens; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.personal_access_tokens (
-    id bigint NOT NULL,
-    tokenable_type character varying(255) NOT NULL,
-    tokenable_id bigint NOT NULL,
-    name character varying(255) NOT NULL,
-    token character varying(64) NOT NULL,
-    abilities text,
-    last_used_at timestamp(0) without time zone,
-    expires_at timestamp(0) without time zone,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
-);
-
-
-ALTER TABLE public.personal_access_tokens OWNER TO postgres;
-
---
--- Name: personal_access_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.personal_access_tokens_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.personal_access_tokens_id_seq OWNER TO postgres;
-
---
--- Name: personal_access_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.personal_access_tokens_id_seq OWNED BY public.personal_access_tokens.id;
-
-
---
 -- Name: ratings; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.ratings (
-    id bigint NOT NULL,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
-    topic_id integer NOT NULL,
-    member_id integer NOT NULL,
-    rate double precision NOT NULL
+    id integer NOT NULL,
+    topic_id integer,
+    member_id integer,
+    rate real,
+    coment character varying(500)
 );
 
 
@@ -271,6 +222,7 @@ ALTER TABLE public.ratings OWNER TO postgres;
 --
 
 CREATE SEQUENCE public.ratings_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -292,14 +244,12 @@ ALTER SEQUENCE public.ratings_id_seq OWNED BY public.ratings.id;
 --
 
 CREATE TABLE public.subscriptions (
-    id bigint NOT NULL,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
-    topic_id integer NOT NULL,
-    member_id integer NOT NULL,
-    instructor_id integer NOT NULL,
-    start_date integer NOT NULL,
-    end_date integer NOT NULL
+    id integer NOT NULL,
+    topic_id integer,
+    member_id integer,
+    instructor_id integer,
+    start_date timestamp without time zone,
+    end_date timestamp without time zone
 );
 
 
@@ -310,6 +260,7 @@ ALTER TABLE public.subscriptions OWNER TO postgres;
 --
 
 CREATE SEQUENCE public.subscriptions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -331,15 +282,15 @@ ALTER SEQUENCE public.subscriptions_id_seq OWNED BY public.subscriptions.id;
 --
 
 CREATE TABLE public.topics (
-    id bigint NOT NULL,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
-    category_id integer NOT NULL,
-    title character varying(255) NOT NULL,
-    instructor_id integer NOT NULL,
-    content_file character varying(255) NOT NULL,
-    description character varying(255) NOT NULL,
-    price integer NOT NULL
+    id integer NOT NULL,
+    category_id integer,
+    title character varying(255),
+    instructor_id integer,
+    content_file character varying,
+    description character varying,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone,
+    price integer
 );
 
 
@@ -350,6 +301,7 @@ ALTER TABLE public.topics OWNER TO postgres;
 --
 
 CREATE SEQUENCE public.topics_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -371,21 +323,19 @@ ALTER SEQUENCE public.topics_id_seq OWNED BY public.topics.id;
 --
 
 CREATE TABLE public.user_level (
-    id bigint NOT NULL,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
     user_level_id integer NOT NULL,
-    user_level_name character varying(255) NOT NULL
+    user_level_name character varying(50) NOT NULL
 );
 
 
 ALTER TABLE public.user_level OWNER TO postgres;
 
 --
--- Name: user_level_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: user_level_user_level_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.user_level_id_seq
+CREATE SEQUENCE public.user_level_user_level_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -393,13 +343,13 @@ CREATE SEQUENCE public.user_level_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.user_level_id_seq OWNER TO postgres;
+ALTER TABLE public.user_level_user_level_id_seq OWNER TO postgres;
 
 --
--- Name: user_level_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: user_level_user_level_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.user_level_id_seq OWNED BY public.user_level.id;
+ALTER SEQUENCE public.user_level_user_level_id_seq OWNED BY public.user_level.user_level_id;
 
 
 --
@@ -407,17 +357,16 @@ ALTER SEQUENCE public.user_level_id_seq OWNED BY public.user_level.id;
 --
 
 CREATE TABLE public.users (
-    userid bigint NOT NULL,
-    created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
-    first_name character varying(255) NOT NULL,
-    last_name character varying(255),
-    email character varying(255) NOT NULL,
-    password character varying(255) NOT NULL,
-    user_level integer NOT NULL,
-    last_login timestamp(0) without time zone NOT NULL,
-    active integer NOT NULL,
-    photo character varying(255)
+    userid integer NOT NULL,
+    first_name character varying(50),
+    password character varying(255),
+    user_level smallint,
+    last_login timestamp(0) without time zone,
+    active smallint,
+    photo text,
+    email character varying(100),
+    last_name character varying(50),
+    created_at timestamp without time zone
 );
 
 
@@ -428,6 +377,7 @@ ALTER TABLE public.users OWNER TO postgres;
 --
 
 CREATE SEQUENCE public.users_userid_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -445,24 +395,17 @@ ALTER SEQUENCE public.users_userid_seq OWNED BY public.users.userid;
 
 
 --
--- Name: actionlogs id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: actionlog id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.actionlogs ALTER COLUMN id SET DEFAULT nextval('public.actionlogs_id_seq'::regclass);
-
-
---
--- Name: categories id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.categories_id_seq'::regclass);
+ALTER TABLE ONLY public.actionlog ALTER COLUMN id SET DEFAULT nextval('public.actionlog_id_seq'::regclass);
 
 
 --
--- Name: instructors id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: instructor id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.instructors ALTER COLUMN id SET DEFAULT nextval('public.instructors_id_seq'::regclass);
+ALTER TABLE ONLY public.instructor ALTER COLUMN id SET DEFAULT nextval('public.instructor_id_seq'::regclass);
 
 
 --
@@ -477,13 +420,6 @@ ALTER TABLE ONLY public.members ALTER COLUMN id SET DEFAULT nextval('public.memb
 --
 
 ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
-
-
---
--- Name: personal_access_tokens id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.personal_access_tokens ALTER COLUMN id SET DEFAULT nextval('public.personal_access_tokens_id_seq'::regclass);
 
 
 --
@@ -508,10 +444,10 @@ ALTER TABLE ONLY public.topics ALTER COLUMN id SET DEFAULT nextval('public.topic
 
 
 --
--- Name: user_level id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: user_level user_level_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.user_level ALTER COLUMN id SET DEFAULT nextval('public.user_level_id_seq'::regclass);
+ALTER TABLE ONLY public.user_level ALTER COLUMN user_level_id SET DEFAULT nextval('public.user_level_user_level_id_seq'::regclass);
 
 
 --
@@ -522,10 +458,10 @@ ALTER TABLE ONLY public.users ALTER COLUMN userid SET DEFAULT nextval('public.us
 
 
 --
--- Data for Name: actionlogs; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: actionlog; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.actionlogs (id, created_at, updated_at, "user", ipadd, logtime, logdetail, info) FROM stdin;
+COPY public.actionlog (id, "user", ipadd, logtime, logdetail, info) FROM stdin;
 \.
 
 
@@ -533,33 +469,34 @@ COPY public.actionlogs (id, created_at, updated_at, "user", ipadd, logtime, logd
 -- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.categories (id, created_at, updated_at, category_name, parent_category) FROM stdin;
-1	\N	\N	All	\N
-2	\N	\N	Desain	1
-3	\N	\N	Desain Grafis & Ilustrasi	2
-4	\N	\N	Alat Desain	2
-5	\N	\N	Desain 3D & Animasi	2
-6	\N	\N	Desain Web	2
-7	\N	\N	Pemasaran	1
-8	\N	\N	Pemasaran Digital	7
-9	\N	\N	Optimasi Mesin Pencari	7
-10	\N	\N	Pemasaran Media Sosial	7
-11	\N	\N	Dasar-dasar Pemasaran	7
-12	\N	\N	Analitik dan Otomatisasi Pemasaran	7
-13	\N	\N	Bisnis	1
-14	\N	\N	Kewirausahaan	13
-15	\N	\N	Komunikasi	13
-16	\N	\N	Manajemen	13
-17	\N	\N	Penjualan	13
-18	\N	\N	Strategi Bisnis	13
+COPY public.categories (id, category_name, parent_category, deleted_at, created_at, updated_at) FROM stdin;
+1	All	\N	\N	2023-10-31 09:35:07.468638	\N
+2	Desain	1	\N	2023-10-31 09:35:44.703211	\N
+3	Desain Grafis & Ilustrasi	2	\N	2023-10-31 09:38:13.154745	\N
+4	Alat Desain	2	\N	2023-10-31 09:38:24.589781	\N
+5	Desain 3D & Animasi	2	\N	2023-10-31 09:39:02.106148	\N
+6	Desain Web	2	\N	2023-10-31 09:39:57.456332	\N
+7	Pemasaran	1	\N	2023-10-31 09:47:07.388922	\N
+8	Pemasaran Digital	7	\N	2023-10-31 09:48:51.346441	\N
+9	Optimasi Mesin Pencari	7	\N	2023-10-31 09:49:21.057756	\N
+10	Pemasaran Media Sosial	7	\N	2023-10-31 09:49:56.251386	\N
+11	Dasar-dasar Pemasaran	7	\N	2023-10-31 09:50:23.881882	\N
+12	Analitik dan Otomatisasi Pemasaran	7	\N	2023-10-31 09:51:14.635643	\N
+13	Bisnis	1	\N	2023-10-31 09:52:05.870556	\N
+14	Kewirausahaan	13	\N	2023-10-31 09:52:34.002624	\N
+15	Komunikasi	13	\N	2023-10-31 09:52:53.587966	\N
+16	Manajemen	13	\N	2023-10-31 09:53:10.099078	\N
+17	Penjualan	13	\N	2023-10-31 09:53:23.631232	\N
+18	Strategi Bisnis	13	\N	2023-10-31 09:53:37.60454	\N
+19	Desain Interior	2	\N	2023-11-01 09:53:55.765994	\N
 \.
 
 
 --
--- Data for Name: instructors; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: instructor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.instructors (id, created_at, updated_at, first_name, last_name, email, phone, photo) FROM stdin;
+COPY public.instructor (id, first_name, last_name, email, phone, photo) FROM stdin;
 \.
 
 
@@ -567,7 +504,9 @@ COPY public.instructors (id, created_at, updated_at, first_name, last_name, emai
 -- Data for Name: members; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.members (id, created_at, updated_at, first_name, last_name, email, photo, phone, last_login_date) FROM stdin;
+COPY public.members (id, first_name, last_name, email, created_at, updated_at, photo, phone, last_login_date) FROM stdin;
+4	ahmad	fauzi	fauzi.enginer@gmail.com	2023-10-26 11:49:22.338979	\N	1	\N	\N
+5	ahmad	fauzi	fauzi.enginer2@gmail.com	2023-10-27 10:40:40.392017	\N	1	\N	\N
 \.
 
 
@@ -576,24 +515,16 @@ COPY public.members (id, created_at, updated_at, first_name, last_name, email, p
 --
 
 COPY public.migrations (id, migration, batch) FROM stdin;
-1	2019_12_14_000001_create_personal_access_tokens_table	1
-2	2023_10_31_093328_create_users_table	1
-3	2023_10_31_094210_create_actionlogs_table	1
-4	2023_10_31_095223_create_categories_table	1
-5	2023_10_31_095346_create_instructors_table	1
-6	2023_10_31_095458_create_members_table	1
-7	2023_10_31_095750_create_ratings_table	1
-8	2023_10_31_100026_create_subscriptions_table	1
-9	2023_10_31_100222_create_topics_table	1
-10	2023_10_31_100422_create_user_level_table	1
-\.
-
-
---
--- Data for Name: personal_access_tokens; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.personal_access_tokens (id, tokenable_type, tokenable_id, name, token, abilities, last_used_at, expires_at, created_at, updated_at) FROM stdin;
+1	2023_11_01_090136_create_actionlog_table	0
+2	2023_11_01_090136_create_categories_table	0
+3	2023_11_01_090136_create_instructor_table	0
+4	2023_11_01_090136_create_members_table	0
+5	2023_11_01_090136_create_ratings_table	0
+6	2023_11_01_090136_create_subscriptions_table	0
+7	2023_11_01_090136_create_topics_table	0
+8	2023_11_01_090136_create_user_level_table	0
+9	2023_11_01_090136_create_users_table	0
+10	2023_11_01_090139_add_foreign_keys_to_categories_table	0
 \.
 
 
@@ -601,7 +532,7 @@ COPY public.personal_access_tokens (id, tokenable_type, tokenable_id, name, toke
 -- Data for Name: ratings; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.ratings (id, created_at, updated_at, topic_id, member_id, rate) FROM stdin;
+COPY public.ratings (id, topic_id, member_id, rate, coment) FROM stdin;
 \.
 
 
@@ -609,7 +540,7 @@ COPY public.ratings (id, created_at, updated_at, topic_id, member_id, rate) FROM
 -- Data for Name: subscriptions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.subscriptions (id, created_at, updated_at, topic_id, member_id, instructor_id, start_date, end_date) FROM stdin;
+COPY public.subscriptions (id, topic_id, member_id, instructor_id, start_date, end_date) FROM stdin;
 \.
 
 
@@ -617,7 +548,7 @@ COPY public.subscriptions (id, created_at, updated_at, topic_id, member_id, inst
 -- Data for Name: topics; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.topics (id, created_at, updated_at, category_id, title, instructor_id, content_file, description, price) FROM stdin;
+COPY public.topics (id, category_id, title, instructor_id, content_file, description, created_at, updated_at, price) FROM stdin;
 \.
 
 
@@ -625,7 +556,14 @@ COPY public.topics (id, created_at, updated_at, category_id, title, instructor_i
 -- Data for Name: user_level; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.user_level (id, created_at, updated_at, user_level_id, user_level_name) FROM stdin;
+COPY public.user_level (user_level_id, user_level_name) FROM stdin;
+1	Administrator
+3	Guru
+4	Murid
+2	Tim
+10	admin sekolah
+5	Orang Tua
+6	Kepala Sekolah
 \.
 
 
@@ -633,37 +571,42 @@ COPY public.user_level (id, created_at, updated_at, user_level_id, user_level_na
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (userid, created_at, updated_at, first_name, last_name, email, password, user_level, last_login, active, photo) FROM stdin;
-1	\N	\N	admin	\N	admin@woowcourse.com	$2y$10$lxXYtxMhP40u.pBx5Sm5meixFL0K8lBXtxzMPDWd7cb8QLz9eZDU6	1	2023-11-01 03:29:46	1	\N
+COPY public.users (userid, first_name, password, user_level, last_login, active, photo, email, last_name, created_at) FROM stdin;
+2	user	$2y$10$96ZOFWieIlTJdFNIdmSXGeOLKDNIeM4r6kRrfosjxsHjzN8b1bGvy	1	\N	1	\N	user@gmail.com	user	\N
+1	admin	$2y$10$hngwULP9Yl6nSptuoRiPJOp0heKo44DTNSI6unxNvtwfYGqtQotfa	1	\N	1	\N	admin@woowcourse.com	admin	\N
+5	susilo	$2y$10$Vyg/ZaowBHdeCsWnpbxwk.gib7d3Wd5RA53IujGH0w./cs.VAPLq6	1	\N	1	\N	susilo@gmail.com	bambang	\N
+7	omni	$2y$10$HAX5b3Z.HMiszEyakCHQLOGJak22pAwDTCtZYQkVXnYJAF6oxxYIC	1	2023-10-25 03:38:01	1	\N	omnichannelhit@gmail.com	Omnichannel HIT	\N
+8	Web	$2y$10$A5A7pR8c35vCdTCQ1QpaguvZB1Kyn9x8wYtINHCQ/6tlqL7S7wFIq	2	2023-10-30 10:48:18	1	\N	fauzi.enginer@gmail.com	Developer	\N
+9	ahmad	$2y$10$cV4quyda/78/.xKPAV3eXOgEZ18xDzzzMiRv1qWJdUFpiECp5Uzni	2	2023-10-31 08:51:38	1	\N	fauzi.enginer2@gmail.com	fauzi	\N
 \.
 
 
 --
--- Name: actionlogs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: actionlog_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.actionlogs_id_seq', 1, false);
+SELECT pg_catalog.setval('public.actionlog_id_seq', 1, false);
 
 
 --
 -- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.categories_id_seq', 19, false);
+SELECT pg_catalog.setval('public.categories_id_seq', 19, true);
 
 
 --
--- Name: instructors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: instructor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.instructors_id_seq', 1, false);
+SELECT pg_catalog.setval('public.instructor_id_seq', 1, false);
 
 
 --
 -- Name: members_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.members_id_seq', 1, false);
+SELECT pg_catalog.setval('public.members_id_seq', 5, true);
 
 
 --
@@ -671,13 +614,6 @@ SELECT pg_catalog.setval('public.members_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.migrations_id_seq', 10, true);
-
-
---
--- Name: personal_access_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.personal_access_tokens_id_seq', 1, false);
 
 
 --
@@ -702,25 +638,25 @@ SELECT pg_catalog.setval('public.topics_id_seq', 1, false);
 
 
 --
--- Name: user_level_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: user_level_user_level_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.user_level_id_seq', 1, false);
+SELECT pg_catalog.setval('public.user_level_user_level_id_seq', 1, true);
 
 
 --
 -- Name: users_userid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_userid_seq', 1, true);
+SELECT pg_catalog.setval('public.users_userid_seq', 9, true);
 
 
 --
--- Name: actionlogs actionlogs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: actionlog actionlog_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.actionlogs
-    ADD CONSTRAINT actionlogs_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.actionlog
+    ADD CONSTRAINT actionlog_pkey PRIMARY KEY (id);
 
 
 --
@@ -732,19 +668,19 @@ ALTER TABLE ONLY public.categories
 
 
 --
--- Name: instructors instructors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: instructor instructor_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.instructors
-    ADD CONSTRAINT instructors_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.instructor
+    ADD CONSTRAINT instructor_pk PRIMARY KEY (id);
 
 
 --
--- Name: members members_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: members members_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.members
-    ADD CONSTRAINT members_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT members_pk PRIMARY KEY (id);
 
 
 --
@@ -756,66 +692,34 @@ ALTER TABLE ONLY public.migrations
 
 
 --
--- Name: personal_access_tokens personal_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.personal_access_tokens
-    ADD CONSTRAINT personal_access_tokens_pkey PRIMARY KEY (id);
-
-
---
--- Name: personal_access_tokens personal_access_tokens_token_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.personal_access_tokens
-    ADD CONSTRAINT personal_access_tokens_token_unique UNIQUE (token);
-
-
---
--- Name: ratings ratings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.ratings
-    ADD CONSTRAINT ratings_pkey PRIMARY KEY (id);
-
-
---
--- Name: subscriptions subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.subscriptions
-    ADD CONSTRAINT subscriptions_pkey PRIMARY KEY (id);
-
-
---
--- Name: topics topics_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.topics
-    ADD CONSTRAINT topics_pkey PRIMARY KEY (id);
-
-
---
--- Name: user_level user_level_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_level user_level_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.user_level
-    ADD CONSTRAINT user_level_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT user_level_pk PRIMARY KEY (user_level_id);
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: users users_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (userid);
+    ADD CONSTRAINT users_pk PRIMARY KEY (userid);
 
 
 --
--- Name: personal_access_tokens_tokenable_type_tokenable_id_index; Type: INDEX; Schema: public; Owner: postgres
+-- Name: categories_category_name_parent_category_deleted_at; Type: INDEX; Schema: public; Owner: postgres
 --
 
-CREATE INDEX personal_access_tokens_tokenable_type_tokenable_id_index ON public.personal_access_tokens USING btree (tokenable_type, tokenable_id);
+CREATE UNIQUE INDEX categories_category_name_parent_category_deleted_at ON public.categories USING btree (category_name, parent_category, deleted_at);
+
+
+--
+-- Name: categories categories_parent_category_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_parent_category_fkey FOREIGN KEY (parent_category) REFERENCES public.categories(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
