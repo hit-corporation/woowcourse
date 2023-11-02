@@ -82,22 +82,22 @@
                             <form name="frm-login" class="mt-3">
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="username-icon"><i class="fa-solid fa-user"></i></span>
-                                    <input type="text" class="form-control" placeholder='Username' id="txt-username">
+                                    <input type="text" class="form-control" name="username" placeholder='Username' id="txt-username">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="email-icon"><i class="fa-solid fa-envelope"></i></span>
-                                    <input type="email" class="form-control" placeholder='Email' id="txt-email">
+                                    <input type="email" class="form-control" name="email" placeholder='Email' id="txt-email">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="password-icon"><i class="fa-solid fa-key"></i></span>
-                                    <input type="password" class="form-control" placeholder='Password' id="txt-password">
+                                    <input type="password" class="form-control" name="password" placeholder='Password' id="txt-password">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="password-confirm-icon"><i class="fa-solid fa-key"></i></span>
-                                    <input type="password" class="form-control" placeholder='Password Confirmation' id="txt-password-confirm">
+                                    <input type="password" class="form-control" name="password-confirm" placeholder='Password Confirmation' id="txt-password-confirm">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="form-check">

@@ -57,17 +57,17 @@ class Login extends CI_Controller {
 		
 		if(isset($post['submit'])){
 
-			$this->form_validation->set_rules('first_name', 'User Name', 'required');
-			$this->form_validation->set_rules('last_name', 'Full Name', 'required');
+			$this->form_validation->set_rules('username', 'User Name', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
-			$this->form_validation->set_rules('repeatPassword', 'Repeat Password', 'required|matches[password]');
+			$this->form_validation->set_rules('pasword-confirm', 'Repeat Password', 'required|matches[password]');
 
 			if($this->form_validation->run() == TRUE){
 				$data = [
-					'first_name' 	=> $post['first_name'],
-					'last_name' 	=> $post['last_name'],
-					'email' 		=> $post['email'],
+					'username' 			=> trim($post['last_name']),
+					'email' 			=> trim($post['email']),
+					'password'			=> trim($post['password']),
+					'password_confirm'	=> trim($post['password-confirm'])
 				];
 
 				// simpan user ke tabel members atau instructors
@@ -83,14 +83,15 @@ class Login extends CI_Controller {
 				$data['user_level'] = $post['type'];
 				$data['last_login'] = date('Y-m-d H:i:s', time());
 
-				$insert = $this->db->insert('users', $data);
-
 				// create session success / error
-				if($insert){
-					$this->session->set_flashdata('success', ['message' => 'Registrasi berhasil']);
-				}else{
+
+				if(!$this->db->insert('users', $data)){
 					$this->session->set_flashdata('error', ['message' => 'Registrasi gagal']);
+					redirect(base_url('login/register'));
+					return;
 				}
+
+				$this->session->set_flashdata('success', ['message' => 'Registrasi berhasil']);
 				redirect(base_url('login'));
 			}
 		}
