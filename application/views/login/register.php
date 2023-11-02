@@ -1,107 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+        <link rel="stylesheet" href="assets/css/style.min.css">
+        <link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/login.min.css">
+        <style>
+            /*
+            .custom-float {
+                padding-top: .7rem;
+            }
 
-<head>
+            .custom-float > input {
+                padding-bottom: .35rem;
+            }
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+            .custom-float > label {
+                position: absolute;
+                top: 12px;
+                left: 5px;
+                font-size: .9rem;
+                transition: all 200ms linear;
+            }
 
-    <title>SB Admin 2 - Register</title>
+            .custom-float > input[type="text"]:focus-visible,
+            .custom-float > input[type="password"]:focus-visible {
+                outline: none;
+                border: none;
+            } 
 
-    <!-- Custom fonts for this template-->
-    <link href="<?=base_url('assets/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            .custom-float > input[type="text"]:not(:placeholder-shown) ~ label,
+            .custom-float > input[type="password"]:not(:placeholder-shown) ~ label, 
+            .custom-float > input[type="text"]:focus ~ label,
+            .custom-float > input[type="password"]:focus ~ label, 
+            .custom-float > input[type="text"]:focus-visible ~ label,
+            .custom-float > input[type="password"]:focus-visible ~ label {
+                top: -2px;
+                left: 0px;
+                font-size: .7rem;
+                transition: all 200ms linear;
+            }
+            */
 
-    <!-- Custom styles for this template-->
-    <link href="<?=base_url('assets/css/sb-admin-2.min.css')?>" rel="stylesheet">
-
-</head>
-
-<body class="bg-gradient-primary">
-
-    <div class="container">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+            .icon-container {
+                width: 32px;
+                height: 32px;
+                display: flex;
+                flex-wrap: nowrap; 
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="login-body" class="vh-100 vw-100 d-flex justify-content-center align-items-center">
+            <div class="row w-100 justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="card position-relative border-0 material-shadow-1 flex-row" id="login-card">
+                        <img class="overflow-hidden" src="assets/images/5514.jpg">
+                        <div class="card-body bg-primary">
+                            <!--<div class="d-flex flex-nowrap mb-2 justify-content-center">
+                                <a class="icon-container rounded-circle border border-white text-white me-1"><i class="fa-brands fa-facebook fs-5"></i></a>
+                                <a class="icon-container rounded-circle border border-white text-white"><i class="fa-brands fa-google fs-5"></i></a>
+                            </div>-->
+                            <div class="position-relative d-flex flex-nowrap justify-content-center align-items-center mt-1" id="login-separator">
+                                <span class="border border-light position-absolute w-100"></span>
+                                <h6 class="bg-primary top-0 m-0 p-1 z-2 text-white">REGISTER</h6>
                             </div>
-                            <form class="user" action="<?=base_url('login/register')?>" method="POST">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" name="first_name" id="first_name"
-                                            placeholder="First Name">
-											<?php echo form_error('first_name'); ?>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" name="last_name" id="last_name"
-                                            placeholder="Last Name">
-											<?php echo form_error('last_name'); ?>
-                                    </div>
+                            <form name="frm-login" class="mt-3">
+                                <div class="input-group position-relative custom-float bg-transparent mb-2">
+                                    <span class="input-group-text" id="username-icon"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" class="form-control" placeholder='Username' id="txt-username">
+                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" name="email" id="email"
-                                        placeholder="Email Address">
-										<?php echo form_error('email'); ?>
+                                <div class="input-group position-relative custom-float bg-transparent mb-2">
+                                    <span class="input-group-text" id="email-icon"><i class="fa-solid fa-envelope"></i></span>
+                                    <input type="email" class="form-control" placeholder='Email' id="txt-email">
+                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
-                                <div class="form-group">
-                                    <select type="type" class="form-control" name="type" id="type">
-										<option value="2">Member</option>
-										<option value="3">instructor</option>
-									</select>
+                                <div class="input-group position-relative custom-float bg-transparent mb-2">
+                                    <span class="input-group-text" id="password-icon"><i class="fa-solid fa-key"></i></span>
+                                    <input type="password" class="form-control" placeholder='Password' id="txt-password">
+                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            name="password" id="password" placeholder="Password">
-											<?php echo form_error('password'); ?>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            name="repeatPassword" id="repeatPassword" placeholder="Repeat Password">
-											<?php echo form_error('repeatPassword'); ?>
-                                    </div>
+                                <div class="input-group position-relative custom-float bg-transparent mb-2">
+                                    <span class="input-group-text" id="password-confirm-icon"><i class="fa-solid fa-key"></i></span>
+                                    <input type="password" class="form-control" placeholder='Password Confirmation' id="txt-password-confirm">
+                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-user btn-block" name="submit">
-                                    Register Account
-								</button>
-                             
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="agreement" id="txt-agreement">
+                                    <label class="form-check-label text-white" for="txt-agreement">
+                                        I agree all statements in Terms of service
+                                    </label>
+                                  </div>
+                                
+                                <div class="d-flex flex-wrap mb-3 mt-4 align-items-center">
+                                    <button type="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Register</button>
+                                </div>
+                                
                             </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="<?=base_url('login/forgot_password')?>">Forgot Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="<?=base_url('login')?>">Already have an account? Login!</a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?=base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
-    <script src="<?=base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="<?=base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="<?=base_url('assets/js/sb-admin-2.min.js')?>"></script>
-
-</body>
-
+        <script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js" async defer></script>
+    </body>
 </html>
