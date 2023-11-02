@@ -47,13 +47,10 @@
 				<form name="form-search">
 					<div class="row">
 						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
-							<input type="text" class="form-control form-control-sm" name="s_card_number" placeholder="Nomor Kartu">
+							<input type="text" class="form-control form-control-sm" name="s_first_name" placeholder="Nama Member">
 						</div>
 						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
-							<input type="text" class="form-control form-control-sm" name="s_no_induk" placeholder="Nomor Induk">
-						</div>
-						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
-							<input type="text" class="form-control form-control-sm" name="s_member_name" placeholder="Nama Member">
+							<input type="text" class="form-control form-control-sm" name="s_email" placeholder="Email">
 						</div>
 						<div class="col-2">
 							<div class="btn-group btn-group-sm">
@@ -72,12 +69,11 @@
                         <thead class="bg-primary text-white">
                             <tr>
                                 <th>ID</th>
-                                <th>Nama Member</th>
-                                <th>Nomor Kartu</th>
-                                <th>Nomor Induk</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
                                 <th>Email</th>
-                                <th>Alamat</th>
                                 <th>Phone</th>
+                                <th>Last Login</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -101,34 +97,24 @@
             </div>
             <div class="modal-body">
                 <form id="form-input" name="form-input" method="POST" action="<?=base_url('member/store')?>">
-                    <input type="text" class="d-none" name="member_id">
+                    <input type="text" class="d-none" name="id">
                     <div class="form-group">
-                        <label>Nama Member <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['member_name'])):?> is-invalid <?php endif ?>" 
-                              name="member_name" value="<?=$_SESSION['error']['old']['member_name'] ?? ''?>" required>
+                        <label>First Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['first_name'])):?> is-invalid <?php endif ?>" 
+                              name="first_name" value="<?=$_SESSION['error']['old']['first_name'] ?? ''?>" required>
                         
-                        <?php if(!empty($_SESSION['error']['errors']['member_name'])): ?>
-                            <small class="text-danger"><?=$_SESSION['error']['errors']['member_name']?></small>
+                        <?php if(!empty($_SESSION['error']['errors']['first_name'])): ?>
+                            <small class="text-danger"><?=$_SESSION['error']['errors']['first_name']?></small>
                         <?php endif ?>
                     </div>
 
-					<div class="form-group">
-                        <label>No Kartu <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['card_number'])):?> is-invalid <?php endif ?>" 
-                              name="card_number" value="<?=$_SESSION['error']['old']['card_number'] ?? ''?>">
+                    <div class="form-group">
+                        <label>Last Name </label>
+                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['last_name'])):?> is-invalid <?php endif ?>" 
+                              name="last_name" value="<?=$_SESSION['error']['old']['last_name'] ?? ''?>" required>
                         
-                        <?php if(!empty($_SESSION['error']['errors']['card_number'])): ?>
-                            <small class="text-danger"><?=$_SESSION['error']['errors']['card_number']?></small>
-                        <?php endif ?>
-                    </div>
-                    
-					<div class="form-group">
-                        <label>No Induk <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['no_induk'])):?> is-invalid <?php endif ?>" 
-                              name="no_induk" value="<?=$_SESSION['error']['old']['no_induk'] ?? ''?>" required>
-                        
-                        <?php if(!empty($_SESSION['error']['errors']['no_induk'])): ?>
-                            <small class="text-danger"><?=$_SESSION['error']['errors']['no_induk']?></small>
+                        <?php if(!empty($_SESSION['error']['errors']['last_name'])): ?>
+                            <small class="text-danger"><?=$_SESSION['error']['errors']['last_name']?></small>
                         <?php endif ?>
                     </div>
 
@@ -139,15 +125,6 @@
                         
                         <?php if(!empty($_SESSION['error']['errors']['email'])): ?>
                             <small class="text-danger"><?=$_SESSION['error']['errors']['email']?></small>
-                        <?php endif ?>
-                    </div>
-					
-					<div class="form-group">
-                        <label>Alamat </label>
-						<textarea class="form-control <?php if(!empty($_SESSION['error']['errors']['address'])):?> is-invalid <?php endif ?>" name="address" id="" cols="30" rows="3" value="<?=$_SESSION['error']['old']['address'] ?? ''?>"></textarea>
-							
-						<?php if(!empty($_SESSION['error']['errors']['address'])): ?>
-                            <small class="text-danger"><?=$_SESSION['error']['errors']['address']?></small>
                         <?php endif ?>
                     </div>
 
