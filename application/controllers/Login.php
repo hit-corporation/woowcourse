@@ -73,22 +73,21 @@ class Login extends CI_Controller {
 				];
 
 				// simpan user ke tabel members atau instructors
-				if($post['type'] == 2){
+				if($post['type'] == 2)
 					$this->db->insert('members', $data);
-				}else{
+				else
 					$this->db->insert('instructors', $data);
-				}
 
 				// simpan ke tabel users
 				$data['active'] 	= 1;
 				$data['password'] 	= password_hash($post['password'], PASSWORD_DEFAULT);
 				$data['user_level'] = $post['type'];
-				$data['last_login'] = date('Y-m-d H:i:s', time());
+				$data['last_login'] = date('Y-m-d H:i:s');
 
 				// create session success / error
 
 				if(!$this->db->insert('users', $data)){
-					$this->session->set_flashdata('error', ['message' => 'Registrasi gagal']);
+					$this->session->set_flashdata('error', ['message' => 'Registrasi gagal !!!']);
 					redirect(base_url('login/register'));
 					return;
 				}
