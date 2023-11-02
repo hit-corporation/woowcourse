@@ -36,23 +36,19 @@ const getAll = async () => {
                 visible: false
             },
             {
-                data: 'member_name',
-                className: 'align-middle pl-2'
+                data: 'first_name'
             },
             {
-                data: 'card_number'
-            },
-            {
-                data: 'no_induk'
+                data: 'last_name'
             },
             {
                 data: 'email'
             },
             {
-                data: 'address'
+                data: 'phone'
             },
             {
-                data: 'phone'
+                data: 'last_login_date'
             },
             {
                 data: null,
@@ -82,12 +78,10 @@ const getAll = async () => {
         let row = tableMain.row($(e.target).parents('tr')[0]).data();
         
         form.reset();
-        form['member_id'].value = row.id;
-        form['member_name'].value = row.member_name;
-        form['card_number'].value = row.card_number;
-        form['no_induk'].value = row.no_induk;
+        form['id'].value = row.id;
+        form['first_name'].value = row.first_name;
+        form['last_name'].value = row.last_name;
         form['email'].value = row.email;
-        form['address'].value = row.address;
         form['phone'].value = row.phone;
 
         form.action = BASE_URL + 'member/edit';
@@ -123,9 +117,8 @@ const getAll = async () => {
         e.preventDefault();
 		
         // if(formSearch['s_member_name'].value)
-		tableMain.columns(1).search(formSearch['s_member_name'].value).draw();
-		tableMain.columns(2).search(formSearch['s_card_number'].value).draw();
-		tableMain.columns(3).search(formSearch['s_no_induk'].value).draw();
+		tableMain.columns(1).search(formSearch['s_first_name'].value).draw();
+		tableMain.columns(2).search(formSearch['s_email'].value).draw();
         
     });
 
