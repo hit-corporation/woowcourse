@@ -58,16 +58,12 @@ class Login extends CI_Controller {
 		
 		if(isset($post['submit'])){
 
-			$this->form_validation->set_rules('first_name', 'First Name', 'required');
-			$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('password-confirm', 'Repeat Password', 'required|matches[password]');
 
 			if($this->form_validation->run() == TRUE){
 				$data = [
-					'first_name'	=> trim($post['first_name']),
-					'last_name'		=> trim($post['last_name']),
 					'email' 		=> trim($post['email']),
 					'active'		=> 1,
 					'user_level'	=> 2,
