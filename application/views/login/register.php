@@ -115,6 +115,10 @@
                                 <div class="d-flex flex-wrap mb-3 mt-4 align-items-center">
                                     <button type="submit" name="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Register</button>
                                 </div>
+
+								<div class="position-relative text-center left-0 w-100 py-3">
+									<a href="<?=base_url('login')?>" class="text-white fw-semibold text-decoration-none mx-auto">Login</a>
+								</div>
                                 
                             </form>
                             

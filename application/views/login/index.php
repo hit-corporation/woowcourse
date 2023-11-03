@@ -91,11 +91,16 @@
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 
-                                <div class="d-flex flex-wrap mb-3 mt-4 align-items-center">
+                                <div class="d-flex flex-wrap mb-3 mt-4 justify-content-center">
                                     <button type="submit" name="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
                                 </div>
                                 
                             </form>
+
+							<div class="position-relative text-center left-0 w-100 py-3">
+                                <a href="<?=base_url('login/register')?>" class="text-white fw-semibold text-decoration-none mx-auto">Register</a>
+                            </div>
+
                             <div class="position-absolute bottom-0 left-0 w-100 py-3">
                                 <small class="text-white fw-semibold text-decoration-none mx-auto">Forgot Password</small>
                             </div>
