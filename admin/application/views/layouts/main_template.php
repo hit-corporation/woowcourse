@@ -134,6 +134,11 @@
 							<i class="fa fa-users" aria-hidden="true"> </i>
 							<span>Member</span>
 						</a>
+                        
+						<a class="collapse-item <?=$CI->uri->segment(1) == 'instructor' ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('instructor')?>">
+							<i class="fa fa-users" aria-hidden="true"> </i>
+							<span>Instructor</span>
+						</a>
 
 						<a class="collapse-item <?=$CI->uri->segment(1) == 'kategori' ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('kategori')?>">
 							<i class="fas fa-tags"></i>
