@@ -58,35 +58,26 @@ class Login extends CI_Controller {
 		
 		if(isset($post['submit'])){
 
-			$this->form_validation->set_rules('first_name', 'User Name', 'required');
-			$this->form_validation->set_rules('last_name', 'Full Name', 'required');
+			$this->form_validation->set_rules('first_name', 'First Name', 'required');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
-			$this->form_validation->set_rules('pasword-confirm', 'Repeat Password', 'required|matches[password]');
+			$this->form_validation->set_rules('password-confirm', 'Repeat Password', 'required|matches[password]');
 
 			if($this->form_validation->run() == TRUE){
 				$data = [
-					'username' 			=> trim($post['last_name']),
-					'email' 			=> trim($post['email']),
-					'password'			=> trim($post['password']),
-					'password_confirm'	=> trim($post['password-confirm'])
+					'first_name'	=> trim($post['first_name']),
+					'last_name'		=> trim($post['last_name']),
+					'email' 		=> trim($post['email']),
+					'active'		=> 1,
+					'user_level'	=> 2,
+					'password'		=> password_hash($post['password'], PASSWORD_DEFAULT),
+					'last_login'	=> date('Y-m-d H:i:s'),
 				];
 
-				// simpan user ke tabel members atau instructors
-				if($post['type'] == 2)
-					$this->db->insert('members', $data);
-				else
-					$this->db->insert('instructors', $data);
-
 				// simpan ke tabel users
-				$data['active'] 	= 1;
-				$data['password'] 	= password_hash($post['password'], PASSWORD_DEFAULT);
-				$data['user_level'] = $post['type'];
-				$data['last_login'] = date('Y-m-d H:i:s');
-
-				// create session success / error
-
 				if(!$this->db->insert('users', $data)){
+					// create session success / error
 					$this->session->set_flashdata('error', ['message' => 'Registrasi gagal !!!']);
 					redirect(base_url('login/register'));
 					return;
