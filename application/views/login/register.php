@@ -80,7 +80,16 @@
                                 <h6 class="bg-primary top-0 m-0 p-1 z-2 text-white">REGISTER</h6>
                             </div>
                             <form name="frm-login" class="mt-3" action="<?=str_replace($_SERVER['PHP_SELF'], '/index.php', '')?>" method="POST">
-                               
+								<div class="input-group position-relative custom-float bg-transparent mb-2">
+                                    <span class="input-group-text" id="username-icon"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" class="form-control" placeholder='First Name' id="txt-first-name" name="first_name">
+                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
+                                </div>
+                                <div class="input-group position-relative custom-float bg-transparent mb-2">
+                                    <span class="input-group-text" id="username-icon"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" class="form-control" placeholder='Username' id="txt-username">
+                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
+                                </div>
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="email-icon"><i class="fa-solid fa-envelope"></i></span>
                                     <input type="email" class="form-control" placeholder='Email' id="txt-email">
