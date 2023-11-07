@@ -76,7 +76,10 @@ class Login extends CI_Controller {
 				return;
 			}
 
+			$uuid = create_uuid4();
+
 			$data = [
+				'user_code'		=> $uuid,
 				'email' 		=> trim($post['email']),
 				'active'		=> 1,
 				'user_level'	=> 2,
@@ -92,6 +95,10 @@ class Login extends CI_Controller {
 				return;
 			}
 
+			$activation = [
+				'user_no' => $uuid,
+				'token'	  => str_random(24)
+			];
 			
 			if(!$this->db->insert('personel_access_token')) {
 				$this->session->set_flashdata('error', ['message' => 'Email gagal di kirim !!!']);
@@ -102,7 +109,7 @@ class Login extends CI_Controller {
 			$this->config->load('email', TRUE);
 			$config = $this->config->item('email');
 
-
+			
 
 			$this->email->from('naquib@hitcorporation.com');
 			$this->email->to($post['email']);
