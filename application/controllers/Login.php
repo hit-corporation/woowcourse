@@ -7,7 +7,7 @@ class Login extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->library('form_validation');
+		$this->load->library(['form_validation', 'email']);
 		$this->load->model('user_model');
 	}
 
@@ -52,36 +52,57 @@ class Login extends CI_Controller {
 		$this->load->view('login/index', $data);
 	}
 
-	public function register(){
-		$post = $this->input->post();
-
+	public function register() {
 		
-		if(isset($post['submit'])){
+		if($_SERVER['REQUEST_METHOD'] === 'POST') 
+		{
+			$post = $this->input->post();
 
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('password-confirm', 'Repeat Password', 'required|matches[password]');
 
-			if($this->form_validation->run() == TRUE){
-				$data = [
-					'email' 		=> trim($post['email']),
-					'active'		=> 1,
-					'user_level'	=> 2,
-					'password'		=> password_hash($post['password'], PASSWORD_DEFAULT),
-					'last_login'	=> date('Y-m-d H:i:s'),
-				];
-
-				// simpan ke tabel users
-				if(!$this->db->insert('users', $data)){
-					// create session success / error
-					$this->session->set_flashdata('error', ['message' => 'Registrasi gagal !!!']);
-					redirect(base_url('login/register'));
-					return;
-				}
-
-				$this->session->set_flashdata('success', ['message' => 'Registrasi berhasil']);
-				redirect(base_url('login'));
+			if($this->form_validation->run() === FALSE) 
+			{
+				$return = ['success' => false, 'errors' => $this->form_validation->error_array(), 'old' => $_POST];
+				$this->session->set_flashdata('error', $return);
+				redirect($_SERVER['HTTP_REFERER']);
+				return;
 			}
+
+			$data = [
+				'email' 		=> trim($post['email']),
+				'active'		=> 1,
+				'user_level'	=> 2,
+				'password'		=> password_hash($post['password'], PASSWORD_DEFAULT),
+				'last_login'	=> date('Y-m-d H:i:s'),
+			];
+
+			// simpan ke tabel users
+			if(!$this->db->insert('users', $data)) {
+				// create session success / error
+				$this->session->set_flashdata('error', ['message' => 'Registrasi gagal !!!']);
+				redirect(base_url('login/register'));
+				return;
+			}
+
+			if(!$this->db->insert('')) {
+				$this->session->set_flashdata('error', ['message' => 'Email gagal di kirim !!!']);
+				redirect(base_url('login/register'));
+				return;
+			}
+
+			$this->config->load('email', TRUE);
+			$config = $this->config->item('email');
+
+			$this->email->from('naquib@hitcorporation.com');
+			$this->email->to($post['email']);
+			$this->email->subject('Email Subject');
+			$this->email->message('net net');
+			$this->email->send();
+
+			$this->session->set_flashdata('success', ['message' => 'Registrasi berhasil']);
+			redirect(base_url('login'));
 		}
 
 		$this->load->view('login/register');
