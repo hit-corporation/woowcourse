@@ -85,6 +85,10 @@ class Login extends CI_Controller {
 		$this->load->view('login/register');
 	}
 
+	public function email_register() {
+		$this->load->view('email/registration');
+	}
+
 	public function forgot_password(){
 		$this->load->view('login/forgot_password');
 	}

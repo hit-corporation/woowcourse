@@ -8,6 +8,7 @@ class Login extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->library(['form_validation', 'email']);
+		$this->load->helper('customstring');
 		$this->load->model('user_model');
 	}
 
@@ -52,7 +53,12 @@ class Login extends CI_Controller {
 		$this->load->view('login/index', $data);
 	}
 
-	public function register() {
+	/**
+	 * register new account
+	 *
+	 * @return void
+	 */
+	public function register(): void {
 		
 		if($_SERVER['REQUEST_METHOD'] === 'POST') 
 		{
@@ -86,7 +92,8 @@ class Login extends CI_Controller {
 				return;
 			}
 
-			if(!$this->db->insert('')) {
+			
+			if(!$this->db->insert('personel_access_token')) {
 				$this->session->set_flashdata('error', ['message' => 'Email gagal di kirim !!!']);
 				redirect(base_url('login/register'));
 				return;
@@ -94,6 +101,8 @@ class Login extends CI_Controller {
 
 			$this->config->load('email', TRUE);
 			$config = $this->config->item('email');
+
+
 
 			$this->email->from('naquib@hitcorporation.com');
 			$this->email->to($post['email']);
@@ -106,6 +115,11 @@ class Login extends CI_Controller {
 		}
 
 		$this->load->view('login/register');
+	}
+
+	public function email_register() {
+		echo $this->template->render('login/email_sent');
+		//$this->load->view('email/registration');
 	}
 
 	public function forgot_password(){
