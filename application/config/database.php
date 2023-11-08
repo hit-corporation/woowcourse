@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'pgsql:host=localhost;port=65432;dbname=perpustakaan',
+	'hostname' => 'pgsql:host=localhost;port=5432;dbname=woowcourse',
 	'username' => 'postgres',
-	'password' => 'postgroow',
+	'password' => 'postgres',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
