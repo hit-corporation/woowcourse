@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'pgsql:host=localhost;port=65432;dbname=woowcourse',
 	'username' => 'postgres',
-	'password' => 'postgres',
+	'password' => 'postgroow',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
