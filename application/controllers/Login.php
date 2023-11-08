@@ -85,6 +85,8 @@ class Login extends CI_Controller {
 				'user_level'	=> 2,
 				'password'		=> password_hash($post['password'], PASSWORD_DEFAULT),
 				'last_login'	=> date('Y-m-d H:i:s'),
+				'created_at' 	=> date('Y-m-d H:i:s.u'),
+				'updated_at' 	=> date('Y-m-d H:i:s.u'),
 			];
 
 			// simpan ke tabel users
@@ -96,11 +98,15 @@ class Login extends CI_Controller {
 			}
 
 			$activation = [
-				'user_no' => $uuid,
-				'token'	  => str_random(24)
+				'user_no' 	 => $uuid,
+				'name'	  	 => 'reg_'.time(),
+				'token'	  	 => str_random(24),
+				'expired_at' => (new DateTime)->add(new DateInterval('PT1H'))->format('Y-m-d H:i:s'),
+				'created_at' => date('Y-m-d H:i:s.u'),
+				'updated_at' => date('Y-m-d H:i:s.u'),
 			];
 			
-			if(!$this->db->insert('personel_access_token')) {
+			if(!$this->db->insert('personal_access_tokens', $activation)) {
 				$this->session->set_flashdata('error', ['message' => 'Email gagal di kirim !!!']);
 				redirect(base_url('login/register'));
 				return;
@@ -108,17 +114,17 @@ class Login extends CI_Controller {
 
 			$this->config->load('email', TRUE);
 			$config = $this->config->item('email');
-
 			
+			$email = $this->load->view('email/registration', [], TRUE);
 
 			$this->email->from('naquib@hitcorporation.com');
 			$this->email->to($post['email']);
-			$this->email->subject('Email Subject');
-			$this->email->message('net net');
+			$this->email->subject('Verification Email');
+			$this->email->message($email);
 			$this->email->send();
 
 			$this->session->set_flashdata('success', ['message' => 'Registrasi berhasil']);
-			redirect(base_url('login'));
+			redirect(base_url('login/email_register'));
 		}
 
 		$this->load->view('login/register');
