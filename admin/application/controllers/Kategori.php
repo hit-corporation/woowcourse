@@ -73,6 +73,7 @@ class Kategori extends MY_Controller
             $return = ['success' => false, 'errors' => $this->form_validation->error_array(), 'old' => $_POST];
             $this->session->set_flashdata('error', $return);
             redirect($_SERVER['HTTP_REFERER']);
+            return;
         }
 
         $data = [
@@ -85,6 +86,7 @@ class Kategori extends MY_Controller
             $return = ['success' => false, 'message' =>  'Data Gagal Di Simpan', 'old' => $_POST];
             $this->session->set_flashdata('error', $return);
             redirect($_SERVER['HTTP_REFERER']);
+            return;
         }
        
        $return = ['success' => true, 'message' =>  'Data Berhasil Di Simpan'];

@@ -59,6 +59,10 @@
                 justify-content: center;
                 align-items: center;
             }
+
+            #login-card {
+                min-height: 60vh;
+            }
         </style>
     </head>
     <body>
@@ -79,30 +83,21 @@
                                 <span class="border border-light position-absolute w-100"></span>
                                 <h6 class="bg-primary top-0 m-0 p-1 z-2 text-white">REGISTER</h6>
                             </div>
-                            <form name="frm-login" class="mt-3" action="<?=str_replace($_SERVER['PHP_SELF'], '/index.php', '')?>" method="POST">
-								<div class="input-group position-relative custom-float bg-transparent mb-2">
-                                    <span class="input-group-text" id="username-icon"><i class="fa-solid fa-user"></i></span>
-                                    <input type="text" class="form-control" placeholder='First Name' id="txt-first-name" name="first_name">
-                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
-                                </div>
-                                <div class="input-group position-relative custom-float bg-transparent mb-2">
-                                    <span class="input-group-text" id="username-icon"><i class="fa-solid fa-user"></i></span>
-                                    <input type="text" class="form-control" placeholder='Last Name' id="txt-last-name" name="last_name">
-                                    <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
-                                </div>
+                            <form name="frm-login" class="mt-3" action="<?=str_replace('/index.php', '', $_SERVER['PHP_SELF'])?>" method="POST">
+                                
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="email-icon"><i class="fa-solid fa-envelope"></i></span>
-                                    <input type="email" class="form-control" placeholder='Email' id="txt-email" name="email">
+                                    <input type="email" class="form-control" name="email" placeholder='Email' id="txt-email">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="password-icon"><i class="fa-solid fa-key"></i></span>
-                                    <input type="password" class="form-control" placeholder='Password' id="txt-password" name="password">
+                                    <input type="password" class="form-control" name="password" placeholder='Password' id="txt-password">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="input-group position-relative custom-float bg-transparent mb-2">
                                     <span class="input-group-text" id="password-confirm-icon"><i class="fa-solid fa-key"></i></span>
-                                    <input type="password" class="form-control" placeholder='Password Confirmation' id="txt-password-confirm" name="password-confirm">
+                                    <input type="password" class="form-control" name="password-confirm" placeholder='Password Confirmation' id="txt-password-confirm">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
                                 <div class="form-check">
@@ -113,15 +108,13 @@
                                   </div>
                                 
                                 <div class="d-flex flex-wrap mb-3 mt-4 align-items-center">
-                                    <button type="submit" name="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Register</button>
+                                    <button type="submit" class="btn bg-white text-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Register</button>
                                 </div>
-
-								<div class="position-relative text-center left-0 w-100 py-3">
-									<a href="<?=base_url('login')?>" class="text-white fw-semibold text-decoration-none mx-auto">Login</a>
-								</div>
                                 
                             </form>
-                            
+                            <div class="d-flex flex-nowrap w-100">
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
