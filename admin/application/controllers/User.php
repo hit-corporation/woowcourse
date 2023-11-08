@@ -8,10 +8,6 @@ class User extends CI_Controller {
 		parent::__construct();
 		$this->load->model('user_model');
 		$this->load->library('form_validation');
-
-		// if(!$this->session->userdata('user')){
-		// 	redirect(base_url('login'));
-		// }
 	}
 
 	/**
