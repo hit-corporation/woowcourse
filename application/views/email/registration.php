@@ -123,195 +123,194 @@
     <style>
 
 	    .primary{
-	background: #30e3ca;
-}
-.bg_white{
-	background: #ffffff;
-}
-.bg_light{
-	background: #fafafa;
-}
-.bg_black{
-	background: #000000;
-}
-.bg_dark{
-	background: rgba(0,0,0,.8);
-}
-.email-section{
-	padding:2.5em;
-}
+            background: #30e3ca;
+        }
+        .bg_white{
+            background: #ffffff;
+        }
+        .bg_light{
+            background: #fafafa;
+        }
+        .bg_black{
+            background: #000000;
+        }
+        .bg_dark{
+            background: rgba(0,0,0,.8);
+        }
+        .email-section{
+            padding:2.5em;
+        }
 
-/*BUTTON*/
-.btn{
-	padding: 10px 15px;
-	display: inline-block;
-}
-.btn.btn-primary{
-	border-radius: 5px;
-	background: #30e3ca;
-	color: #ffffff;
-}
-.btn.btn-white{
-	border-radius: 5px;
-	background: #ffffff;
-	color: #000000;
-}
-.btn.btn-white-outline{
-	border-radius: 5px;
-	background: transparent;
-	border: 1px solid #fff;
-	color: #fff;
-}
-.btn.btn-black-outline{
-	border-radius: 0px;
-	background: transparent;
-	border: 2px solid #000;
-	color: #000;
-	font-weight: 700;
-}
+        /*BUTTON*/
+        .btn{
+            padding: 10px 15px;
+            display: inline-block;
+        }
+        .btn.btn-primary{
+            border-radius: 5px;
+            background: #30e3ca;
+            color: #ffffff;
+        }
+        .btn.btn-white{
+            border-radius: 5px;
+            background: #ffffff;
+            color: #000000;
+        }
+        .btn.btn-white-outline{
+            border-radius: 5px;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+        }
+        .btn.btn-black-outline{
+            border-radius: 0px;
+            background: transparent;
+            border: 2px solid #000;
+            color: #000;
+            font-weight: 700;
+        }
 
-h1,h2,h3,h4,h5,h6{
-	font-family: 'Lato', sans-serif;
-	color: #000000;
-	margin-top: 0;
-	font-weight: 400;
-}
+        h1,h2,h3,h4,h5,h6{
+            font-family: 'Lato', sans-serif;
+            color: #000000;
+            margin-top: 0;
+            font-weight: 400;
+        }
 
-body{
-	font-family: 'Lato', sans-serif;
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 1.8;
-	color: rgba(0,0,0,.4);
-}
+        body{
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(0,0,0,.4);
+        }
 
-table{
-}
-/*LOGO*/
+        table{
+        }
+        /*LOGO*/
 
-.logo h1{
-	margin: 0;
-}
-.logo h1 a{
-	color: #30e3ca;
-	font-size: 24px;
-	font-weight: 700;
-	font-family: 'Lato', sans-serif;
-}
+        .logo h1{
+            margin: 0;
+        }
+        .logo h1 a{
+            color: #30e3ca;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Lato', sans-serif;
+        }
 
-/*HERO*/
-.hero{
-	position: relative;
-	z-index: 0;
-}
+        /*HERO*/
+        .hero{
+            position: relative;
+            z-index: 0;
+        }
 
-.hero .text{
-	color: rgba(0,0,0,.3);
-}
-.hero .text h2{
-	color: #000;
-	font-size: 40px;
-	margin-bottom: 0;
-	font-weight: 400;
-	line-height: 1.4;
-}
-.hero .text h3{
-	font-size: 24px;
-	font-weight: 300;
-}
-.hero .text h2 span{
-	font-weight: 600;
-	color: #30e3ca;
-}
-
-
-/*HEADING SECTION*/
-.heading-section{
-}
-.heading-section h2{
-	color: #000000;
-	font-size: 28px;
-	margin-top: 0;
-	line-height: 1.4;
-	font-weight: 400;
-}
-.heading-section .subheading{
-	margin-bottom: 20px !important;
-	display: inline-block;
-	font-size: 13px;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	color: rgba(0,0,0,.4);
-	position: relative;
-}
-.heading-section .subheading::after{
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: -10px;
-	content: '';
-	width: 100%;
-	height: 2px;
-	background: #30e3ca;
-	margin: 0 auto;
-}
-
-.heading-section-white{
-	color: rgba(255,255,255,.8);
-}
-.heading-section-white h2{
-	font-family: 
-	line-height: 1;
-	padding-bottom: 0;
-}
-.heading-section-white h2{
-	color: #ffffff;
-}
-.heading-section-white .subheading{
-	margin-bottom: 0;
-	display: inline-block;
-	font-size: 13px;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	color: rgba(255,255,255,.4);
-}
+        .hero .text{
+            color: rgba(0,0,0,.3);
+        }
+        .hero .text h2{
+            color: #000;
+            font-size: 40px;
+            margin-bottom: 0;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+        .hero .text h3{
+            font-size: 24px;
+            font-weight: 300;
+        }
+        .hero .text h2 span{
+            font-weight: 600;
+            color: #30e3ca;
+        }
 
 
-ul.social{
-	padding: 0;
-}
-ul.social li{
-	display: inline-block;
-	margin-right: 10px;
-}
+        /*HEADING SECTION*/
+        .heading-section{
+        }
+        .heading-section h2{
+            color: #000000;
+            font-size: 28px;
+            margin-top: 0;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+        .heading-section .subheading{
+            margin-bottom: 20px !important;
+            display: inline-block;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(0,0,0,.4);
+            position: relative;
+        }
+        .heading-section .subheading::after{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -10px;
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: #30e3ca;
+            margin: 0 auto;
+        }
 
-/*FOOTER*/
-
-.footer{
-	border-top: 1px solid rgba(0,0,0,.05);
-	color: rgba(0,0,0,.5);
-}
-.footer .heading{
-	color: #000;
-	font-size: 20px;
-}
-.footer ul{
-	margin: 0;
-	padding: 0;
-}
-.footer ul li{
-	list-style: none;
-	margin-bottom: 10px;
-}
-.footer ul li a{
-	color: rgba(0,0,0,1);
-}
+        .heading-section-white{
+            color: rgba(255,255,255,.8);
+        }
+        .heading-section-white h2 {
+            line-height: 1;
+            padding-bottom: 0;
+        }
+        .heading-section-white h2{
+            color: #ffffff;
+        }
+        .heading-section-white .subheading{
+            margin-bottom: 0;
+            display: inline-block;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,.4);
+        }
 
 
-@media screen and (max-width: 500px) {
+        ul.social{
+            padding: 0;
+        }
+        ul.social li{
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        /*FOOTER*/
+
+        .footer{
+            border-top: 1px solid rgba(0,0,0,.05);
+            color: rgba(0,0,0,.5);
+        }
+        .footer .heading{
+            color: #000;
+            font-size: 20px;
+        }
+        .footer ul{
+            margin: 0;
+            padding: 0;
+        }
+        .footer ul li{
+            list-style: none;
+            margin-bottom: 10px;
+        }
+        .footer ul li a{
+            color: rgba(0,0,0,1);
+        }
 
 
-}
+        @media screen and (max-width: 500px) {
+
+
+        }
 
 
     </style>
@@ -320,7 +319,7 @@ ul.social li{
 </head>
 
 <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f1f1f1;">
-	<center style="width: 100%; background-color: #f1f1f1;margin-top: 1rem;">
+	<center style="width: 100%; background-color: #f1f1f1;padding-top: 2.8rem;padding-bottom: 2.8rem">
     <div style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
       &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
     </div>
@@ -333,7 +332,7 @@ ul.social li{
           		<tr>
           			<td style="text-align: center; text-shadow: 0px 0px 1px rgba(0,0,0,0.25)">
 			            <h1 style="margin-bottom: 0px">
-                            <a href="javascript:void(0)" style="font-family: 'Bebas Neue', sans-serif; font-size: 48px">
+                            <a href="javascript:void(0)" style="font-family: 'Bebas Neue', sans-serif; font-size: 48px;">
                                 <span style="color: #30e3ca">WOOW</span> COURSE
                             </a>
                         </h1>
@@ -346,7 +345,8 @@ ul.social li{
           <td valign="middle" class="hero bg_white" style="padding: 1em 0">
             <!--<img src="images/email.png" alt="" style="width: 300px; max-width: 600px; height: auto; margin: auto; display: block;">-->
             <center>
-                <span class="fa-solid fa-envelope" style="font-size: 204px; text-align: center"></span>
+                <!--<img src="data:image/png;base64,<?=base64_encode(file_get_contents(getcwd().'/assets/images/envelope.png'))?>" width="150" height="150">-->
+                <img src="https://i.ibb.co/QM82Wr0/envelope.png" width="150" height="150">
             <center>
           </td>
 	      </tr><!-- end tr -->
@@ -357,14 +357,16 @@ ul.social li{
             		<td>
             			<div class="text" style="padding: 0 2.5em; text-align: center;">
             				<h2>Please verify your email</h2>
-            				<h3>Amazing deals, updates, interesting news right in your inbox</h3>
+            				<h3>Langkah cerdas untuk orang cerdas</h3>
             				<p>
-                                <a href="#" class="btn btn-primary" style="box-shadow: 0px 0px 1px rgba(0,0,0,0.35)">
-                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="white">
-                                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
-                                    <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z"/>
-                                  </svg>  
-                                  <span style="margin-left: .5rem">Verify</span>
+                                <a href="#" style="box-shadow: 0px 0px 1px rgba(0,0,0,0.35); 
+                                                   background-color: #30e3ca; 
+                                                   padding: .85rem 1rem 1rem 1rem; 
+                                                   border-radius: 8px;
+                                                   box-shadow: 0px 0px 1px rgba(0,0,0,0.35)">
+                                   
+                                    
+                                    <span style="vertical-align: middle; color: white; font-size: 1rem; font-weight: bold">Verify</span>
                                 </a>
                             </p>
             			</div>
