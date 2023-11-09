@@ -64,7 +64,7 @@ class Login extends CI_Controller {
 		{
 			$post = $this->input->post();
 
-			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('password-confirm', 'Repeat Password', 'required|matches[password]');
 

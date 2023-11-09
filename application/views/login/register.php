@@ -85,21 +85,38 @@
                             </div>
                             <form name="frm-login" class="mt-3" action="<?=str_replace('/index.php', '', $_SERVER['PHP_SELF'])?>" method="POST">
                                 
-                                <div class="input-group position-relative custom-float bg-transparent mb-2">
+                                <div class="input-group position-relative custom-float bg-transparent">
                                     <span class="input-group-text" id="email-icon"><i class="fa-solid fa-envelope"></i></span>
-                                    <input type="email" class="form-control" name="email" placeholder='Email' id="txt-email">
+                                    <input type="email" class="form-control" name="email" placeholder='Email' 
+                                           id="txt-email" 
+                                           value="<?=$_SESSION['error']['old']['email'] ?? ''?>">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
-                                <div class="input-group position-relative custom-float bg-transparent mb-2">
+                                <?php if(!empty($_SESSION['error']['errors']['email'])): ?>
+                                    <small class="text-danger"><?=$_SESSION['error']['errors']['email']?></small>
+                                <?php endif ?>
+                                <div class="input-group position-relative custom-float bg-transparent mt-2">
                                     <span class="input-group-text" id="password-icon"><i class="fa-solid fa-key"></i></span>
-                                    <input type="password" class="form-control" name="password" placeholder='Password' id="txt-password">
+                                    <input type="password" class="form-control" name="password" 
+                                            placeholder='Password' 
+                                            id="txt-password"
+                                            value="<?=$_SESSION['error']['old']['password'] ?? ''?>">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
-                                <div class="input-group position-relative custom-float bg-transparent mb-2">
+                                <?php if(!empty($_SESSION['error']['errors']['password'])): ?>
+                                    <small class="text-danger"><?=$_SESSION['error']['errors']['password']?></small>
+                                <?php endif ?>
+                                <div class="input-group position-relative custom-float bg-transparent mt-2">
                                     <span class="input-group-text" id="password-confirm-icon"><i class="fa-solid fa-key"></i></span>
-                                    <input type="password" class="form-control" name="password-confirm" placeholder='Password Confirmation' id="txt-password-confirm">
+                                    <input type="password" class="form-control" name="password-confirm" 
+                                            placeholder='Password Confirmation' 
+                                            id="txt-password-confirm"
+                                            value="<?=$_SESSION['error']['old']['password-confirm'] ?? ''?>">
                                     <!--<label class="text-white fw-semibold" for="txt-password"></label>-->
                                 </div>
+                                <?php if(!empty($_SESSION['error']['errors']['password-confirm'])): ?>
+                                    <small class="text-danger"><?=$_SESSION['error']['errors']['password-confirm'] ?? ''?></small>
+                                <?php endif ?>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="agreement" id="txt-agreement">
                                     <label class="form-check-label text-white" for="txt-agreement">
