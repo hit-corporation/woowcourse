@@ -11,6 +11,8 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
 
+		$this->load->helper(['cek']);
+
         if (!isset($_SESSION['user']))
             redirect(base_url('login'));
 
