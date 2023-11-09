@@ -115,7 +115,12 @@ class Login extends CI_Controller {
 			$this->config->load('email', TRUE);
 			$config = $this->config->item('email');
 			
-			$email = $this->load->view('email/registration', [], TRUE);
+			$token = [
+				'token'		=> $activation['token'],
+				'user_no'	=> $activation['user_no']
+			];
+
+			$email = $this->load->view('email/registration', $token, TRUE);
 
 			$this->email->from('naquib@hitcorporation.com');
 			$this->email->to($post['email']);
