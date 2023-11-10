@@ -13,7 +13,8 @@ class Course extends MY_Controller {
      * @return void
      */
     public function index(): void {
-		$data['topics'] = $this->topics_model->get_all();
+		// $data['topics'] 	= $this->topics_model->get_all();
+		$data['categories'] = $this->db->limit(10)->get('categories')->result_array();
         echo $this->template->render('index', $data);
     }
 
@@ -21,6 +22,7 @@ class Course extends MY_Controller {
 		$page 			= isset($_GET['page']) ? (int)$_GET['page'] : 1;
 		$limit 			= isset($_GET['limit']) ? (int)$_GET['limit'] : 3;
 		$filter['title']= isset($_GET['title']) ? $_GET['title'] : '';
+		$filter['categories'] = isset($_GET['categories']) ? $_GET['categories'] : [];
 
 		$page = ($page - 1) * $limit;
 
