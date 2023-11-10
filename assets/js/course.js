@@ -1,5 +1,6 @@
 'use strict';
 const navBottom = document.querySelector('#nav-bottom');
+var checked = [];
 
 var arrPage = [];
 $(document).ready(function () {
@@ -20,6 +21,7 @@ $(document).ready(function () {
 
 // KETIKA BUTTON CARI DI KLIK
 $('#btn-search').on('click', function(e){
+	checkCategory(); // untuk mengisi kategori yang di centang
 	load_data();
 });
 
@@ -35,6 +37,7 @@ function load_data(page = 1, limit = 10){
 			page: page,
 			limit: limit,
 			title: title,
+			categories: checked
 		},
 		success: function (response) {
 			$('#list-course').html('');
@@ -84,3 +87,16 @@ function load_data(page = 1, limit = 10){
 		}
 	});
 }
+
+// GET CATEGORY CHECK
+function checkCategory(){
+	checked = [];
+	let categoriesCheck = document.querySelector('#categories-check');
+	[...categoriesCheck.children].forEach((item, index) => {
+		if(item.firstElementChild.checked == true){
+			checked.push(parseInt(item.firstElementChild.value));
+		}
+	});
+}
+
+
