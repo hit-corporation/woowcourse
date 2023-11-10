@@ -1,0 +1,13 @@
+.child-item{
+	color: #20c997;
+	position: relative;
+  	left: 20px;
+}
+
+.child-item:hover{
+	background-color: var(--bs-primary);
+	color: var(--bs-white);
+	border-radius: .25rem;
+	padding-left: .5rem;
+	padding-right: .5rem;
+}
