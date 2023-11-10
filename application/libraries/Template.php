@@ -10,6 +10,8 @@ class template {
         $this->ci =& get_instance();
 
         $this->template->loadExtension(new League\Plates\Extension\URI(base_url()));
+
+		
     }
 
     public function instance() {
@@ -29,6 +31,18 @@ class template {
         $this->template->loadExtension(new \League\Plates\Extension\Asset(getcwd().'/', FALSE));
         $this->template->addFolder($f, VIEWPATH.$f, TRUE);
         $this->template->addFolder('layouts', VIEWPATH.'layouts', TRUE);
+		
+		$a = $this->ci->db->where('parent_category', 0)->get('categories')->row_array();
+		$b = $this->ci->db->where('parent_category', $a['id'])->get('categories')->result_array();
+
+		$i = 0;
+		foreach ($b as $key => $val) {
+			$c = $this->ci->db->where('parent_category', $val['id'])->get('categories')->result_array();
+			$b[$i]['child'] = $c;
+			$i++;
+		}
+
+		$this->template->addData(['categories' => $b]);
        
         return $this->template->render($f.'::'.$template, $data);
     }
