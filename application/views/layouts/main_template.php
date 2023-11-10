@@ -12,6 +12,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
         <link rel="stylesheet" href="assets/css/style.min.css">
+        <link rel="stylesheet" href="assets/css/custom.css">
         <link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
         <?= $this->section('css') ?>
     </head>
@@ -64,8 +65,18 @@
                               Categories
                             </a>
                             <ul class="list-unstyled custom-dropdown collapse" id="collapse_1">
-                                <li class="nav-item"><a class="nav-link">Pelajaran</a></li>
-                                <li class="nav-item"><a class="nav-link">IT Dan Komputer</a></li>
+                                <li class="nav-item"><a class="nav-link">All</a></li>
+
+								<?php foreach ($categories as $key => $val) : ?>
+									<li class="nav-item" data="<?=$val['id']?>"><a class="nav-link"><?=$val['category_name']?></a></li>
+									
+									<div class="child-1" style="display: none;">
+										<?php foreach($val['child'] as $val2): ?>
+											<li class="child-item"><?=$val2['category_name']?></li>
+										<?php endforeach ?>
+									</div>
+								<?php endforeach ?>
+
                             </ul>
                           </li>
                           <li class="nav-item rounded">
@@ -113,6 +124,8 @@
                                      text-white 
                                      text-shadow 
                                      shadow pb-2" >&#8679;</a>
+
+		<script>const CATEGORIES = <?=json_encode($categories)?>;</script>
         <script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
         <script src="assets/js/main.js" async defer></script>
         <?= $this->section('js') ?>
