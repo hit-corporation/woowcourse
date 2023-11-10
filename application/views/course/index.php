@@ -1,4 +1,8 @@
-<?php $this->layout('layouts::main_template', ['title' => 'Course']) ?>
+<?php
+
+use PhpOffice\PhpSpreadsheet\Calculation\Information\Value;
+
+$this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 <?php $this->start('css') ?>
 <link rel="stylesheet" href="https://pagination.js.org/dist/2.6.0/pagination.css">
@@ -21,26 +25,16 @@
 
 					<hr class="border border-dark mb-2" />
 					<h4 class="mb-2 text-shadow-sm">Kategori</h4>
-					<div class="form-check mt-2">
-						<input class="form-check-input" type="checkbox" value="category[1]" id="checkItAndComputer">
-						<label class="form-check-label" for="checkItAndComputer">IT Dan Komputer</label>
+
+					<div id="categories-check">
+						<?php foreach ($categories as $key => $value) : ?>
+							<div class="form-check mt-2">
+								<input class="form-check-input" type="checkbox" value="<?=$value['id']?>" id="category_<?=$value['id']?>">
+								<label class="form-check-label" for="category_<?=$value['id']?>"><?=$value['category_name']?></label>
+							</div>
+						<?php endforeach ?>
 					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="category[2]" id="checkMusicAndInstruments">
-						<label class="form-check-label" for="checkMusicAndInstruments">Music</label>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="category[3]" id="checkGraphicDesign">
-						<label class="form-check-label" for="checkGraphicDesign">Graphic Design</label>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="category[4]" id="checkFinanceAndAccounting">
-						<label class="form-check-label" for="checkFinanceAndAccounting">Finance And Accounting</label>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="category[5]" id="checkPhotography">
-						<label class="form-check-label" for="checkPhotography">Photography</label>
-					</div>
+
 					<hr class="border border-dark mb-2" />
 					<h4 class="mb-2 text-shadow-sm">Rating</h4>
 					<div class="pt-1">
