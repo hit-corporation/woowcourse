@@ -356,10 +356,10 @@
             	<tr>
             		<td>
             			<div class="text" style="padding: 0 2.5em; text-align: center;">
-            				<h2>Please verify your email</h2>
-            				<h3>Langkah cerdas untuk orang cerdas</h3>
+            				<h2 style="text-transform: uppercase">selamat bergabung</h2>
+            				<h3 style="font-weight: normal: text-align: center">Selangkah lagi untuk menjadi anggota kami</h3>
             				<p>
-                                <a href="<?=base_url('login/verify?ix='.base64_encode($token.':'.$user_no))?>" style="box-shadow: 0px 0px 1px rgba(0,0,0,0.35); 
+                                <a href="<?=base_url('verify/'.base64_encode($token.':'.$user_no))?>" style="box-shadow: 0px 0px 1px rgba(0,0,0,0.35); 
                                                    background-color: #30e3ca; 
                                                    padding: .85rem 1rem 1rem 1rem; 
                                                    border-radius: 8px;
