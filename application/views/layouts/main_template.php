@@ -72,7 +72,7 @@
 									
 									<div class="child-1" style="display: none;">
 										<?php foreach($val['child'] as $val2): ?>
-											<li class="child-item"><?=$val2['category_name']?></li>
+											<li class="child-item"><a class="nav-link" href="<?=base_url('course')?>" data="<?=$val2['id']?>" onclick="categoryClick('<?=$val2['id']?>')"><?=$val2['category_name']?></a></li>
 										<?php endforeach ?>
 									</div>
 								<?php endforeach ?>
