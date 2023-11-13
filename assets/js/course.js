@@ -28,6 +28,17 @@ $('#btn-search').on('click', function(e){
 // create function load data
 function load_data(page = 1, limit = 10){
 	let title = $('input[name="cari"]').val();
+	let categoryMenuClick = [];
+
+	// JIKA MENU KATEGORY DI KLIK MAKA AMBIL DATA ID KATEGORY DARI LOCAL STORAGE
+	categoryMenuClick = localStorage.getItem('category');
+
+	if(categoryMenuClick){
+		checked.push(categoryMenuClick);
+		localStorage.removeItem('category');
+	}
+
+	console.log(checked);
 
 	$.ajax({
 		type: "GET",
@@ -37,7 +48,7 @@ function load_data(page = 1, limit = 10){
 			page: page,
 			limit: limit,
 			title: title,
-			categories: checked
+			categories: checked,
 		},
 		success: function (response) {
 			$('#list-course').html('');
