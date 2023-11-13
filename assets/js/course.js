@@ -52,44 +52,48 @@ function load_data(page = 1, limit = 10){
 		},
 		success: function (response) {
 			$('#list-course').html('');
-			$.each(response.data, function (key, value){
-				$('#list-course').append(`
-					<div class="col-12 col-md-4 col-lg-4 py-1">
-						<div class="card position-relative d-lg-flex flex-nowrap">
-							<img class="img-fluid" src="assets/images/sm2.jpg">
-							<div class="card-body">
-								<h5 class="text-uppercase text-shadow">${value.course_title}</h5>
-								<div class="pt-1">
-									<span>
-										<i class="fa fa-star text-primary"></i>
-										<i class="fa fa-star text-primary"></i>
-										<i class="fa fa-star text-primary"></i>
-										<i class="fa fa-star text-primary"></i>
-									</span>
-								</div>
-								<div class="d-flex flex-nowrap py-3">
-									<div class="col border-right">
-										<i class="fa-solid fa-clock text-warning"></i><span class="ms-1">1 Week</span>
+			if(response.data.length !== 0){
+				$.each(response.data, function (key, value){
+					$('#list-course').append(`
+						<div class="col-12 col-md-4 col-lg-4 py-1">
+							<div class="card position-relative d-lg-flex flex-nowrap">
+								<img class="img-fluid" src="assets/images/sm2.jpg">
+								<div class="card-body">
+									<h5 class="text-uppercase text-shadow">${value.course_title}</h5>
+									<div class="pt-1">
+										<span>
+											<i class="fa fa-star text-primary"></i>
+											<i class="fa fa-star text-primary"></i>
+											<i class="fa fa-star text-primary"></i>
+											<i class="fa fa-star text-primary"></i>
+										</span>
 									</div>
-									<div class="col border-right">
-										<i class="fa-solid fa-calendar text-warning"></i><span class="ms-1">3 Session</span>
+									<div class="d-flex flex-nowrap py-3">
+										<div class="col border-right">
+											<i class="fa-solid fa-clock text-warning"></i><span class="ms-1">1 Week</span>
+										</div>
+										<div class="col border-right">
+											<i class="fa-solid fa-calendar text-warning"></i><span class="ms-1">3 Session</span>
+										</div>
+										
 									</div>
 									
-								</div>
-								
-								<div class="row">
-									<div class="col-12 d-flex flex-nowrap justify-content-end">
-										<button type="button" class="btn btn-sm btn-success text-uppercase">
-											<i class="fa-regular fa-handshake"></i>
-											Subscribe !!!
-										</button>
+									<div class="row">
+										<div class="col-12 d-flex flex-nowrap justify-content-end">
+											<button type="button" class="btn btn-sm btn-success text-uppercase">
+												<i class="fa-regular fa-handshake"></i>
+												Subscribe !!!
+											</button>
+										</div>
 									</div>
 								</div>
+								<span class="label-harga">Rp. <?=number_format($val['price'])?></span>
 							</div>
-							<span class="label-harga">Rp. <?=number_format($val['price'])?></span>
-						</div>
-					</div>`);
-			});
+						</div>`);
+				});
+			}else{
+				$('#list-course').append(`<h4 class="text-center">Data Tidak Ditemukan</h4>`);
+			}
 
 			// ########################## PAGINATION JS ##############################
 			for(let i=1; i<=response.total_records; i++){
