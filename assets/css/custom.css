@@ -17,3 +17,9 @@
 	 	color: white;
 	}
 }
+
+@media only screen and (min-width: 992px) {
+	ul#collapse_1.list-unstyled.custom-dropdown.collapse {
+		min-width: 25rem;
+	}
+}
