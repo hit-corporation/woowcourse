@@ -59,7 +59,7 @@ function load_data(page = 1, limit = 10){
 							<div class="card position-relative d-lg-flex flex-nowrap">
 								<img class="img-fluid" src="assets/images/sm2.jpg">
 								<div class="card-body">
-									<h5 class="text-uppercase text-shadow">${value.course_title}</h5>
+									<h5 class="text-uppercase text-shadow"><a class="text-decoration-none" href="${BASE_URL+'course/detail/'+value.id}">${value.course_title}</a></h5>
 									<div class="pt-1">
 										<span>
 											<i class="fa fa-star text-primary"></i>
