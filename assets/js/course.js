@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 // KETIKA BUTTON CARI DI KLIK
 $('#btn-search').on('click', function(e){
-	checkCategory(); // untuk mengisi kategori yang di centang
+	// checkCategory(); // untuk mengisi kategori yang di centang
 	load_data();
 });
 
@@ -38,8 +38,6 @@ function load_data(page = 1, limit = 10){
 		localStorage.removeItem('category');
 	}
 
-	console.log(checked);
-
 	$.ajax({
 		type: "GET",
 		url: BASE_URL+"course/get_all",
@@ -48,7 +46,8 @@ function load_data(page = 1, limit = 10){
 			page: page,
 			limit: limit,
 			title: title,
-			categories: checked,
+			categories: checkCategory(),
+			ratingChecked: ratingCheck()
 		},
 		success: function (response) {
 			$('#list-course').html('');
@@ -112,6 +111,17 @@ function checkCategory(){
 			checked.push(parseInt(item.firstElementChild.value));
 		}
 	});
+	return checked;
 }
 
-
+// CHECKED RATING
+function ratingCheck(){
+	let rating = document.querySelectorAll('.form-check-input.rating-check');
+	let ratingChecked = [];
+	rating.forEach((val, key) => {
+		if(val.checked == true){
+			ratingChecked.push(val.value);
+		}
+	});
+	return ratingChecked;
+}
