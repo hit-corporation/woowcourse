@@ -38,7 +38,23 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 					<hr class="border border-dark mb-2" />
 					<h4 class="mb-2 text-shadow-sm">Rating</h4>
 					<div class="pt-1">
-						<div class="form-check">
+						<?php for($i=1; $i<=5; $i++): ?>
+							<div class="form-check">
+								<input class="form-check-input rating-check" type="checkbox" value="<?=$i?>">
+								<label class="form-check-label" for="rating<?=$i?>">
+									<?php for($j=1; $j<=5; $j++): ?>
+										<?php if($j <= $i){?>
+											<i class="fa fa-star text-primary"></i>
+										<?php }else{ ?>
+										<i class="fa fa-star text-secondary"></i>
+										<?php } ?>
+									<?php endfor ?>
+								</label>
+							</div>
+						<?php endfor ?>
+
+
+						<!-- <div class="form-check">
 							<input class="form-check-input" type="checkbox" value="rate[1]" id="rating1">
 							<label class="form-check-label" for="rating1">
 								<i class="fa fa-star text-primary"></i>
@@ -87,7 +103,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 								<i class="fa fa-star text-primary"></i>
 								<i class="fa fa-star text-primary"></i>
 							</label>
-						</div>
+						</div> -->
 
 					</div>
 				</div>
