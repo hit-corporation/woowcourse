@@ -20,6 +20,10 @@ class Topics_model extends CI_Model {
         
         if(!empty($limit) && !is_null($offset))
             $this->db->limit($limit, $offset);
+
+		if(!empty($filter['ratingChecked'])){
+			$this->db->where_in('FLOOR(rating)', $filter['ratingChecked']);
+		}
             
         $query = $this->db->get('courses');
         return $query->result_array();
@@ -51,6 +55,4 @@ class Topics_model extends CI_Model {
 
 		// check child 3
 	}
-		
-	
 }
