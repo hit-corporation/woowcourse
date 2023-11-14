@@ -21,13 +21,14 @@ $(document).ready(function () {
 
 // KETIKA BUTTON CARI DI KLIK
 $('#btn-search').on('click', function(e){
-	// checkCategory(); // untuk mengisi kategori yang di centang
+	checkCategory(); // untuk mengisi kategori yang di centang
 	load_data();
 });
 
 // create function load data
 function load_data(page = 1, limit = 10){
 	let title = $('input[name="cari"]').val();
+	
 	let categoryMenuClick = [];
 
 	// JIKA MENU KATEGORY DI KLIK MAKA AMBIL DATA ID KATEGORY DARI LOCAL STORAGE
@@ -46,7 +47,7 @@ function load_data(page = 1, limit = 10){
 			page: page,
 			limit: limit,
 			title: title,
-			categories: checkCategory(),
+			categories: checked,
 			ratingChecked: ratingCheck()
 		},
 		success: function (response) {
@@ -62,9 +63,7 @@ function load_data(page = 1, limit = 10){
 									<div class="pt-1">
 										<span>
 											<i class="fa fa-star text-primary"></i>
-											<i class="fa fa-star text-primary"></i>
-											<i class="fa fa-star text-primary"></i>
-											<i class="fa fa-star text-primary"></i>
+											<span>${value.rating}</span>
 										</span>
 									</div>
 									<div class="d-flex flex-nowrap py-3">
@@ -105,6 +104,7 @@ function load_data(page = 1, limit = 10){
 // GET CATEGORY CHECK
 function checkCategory(){
 	checked = [];
+
 	let categoriesCheck = document.querySelector('#categories-check');
 	[...categoriesCheck.children].forEach((item, index) => {
 		if(item.firstElementChild.checked == true){
