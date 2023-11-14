@@ -23,7 +23,8 @@ class Course extends MY_Controller {
 		$limit 			= isset($_GET['limit']) ? (int)$_GET['limit'] : 3;
 		$filter['title']= isset($_GET['title']) ? $_GET['title'] : '';
 		$filter['categories'] = isset($_GET['categories']) ? $_GET['categories'] : [];
-
+		$filter['ratingChecked'] = isset($_GET['ratingChecked']) ? $_GET['ratingChecked'] : [];
+		
 		$page = ($page - 1) * $limit;
 
 		$data['data'] 			= $this->topics_model->get_all($filter, $limit, $page);
