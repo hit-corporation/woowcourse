@@ -4,14 +4,14 @@ class template {
 
      public $template; 
      private $ci;
+	 public $uri1;
 
     public function __construct() {
         $this->template = new League\Plates\Engine(VIEWPATH.'');
         $this->ci =& get_instance();
 
         $this->template->loadExtension(new League\Plates\Extension\URI(base_url()));
-
-		
+		$this->uri1 = $this->ci->uri->segment(1);
     }
 
     public function instance() {
@@ -42,7 +42,7 @@ class template {
 			$i++;
 		}
 
-		$this->template->addData(['categories' => $b]);
+		$this->template->addData(['categories' => $b, 'uri1' => $this->uri1]);
        
         return $this->template->render($f.'::'.$template, $data);
     }
