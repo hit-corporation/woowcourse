@@ -56,13 +56,13 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 						<p class="text-justify mt-2">
 							<?=$data['description']?>
 						</p>
-						<h4 class="text-uppercase mb-1">what will you learn</h4>
+						<!-- <h4 class="text-uppercase mb-1">what will you learn</h4>
 						<div class="separator mb-3"></div>
 						<ul>
 							<li>Lorem ipsum dolor sit amet.</li>
 							<li>consectetur adipiscing elit.</li>
 							<li>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
-						</ul>
+						</ul> -->
 					</div>
 					<!-- TAB 2 -->
 					<div class="tab-pane fade" id="topic" role="tabpanel" tabindex="0">
@@ -113,7 +113,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 							<div class="col-4">
 								<div class="card">
 									<div class="card-body">
-										<h1 id="total-score">5.0</h1>
+										<h1 id="total-score"><?=$data['rating']?></h1>
 									</div>
 								</div>
 							</div>
@@ -179,7 +179,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 						<dt class="col-6 py-1">
 							<span class="text-secondary"><i class="fa-solid fa-tag me-1 text-warning"></i> Harga</span>
 						</dt>
-						<dd class="col-6 py-1"><strong>Rp. 250K</strong></dd>
+						<dd class="col-6 py-1"><strong>Rp. <?=number_format($data['price'])?></strong></dd>
 						<dt class="col-6 mb-1">
 							<span class="text-secondary"><i class="fa-solid fa-clock me-1 text-warning"></i> Durasi</span>
 						</dt>
