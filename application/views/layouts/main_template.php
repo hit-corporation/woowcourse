@@ -88,7 +88,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-header">
                       <li class="breadcrumb-item active" aria-current="page">Home</li>
-                      <li class="breadcrumb-item" aria-current="page">Categories</li>
+                      <li class="breadcrumb-item" aria-current="page"><?=ucfirst($uri1)?></li>
                     </ol>
                 </nav>
             </div>
