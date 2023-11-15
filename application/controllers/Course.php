@@ -35,4 +35,9 @@ class Course extends MY_Controller {
 		header('Content-Type: application/json');
 		echo json_encode($data);
 	}
+
+	public function detail($id = ''){
+		$data['data'] = $this->topics_model->detail($id);
+		echo $this->template->render('course/detail', $data);
+	}
 }
