@@ -55,4 +55,10 @@ class Topics_model extends CI_Model {
 
 		// check child 3
 	}
+
+	public function detail($id){
+		$this->db->where('c.id', $id);
+		$this->db->join('instructors i', 'i.id = c.instructor_id', 'left');
+		return $this->db->get('courses c')->row_array();
+	}
 }
