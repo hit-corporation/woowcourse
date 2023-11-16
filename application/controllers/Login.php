@@ -267,7 +267,7 @@ class Login extends CI_Controller {
 					$data_user['last_login'] = date('d-m-Y h:i:s');
 					
 					// update user
-					$this->db->where('userid', $row_user[0]->userid)->update('users', $data_user);
+					$this->db->where('id', $row_user[0]->id)->update('users', $data_user);
 				}else{
 					$this->session->set_flashdata('error', ['message' => 'Email tidak ditemukan, Harap melakukan registrasi!']);
 					redirect('login');
