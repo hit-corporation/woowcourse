@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="assets/css/style.min.css">
         <link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
         <link rel="stylesheet" href="assets/css/login.min.css">
+		<link rel="stylesheet" href="<?=base_url('assets/node_modules/sweetalert2/dist/sweetalert2.min.css')?>">
         <style>
             /*
             .custom-float {
@@ -110,5 +111,30 @@
             </div>
         </div>
         <script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js" async defer></script>
+		<script src="<?=base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js')?>"></script>
+
+		<?php if(isset($_SESSION['error']['message'])): ?>
+			<script>
+				Swal.fire({
+					icon: 'error',
+					title: '<h4 class="text-danger">ERROR</h4>',
+					html: '<h5 class="text-dange"><?=$_SESSION['error']['message']?></h5>',
+					timer: 3000
+				});
+			</script>
+		<?php endif ?>
+		
+		<?php if(isset($_SESSION['success']['message'])): ?>
+			<script>
+				Swal.fire({
+					icon: 'success',
+					title: '<h4 class="text-success">SUCCESS</h4>',
+					html: '<h5 class="text-success"><?=$_SESSION['success']['message']?></h5>',
+					timer: 3000
+				});
+			</script>
+		<?php endif ?>
+
+
     </body>
 </html>
