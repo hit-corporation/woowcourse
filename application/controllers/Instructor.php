@@ -19,4 +19,13 @@ class Instructor extends CI_Controller {
 		echo $this->template->render('index');
 	}
 
+	public function detail($id = ''){
+		if(empty($id)) redirect('instructor');
+
+		$data['data'] = $this->instructor_model->detail($id);
+		$data['courses'] = $this->instructor_model->get_courses($id);
+
+		echo $this->template->render('instructor/detail', $data);
+	}
+
 }
