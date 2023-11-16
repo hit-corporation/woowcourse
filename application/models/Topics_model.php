@@ -61,4 +61,21 @@ class Topics_model extends CI_Model {
 		$this->db->join('instructors i', 'i.id = c.instructor_id', 'left');
 		return $this->db->get('courses c')->row_array();
 	}
+
+	public function get_course($id){
+		$this->db->select('c.*, i.first_name, i.last_name, i.photo');
+		$this->db->from('courses c');
+		$this->db->join('instructors i', 'i.id = c.instructor_id');
+		$this->db->where('c.id', $id);
+		return $this->db->get()->row_array();
+	}
+
+	public function get_topic_subscribe(){
+		$this->db->select('topic_id, count(topic_id) as jumlah');
+		$this->db->from('subscriptions s');
+		$this->db->group_by('topic_id');
+		$this->db->order_by('jumlah', 'desc');
+		$this->db->limit('12');
+		return $this->db->get()->result_array();
+	}
 }

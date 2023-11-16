@@ -18,4 +18,13 @@ class Instructor_model extends CI_Model {
 		$this->db->where('instructor_id', $id);
 		return $this->db->get('courses')->result_array();
 	}
+
+	public function get_popular_instructors(){
+		$this->db->select('s.instructor_id, count(s.instructor_id) as total');
+		$this->db->from('subscriptions s');
+		$this->db->group_by('s.instructor_id');
+		$this->db->order_by('total', 'desc');
+		$this->db->limit('12');
+		return $this->db->get()->result_array();
+	}
 }

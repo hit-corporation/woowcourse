@@ -128,127 +128,38 @@
 		<h3 class="text-center w-100 m-0">POPULAR COURSES</h3>
 		<h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of popular courses</h5>
 		<div class="row">
-
-			<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-				<div class="card position-relative card-popular-course">
-					<span class="label-harga">320K</span>
-					<img class="img-fluid" src="assets/images/sm2.jpg">
-					<div class="card-body d-flex flex-column align-items-center">
-						<img class=" teacher-icon rounded-circle border-1 shadow-sm" src="assets/images/image.png">
-						<h4 class="w-100 text-center text-capitalize mt-2">Bahasa Inggris</h4>
-						<p class="text-justify overflow-hidden">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Ut enim ad minim veniam.
-						</p>
-					</div>
-					<div class="card-footer courses-grid-footer">
-						<div class="row justify-content-evenly">
-							<div class="col">
-								<i class="fa-solid fa-calendar-days text-primary"></i>
-								<small class="text-capitalize ms-1">2 hours</small>
-							</div>
-							<div class="col">
-								<i class="fa-solid fa-book text-primary"></i>
-								<small class="text-capitalize ms-1">10 lesson</small>
-							</div>
-							<div class="col">
-								<i class="fa-solid fa-chair text-primary"></i>
-								<small class="text-capitalize ms-1">12 Seats</small>
+			
+			<?php foreach ($courses as $key => $val): ?>
+				<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
+					<div class="card position-relative card-popular-course">
+						<span class="label-harga"><?=number_format($val['details']['price'])?></span>
+						<img class="img-fluid" src="<?=base_url('assets/images/sm2.jpg'); ?>">
+						<div class="card-body d-flex flex-column align-items-center">
+							<img class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/instructors/').$val['details']['photo'] : base_url('assets/images/sm2.jpg'); ?>">
+							<h4 class="w-100 text-center text-capitalize mt-2"><?=$val['details']['course_title']?></h4>
+							<p class="text-justify overflow-hidden">
+								<?=$val['details']['description']?>
+							</p>
+						</div>
+						<div class="card-footer courses-grid-footer">
+							<div class="row justify-content-evenly">
+								<div class="col">
+									<i class="fa-solid fa-calendar-days text-primary"></i>
+									<small class="text-capitalize ms-1">2 hours</small>
+								</div>
+								<div class="col">
+									<i class="fa-solid fa-book text-primary"></i>
+									<small class="text-capitalize ms-1">10 lesson</small>
+								</div>
+								<div class="col">
+									<i class="fa-solid fa-chair text-primary"></i>
+									<small class="text-capitalize ms-1">12 Seats</small>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-				<div class="card position-relative card-popular-course mb-3 mb-lg-0">
-					<img class="img-fluid" src="assets/images/sm2.jpg">
-					<div class="card-body d-flex flex-column align-items-center">
-						<img class=" teacher-icon rounded-circle border-1 shadow-sm" src="assets/images/image.png">
-						<h4 class="w-100 text-center text-capitalize mt-2">Bahasa Inggris</h4>
-						<p class="text-justify overflow-hidden">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Ut enim ad minim veniam.
-						</p>
-					</div>
-					<div class="card-footer courses-grid-footer">
-						<div class="row justify-content-evenly">
-							<div class="col">
-								<i class="fa-solid fa-calendar-days text-primary"></i>
-								<small class="text-capitalize ms-1">2 hours</small>
-							</div>
-							<div class="col">
-								<i class="fa-solid fa-book text-primary"></i>
-								<small class="text-capitalize ms-1">10 lesson</small>
-							</div>
-							<div class="col">
-								<i class="fa-solid fa-chair text-primary"></i>
-								<small class="text-capitalize ms-1">12 Seats</small>
-							</div>
-						</div>
-					</div>
-					<span class="label-harga">320K</span>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-				<div class="card position-relative card-popular-course mb-3 mb-lg-0">
-					<img class="img-fluid" src="assets/images/sm2.jpg">
-					<div class="card-body d-flex flex-column align-items-center">
-						<img class=" teacher-icon rounded-circle border-1 shadow-sm" src="assets/images/image.png">
-						<h4 class="w-100 text-center text-capitalize mt-2">Bahasa Inggris</h4>
-						<p class="text-justify overflow-hidden">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Ut enim ad minim veniam.
-						</p>
-					</div>
-					<div class="card-footer courses-grid-footer">
-						<div class="row justify-content-evenly">
-							<div class="col">
-								<i class="fa-solid fa-calendar-days text-primary"></i>
-								<small class="text-capitalize ms-1">2 hours</small>
-							</div>
-							<div class="col">
-								<i class="fa-solid fa-book text-primary"></i>
-								<small class="text-capitalize ms-1">10 lesson</small>
-							</div>
-							<div class="col">
-								<i class="fa-solid fa-chair text-primary"></i>
-								<small class="text-capitalize ms-1">12 Seats</small>
-							</div>
-						</div>
-					</div>
-					<span class="label-harga">320K</span>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-				<div class="card position-relative card-popular-course mb-3 mb-lg-0">
-					<img class="img-fluid" src="assets/images/sm2.jpg">
-					<div class="card-body d-flex flex-column align-items-center">
-						<img class=" teacher-icon rounded-circle border-1 shadow-sm" src="assets/images/image.png">
-						<h4 class="w-100 text-center text-capitalize mt-2">Bahasa Inggris</h4>
-						<p class="text-justify overflow-hidden">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Ut enim ad minim veniam.
-						</p>
-					</div>
-					<div class="card-footer courses-grid-footer">
-						<div class="row justify-content-evenly">
-							<div class="col">
-								<i class="fa-solid fa-calendar-days text-primary"></i>
-								<small class="text-capitalize ms-1">2 hours</small>
-							</div>
-							<div class="col">
-								<i class="fa-solid fa-book text-primary"></i>
-								<small class="text-capitalize ms-1">10 lesson</small>
-							</div>
-							<div class="col">
-								<i class="fa-solid fa-chair text-primary"></i>
-								<small class="text-capitalize ms-1">12 Seats</small>
-							</div>
-						</div>
-					</div>
-					<span class="label-harga">320K</span>
-				</div>
-			</div>
+			<?php endforeach ?>
 
 		</div>
 	</section>
@@ -257,28 +168,31 @@
 		<h3 class="text-center text-uppercase w-100 m-0">course teachers</h3>
 		<h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of teachers</h5>
 		<div class="row">
-			<div class="col-12 col-md-6 col-lg-3 text-center">
-				<figure class="figure material-shadow-1">
-					<img class="img-fluid" src="assets/images/person/1.jpg">
-					<div class="overlay py-2 px-3">
-						<h4 class="mb-0 w-100 text-uppercase text-shadow">pak kampret</h4>
-						<figcaption class="figcaption mb-3 text-capitalize text-shadow-sm text-secondary fw-semibold">machine learning</figcaption>
-						<p class="text-justify text-shadow-sm mt-1">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-						</p>
-						<div class="row flex-nowrap">
-							<div class="col fw-bold">
-								<i class="fa-solid fa-users-line text-warning"></i> 24 Students
-							</div>
-							<div class="col fw-bold">
-								<i class="fa-solid fa-book text-warning"></i> 3 Courses
+
+			<?php foreach($instructors as $key => $val):?>	
+				<div class="col-12 col-md-6 col-lg-3 text-center">
+					<figure class="figure material-shadow-1">
+						<img class="img-fluid" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/instructors/').$val['details']['photo'] : ''; ?>">
+						<div class="overlay py-2 px-3">
+							<h4 class="mb-0 w-100 text-uppercase text-shadow"><?=$val['details']['first_name'].' '.$val['details']['last_name']?></h4>
+							<figcaption class="figcaption mb-3 text-capitalize text-shadow-sm text-secondary fw-semibold">machine learning</figcaption>
+							<p class="text-justify text-shadow-sm mt-1">
+								<?= $val['details']['about'] ?>
+							</p>
+							<div class="row flex-nowrap">
+								<div class="col fw-bold">
+									<i class="fa-solid fa-users-line text-warning"></i> 24 Students
+								</div>
+								<div class="col fw-bold">
+									<i class="fa-solid fa-book text-warning"></i> 3 Courses
+								</div>
 							</div>
 						</div>
-					</div>
 
-				</figure>
-			</div>
-			<div class="col-12 col-md-6 col-lg-3 text-center">
+					</figure>
+				</div>
+			<?php endforeach ?>
+			<!-- <div class="col-12 col-md-6 col-lg-3 text-center">
 				<figure class="figure material-shadow-1">
 					<img class="img-fluid" src="assets/images/person/1.jpg">
 					<div class="overlay px-3 py-2">
@@ -337,7 +251,7 @@
 						</div>
 					</div>
 				</figure>
-			</div>
+			</div> -->
 		</div>
 	</section>
 	<!-- end instructures -->
