@@ -34,14 +34,26 @@
 							<span class="me-1">&#9993;</span>admin@admin.com
 						</a>
 					</li>
-					<li class="col-12 col-md-6 d-flex flex-column flex-sm-row flex-nowrap justify-content-end">
-						<a class="link-offset-2 link-underline link-underline-opacity-0 text-white me-3 mb-1 mb-lg-0" href="<?= base_url('login') ?>">
-							<i class="fa-solid fa-right-to-bracket"></i><span class="ms-2">Login</span>
-						</a>
-						<a class="link-offset-2 link-underline link-underline-opacity-0 text-white mb-1 mb-lg-0" href="#">
-							<i class="fa-solid fa-user-plus"></i><span class="ms-1">Register</span>
-						</a>
-					</li>
+
+					<?php if(!isset($_SESSION['user'])): ?>
+						<li class="col-12 col-md-6 d-flex flex-column flex-sm-row flex-nowrap justify-content-end">
+							<a class="link-offset-2 link-underline link-underline-opacity-0 text-white me-3 mb-1 mb-lg-0" href="<?= base_url('login') ?>">
+								<i class="fa-solid fa-right-to-bracket"></i><span class="ms-2">Login</span>
+							</a>
+							<a class="link-offset-2 link-underline link-underline-opacity-0 text-white mb-1 mb-lg-0" href="#">
+								<i class="fa-solid fa-user-plus"></i><span class="ms-1">Register</span>
+							</a>
+						</li>
+					<?php endif ?>
+
+					<?php if(isset($_SESSION['user'])): ?>
+						<li class="col-12 col-md-6 d-flex flex-column flex-sm-row flex-nowrap justify-content-end">
+							<a class="link-offset-2 link-underline link-underline-opacity-0 text-white me-3 mb-1 mb-lg-0" href="<?= base_url('login/logout') ?>">
+								<i class="fa-solid fa-right-to-bracket"></i><span class="ms-2">Logout</span>
+							</a>
+						</li>
+					<?php endif ?>
+
 				</ul>
 			</div>
 		</nav>
