@@ -24,7 +24,9 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 							<img class="profile rounded-circle" src="assets/images/person/1.jpg" alt="">
 							<figcaption class="ms-3 mt-3">
 								<h5 class="text-capitalize text-shadow text-secondary mb-1">instructure</h5>
-								<h4 class="text-capitalize text-shadow"><?=$data['first_name'].' '.$data['last_name']?></h4>
+								<a class="text-decoration-none" href="<?=base_url('instructor/detail/').$data['instructor_id']?>">
+									<h4 class="text-capitalize text-shadow"><?=$data['first_name'].' '.$data['last_name']?></h4>
+								</a>
 							</figcaption>
 						</figure>
 					</div>
