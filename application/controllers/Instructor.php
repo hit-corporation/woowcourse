@@ -28,4 +28,18 @@ class Instructor extends CI_Controller {
 		echo $this->template->render('instructor/detail', $data);
 	}
 
+	public function update_profile($id = ''){
+		$post = $this->input->post();
+
+		$instructor = $this->db->where('id', $id)->get('instructors')->row_array();
+		
+		if($instructor['email'] !== $this->session->userdata('user')['email']) redirect('Instructor/detail/'.$id);
+
+		if(isset($post['type']) && $post['type'] == 'update'){
+			var_dump($post);die;
+		}
+
+		echo $this->template->render('instructor/update_profile', ['data'=>$instructor]);
+	}
+
 }
