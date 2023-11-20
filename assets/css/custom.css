@@ -23,3 +23,9 @@
 		min-width: 25rem;
 	}
 }
+
+.photo-profile{
+	height: 250px;
+	width: 250px;
+	border-radius: 50%;
+}
