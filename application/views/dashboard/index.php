@@ -73,9 +73,6 @@
 						<li class="nav-item rounded">
 							<a class="nav-link active" aria-current="page" href="#">Home</a>
 						</li>
-						<li class="nav-item rounded">
-							<a class="nav-link" href="#">Link</a>
-						</li>
 						<li class="nav-item position-relative rounded">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#collapse_1" aria-expanded="false">
 								Categories
@@ -99,9 +96,7 @@
 
                             </ul>
 						</li>
-						<li class="nav-item rounded">
-							<a class="nav-link" aria-disabled="true">Disabled</a>
-						</li>
+						
 					</ul>
 					<form class="d-flex" role="search">
 						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
