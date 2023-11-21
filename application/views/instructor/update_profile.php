@@ -135,6 +135,12 @@
 					text: respon.message,
 					icon: "success"
 				});
+			}else{
+				Swal.fire({
+					title: "Gagal!",
+					text: respon.message,
+					icon: "error"
+				});
 			}
 		});
 		

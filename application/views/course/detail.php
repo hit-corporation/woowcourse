@@ -21,7 +21,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 				<div class="row mb-5 mt-4">
 					<div class="col">
 						<figure class="figure d-flex align-items-top">
-							<img class="profile rounded-circle" src="assets/images/person/1.jpg" alt="">
+							<img class="profile rounded-circle" src="<?=base_url('assets/images/instructors/'.$data['photo'])?>" alt="">
 							<figcaption class="ms-3 mt-3">
 								<h5 class="text-capitalize text-shadow text-secondary mb-1">instructure</h5>
 								<a class="text-decoration-none" href="<?=base_url('instructor/detail/').$data['instructor_id']?>">
