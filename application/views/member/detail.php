@@ -12,7 +12,7 @@
 	<div class="container">
 		<form>
 			<div class="row">
-				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
 					<div class="mb-3">
 						<label for="first_name" class="form-label">First Name</label>
 						<input type="hidden" name="id" value="<?=isset($data['id']) ? $data['id'] : '' ?>">
@@ -23,8 +23,7 @@
 						<input type="text" class="form-control" id="last_name" name="last_name" value="<?=isset($data['last_name']) ? $data['last_name'] : '' ?>">
 					</div>
 					<div class="mb-3">
-						<label for="email" class="form-label">Email</label>
-						<input type="email" class="form-control" id="email" name="email" readonly value="<?=isset($data['email']) ? $data['email'] : $_SESSION['user']['email'] ?>">
+						<input hidden type="email" class="form-control" id="email" name="email" readonly value="<?=isset($data['email']) ? $data['email'] : $_SESSION['user']['email'] ?>">
 					</div>
 					<div class="mb-3">
 						<label for="phone" class="form-label">Phone</label>
@@ -45,7 +44,7 @@
 					<div id="editor" class="form-control mb-3"><?=isset($data['about']) ? $data['about'] : '' ?></div>
 				</div>
 				
-				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="text-center p-3">
 						<img id="img-preview" class="d-inline-flex photo-profile" src="<?=isset($data['photo']) ? base_url('assets/images/members/'.$data['photo']) : ''?>" alt="photo profile">
 						
@@ -82,75 +81,6 @@
 
 	<!-- Include the Quill library -->
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-	<script>
-		var quill = new Quill('#editor', {
-			theme: 'snow'
-		});
-
-		document.getElementById('editor').style.height = '200px';
-	</script>
-
-	<!-- PREVIEW IMAGE -->
-	<script>
-		let fileTag = document.getElementById('filetag');
-		let preview = document.getElementById('img-preview');
-		fileTag.addEventListener('change', function(){
-			changeImage(this);
-		});
-
-		function changeImage(input){
-			var reader;
-
-			if(input.files && input.files[0]){
-				reader = new FileReader();
-
-				reader.onload = function(e){
-					preview.setAttribute('src', e.target.result);
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-	</script>
-
-	<!-- SAVE / POST DATA -->
-	<script>
-		let id = document.getElementsByName('id')[0].value;
-		let update = document.getElementById('update');
-
-		update.addEventListener('click', async () => {
-			const formData = new FormData;
-			formData.append("type", 'update');
-			formData.append("first_name", document.getElementById('first_name').value);
-			formData.append("last_name", document.getElementById('last_name').value);
-			formData.append("phone", document.getElementById('phone').value);
-			formData.append("email", document.getElementById('email').value);
-			formData.append("address", document.getElementById('address').value);
-			formData.append("about", btoa(document.getElementById('editor').__quill.root.innerHTML));
-			formData.append("image", document.getElementById('filetag').files[0]);
-			formData.append("as_instructor", document.getElementById('as_instructor').checked);
-
-			const response = await fetch(BASE_URL+"member/detail/", {
-				method: "POST",
-				body: formData,
-			});
-
-			const respon = await response.json();
-
-			if(respon.success == true){
-				Swal.fire({
-					title: "Sukses!",
-					text: respon.message,
-					icon: "success"
-				});
-			}else{
-				Swal.fire({
-					title: "Gagal!",
-					text: respon.message,
-					icon: "error"
-				});
-			}
-		});
-		
-	</script>
+	<script src="<?=base_url('assets/js/_member.js')?>"></script>
+	
 <?php $this->end() ?>
