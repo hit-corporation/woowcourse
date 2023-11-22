@@ -16,3 +16,26 @@ items.forEach((value, key) => {
 function categoryClick(id){
 	localStorage.setItem('category', id);
 }
+
+function logout(){
+	Swal.fire({
+		title: "Anda yakin keluar aplikasi?",
+		// text: "You won't be able to revert this!",
+		icon: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#3085d6",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Yes"
+	  }).then((result) => {
+		if (result.isConfirmed) {
+		  Swal.fire({
+			title: "Logout!",
+			text: "Anda berhasil keluar aplikasi.",
+			icon: "success"
+		  });
+		  setInterval(()=>{
+			  window.location.href = BASE_URL+'login/logout';
+		  }, 3000);
+		}
+	  });
+}
