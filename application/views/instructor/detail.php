@@ -54,12 +54,7 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 						</a>
 					</div>
 				</div>
-
-				<div class="row mt-4">
-					<div class="col-12 d-flex flex-nowrap">
-						<a href="<?=base_url('Instructor/update_profile/'.$data['id'])?>" class="btn btn-primary btn-lg rounded text-white">Update Profile</a>
-					</div>
-				</div>
+							
 			</div>
 		</div>
 		<div class="row py-3 mt-3">
