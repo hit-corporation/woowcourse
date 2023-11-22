@@ -36,7 +36,7 @@
 					</div>
 
 					<div class="mb-3 form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1" style="width: 20px; height: 20px; cursor:pointer;">
+						<input id="as_instructor" type="checkbox" class="form-check-input" id="exampleCheck1" style="width: 20px; height: 20px; cursor:pointer;" <?=isset($data['as_instructor']) ? 'checked' : '' ?>>
 						<label class="form-check-label mx-2 mt-1" for="exampleCheck1">Daftar Sebagai Pengajar</label>
 					</div>
 
@@ -124,9 +124,11 @@
 			formData.append("first_name", document.getElementById('first_name').value);
 			formData.append("last_name", document.getElementById('last_name').value);
 			formData.append("phone", document.getElementById('phone').value);
+			formData.append("email", document.getElementById('email').value);
 			formData.append("address", document.getElementById('address').value);
 			formData.append("about", btoa(document.getElementById('editor').__quill.root.innerHTML));
 			formData.append("image", document.getElementById('filetag').files[0]);
+			formData.append("as_instructor", document.getElementById('as_instructor').checked);
 
 			const response = await fetch(BASE_URL+"member/detail/", {
 				method: "POST",
