@@ -57,6 +57,14 @@ class Member_model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function get_by_email(string $email){
+		$this->db->select('m.*, i.about, i.address');
+		$this->db->from('members m');
+		$this->db->where('m.email', $email);
+		$this->db->join('instructors i', 'm.email = i.email', 'left');
+		return $this->db->get()->row_array();
+	}
+
 	/**
 	 * Undocumented function
 	 *
