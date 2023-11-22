@@ -33,12 +33,20 @@
                             </a>
                         </li>
                         <li class="col-12 col-md-6 d-flex flex-column flex-sm-row flex-nowrap justify-content-end">
-                            <a class="link-offset-2 link-underline link-underline-opacity-0 text-white me-3 mb-1 mb-lg-0" href="#">
-                                <i class="fa-solid fa-right-to-bracket"></i><span class="ms-2">Login</span>
-                            </a>
-                            <a class="link-offset-2 link-underline link-underline-opacity-0 text-white mb-1 mb-lg-0" href="#">
-                                <i class="fa-solid fa-user-plus"></i><span class="ms-1">Register</span>
-                            </a>
+							<?php if(!isset($_SESSION['user'])):?>
+								<a class="link-offset-2 link-underline link-underline-opacity-0 text-white me-3 mb-1 mb-lg-0" href="#">
+									<i class="fa-solid fa-right-to-bracket"></i><span class="ms-2">Login</span>
+								</a>
+								<a class="link-offset-2 link-underline link-underline-opacity-0 text-white mb-1 mb-lg-0" href="#">
+									<i class="fa-solid fa-user-plus"></i><span class="ms-1">Register</span>
+								</a>
+							<?php endif ?>
+
+							<?php if(isset($_SESSION['user'])):?>
+								<a class="link-offset-2 link-underline link-underline-opacity-0 text-white me-3 mb-1 mb-lg-0 text-decoration-none" onclick="logout()">
+									<i class="fa-solid fa-right-to-bracket"></i><span class="ms-2">Logout</span>
+								</a>
+							<?php endif ?>
                         </li>
                     </ul>
                 </div>
@@ -76,6 +84,13 @@
 
                             </ul>
                           </li>
+
+						  <li class="nav-item rounded">
+							<?php if(isset($_SESSION['user'])):?>
+								<a class="nav-link" aria-current="page" href="<?=base_url('member/detail')?>">Profile</a>
+							<?php endif ?>		
+						</li>
+
                         </ul>
                         <form class="d-flex" role="search">
                           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -121,6 +136,7 @@
 
 		<script>const CATEGORIES = <?=json_encode($categories)?>;</script>
         <script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="assets/js/main.js" async defer></script>
         <?= $this->section('js') ?>
         
