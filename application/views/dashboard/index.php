@@ -96,6 +96,11 @@
 
                             </ul>
 						</li>
+						<li class="nav-item rounded">
+							<?php if(isset($_SESSION['user'])):?>
+								<a class="nav-link" aria-current="page" href="<?=base_url('member/detail')?>">Profile</a>
+							<?php endif ?>		
+						</li>
 						
 					</ul>
 					<form class="d-flex" role="search">
