@@ -241,4 +241,101 @@ class Member extends MY_Controller
 		$this->session->set_flashdata('success', ['message' => 'Beberapa data berhasil di input']);
 		redirect($_SERVER['HTTP_REFERER']);
 	}
+
+	public function detail(){
+		$post = $this->input->post();
+
+		if(isset($post['type']) && $post['type'] == 'update'){
+			// load file helper
+			$this->load->helper('file');
+			// upload images
+			$config['upload_path']          = './assets/images/instructors/';
+			$config['allowed_types']        = 'gif|jpg|jpeg|png';
+			$config['max_size']             = 2048;
+			$config['encrypt_name']         = true;
+
+			$this->load->library('upload', $config);
+
+			if ( ! $this->upload->do_upload('image')){
+				// upload fails
+				// $resp = ['success' => false, 'message' => $this->upload->display_errors()];
+				// $this->session->set_flashdata('error', $resp);
+				// echo json_encode($resp); die;
+			}else{
+				// upload success
+				$upload_data = $this->upload->data();
+				// resize image
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = './assets/images/members/'.$upload_data['file_name'];
+				$config['create_thumb'] = FALSE;
+				$config['maintain_ratio'] = FALSE;
+				$config['width']         = 300;
+				$config['height']       = 300;
+
+				$this->load->library('image_lib', $config);
+				$this->image_lib->resize();
+
+				// cek apakah data sudah ada di tabel members apa belum
+				$member = $this->db->where('email', $post['email'])->get('members')->row_array();
+
+				// jika data member tidak ada maka lakukan insert
+				if(!$member){
+					$data = [ 
+						'first_name' => $post['first_name'],
+						'last_name' => $post['last_name'],
+						'phone' => $post['phone'],
+						'address' => $post['address'],
+						'about' => base64_decode($post['about']),
+						'photo' => $upload_data['file_name']
+					];
+
+					$simpan = $this->db->insert('members', $data);
+					$res = isset($simpan) ?  ['success' => true, 'message' => 'Data berhasil disimpan.'] :  ['success' => false, 'message' => 'Data gagal disimpan.'];
+					// set success message
+					$this->session->set_flashdata('success', $res);
+					echo json_encode($res); die;
+				}else{
+
+					// remove old image
+					$old_image = $this->db->where('email', $post['email'])->get('members')->row_array()['photo'];
+					if($old_image != '' || $old_image != null){
+						unlink('./assets/images/members/'.$old_image);
+					}
+					// update user data
+					if(isset($data['photo'])){
+						// update user data
+						$update = $this->db->where('email', $post['email'])->update('members', $data);
+					}
+
+					$data = [ 
+						'photo' => $upload_data['file_name']
+					];
+					
+				}
+
+				
+
+			}
+
+			$data = [ 
+				'first_name' => $post['first_name'],
+				'last_name' => $post['last_name'],
+				'phone' => $post['phone'],
+				'address' => $post['address'],
+				'about' => base64_decode($post['about']),
+			];
+			
+			$update = $this->db->where('id', $id)->update('instructors', $data);
+			$res = isset($update) ?  ['success' => true, 'message' => 'Data berhasil diubah.'] :  ['success' => false, 'message' => 'Data gagal diubah.'];
+			// set success message
+			$this->session->set_flashdata('success', $res);
+			echo json_encode($res); die;
+		}
+
+
+		$id = $this->session->userdata('id');
+		$data['data'] = $this->db->where('id', $id)->get('members')->row_array();
+
+		echo $this->template->render('member/detail', $data);
+	}
 }
