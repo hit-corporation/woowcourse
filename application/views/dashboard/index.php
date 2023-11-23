@@ -136,7 +136,7 @@
 						<img class="img-fluid" src="<?=base_url('assets/images/sm2.jpg'); ?>">
 						<div class="card-body d-flex flex-column align-items-center">
 							<img class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/instructors/').$val['details']['photo'] : base_url('assets/images/sm2.jpg'); ?>">
-							<h4 class="w-100 text-center text-capitalize mt-2"><?=$val['details']['course_title']?></h4>
+							<a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['details']['id'])?>"><h4 class="w-100 text-center text-capitalize mt-2"><?=$val['details']['course_title']?></h4></a>
 							<p class="text-justify overflow-hidden">
 								<?=$val['details']['description']?>
 							</p>
@@ -174,7 +174,9 @@
 					<figure class="figure material-shadow-1">
 						<img class="img-fluid" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/instructors/').$val['details']['photo'] : ''; ?>">
 						<div class="overlay py-2 px-3">
-							<h4 class="mb-0 w-100 text-uppercase text-shadow"><?=$val['details']['first_name'].' '.$val['details']['last_name']?></h4>
+							<a class="text-decoration-none" href="<?=base_url('instructor/detail/'.$val['details']['id'])?>">
+								<h4 class="mb-0 w-100 text-uppercase text-shadow"><?=$val['details']['first_name'].' '.$val['details']['last_name']?></h4>
+							</a>
 							<figcaption class="figcaption mb-3 text-capitalize text-shadow-sm text-secondary fw-semibold">machine learning</figcaption>
 							<p class="text-justify text-shadow-sm mt-1">
 								<?= $val['details']['about'] ?>
