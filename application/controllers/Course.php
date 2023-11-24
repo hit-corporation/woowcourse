@@ -40,4 +40,8 @@ class Course extends MY_Controller {
 		$data['data'] = $this->topics_model->detail($id);
 		echo $this->template->render('course/detail', $data);
 	}
+
+	public function create(){
+		echo $this->template->render('course/create');
+	}
 }
