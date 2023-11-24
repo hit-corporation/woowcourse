@@ -44,4 +44,9 @@ class Course extends MY_Controller {
 	public function create(){
 		echo $this->template->render('course/create');
 	}
+
+	public function store(){
+		$post = $this->input->post();
+		var_dump($post);
+	}
 }

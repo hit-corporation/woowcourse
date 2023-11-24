@@ -5,7 +5,7 @@ var quill = new Quill('#editor', {
 
 document.getElementById('editor').style.height = '200px';
 
-// PREVIEW IMAGE
+// PREVIEW IMAGE COURSE
 let fileTag = document.getElementById('filetag');
 let preview = document.getElementById('img-preview');
 fileTag.addEventListener('change', function(){
@@ -20,6 +20,27 @@ function changeImage(input){
 
 		reader.onload = function(e){
 			preview.setAttribute('src', e.target.result);
+		}
+
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+// PREVIEW VIDEO COURSE
+let courseVideo = document.getElementById('course_video');
+let previewVideo = document.getElementById('video-preview');
+courseVideo.addEventListener('change', function(){
+	changeVideo(this);
+});
+
+function changeVideo(input){
+	var reader;
+
+	if(input.files && input.files[0]){
+		reader = new FileReader();
+
+		reader.onload = function(e){
+			previewVideo.setAttribute('src', e.target.result);
 		}
 
 		reader.readAsDataURL(input.files[0]);
@@ -130,3 +151,20 @@ $.each(category, function (i, val) {
 });
 
 // =================================== PROSES SIMPAN ===================================
+
+document.getElementById('save').addEventListener('click', async () => {
+	const formData = new FormData;
+	formData.append("course_title", document.getElementById('course_title').value);
+	formData.append("category_id", checked);
+	formData.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
+	formData.append("image", document.getElementById('filetag').files[0]);
+	formData.append("video", document.getElementById('course_video').files[0]);
+	
+	const response = await fetch(BASE_URL+"course/store", {
+		method: "POST",
+		body: formData,
+	});
+
+	const respon = await response.json();
+});
+

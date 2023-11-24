@@ -21,11 +21,19 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 					</div>
 
 					<div class="mb-3">
-						<label for="course_title" class="form-label">Course Category</label>
+						<label for="course_category" class="form-label">Course Category</label>
 						<div class="category border rounded pt-2"></div>
 					</div>
+
+					<div class="mb-3">
+						<label for="formVideo" class="form-label">Course Video</label>
+						<br>
+						<video class="border roundedx" id="video-preview" src=""></video>
+						<input id="course_video" type="file" class="form-control">
+					</div>
+
 					<!-- Create the editor container -->
-					<label for="" class="mb-2">Tentang Penulis</label>
+					<label for="" class="mb-2">Description</label>
 					<div id="editor" class="form-control mb-3"><?=isset($data['about']) ? $data['about'] : '' ?></div>
 				</div>
 				
@@ -33,7 +41,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 					<div class="text-center p-3">
 						<img id="img-preview" class="d-inline-flex rounded border" width="250" src="<?=isset($data['photo']) ? base_url('assets/images/members/'.$data['photo']) : base_url('assets/images/no-image.jpg')?>" alt="photo profile">
 						
-						<label for="formFile" class="form-label"></label>
+						<label for="formFile" class="form-label">Course Image</label>
 						<input id="filetag" type="file" class="mt-3 form-control">
 						
 						<br>
