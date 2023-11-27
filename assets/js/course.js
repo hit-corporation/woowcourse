@@ -57,13 +57,13 @@ function load_data(page = 1, limit = 10){
 					$('#list-course').append(`
 						<div class="col-12 col-md-4 col-lg-4 py-1">
 							<div class="card position-relative d-lg-flex flex-nowrap">
-								<img class="img-fluid" src="assets/images/sm2.jpg">
+								<img class="img-fluid" src="${BASE_URL+'assets/files/upload/courses/'+value.course_img}">
 								<div class="card-body">
 									<h5 class="text-uppercase text-shadow"><a class="text-decoration-none" href="${BASE_URL+'course/detail/'+value.id}">${value.course_title}</a></h5>
 									<div class="pt-1">
 										<span>
 											<i class="fa fa-star text-primary"></i>
-											<span>${value.rating}</span>
+											<span>${(value.rating != null) ? value.rating : 0}</span>
 										</span>
 									</div>
 									<div class="d-flex flex-nowrap py-3">
@@ -85,7 +85,7 @@ function load_data(page = 1, limit = 10){
 										</div>
 									</div>
 								</div>
-								<span class="label-harga">Rp. <?=number_format($val['price'])?></span>
+								<span class="label-harga">${new Intl.NumberFormat('id-ID', {style: "currency", currency: "IDR"}).format(value.price)}</span>
 							</div>
 						</div>`);
 				});
