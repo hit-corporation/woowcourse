@@ -47,6 +47,63 @@ class Course extends MY_Controller {
 
 	public function store(){
 		$post = $this->input->post();
-		var_dump($post);
+
+		// PROSES UPLOAD VIDEO
+		$this->load->helper('file');
+		$config['upload_path']	= './assets/files/upload/courses/';
+		$config['allowed_types']= 'mp4';
+		$config['encrypt_name']	= true;
+
+		$this->load->library('upload', $config);
+		// $this->upload->initialize($config);
+		if ( ! $this->upload->do_upload('video')){
+			# Upload Failed
+			$this->session->set_flashdata('error', $this->upload->display_errors());
+			redirect('course/create');
+		}
+
+		$upload_data_video = $this->upload->data();
+
+		// PROSES UPLOAD GAMBAR
+		$config2['upload_path']	= './assets/files/upload/courses/';
+		$config2['allowed_types']= 'gif|jpg|jpeg|png';
+		$config2['max_size']     = 2048;
+		$config2['encrypt_name'] = true;
+		$this->load->library('upload', $config2);
+		$this->upload->initialize($config2);
+		if ( ! $this->upload->do_upload('image')){
+			# Upload Failed
+			$this->session->set_flashdata('error', $this->upload->display_errors());
+			redirect('course/create');
+		}
+
+		// upload success
+		$upload_data_image = $this->upload->data();
+
+		$email = $this->session->userdata('user')['email'];
+		$instructor_id = $this->db->where('email', $email)->get('instructors')->row_array()['id'];
+
+		$data = [
+			'course_code' => $this->random_string(),
+			'course_title' => $post['course_title'],
+			'course_img' => $upload_data_image['file_name'],
+			'description' => base64_decode($post['description']),
+			'instructor_id' => $instructor_id,
+			'category_id' => $post['category_id'],
+			'course_video' => $upload_data_video['file_name']
+		];
+		$insert = $this->db->insert('courses', $data);
+		var_dump($insert);die;
+		
+	}
+
+	public function random_string(){
+		$str = '';
+		for ($i=0; $i<5; $i++) { 
+			$d=rand(1,30)%2; 
+			$str .= $d ? chr(rand(65,90)) : chr(rand(48,57)); 
+		}
+		return $str;
 	}
 }
+
