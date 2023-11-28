@@ -93,7 +93,10 @@ class Course extends MY_Controller {
 			'course_video' => $upload_data_video['file_name']
 		];
 		$insert = $this->db->insert('courses', $data);
-		var_dump($insert);die;
+		if($insert){
+			$res = ['success'=>true, 'message'=>'Data berhasil di simpan!'];
+			echo json_encode($res);
+		}
 		
 	}
 
