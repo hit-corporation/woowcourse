@@ -17,7 +17,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 					<div class="mb-3">
 						<label for="course_title" class="form-label">Course Title</label>
 						<input type="hidden" name="id" value="<?=isset($data['id']) ? $data['id'] : '' ?>">
-						<input type="text" class="form-control" id="course_title" name="course_title" value="<?=isset($data['course_title']) ? $data['course_title'] : '' ?>">
+						<input type="text" class="form-control" name="course_title" id="course_title" name="course_title" value="<?=isset($data['course_title']) ? $data['course_title'] : '' ?>">
 					</div>
 
 					<div class="mb-3">
@@ -29,7 +29,14 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 						<label for="formVideo" class="form-label">Course Video</label>
 						<br>
 						<video class="" poster="<?=base_url('assets/images/no-video.png')?>" id="video-preview" src="" controls></video>
-						<input id="course_video" type="file" class="form-control">
+						<input name="course_video" id="course_video" type="file" class="form-control">
+						
+						<progress style="width: 100%;" value="0" max="100"></progress>
+					
+						<p>
+							<strong>Uploading status:</strong>
+							<span id="statusMessage">🤷‍♂ Nothing's uploaded</span>
+						</p>
 					</div>
 
 					<!-- Create the editor container -->
@@ -42,7 +49,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 						<img id="img-preview" class="d-inline-flex rounded border" width="250" src="<?=isset($data['photo']) ? base_url('assets/images/members/'.$data['photo']) : base_url('assets/images/no-image.jpg')?>" alt="photo profile">
 						<br>
 						<label for="formFile" class="form-label">Course Image</label>
-						<input id="filetag" type="file" class="mt-3 form-control">
+						<input id="filetag" name="filetag" type="file" class="mt-3 form-control">
 						
 						<br>
 					</div>
