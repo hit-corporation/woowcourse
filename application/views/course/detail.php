@@ -21,7 +21,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 				<div class="row mb-5 mt-4">
 					<div class="col">
 						<figure class="figure d-flex align-items-top">
-							<img class="profile rounded-circle" src="<?=base_url('assets/images/instructors/'.$data['photo'])?>" alt="">
+							<img class="profile rounded-circle" src="<?=base_url('assets/images/members/'.$data['photo'])?>" alt="">
 							<figcaption class="ms-3 mt-3">
 								<h5 class="text-capitalize text-shadow text-secondary mb-1">instructure</h5>
 								<a class="text-decoration-none" href="<?=base_url('instructor/detail/').$data['instructor_id']?>">
@@ -78,7 +78,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 								</h2>
 								<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
 									<div class="accordion-body">
-										<strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+										<video width="500" src="<?=!empty($data['course_video']) ? base_url('assets/files/upload/courses/').$data['course_video'] : '' ?>" controls></video>
 									</div>
 								</div>
 							</div>
