@@ -151,20 +151,162 @@ $.each(category, function (i, val) {
 });
 
 // =================================== PROSES SIMPAN ===================================
+const statusMessage = document.getElementById('statusMessage');
+const fileInput 	= document.getElementById('course_video');
+const progressBar 	= document.querySelector('progress');
+const submitButton 	= document.getElementById('save');
+const form 			= document.querySelector('form');
 
-document.getElementById('save').addEventListener('click', async () => {
-	const formData = new FormData;
-	formData.append("course_title", document.getElementById('course_title').value);
-	formData.append("category_id", checked);
-	formData.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
-	formData.append("image", document.getElementById('filetag').files[0]);
-	formData.append("video", document.getElementById('course_video').files[0]);
+document.getElementById('save').addEventListener('click', handleSubmit);
+
+function handleSubmit(event) {
+	event.preventDefault();
+
+	uploadFiles();
+}
+
+fileInput.addEventListener('change', handleInputChange);
+
+// document.getElementById('save').addEventListener('click', async (e) => {
+// 	e.preventDefault();
+
+
+
 	
-	const response = await fetch(BASE_URL+"course/store", {
-		method: "POST",
-		body: formData,
+// 	form.append("course_title", document.getElementById('course_title').value);
+// 	form.append("category_id", checked);
+// 	form.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
+// 	form.append("image", document.getElementById('filetag').files[0]);
+// 	form.append("video", document.getElementById('course_video').files[0]);
+	
+	// const response = await fetch(BASE_URL+"course/store", {
+	// 	method: "POST",
+	// 	body: formData,
+	// });
+
+	// const respon = await response.json();
+	// if(respon.success == true){
+	// 	Swal.fire({
+	// 		title: "Sukses!",
+	// 		text: "Data berhasil di simpan!",
+	// 		icon: "success"
+	// 	});
+	// 	setInterval(() => {
+	// 		window.location.href = BASE_URL+'course';
+	// 	}, 2000);
+	// }
+
+// 	const url = BASE_URL+"course/store";
+// 	const method = 'post';
+
+// 	const xhr = new XMLHttpRequest();
+
+// 	xhr.open(method, url);
+// 	xhr.send(form);
+
+// });
+
+function updateStatusMessage(text) {
+  statusMessage.textContent = text;
+}
+
+function assertFilesValid(fileList) {
+	const allowedTypes = ['video/mp4'];
+  
+	for (const file of fileList) {
+	  const { name: fileName } = file;
+  
+	  if (!allowedTypes.includes(file.type)) {
+		throw new Error(`❌ File "${fileName}" could not be uploaded. Only images with the following types are allowed: MP4.`);
+	  }
+	}
+}
+
+function handleInputChange() {
+	resetFormState();
+	
+	try {
+	  assertFilesValid(fileInput.files);
+	} catch (err) {
+	  updateStatusMessage(err.message);
+	  return;
+	}
+  
+	document.getElementById('save').disabled = false 
+	// submitButton.disabled = false;
+}
+
+function resetFormState() {
+	submitButton.disabled = true;
+	updateStatusMessage(`🤷‍♂ Nothing's uploaded`)
+}
+
+function uploadFiles(){
+	// XHR and FormData instance creation is here
+	const url 		= BASE_URL+"course/store";
+	const method	= 'post';
+	const xhr 		= new XMLHttpRequest();
+	// const data 		= new FormData(form);
+	const data 		= new FormData();
+	data.append("course_title", document.getElementById('course_title').value);
+	data.append("category_id", checked);
+	data.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
+	data.append("image", document.getElementById('filetag').files[0]);
+	data.append("video", document.getElementById('course_video').files[0]);
+
+	// XHR and FormData instance creation along with 'loadend' listener are here
+	xhr.addEventListener('loadend', () => {
+		if (xhr.status === 200) {
+		  updateStatusMessage('✅ Success');
+		} else {
+		  updateStatusMessage('❌ Error');
+		}
+
+		updateProgressBar(0);
 	});
 
-	const respon = await response.json();
-});
+	
+	xhr.upload.addEventListener('progress', event => {
+		updateStatusMessage(`⏳ Uploaded ${event.loaded} bytes of ${event.total}`);
+		updateProgressBar(event.loaded / event.total);
+	});
 
+	xhr.onreadystatechange = () => {
+		if (xhr.readyState === 4) {
+			let res = JSON.parse(xhr.response);
+		  	if(res.success == true){
+				Swal.fire({
+					title: "Sukses!",
+					text: "Data berhasil di simpan!",
+					icon: "success"
+				});
+				setInterval(() => {
+					window.location.href = BASE_URL+'course';
+				}, 2000);
+			}
+		}
+	};
+	
+	// XHR opening and sending is here
+	xhr.open(method, url);
+	xhr.send(data);
+}
+
+function showPendingState() {
+	submitButton.disabled = true;
+	updateStatusMessage('⏳ Pending...')
+}
+
+function handleSubmit(event) {
+	event.preventDefault();
+  
+	// ↓ here ↓
+	showPendingState();
+  
+	uploadFiles();
+}
+
+function updateProgressBar(value) {
+	const percent = value * 100;
+	progressBar.value = Math.round(percent);
+}
