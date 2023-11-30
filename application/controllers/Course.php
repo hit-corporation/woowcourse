@@ -38,6 +38,7 @@ class Course extends MY_Controller {
 
 	public function detail($id = ''){
 		$data['data'] = $this->topics_model->detail($id);
+		$data['videos'] = $this->db->where('course_id', $id)->get('course_videos')->result_array();
 		echo $this->template->render('course/detail', $data);
 	}
 
@@ -49,61 +50,74 @@ class Course extends MY_Controller {
 		$post = $this->input->post();
 
 		// PROSES UPLOAD VIDEO
-		$this->load->helper('file');
+			$this->load->helper('file');
 
-		// Count total files
-		var_dump($_FILES);die;
-		$countfiles = count($_FILES['video']['name']);
-		$upload_location	= './assets/files/upload/courses/';
-		$files_arr = [];
+			// Count total files
+			$countfiles = count($_FILES['course_video']['name']);
+			$upload_location	= './assets/files/upload/courses/';
+			$files_arr = [];
 
-		for($index = 0;$index < $countfiles;$index++){
-			$filename = $_FILES['video']['name'][$index];
-
-			// Get extension
-			$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-
-			// Valid image extension
-			$valid_ext = array("mp4");
-
-			// File path
-			$path = $upload_location.$filename;
-
-			move_uploaded_file($_FILES['video']['tmp_name'][$index],$path);
-		}
-
-		die;
-		
+			for($index = 0;$index < $countfiles;$index++){
+				$filename = $_FILES['course_video']['name'][$index];
+				// Get extension
+				$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION)); 
+				$filenameEncode = base64_encode($filename.microtime()).'.'.$ext;
+				// Valid image extension
+				$valid_ext = array("mp4");
+				// Check extension
+				if(in_array($ext, $valid_ext)){
+					// File path
+					$path = $upload_location.$filenameEncode;
+					move_uploaded_file($_FILES['course_video']['tmp_name'][$index],$path);
+					$files_arr[] = [
+						'seq' => $index+1,
+						'video' => $filenameEncode
+					];
+				}
+			}
 
 		// PROSES UPLOAD GAMBAR
-		$config2['upload_path']	= './assets/files/upload/courses/';
-		$config2['allowed_types']= 'gif|jpg|jpeg|png';
-		$config2['max_size']     = 2048;
-		$config2['encrypt_name'] = true;
-		$this->load->library('upload', $config2);
-		$this->upload->initialize($config2);
-		if ( ! $this->upload->do_upload('image')){
-			# Upload Failed
-			$this->session->set_flashdata('error', $this->upload->display_errors());
-			redirect('course/create');
-		}
+			$config2['upload_path']	= './assets/files/upload/courses/';
+			$config2['allowed_types']= 'gif|jpg|jpeg|png';
+			$config2['max_size']     = 2048;
+			$config2['encrypt_name'] = true;
+			$this->load->library('upload', $config2);
+			$this->upload->initialize($config2);
+		
+			if ( ! $this->upload->do_upload('image')){
+				# Upload Failed
+				$this->session->set_flashdata('error', $this->upload->display_errors());
+				$res = ['success'=>false, 'message'=>'Course Image gagal disiman!'];
+				echo json_encode($res); die;
+			}
 
 		// upload success
 		$upload_data_image = $this->upload->data();
-
 		$email = $this->session->userdata('user')['email'];
 		$instructor_id = $this->db->where('email', $email)->get('instructors')->row_array()['id'];
+		
+		// INSERT COURSE
+			$data = [
+				'course_code' => $this->random_string(),
+				'course_title' => $post['course_title'],
+				'course_img' => $upload_data_image['file_name'],
+				'description' => base64_decode($post['description']),
+				'instructor_id' => $instructor_id,
+				'category_id' => $post['category_id'],
+			];	
+			$this->db->insert('courses', $data);
+			$insert = $this->db->insert_id();
 
-		$data = [
-			'course_code' => $this->random_string(),
-			'course_title' => $post['course_title'],
-			'course_img' => $upload_data_image['file_name'],
-			'description' => base64_decode($post['description']),
-			'instructor_id' => $instructor_id,
-			'category_id' => $post['category_id'],
-			'course_video' => $upload_data_video['file_name']
-		];
-		$insert = $this->db->insert('courses', $data);
+		// INSERT VIDEO
+			foreach($files_arr as $key => $val){
+				$dataVideo = [
+					'course_id' => $insert,
+					'video' => $val['video'],
+					'seq' => $val['seq'],
+				];
+				$this->db->insert('course_videos', $dataVideo);
+			}
+
 		if($insert){
 			$res = ['success'=>true, 'message'=>'Data berhasil di simpan!'];
 			echo json_encode($res);
