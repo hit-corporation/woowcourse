@@ -50,19 +50,30 @@ class Course extends MY_Controller {
 
 		// PROSES UPLOAD VIDEO
 		$this->load->helper('file');
-		$config['upload_path']	= './assets/files/upload/courses/';
-		$config['allowed_types']= 'mp4';
-		$config['encrypt_name']	= true;
 
-		$this->load->library('upload', $config);
-		// $this->upload->initialize($config);
-		if ( ! $this->upload->do_upload('video')){
-			# Upload Failed
-			$this->session->set_flashdata('error', $this->upload->display_errors());
-			redirect('course/create');
+		// Count total files
+		var_dump($_FILES);die;
+		$countfiles = count($_FILES['video']['name']);
+		$upload_location	= './assets/files/upload/courses/';
+		$files_arr = [];
+
+		for($index = 0;$index < $countfiles;$index++){
+			$filename = $_FILES['video']['name'][$index];
+
+			// Get extension
+			$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+			// Valid image extension
+			$valid_ext = array("mp4");
+
+			// File path
+			$path = $upload_location.$filename;
+
+			move_uploaded_file($_FILES['video']['tmp_name'][$index],$path);
 		}
 
-		$upload_data_video = $this->upload->data();
+		die;
+		
 
 		// PROSES UPLOAD GAMBAR
 		$config2['upload_path']	= './assets/files/upload/courses/';
