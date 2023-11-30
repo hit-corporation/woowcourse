@@ -32,12 +32,6 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 							<video width="300" class="" poster="<?=base_url('assets/images/no-video.png')?>" id="video-preview[0]" src="" controls></video>
 							<input name="course_video[0]" id="course_video[0]" type="file" data="video" class="form-control">
 							
-							<progress style="width: 100%;" value="0" max="100"></progress>
-						
-							<p>
-								<strong>Uploading status:</strong>
-								<span id="statusMessage">🤷‍♂ Nothing's uploaded</span>
-							</p>
 						</div>
 
 					</div>
@@ -54,14 +48,19 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 						<img id="img-preview" class="d-inline-flex rounded border" width="250" src="<?=isset($data['photo']) ? base_url('assets/images/members/'.$data['photo']) : base_url('assets/images/no-image.jpg')?>" alt="photo profile">
 						<br>
 						<label for="formFile" class="form-label">Course Image</label>
-						<input id="filetag" name="filetag" type="file" class="mt-3 form-control">
+						<input id="filetag" name="image" type="file" class="mt-3 form-control">
 						
 						<br>
 					</div>
 				</div>
 			
 
-				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+					<progress style="width: 100%;" value="0" max="100"></progress>
+					<p>
+						<strong>Uploading status:</strong>
+						<span id="statusMessage">🤷‍♂ Nothing's uploaded</span>
+					</p>
 					<button id="save" class="btn btn-primary text-white">Save</button>
 				</div>
 			
