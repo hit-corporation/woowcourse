@@ -3,6 +3,8 @@ var quill = new Quill('#editor', {
 	theme: 'snow'
 });
 
+const formAdd = document.forms['formJamet'];
+
 document.getElementById('editor').style.height = '200px';
 
 // PREVIEW IMAGE COURSE
@@ -27,8 +29,9 @@ function changeImage(input){
 }
 
 // PREVIEW VIDEO COURSE
-let courseVideo = document.getElementById('course_video');
-let previewVideo = document.getElementById('video-preview');
+let courseVideo = document.getElementById(`course_video[0]`);
+// let previewVideo = document.getElementById(`video-preview[0]`);
+
 courseVideo.addEventListener('change', function(){
 	changeVideo(this);
 });
@@ -40,12 +43,33 @@ function changeVideo(input){
 		reader = new FileReader();
 
 		reader.onload = function(e){
-			previewVideo.setAttribute('src', e.target.result);
+			input.previousElementSibling.setAttribute('src', e.target.result);
 		}
 
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+
+
+// let courseVideo = document.getElementById('course_video[0]');
+// let previewVideo = document.getElementById('video-preview[0]');
+// courseVideo.addEventListener('change', function(){
+// 	changeVideo(this);
+// });
+
+// function changeVideo(input){
+// 	var reader;
+
+// 	if(input.files && input.files[0]){
+// 		reader = new FileReader();
+
+// 		reader.onload = function(e){
+// 			previewVideo.setAttribute('src', e.target.result);
+// 		}
+
+// 		reader.readAsDataURL(input.files[0]);
+// 	}
+// }
 
 // =================================== TREE JS ===================================
 	// let data = [{ 
@@ -152,17 +176,20 @@ $.each(category, function (i, val) {
 
 // =================================== PROSES SIMPAN ===================================
 const statusMessage = document.getElementById('statusMessage');
-const fileInput 	= document.getElementById('course_video');
+const fileInput 	= document.getElementById('course_video[0]');
 const progressBar 	= document.querySelector('progress');
 const submitButton 	= document.getElementById('save');
 const form 			= document.querySelector('form');
 
-document.getElementById('save').addEventListener('click', handleSubmit);
+formAdd.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
+	console.log(event);
 	event.preventDefault();
 
-	uploadFiles();
+	showPendingState();
+
+	uploadFiles(event);
 }
 
 fileInput.addEventListener('change', handleInputChange);
@@ -241,19 +268,26 @@ function resetFormState() {
 	updateStatusMessage(`🤷‍♂ Nothing's uploaded`)
 }
 
-function uploadFiles(){
+function uploadFiles(e){
 	// XHR and FormData instance creation is here
+	let videos = $('input[data="video"]');
+
 	const url 		= BASE_URL+"course/store";
 	const method	= 'post';
 	const xhr 		= new XMLHttpRequest();
 	// const data 		= new FormData(form);
-	const data 		= new FormData();
-	data.append("course_title", document.getElementById('course_title').value);
-	data.append("category_id", checked);
-	data.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
-	data.append("image", document.getElementById('filetag').files[0]);
-	data.append("video", document.getElementById('course_video').files[0]);
+	const data 		= new FormData(e.target);
+	// data.append("course_title", document.getElementById('course_title').value);
+	// data.append("category_id", checked);
+	// data.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
+	// data.append("image", document.getElementById('filetag').files[0]);
+	// data.append("video", document.getElementById('course_video').files[0]);
+	
 
+	// $.each(videos, function (i, val) { 
+	// 	 data.append("video[]", val.files[i]);
+	// });
+	
 	// XHR and FormData instance creation along with 'loadend' listener are here
 	xhr.addEventListener('loadend', () => {
 		if (xhr.status === 200) {
@@ -297,16 +331,30 @@ function showPendingState() {
 	updateStatusMessage('⏳ Pending...')
 }
 
-function handleSubmit(event) {
-	event.preventDefault();
+// function handleSubmit(event) {
+// 	event.preventDefault();
   
-	// ↓ here ↓
-	showPendingState();
+// 	// ↓ here ↓
+// 	showPendingState();
   
-	uploadFiles();
-}
+// 	uploadFiles(event);
+// }
 
 function updateProgressBar(value) {
 	const percent = value * 100;
 	progressBar.value = Math.round(percent);
 }
+
+// BUTTON ADD MORE VIDEO
+let btnAddMoreVideo = document.getElementById('add-more-video');
+var i = 1;
+btnAddMoreVideo.addEventListener('click', (e) => {
+	e.preventDefault();
+	$('.course-video-container').append(`<video width="300" class="" poster="${BASE_URL}assets/images/no-video.png" id="video-preview[${i}]" src="" controls></video>
+		<input name="course_video[${i}]" id="course_video[${i}]" onchange="changeVideo(this)" type="file" class="form-control" data="video">
+		<progress id="progress[${i}]" style="width: 100%;" value="0" max="100"></progress>
+		<p><strong>Uploading status:</strong><span id="statusMessage[${i}]">🤷‍♂ Nothing's uploaded</span></p>`);
+
+	i++;
+
+});
