@@ -50,46 +50,6 @@ function changeVideo(input){
 	}
 }
 
-
-// let courseVideo = document.getElementById('course_video[0]');
-// let previewVideo = document.getElementById('video-preview[0]');
-// courseVideo.addEventListener('change', function(){
-// 	changeVideo(this);
-// });
-
-// function changeVideo(input){
-// 	var reader;
-
-// 	if(input.files && input.files[0]){
-// 		reader = new FileReader();
-
-// 		reader.onload = function(e){
-// 			previewVideo.setAttribute('src', e.target.result);
-// 		}
-
-// 		reader.readAsDataURL(input.files[0]);
-// 	}
-// }
-
-// =================================== TREE JS ===================================
-	// let data = [{ 
-	//     "id": "1", 
-	//     "text": "node-1", 
-	//     "children": [
-	// 		{ 
-	// 			"id": "1-1", 
-	// 			"text": "node-1-1", 
-	// 			"children": [
-	// 				{ 
-	// 					"id": "1-1-1", 
-	// 					"text": "node-1-1-1" 
-	// 				},{ 
-	// 					"id": "1-1-2", 
-	// 					"text": "node-1-1-2" 
-	// 				}] 
-	// 		}]
-	// 	}]
-
 function get_all_category(){
 	let data = [];
 	$.ajax({
@@ -143,17 +103,8 @@ function get_all_category(){
 }
 
 let tree = new Tree('.category', {
-    // root data
-    // data: [{ id: '0', text: 'root', children: data }],
     data: get_all_category(),
     loaded: function () {
-      	// pre-selected nodes
-    	// this.values = ['1-1-1', '1-1-2'];
-      	// output selected nodes and values
-      	// console.log(this.selectedNodes)
-      	// console.log(this.values)
-      	// disabled nodes
-    	// this.disables = ['1-1-1', '1-1-1', '1-1-2']
     }
 });
 
@@ -186,9 +137,7 @@ formAdd.addEventListener('submit', handleSubmit);
 function handleSubmit(event) {
 	console.log(event);
 	event.preventDefault();
-
 	showPendingState();
-
 	uploadFiles(event);
 }
 
@@ -269,6 +218,12 @@ function resetFormState() {
 }
 
 function uploadFiles(e){
+	// CEK KATEGORY CHECKED
+	if(checked == undefined){
+		alert('Harap pilh salah satu kategori!');
+		return;
+	}
+
 	// XHR and FormData instance creation is here
 	let videos = $('input[data="video"]');
 
@@ -278,14 +233,14 @@ function uploadFiles(e){
 	// const data 		= new FormData(form);
 	const data 		= new FormData(e.target);
 	// data.append("course_title", document.getElementById('course_title').value);
-	// data.append("category_id", checked);
-	// data.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
+	data.append("category_id", checked);
+	data.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
 	// data.append("image", document.getElementById('filetag').files[0]);
 	// data.append("video", document.getElementById('course_video').files[0]);
 	
 
 	// $.each(videos, function (i, val) { 
-	// 	 data.append("video[]", val.files[i]);
+	// 	 data.append("course_video[]", val.files[i]);
 	// });
 	
 	// XHR and FormData instance creation along with 'loadend' listener are here
@@ -301,6 +256,7 @@ function uploadFiles(e){
 
 	
 	xhr.upload.addEventListener('progress', event => {
+		console.log(event);
 		updateStatusMessage(`⏳ Uploaded ${event.loaded} bytes of ${event.total}`);
 		updateProgressBar(event.loaded / event.total);
 	});
@@ -326,6 +282,11 @@ function uploadFiles(e){
 	xhr.send(data);
 }
 
+function updateProgressBar(value) {
+	const percent = value * 100;
+	progressBar.value = Math.round(percent);
+}
+
 function showPendingState() {
 	submitButton.disabled = true;
 	updateStatusMessage('⏳ Pending...')
@@ -340,10 +301,7 @@ function showPendingState() {
 // 	uploadFiles(event);
 // }
 
-function updateProgressBar(value) {
-	const percent = value * 100;
-	progressBar.value = Math.round(percent);
-}
+
 
 // BUTTON ADD MORE VIDEO
 let btnAddMoreVideo = document.getElementById('add-more-video');
@@ -351,10 +309,6 @@ var i = 1;
 btnAddMoreVideo.addEventListener('click', (e) => {
 	e.preventDefault();
 	$('.course-video-container').append(`<video width="300" class="" poster="${BASE_URL}assets/images/no-video.png" id="video-preview[${i}]" src="" controls></video>
-		<input name="course_video[${i}]" id="course_video[${i}]" onchange="changeVideo(this)" type="file" class="form-control" data="video">
-		<progress id="progress[${i}]" style="width: 100%;" value="0" max="100"></progress>
-		<p><strong>Uploading status:</strong><span id="statusMessage[${i}]">🤷‍♂ Nothing's uploaded</span></p>`);
-
+		<input name="course_video[${i}]" id="course_video[${i}]" onchange="changeVideo(this)" type="file" class="form-control" data="video">`);
 	i++;
-
 });
