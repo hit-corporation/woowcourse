@@ -11,7 +11,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 	<!-- START SECTION BODY -->
 
 	<div class="container">
-		<form>
+		<form name="formJamet">
 			<div class="row">
 				<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
 					<div class="mb-3">
@@ -28,16 +28,21 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 					<div class="mb-3">
 						<label for="formVideo" class="form-label">Course Video</label>
 						<br>
-						<video class="" poster="<?=base_url('assets/images/no-video.png')?>" id="video-preview" src="" controls></video>
-						<input name="course_video" id="course_video" type="file" class="form-control">
+						<div class="course-video-container">
+							<video width="300" class="" poster="<?=base_url('assets/images/no-video.png')?>" id="video-preview[0]" src="" controls></video>
+							<input name="course_video[0]" id="course_video[0]" type="file" data="video" class="form-control">
+							
+							<progress style="width: 100%;" value="0" max="100"></progress>
 						
-						<progress style="width: 100%;" value="0" max="100"></progress>
-					
-						<p>
-							<strong>Uploading status:</strong>
-							<span id="statusMessage">🤷‍♂ Nothing's uploaded</span>
-						</p>
+							<p>
+								<strong>Uploading status:</strong>
+								<span id="statusMessage">🤷‍♂ Nothing's uploaded</span>
+							</p>
+						</div>
+
 					</div>
+					<span class="btn btn-primary btn-sm text-white mb-3" id="add-more-video">+ Add more video</span>
+					<br>
 
 					<!-- Create the editor container -->
 					<label for="" class="mb-2">Description</label>
@@ -57,7 +62,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 			
 
 				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<a id="save" class="btn btn-primary text-white">Save</a>
+					<button id="save" class="btn btn-primary text-white">Save</button>
 				</div>
 			
 
