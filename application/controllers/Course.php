@@ -42,10 +42,12 @@ class Course extends MY_Controller {
 		echo $this->template->render('course/detail', $data);
 	}
 
+	// CREATE NEW COURSE
 	public function create(){
 		echo $this->template->render('course/create');
 	}
 
+	// SIMPAN COURSE
 	public function store(){
 		$post = $this->input->post();
 
@@ -98,7 +100,7 @@ class Course extends MY_Controller {
 		
 		// INSERT COURSE
 			$data = [
-				'course_code' => $this->random_string(),
+				'course_code' => $this->random_string(5),
 				'course_title' => $post['course_title'],
 				'course_img' => $upload_data_image['file_name'],
 				'description' => base64_decode($post['description']),
@@ -125,9 +127,15 @@ class Course extends MY_Controller {
 		
 	}
 
-	public function random_string(){
+	// EDIT COURSE
+	public function edit(){
+		echo $this->template->render('course/create');
+	}
+
+	// GENERATE RANDOM STRING 5 DIGIT
+	public function random_string($number){
 		$str = '';
-		for ($i=0; $i<5; $i++) { 
+		for ($i=0; $i<$number; $i++) { 
 			$d=rand(1,30)%2; 
 			$str .= $d ? chr(rand(65,90)) : chr(rand(48,57)); 
 		}
