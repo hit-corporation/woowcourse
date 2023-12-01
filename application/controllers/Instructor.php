@@ -20,10 +20,18 @@ class Instructor extends CI_Controller {
 	}
 
 	public function detail($id = ''){
-		if(empty($id)) redirect('instructor');
+		// CEK APAKAH USER SUDAH TERDAFTAR SEBAGAI INSTRUKTOR
+		$data['is_instructor'] = false;
+		if(!$id){
+			$email = $this->session->userdata('user')['email'];
+			$cek = $this->db->where('email', $email)->get('instructors')->row_array();
+			$id = $cek['id'];
+			$data['is_instructor'] = true;
+		}
 
 		$data['data'] = $this->instructor_model->detail($id);
 		$data['courses'] = $this->instructor_model->get_courses($id);
+		$data['is_instructor'];
 
 		echo $this->template->render('instructor/detail', $data);
 	}
