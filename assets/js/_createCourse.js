@@ -102,9 +102,16 @@ function get_all_category(){
 	return data;
 }
 
+// EDIT DATA
+const categoryId = document.getElementById('category_id').value;
+
 let tree = new Tree('.category', {
     data: get_all_category(),
     loaded: function () {
+		if(categoryId != ''){
+			this.values = [categoryId];
+			this.selectedNodes;
+		}
     }
 });
 
@@ -305,10 +312,10 @@ function showPendingState() {
 
 // BUTTON ADD MORE VIDEO
 let btnAddMoreVideo = document.getElementById('add-more-video');
-var i = 1;
+var counter = document.querySelectorAll('input[data="video"]').length;
 btnAddMoreVideo.addEventListener('click', (e) => {
 	e.preventDefault();
-	$('.course-video-container').append(`<video width="300" class="" poster="${BASE_URL}assets/images/no-video.png" id="video-preview[${i}]" src="" controls></video>
-		<input name="course_video[${i}]" id="course_video[${i}]" onchange="changeVideo(this)" type="file" class="form-control" data="video">`);
-	i++;
+	$('.course-video-container').append(`<video width="300" class="" poster="${BASE_URL}assets/images/no-video.png" id="video-preview[${counter}]" src="" controls></video>
+		<input name="course_video[${counter}]" id="course_video[${counter}]" onchange="changeVideo(this)" type="file" class="form-control" data="video">`);
+	counter++;
 });
