@@ -92,7 +92,7 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 										<div class="col-12 d-flex flex-nowrap justify-content-end">
 
 											<?php if($is_instructor):?>
-												<a href="<?=base_url('Course/edit/').$data['id']?>" class="btn btn-sm btn-success text-uppercase me-1">
+												<a href="<?=base_url('Course/edit/').$val['id']?>" class="btn btn-sm btn-success text-uppercase me-1">
 													<i class="fa-regular fa-edit"></i>
 												</a>
 											<?php endif ?>
