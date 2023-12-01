@@ -128,8 +128,10 @@ class Course extends MY_Controller {
 	}
 
 	// EDIT COURSE
-	public function edit(){
-		echo $this->template->render('course/create');
+	public function edit($id){
+		$d['data'] = $this->db->where('id', $id)->get('courses')->row_array();
+		$d['videos'] = $this->db->where('course_id', $d['data']['id'])->get('course_videos')->result_array();
+		echo $this->template->render('course/create', $d);
 	}
 
 	// GENERATE RANDOM STRING 5 DIGIT
