@@ -17,7 +17,7 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 		<span class="d-block bg-primary pt-1 mb-4 separator"></span>
 		<div class="row py-3">
 			<div class="col-12 col-lg-3 text-center text-lg-left">
-				<img class="img-fluid mx-auto mx-lg-0 shadow-sm" src="<?=($data['photo']) ? base_url('assets/images/instructors/'.$data['photo']) : base_url('assets/images/instructors/profile-icon.png')?>"/>
+				<img class="img-fluid mx-auto mx-lg-0 shadow-sm" src="<?=($data['photo']) ? base_url('assets/images/members/'.$data['photo']) : base_url('assets/images/instructors/profile-icon.png')?>"/>
 			</div>
 			<div class="col-12 col-lg-9 mt-4 mt-lg-0">
 				<h1 class="text-uppercase text-shadow mb-0 txt-teacher-name"><?=$data['first_name'].' '.$data['last_name']?></h1>
