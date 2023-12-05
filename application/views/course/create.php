@@ -54,7 +54,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 				
 				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="text-center p-3">
-						<img id="img-preview" class="d-inline-flex rounded border" width="250" src="<?=isset($data['photo']) ? base_url('assets/images/members/'.$data['photo']) : base_url('assets/images/no-image.jpg')?>" alt="photo profile">
+						<img id="img-preview" class="d-inline-flex rounded border" width="250" src="<?=isset($data['course_img']) ? base_url('assets/files/upload/courses/'.$data['course_img']) : base_url('assets/images/no-image.jpg')?>" alt="photo profile">
 						<br>
 						<label for="formFile" class="form-label">Course Image</label>
 						<input id="filetag" name="image" type="file" class="mt-3 form-control">
