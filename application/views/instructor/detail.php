@@ -68,7 +68,7 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 
 						<div class="col-12 col-md-6 col-lg-4 col-xl-3 mt-2">
 							<div class="card position-relative d-lg-flex flex-nowrap">
-								<img class="img-fluid" src="assets/images/sm2.jpg">
+								<img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img'])?>">
 								<div class="card-body">
 									<h5 class="text-uppercase text-shadow"><?=$val['course_title']?></h5>
 									<div class="pt-1">
