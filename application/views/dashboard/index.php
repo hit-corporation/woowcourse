@@ -131,7 +131,7 @@
 			
 			<?php foreach ($courses as $key => $val): ?>
 				<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-					<div class="card position-relative card-popular-course">
+					<div id="card-course-landing-page" class="card position-relative card-popular-course">
 						<span class="label-harga"><?=number_format($val['details']['price'])?></span>
 						<img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>">
 						<div class="card-body d-flex flex-column align-items-center">

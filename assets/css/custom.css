@@ -40,6 +40,10 @@
 		position: absolute;
 		bottom: 10px;
 	}
+
+	#card-course-landing-page{
+		height: 500px;
+	}
 }
 
 @media screen and (max-width: 1199px) and (min-width: 993px){
@@ -51,6 +55,10 @@
 		position: absolute;
 		bottom: 10px;
 	}
+
+	#card-course-landing-page{
+		height: 450px;
+	}
 }
 
 @media screen and (max-width: 991px) and (min-width: 770px){
@@ -60,5 +68,15 @@
 	#btn-subscribe{
 		position: absolute;
 		bottom: 10px;
+	}
+
+	#card-course-landing-page{
+		height: 500px;
+	}
+}
+
+@media screen and (max-width: 767px) and (min-width: 576px){
+	#card-course-landing-page{
+		height: 450px;
 	}
 }
