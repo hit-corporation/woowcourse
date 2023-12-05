@@ -53,58 +53,6 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 							</div>
 						<?php endfor ?>
 
-
-						<!-- <div class="form-check">
-							<input class="form-check-input" type="checkbox" value="rate[1]" id="rating1">
-							<label class="form-check-label" for="rating1">
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-secondary"></i>
-								<i class="fa fa-star text-secondary"></i>
-								<i class="fa fa-star text-secondary"></i>
-								<i class="fa fa-star text-secondary"></i>
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="rate[2]" id="rating2">
-							<label class="form-check-label" for="rating2">
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-secondary"></i>
-								<i class="fa fa-star text-secondary"></i>
-								<i class="fa fa-star text-secondary"></i>
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="rate[3]" id="rating3">
-							<label class="form-check-label" for="rating3">
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-secondary"></i>
-								<i class="fa fa-star text-secondary"></i>
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="rate[4]" id="rating4">
-							<label class="form-check-label" for="rating4">
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-secondary"></i>
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="rate[5]" id="rating5">
-							<label class="form-check-label" for="rating5">
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-primary"></i>
-								<i class="fa fa-star text-primary"></i>
-							</label>
-						</div> -->
-
 					</div>
 				</div>
 			</div>
