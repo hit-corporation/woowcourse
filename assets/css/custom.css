@@ -80,3 +80,7 @@
 		height: 450px;
 	}
 }
+
+#btn-create-new-course{
+	float: right;
+}

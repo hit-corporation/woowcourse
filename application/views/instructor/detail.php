@@ -13,6 +13,7 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 	<!-- START SECTION BODY -->
 	
 	<div class="container">
+		<a href="<?=base_url('course/create')?>" id="btn-create-new-course" class="btn btn-lg btn-primary text-white">Create New Course</a>
 		<h4 class="text-uppercase text-shadow">about me</h4>
 		<span class="d-block bg-primary pt-1 mb-4 separator"></span>
 		<div class="row py-3">
