@@ -56,7 +56,7 @@ function load_data(page = 1, limit = 10){
 				$.each(response.data, function (key, value){
 					$('#list-course').append(`
 						<div class="col-12 col-md-4 col-lg-4 py-1">
-							<div class="card position-relative d-lg-flex flex-nowrap">
+							<div class="card position-relative flex-nowrap" id="card-course">
 								<img class="img-fluid" src="${BASE_URL+'assets/files/upload/courses/'+value.course_img}">
 								<div class="card-body">
 									<h5 class="text-uppercase text-shadow"><a class="text-decoration-none" href="${BASE_URL+'course/detail/'+value.id}">${value.course_title}</a></h5>
@@ -78,7 +78,7 @@ function load_data(page = 1, limit = 10){
 									
 									<div class="row">
 										<div class="col-12 d-flex flex-nowrap justify-content-end">
-											<button type="button" class="btn btn-sm btn-success text-uppercase">
+											<button id="btn-subscribe" type="button" class="btn btn-sm btn-success text-uppercase">
 												<i class="fa-regular fa-handshake"></i>
 												Subscribe !!!
 											</button>
