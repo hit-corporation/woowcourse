@@ -153,6 +153,12 @@
                 </div>
             </li>
 
+			<li class="nav-item <?=$CI->uri->segment(1) == 'course' ? 'active' : '' ?>">
+                <a class="nav-link" href="<?=base_url('course')?>">
+                    <i class="fas fa-fw fa-video"></i>
+                    <span>Course</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
