@@ -102,7 +102,7 @@ function get_all_category(){
 	return data;
 }
 
-// EDIT DATA
+// EDIT DATA CATEGORY
 const categoryId = document.getElementById('category_id').value;
 
 let tree = new Tree('.category', {
@@ -137,6 +137,7 @@ const statusMessage = document.getElementById('statusMessage');
 const fileInput 	= document.getElementById('course_video[0]');
 const progressBar 	= document.querySelector('progress');
 const submitButton 	= document.getElementById('save');
+const updateButton 	= document.getElementById('update');
 const form 			= document.querySelector('form');
 
 formAdd.addEventListener('submit', handleSubmit);
@@ -149,45 +150,6 @@ function handleSubmit(event) {
 }
 
 fileInput.addEventListener('change', handleInputChange);
-
-// document.getElementById('save').addEventListener('click', async (e) => {
-// 	e.preventDefault();
-
-
-
-	
-// 	form.append("course_title", document.getElementById('course_title').value);
-// 	form.append("category_id", checked);
-// 	form.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
-// 	form.append("image", document.getElementById('filetag').files[0]);
-// 	form.append("video", document.getElementById('course_video').files[0]);
-	
-	// const response = await fetch(BASE_URL+"course/store", {
-	// 	method: "POST",
-	// 	body: formData,
-	// });
-
-	// const respon = await response.json();
-	// if(respon.success == true){
-	// 	Swal.fire({
-	// 		title: "Sukses!",
-	// 		text: "Data berhasil di simpan!",
-	// 		icon: "success"
-	// 	});
-	// 	setInterval(() => {
-	// 		window.location.href = BASE_URL+'course';
-	// 	}, 2000);
-	// }
-
-// 	const url = BASE_URL+"course/store";
-// 	const method = 'post';
-
-// 	const xhr = new XMLHttpRequest();
-
-// 	xhr.open(method, url);
-// 	xhr.send(form);
-
-// });
 
 function updateStatusMessage(text) {
   statusMessage.textContent = text;
@@ -215,26 +177,34 @@ function handleInputChange() {
 	  return;
 	}
   
-	document.getElementById('save').disabled = false 
+	// document.getElementById('save').disabled = false 
 	// submitButton.disabled = false;
 }
 
 function resetFormState() {
-	submitButton.disabled = true;
+	// submitButton.disabled = true;
 	updateStatusMessage(`🤷‍♂ Nothing's uploaded`)
 }
 
 function uploadFiles(e){
 	// CEK KATEGORY CHECKED
-	if(checked == undefined){
+	if(checked == undefined && submitButton != null){
 		alert('Harap pilh salah satu kategori!');
 		return;
+	}
+
+	// ketika update data biasanya checked kategori tidak di klik maka akan di isi otomatis menggunakan dom dari kategori yang sudah terselect otomatis
+	if(checked == undefined){
+		checked = document.getElementsByClassName('treejs-node__checked')[0].nodeId;
 	}
 
 	// XHR and FormData instance creation is here
 	let videos = $('input[data="video"]');
 
-	const url 		= BASE_URL+"course/store";
+	let url 		= BASE_URL+"course/store";
+
+	if(submitButton == null) url = BASE_URL+"course/update";
+
 	const method	= 'post';
 	const xhr 		= new XMLHttpRequest();
 	// const data 		= new FormData(form);
@@ -242,13 +212,6 @@ function uploadFiles(e){
 	// data.append("course_title", document.getElementById('course_title').value);
 	data.append("category_id", checked);
 	data.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
-	// data.append("image", document.getElementById('filetag').files[0]);
-	// data.append("video", document.getElementById('course_video').files[0]);
-	
-
-	// $.each(videos, function (i, val) { 
-	// 	 data.append("course_video[]", val.files[i]);
-	// });
 	
 	// XHR and FormData instance creation along with 'loadend' listener are here
 	xhr.addEventListener('loadend', () => {
@@ -295,20 +258,9 @@ function updateProgressBar(value) {
 }
 
 function showPendingState() {
-	submitButton.disabled = true;
+	// submitButton.disabled = true;
 	updateStatusMessage('⏳ Pending...')
 }
-
-// function handleSubmit(event) {
-// 	event.preventDefault();
-  
-// 	// ↓ here ↓
-// 	showPendingState();
-  
-// 	uploadFiles(event);
-// }
-
-
 
 // BUTTON ADD MORE VIDEO
 let btnAddMoreVideo = document.getElementById('add-more-video');
