@@ -134,6 +134,86 @@ class Course extends MY_Controller {
 		echo $this->template->render('course/create', $d);
 	}
 
+	// UPDATE COURSE
+	public function update(){
+		$post = $this->input->post();
+		
+		// PROSES UPLOAD VIDEO
+			$countfiles = count($_FILES['course_video']['name']);
+			$upload_location	= './assets/files/upload/courses/';
+			$files_arr = [];
+
+			for($index = 0;$index < $countfiles; $index++){
+				$filename = $_FILES['course_video']['name'][$index];
+				// jika filename ada ada isi nya
+				if($filename){
+					// Get extension
+					$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION)); 
+					$filenameEncode = base64_encode($filename.microtime()).'.'.$ext;
+					// Valid image extension
+					$valid_ext = array("mp4");
+					// Check extension
+					if(in_array($ext, $valid_ext)){
+						// File path
+						$path = $upload_location.$filenameEncode;
+						move_uploaded_file($_FILES['course_video']['tmp_name'][$index],$path);
+						$files_arr[] = [
+							'seq' => $index+1,
+							'video' => $filenameEncode
+						];
+					}
+				}
+			}
+
+		// UPDATE DATA COURSE VIDEO DAN HAPUS FILE VIDEO LAMA
+			foreach ($files_arr as $key => $value) {
+				$video = $this->db->where('course_id', $post['id'])->where('seq', $value['seq'])->get('course_videos')->row_array();
+				// delete video lama
+				$fileLama = './assets/files/upload/courses/'.$video['video'];
+				if(file_exists($fileLama)){
+					$hapusFile = unlink('./assets/files/upload/courses/'.$video['video']);
+				}
+				// update video baru
+				$this->db->where('id', $video['id'])->update('course_videos', ['video' => $value['video']]);
+			}
+
+		// UPDATE FILE IMAGE COURSE
+			if($_FILES['image']['name']){ // jika gambar ada maka jalankan source ini
+				$course = $this->db->where('id', $post['id'])->get('courses')->row_array(); // ambil data kursus
+				// delete course image yang lama
+				$fileLama = './assets/files/upload/courses/'.$course['course_img'];
+				if(file_exists($fileLama)){
+					$hapusFile = unlink('./assets/files/upload/courses/'.$course['course_img']);
+				}
+				$filename = $_FILES['image']['name']; // ambil nama file gambar
+				$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION)); // ambil extension gambar
+				$filenameEncode = base64_encode($filename.microtime()).'.'.$ext;
+				
+				// File path
+				$path = $upload_location.$filenameEncode;
+				move_uploaded_file($_FILES['image']['tmp_name'],$path);
+
+				// isi data gambar yang baru
+				$data['course_img'] = $filenameEncode;
+				// $this->db->where('id', $post['id'])->update('courses', ['course_img'=> $filenameEncode]);
+			}
+		
+		// UPDATE DATA COURSE 
+			$data['course_title'] = $post['course_title'];
+			$data['description'] = base64_decode($post['description']);
+			$data['category_id'] = $post['category_id'];
+			$data['updated_at'] = date('Y-m-d H:i:s');
+
+			$update = $this->db->where('id', $post['id'])->update('courses', $data);
+			if($update){
+				$res = ['success'=>true, 'message'=>'Data berhasil di update!'];
+				echo json_encode($res);
+			}else{
+				$res = ['success'=>false, 'message'=>'Data gagal di update!'];
+				echo json_encode($res);
+			}
+	}
+
 	// GENERATE RANDOM STRING 5 DIGIT
 	public function random_string($number){
 		$str = '';
