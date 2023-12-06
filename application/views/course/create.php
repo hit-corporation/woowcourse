@@ -49,7 +49,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 
 					<!-- Create the editor container -->
 					<label for="" class="mb-2">Description</label>
-					<div id="editor" class="form-control mb-3"><?=isset($data['about']) ? $data['about'] : '' ?></div>
+					<div id="editor" class="form-control mb-3"><?=isset($data['description']) ? $data['description'] : '' ?></div>
 				</div>
 				
 				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -70,7 +70,13 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 						<strong>Uploading status:</strong>
 						<span id="statusMessage">🤷‍♂ Nothing's uploaded</span>
 					</p>
-					<button id="save" class="btn btn-primary text-white">Save</button>
+					<?php if(!isset($data['id'])): ?>
+						<button id="save" class="btn btn-primary text-white">Save</button>
+					<?php endif ?>
+
+					<?php if(isset($data['id'])): ?>
+						<button id="update" class="btn btn-primary text-white">Update</button>
+					<?php endif ?>
 				</div>
 			
 
