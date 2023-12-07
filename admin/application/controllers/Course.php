@@ -26,7 +26,6 @@ class Course extends MY_Controller{
 		$filters	= $get['columns'];
 
 		$data = $this->course_model->get_all($filters, $limit, $offset);
-		
 		$response = [
 			'draw' => $draw,
 			'data' => $data,
