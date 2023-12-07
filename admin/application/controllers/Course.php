@@ -14,7 +14,8 @@ class Course extends MY_Controller{
 	 * @return void
 	 */
 	public function index(){
-		echo $this->template->render('index');
+		$categories = $this->db->get('categories')->result_array();
+		echo $this->template->render('index', ['categories'=>$categories]);
 	}
 
 	public function get_all_paginated(){

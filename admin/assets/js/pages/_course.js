@@ -37,6 +37,7 @@ formSearch.addEventListener('submit', e => {
 	// if(formSearch['s_member_name'].value)
 	table.columns(0).search(formSearch['s_course_title'].value).draw();
 	table.columns(1).search(formSearch['s_instructor'].value).draw();
+	table.columns(2).search(formSearch['s_category'].value).draw();
 });
 
 function hapus(id){
@@ -64,3 +65,8 @@ function hapus(id){
 
 // HIDE DEFAULT SEARCH DATA TABLE
 document.querySelector('.dataTables_filter').style.display = 'none';
+
+// SELECT 2 CATEGORY
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});

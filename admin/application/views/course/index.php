@@ -2,6 +2,7 @@
 
 <!-- SECTION CSS -->
 <?php $this->start('css') ?>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <?php $this->stop() ?>
 
 <!-- SECTION CONTENT -->
@@ -32,7 +33,7 @@
 				<div class="card">
 					<div class="card-body">
 
-						<div class="col-xl-12 col-lg-12 col-md-12 float-right">
+						<div class="col-xl-12 col-lg-12 col-md-12 float-right mb-3 pl-0">
 							<form name="form-search">
 								<div class="row" style="text-align: end;">
 									<div class="col-xl-3 col-lg-3 col-md-4 mb-2">
@@ -40,6 +41,13 @@
 									</div>
 									<div class="col-xl-3 col-lg-3 col-md-4 mb-2">
 										<input type="text" class="form-control form-control-sm" name="s_instructor" placeholder="Nama Instruktur">
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-4 mb-2">
+										<select class="js-example-basic-single form-control form-control-sm" name="s_category" placeholder="Kategori">
+											<?php foreach ($categories as $key => $value) : ?>
+												<option value="<?=$value['id']?>"><?=$value['category_name']?></option>
+											<?php endforeach ?>
+										</select>
 									</div>
 									<div class="col-xl-1 col-lg-1 col-md-1">
 										<div class="btn-group btn-group-sm">
@@ -81,5 +89,6 @@
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script src="<?=base_url('assets/js/pages/_course.js')?>"></script>
 <?php $this->stop() ?>

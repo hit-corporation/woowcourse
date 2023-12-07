@@ -30,6 +30,9 @@ class Course_model extends CI_Model {
 		if(!empty($filters[1]['search']['value']))
 			$this->db->where('LOWER(i.first_name) LIKE \'%'.trim(strtolower($filters[1]['search']['value'])).'%\'', NULL, FALSE)->or_where('LOWER(i.last_name) LIKE \'%'.trim(strtolower($filters[1]['search']['value'])).'%\'', NULL, FALSE);
 
+		if(!empty($filters[2]['search']['value']))
+			$this->db->where('category_id', $filters[2]['search']['value']);
+
 		if(!empty($limit) && !is_null($offset))
 			$this->db->limit($limit, $offset);
 
@@ -48,6 +51,9 @@ class Course_model extends CI_Model {
 
 		if(!empty($filters[1]['search']['value']))
 			$this->db->where('LOWER(i.first_name) LIKE \'%'.trim(strtolower($filters[1]['search']['value'])).'%\'', NULL, FALSE)->or_where('LOWER(i.last_name) LIKE \'%'.trim(strtolower($filters[1]['search']['value'])).'%\'', NULL, FALSE);
+
+		if(!empty($filters[2]['search']['value']))
+			$this->db->where('category_id', $filters[2]['search']['value']);
 
 		return $this->db->get()->num_rows();
 	}
