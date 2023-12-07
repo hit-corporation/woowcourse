@@ -11,7 +11,7 @@ class Dashboard extends MY_Controller {
 	}
 
 	public function index(){
-		$data['user'] = $this->user_model->get_user($this->session->userdata('user')['userid']);
+		$data['user'] = $this->user_model->get_user($this->session->userdata('id'));
 		$data['total_member'] = count($this->member_model->get_all());
 		// $data['total_book'] = count($this->book_model->get_all());
 		$data['total_book'] = null;
