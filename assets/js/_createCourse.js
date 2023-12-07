@@ -267,6 +267,10 @@ let btnAddMoreVideo = document.getElementById('add-more-video');
 var counter = document.querySelectorAll('input[data="video"]').length;
 btnAddMoreVideo.addEventListener('click', (e) => {
 	e.preventDefault();
+	if(counter == 5) {
+		alert('Maksimal 5 Video'); return;
+	}
+
 	$('.course-video-container').append(`<video width="300" class="" poster="${BASE_URL}assets/images/no-video.png" id="video-preview[${counter}]" src="" controls></video>
 		<input name="course_video[${counter}]" id="course_video[${counter}]" onchange="changeVideo(this)" type="file" class="form-control" data="video">`);
 	counter++;
