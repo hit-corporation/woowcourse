@@ -43,8 +43,22 @@ class Course extends MY_Controller{
 
 		$post = $this->input->post();
 		
-		$this->db->where('course_id', $post['course_id'])->delete('course_videos'); // delete video
-		$deleteCourse = $this->db->where('id', $post['course_id'])->delete('courses'); // delete course
+		// delete file video
+		$videos = $this->db->where('course_id', $post['course_id'])->get('course_videos')->result_array();
+		foreach ($videos as $key => $val) {
+			$fileLama = '../assets/files/upload/courses/'.$val['video'];
+			if(file_exists($fileLama)) unlink('../assets/files/upload/courses/'.$val['video']);
+		}
+		// delete video
+		$this->db->where('course_id', $post['course_id'])->delete('course_videos'); 
+
+		// delete image course
+		$course = $this->db->where('id', $post['course_id'])->get('courses')->row_array();
+		$fileLama = '../assets/files/upload/courses/'.$course['course_img'];
+		if(file_exists($fileLama)) unlink('../assets/files/upload/courses/'.$course['course_img']);
+
+		// delete course
+		$deleteCourse = $this->db->where('id', $post['course_id'])->delete('courses'); 
 		
 		if($deleteCourse){
 			$response = ['success'=>true, 'message'=>'Data berhasil di hapus'];
