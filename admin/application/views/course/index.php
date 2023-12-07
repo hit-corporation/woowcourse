@@ -36,13 +36,10 @@
 							<form name="form-search">
 								<div class="row" style="text-align: end;">
 									<div class="col-xl-3 col-lg-3 col-md-4 mb-2">
-										<input type="text" class="form-control form-control-sm" name="s_book_author" placeholder="Nama Penulis">
+										<input type="text" class="form-control form-control-sm" name="s_course_title" placeholder="Judul kursus">
 									</div>
 									<div class="col-xl-3 col-lg-3 col-md-4 mb-2">
-										<input type="text" class="form-control form-control-sm" name="s_book_publisher" placeholder="Nama Penerbit">
-									</div>
-									<div class="col-xl-3 col-lg-3 col-md-4 mb-2">
-										<input type="text" class="form-control form-control-sm" name="s_book_name" placeholder="Nama Buku">
+										<input type="text" class="form-control form-control-sm" name="s_instructor" placeholder="Nama Instruktur">
 									</div>
 									<div class="col-xl-1 col-lg-1 col-md-1">
 										<div class="btn-group btn-group-sm">
@@ -62,11 +59,13 @@
 										<th>Kode</th>
 										<th>Gambar Kursus</th>
 										<th>Judul</th>
-										<th>Instruktur</th>
+										<th>First Name</th>
+										<th>Last Name</th>
 										<th>Kategori</th>
 										<th>Tanggal Dibuat</th>
 										<th>Rating</th>
 										<th>Harga</th>
+										<th>Action</th>
 									</tr>
 								</thead>
 							</table>
@@ -81,4 +80,6 @@
 
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="<?=base_url('assets/js/pages/_course.js')?>"></script>
 <?php $this->stop() ?>
