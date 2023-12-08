@@ -12,7 +12,7 @@
 			<div class="col-12">
 
 				<div class="d-sm-flex align-items-center justify-content-between pb-2 mb-3 px-2 border-bottom">
-					<h1 class="h3 mb-0 text-gray-800"><?=$this->e('Course')?></h1>
+					<h1 class="h3 mb-0 text-gray-800"><?=$this->e('Rating & Commands')?></h1>
 					<div class="row">
 						<button id="btn-add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mr-2"  data-target="#modal-input" data-toggle="modal">
 							<i class="fas fa-plus fa-sm text-white-50"></i> 
