@@ -159,6 +159,12 @@
                     <span>Course</span></a>
             </li>
 
+			<li class="nav-item <?=$CI->uri->segment(1) == 'rating' ? 'active' : '' ?>">
+                <a class="nav-link" href="<?=base_url('rating')?>">
+                    <i class="fas fa-fw fa-comment-alt"></i>
+                    <span>Rating & Commmand</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
