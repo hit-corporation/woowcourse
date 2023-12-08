@@ -44,6 +44,7 @@ class Course extends MY_Controller {
 
 	// CREATE NEW COURSE
 	public function create(){
+		if(!isset($this->session->userdata()['user'])) redirect('course');
 		echo $this->template->render('course/create');
 	}
 
