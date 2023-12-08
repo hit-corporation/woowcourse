@@ -72,7 +72,7 @@
 										<th>Kategori</th>
 										<th>Tanggal Dibuat</th>
 										<th>Rating</th>
-										<th>Harga</th>
+										<th>comment</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -90,5 +90,5 @@
 <?php $this->start('js') ?>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-	<script src="<?=base_url('assets/js/pages/_course.js')?>"></script>
+	<script src="<?=base_url('assets/js/pages/_rating.js')?>"></script>
 <?php $this->stop() ?>

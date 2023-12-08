@@ -26,12 +26,12 @@ class Rating extends MY_Controller{
 		$limit 		= $get['length'];
 		$filters	= $get['columns'];
 
-		$data = $this->course_model->get_all($filters, $limit, $offset);
+		$data = $this->rating_model->get_all($filters, $limit, $offset);
 		$response = [
 			'draw' => $draw,
 			'data' => $data,
-			'recordsTotal' => $this->db->count_all_results('courses'),
-			'recordsFiltered' => $this->course_model->count_all($filters)
+			'recordsTotal' => $this->db->count_all_results('ratings'),
+			'recordsFiltered' => $this->rating_model->count_all($filters)
 		];
 
 

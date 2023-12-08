@@ -4,7 +4,7 @@ let table = $('#table-main').DataTable({
 	serverSide: true,
 	processing: true,
 	ajax: {
-		url: BASE_URL + 'course/get_all_paginated'
+		url: BASE_URL + 'rating/get_all_paginated'
 	},
 	columns: [
 		{data: 'id', visible: false},
@@ -16,10 +16,12 @@ let table = $('#table-main').DataTable({
 			}
 		},
 		{data: 'course_title'},
+		{data: 'first_name'},
+		{data: 'last_name'},
 		{data: 'category_name'},
-		{data: 'created_at'},
-		{data: 'rating'},
-		{data: 'price'},
+		{data: 'tanggal_rating'},
+		{data: 'rate'},
+		{data: 'comment'},
 		{
 			data: false,
 			render(data, type, row, _meta){
@@ -41,7 +43,7 @@ formSearch.addEventListener('submit', e => {
 function hapus(id){
 	$.ajax({
 		type: "POST",
-		url: BASE_URL + "course/delete",
+		url: BASE_URL + "rating/delete",
 		data: {
 			course_id: id
 		},
@@ -54,7 +56,7 @@ function hapus(id){
 					icon: "success"
 				});
 				setInterval(() => {
-					window.location.href = BASE_URL+'course';
+					window.location.href = BASE_URL+'rating';
 				}, 2000);
 			}
 		}
