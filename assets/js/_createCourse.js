@@ -37,8 +37,16 @@ courseVideo.addEventListener('change', function(){
 });
 
 function changeVideo(input){
-	var reader;
+	const maxSizeUpload = (sizeMb) => {
+		if(Math.floor(input.files[0].size / 1000000) > sizeMb){
+			alert(`Video tidak boleh lebih dari ${sizeMb} MB`);
+			input.value = '';
+			return;
+		}
+	}
+	maxSizeUpload(100);
 
+	var reader;
 	if(input.files && input.files[0]){
 		reader = new FileReader();
 
