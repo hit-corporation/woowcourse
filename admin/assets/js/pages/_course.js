@@ -4,7 +4,7 @@ let table = $('#table-main').DataTable({
 	serverSide: true,
 	processing: true,
 	ajax: {
-		url: BASE_URL + 'course/get_all_paginated'
+		url: BASE_URL + 'rating/get_all_paginated'
 	},
 	columns: [
 		{data: 'id', visible: false},
@@ -36,8 +36,7 @@ formSearch.addEventListener('submit', e => {
 	e.preventDefault();
 	// if(formSearch['s_member_name'].value)
 	table.columns(0).search(formSearch['s_course_title'].value).draw();
-	table.columns(1).search(formSearch['s_instructor'].value).draw();
-	table.columns(2).search(formSearch['s_category'].value).draw();
+	table.columns(1).search(formSearch['s_category'].value).draw();
 });
 
 function hapus(id){
