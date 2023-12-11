@@ -16,6 +16,8 @@ let table = $('#table-main').DataTable({
 			}
 		},
 		{data: 'course_title'},
+		{data: 'first_name'},
+		{data: 'last_name'},
 		{data: 'category_name'},
 		{data: 'created_at'},
 		{data: 'rating'},
