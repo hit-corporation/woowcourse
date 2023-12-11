@@ -167,8 +167,26 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 									</div>
 									<div class="col-1"></div>
 								</div>
+
+								<br>
+								
+								<?php foreach($comments as $comment) : ?>
+								<div class="card p-3 mb-2 shadow">
+									<div class="row">
+										<div class="col-2">
+											<img class="rounded" src="<?=base_url('assets/images/members/').$comment['photo']?>" alt="profile image" width="50">
+										</div>
+										<div class="col-10">
+											<span><i class="fa fa-star text-yellow"></i></span>
+											<?=$comment['comment']?>
+										</div>
+									</div>
+								</div>
+								<?php endforeach ?>
 							</div>
 						</div>
+
+						
 					</div>
 					
 				</div>
