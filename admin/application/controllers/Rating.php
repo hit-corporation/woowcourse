@@ -42,25 +42,24 @@ class Rating extends MY_Controller{
 		if(!isset($this->session->userdata('user')['email'])) redirect('');
 
 		$post = $this->input->post();
-		
-		// delete file video
-		$videos = $this->db->where('course_id', $post['course_id'])->get('course_videos')->result_array();
-		foreach ($videos as $key => $val) {
-			$fileLama = '../assets/files/upload/courses/'.$val['video'];
-			if(file_exists($fileLama)) unlink('../assets/files/upload/courses/'.$val['video']);
-		}
-		// delete video
-		$this->db->where('course_id', $post['course_id'])->delete('course_videos'); 
-
-		// delete image course
-		$course = $this->db->where('id', $post['course_id'])->get('courses')->row_array();
-		$fileLama = '../assets/files/upload/courses/'.$course['course_img'];
-		if(file_exists($fileLama)) unlink('../assets/files/upload/courses/'.$course['course_img']);
 
 		// delete course
-		$deleteCourse = $this->db->where('id', $post['course_id'])->delete('courses'); 
+		$deleteCourse = $this->db->where('id', $post['comment_id'])->delete('ratings');
+
+		// hitung average rating
+		$courseId = $this->db->where('course_code', $post['course_code'])->get('courses')->row_array()['id'];
 		
-		if($deleteCourse){
+		$q = $this->db->select_avg('rate')
+			->from('ratings')
+			->where('topic_id', $courseId)
+			->get()->row_array();
+
+		$rating = round($q['rate'], 2);
+
+		// update rating course
+		$update = $this->db->where('id', $courseId)->update('courses', ['rating'=>$rating]);
+
+		if($update){
 			$response = ['success'=>true, 'message'=>'Data berhasil di hapus'];
 			echo json_encode($response, JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_HEX_TAG);
 		}else{

@@ -25,7 +25,7 @@ let table = $('#table-main').DataTable({
 		{
 			data: false,
 			render(data, type, row, _meta){
-				return `<button class="btn btn-sm btn-danger" onClick="hapus(${row.id})"><i class="fa fa-trash"></i></button>`;
+				return `<button class="btn btn-sm btn-danger" onClick="hapus(${row.id}, '${row.course_code}')"><i class="fa fa-trash"></i></button>`;
 			}
 		},
 	]
@@ -40,12 +40,13 @@ formSearch.addEventListener('submit', e => {
 	table.columns(2).search(formSearch['s_category'].value).draw();
 });
 
-function hapus(id){
+function hapus(id, code){
 	$.ajax({
 		type: "POST",
 		url: BASE_URL + "rating/delete",
 		data: {
-			course_id: id
+			comment_id: id,
+			course_code: code,
 		},
 		dataType: "JSON",
 		success: function (res) {
