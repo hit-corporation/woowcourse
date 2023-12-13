@@ -6,7 +6,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 <?php $this->start('css') ?>
 <link rel="stylesheet" href="https://pagination.js.org/dist/2.6.0/pagination.css">
-<link rel="stylesheet" href="assets/css/teacher.min.css">
+<!-- <link rel="stylesheet" href="assets/css/teacher.min.css"> -->
 <?php $this->end() ?>
 
 <?php $this->start('body') ?>
@@ -26,7 +26,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 					<hr class="border border-dark mb-2" />
 					<h4 class="mb-2 text-shadow-sm">Kategori</h4>
 
-					<div id="categories-check">
+					<div id="categories-check" style="max-height: 320px; overflow-y: auto;">
 						<?php foreach ($categories as $key => $value) : ?>
 							<div class="form-check mt-2">
 								<input class="form-check-input" type="checkbox" value="<?=$value['id']?>" id="category_<?=$value['id']?>">

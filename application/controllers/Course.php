@@ -14,7 +14,7 @@ class Course extends MY_Controller {
      */
     public function index(): void {
 		// $data['topics'] 	= $this->topics_model->get_all();
-		$data['categories'] = $this->db->limit(10)->get('categories')->result_array();
+		$data['categories'] = $this->db->get('categories')->result_array();
         echo $this->template->render('index', $data);
     }
 
