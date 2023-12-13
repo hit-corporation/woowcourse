@@ -139,7 +139,7 @@
 				<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
 					<div id="card-course-landing-page" class="card position-relative card-popular-course">
 						<span class="label-harga"><?=number_format($val['details']['price'])?></span>
-						<img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>">
+						<img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height: 220px;">
 						<div class="card-body d-flex flex-column align-items-center">
 							<img class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/instructors/').$val['details']['photo'] : base_url('assets/images/sm2.jpg'); ?>">
 							<a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['details']['id'])?>"><h4 class="w-100 text-center text-capitalize mt-2"><?=$val['details']['course_title']?></h4></a>
