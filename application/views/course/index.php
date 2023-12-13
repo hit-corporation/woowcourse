@@ -1,7 +1,5 @@
 <?php
 
-use PhpOffice\PhpSpreadsheet\Calculation\Information\Value;
-
 $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 <?php $this->start('css') ?>

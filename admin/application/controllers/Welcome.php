@@ -62,4 +62,23 @@ class Welcome extends CI_Controller {
 
 		
 	}
+
+	/**
+	 *
+	 *
+	 * @return void
+	 */
+	public function setUser(): void {
+
+		$data = [
+			'user_code'		=> bin2hex(random_bytes('8')),
+			'email' 		=> 'admin@woowcourse.com',
+			'password'		=> password_hash('admin', PASSWORD_DEFAULT),
+			'user_level'	=> 1,
+			'last_login'	=> date('Y-m-d H:i:s'),
+			'active'		=> 1
+		];
+
+		$this->db->insert('users', $data);
+	}
 }
