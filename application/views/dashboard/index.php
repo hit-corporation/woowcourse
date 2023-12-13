@@ -16,6 +16,18 @@
 	<link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/index.min.css">
 	<base href="<?=base_url()?>" >
+
+	<style>
+		/* style custom animasi jumbotron */
+		.ml2 .letter {
+			display: inline-block;
+			line-height: 1em;
+		}
+
+		.letter {
+			color: white;
+		}
+	</style>
 </head>
 
 <body class="min-100-vh bg-light-subtle">
@@ -119,11 +131,11 @@
 		<div id="jumbotron" class="container py-4">
 			<div class="row py-4 mt-4 position-relative">
 				<div class="col-12">
-					<h1 class="top text-center text-uppercase mt-4 pt-5">
+					<h1 class="top text-center text-uppercase mt-4 pt-5 ml2">
 						<span class="text-primary">Woow</span>
 						<span class="text-white">Course</span>
 					</h1>
-					<h3 class="text-center text-white text-shadow">
+					<h3 class="text-center text-white text-shadow ml3 letters">
 						<i>We provides always our best educational services for our all students</i>
 					</h3>
 				</div>
@@ -284,6 +296,49 @@
 	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
 	<script src="assets/js/main.js" async defer></script>
 	<script src="assets/js/index.js" async defer></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+	<script>
+		// SCRIPT ANIMATED JUMBOTRON HEADER
+		// Wrap every letter in a span
+		var textWrapper = document.querySelector('.ml2');
+		textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+		anime.timeline({loop: false})
+		.add({
+			targets: '.ml2 .letter',
+			scale: [9,1],
+			opacity: [0,1],
+			translateZ: 0,
+			easing: "easeOutExpo",
+			duration: 3000,
+			delay: (el, i) => 50*i
+		}).add({
+			
+		});
+
+		let letters = document.querySelectorAll('.letter');
+		letters[0].style.color = '#20c997';
+		letters[1].style.color = '#20c997';
+		letters[2].style.color = '#20c997';
+		letters[3].style.color = '#20c997';
+
+		// Wrap every letter in a span
+		var textWrapper = document.querySelector('.ml3');
+		textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+		anime.timeline({loop: false})
+		.add({
+			targets: '.ml3 .letter',
+			opacity: [0,1],
+			easing: "easeInOutQuad",
+			duration: 1000,
+			delay: (el, i) => 40 * (i+1)
+		}).add({
+		});
+
+	</script>
 </body>
 
 </html>
