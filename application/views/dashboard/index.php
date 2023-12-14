@@ -183,6 +183,50 @@
 
 		</div>
 	</section>
+
+	<section id="popular-courses" class="container py-2 my-3">
+		<h3 class="text-center w-100 m-0 mb-4">NEW COURSES</h3>
+		<!-- <h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of popular courses</h5> -->
+		<div class="row">
+			
+			<?php foreach ($new_courses as $key => $val): ?>
+				  <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="card" id="card-course">
+                        <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
+                        <div class="card-body">
+                            <h4 class="w-100 text-start text-capitalize mt-1"><?=$val['course_title']?></h4>
+                            <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
+                                <span class="border-end pe-2">
+                                    <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : base_url('assets/images/sm2.jpg'); ?>" style="">
+                                </span>
+                                <span class="ms-2">
+                                    <h6 class="text-capitalize text-secondary fw-normal text-shadow"><?=$val['first_name'].' '.$val['last_name']?></h6>
+                                </span>
+                            </div>
+                            <span class="w-100">
+                                <span class="fw-semibold me-2">4.6</span>
+                                <i class="fa-solid fa-star text-primary"></i>
+                                <i class="fa-solid fa-star text-primary"></i>
+                                <i class="fa-solid fa-star text-primary"></i>
+                                <i class="fa-solid fa-star text-secondary"></i>
+                                <i class="fa-solid fa-star text-secondary"></i>
+                            </span>
+                            <h5 class="mt-1"><?=number_format($val['price'])?></h5>
+                            <div class="d-flex flex-nowrap w-100" id="checkout-button">
+                                <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-primary text-white w-100 mt-3">
+									Checkout
+								</a>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+			<?php endforeach ?>
+
+		</div>
+	</section>
+
+
 	<!-- start instructures -->
 	<section id="instructures" class="container py-5 my-3">
 		<h3 class="text-center text-uppercase w-100 m-0 mb-4">Course Instructors</h3>
