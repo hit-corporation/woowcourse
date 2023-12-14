@@ -66,9 +66,10 @@ class Topics_model extends CI_Model {
 	}
 
 	public function get_course($id){
-		$this->db->select('c.*, i.first_name, i.last_name, i.photo');
+		$this->db->select('c.*, i.first_name, i.last_name, m.photo');
 		$this->db->from('courses c');
 		$this->db->join('instructors i', 'i.id = c.instructor_id');
+		$this->db->join('members m', 'm.email = i.email');
 		$this->db->where('c.id', $id);
 		return $this->db->get()->row_array();
 	}
