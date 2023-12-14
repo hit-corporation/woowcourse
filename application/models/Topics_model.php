@@ -81,4 +81,14 @@ class Topics_model extends CI_Model {
 		$this->db->limit('12');
 		return $this->db->get()->result_array();
 	}
+
+	public function get_new_courses(){
+		return $this->db->select('courses.*, members.photo, members.first_name, members.last_name')
+					->from('courses')
+					->join('instructors', 'instructors.id = courses.instructor_id')
+					->join('members', 'members.email = instructors.email', 'left')
+					->order_by('courses.id', 'DESC')
+					->limit('12')
+					->get()->result_array();
+	}
 }
