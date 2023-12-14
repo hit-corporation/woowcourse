@@ -179,15 +179,15 @@
 				</div>-->
 				  <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
                     <div class="card">
-                        <img class="img-fluid" src="assets/images/sm2.jpg">
+                        <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height:200px">
                         <div class="card-body">
-                            <h4 class="w-100 text-start text-capitalize mt-1">Bahasa Inggris</h4>
+                            <h4 class="w-100 text-start text-capitalize mt-1"><?=$val['details']['course_title']?></h4>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
                                 <span class="border-end pe-2">
-                                    <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="">
+                                    <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/instructors/').$val['details']['photo'] : base_url('assets/images/sm2.jpg'); ?>" style="">
                                 </span>
                                 <span class="ms-2">
-                                    <h6 class="text-capitalize text-secondary fw-normal text-shadow">ki riman banjir</h6>
+                                    <h6 class="text-capitalize text-secondary fw-normal text-shadow"><?=$val['details']['first_name'].' '.$val['details']['last_name']?></h6>
                                 </span>
                             </div>
                             <span class="w-100">
