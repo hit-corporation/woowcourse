@@ -143,42 +143,13 @@
 		</div>
 	</main>
 	<section id="popular-courses" class="container py-5 my-3">
-		<h3 class="text-center w-100 m-0">POPULAR COURSES</h3>
-		<h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of popular courses</h5>
+		<h3 class="text-center w-100 m-0 mb-4">POPULAR COURSES</h3>
+		<!-- <h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of popular courses</h5> -->
 		<div class="row">
 			
 			<?php foreach ($courses as $key => $val): ?>
-				<!--<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-					<div id="card-course-landing-page" class="card position-relative card-popular-course">
-						<span class="label-harga"><?=number_format($val['details']['price'])?></span>
-						<img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height: 220px;">
-						<div class="card-body d-flex flex-column align-items-center">
-							<img class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/instructors/').$val['details']['photo'] : base_url('assets/images/sm2.jpg'); ?>">
-							<a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['details']['id'])?>"><h4 class="w-100 text-center text-capitalize mt-2"><?=$val['details']['course_title']?></h4></a>
-							<p class="text-justify overflow-hidden">
-								<?=$val['details']['description']?>
-							</p>
-						</div>
-						<div class="card-footer courses-grid-footer">
-							<div class="row justify-content-evenly">
-								<div class="col">
-									<i class="fa-solid fa-calendar-days text-primary"></i>
-									<small class="text-capitalize ms-1">2 hours</small>
-								</div>
-								<div class="col">
-									<i class="fa-solid fa-book text-primary"></i>
-									<small class="text-capitalize ms-1">10 lesson</small>
-								</div>
-								<div class="col">
-									<i class="fa-solid fa-chair text-primary"></i>
-									<small class="text-capitalize ms-1">12 Seats</small>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>-->
 				  <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-                    <div class="card">
+                    <div class="card" id="card-course">
                         <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height:200px">
                         <div class="card-body">
                             <h4 class="w-100 text-start text-capitalize mt-1"><?=$val['details']['course_title']?></h4>
@@ -199,7 +170,7 @@
                                 <i class="fa-solid fa-star text-secondary"></i>
                             </span>
                             <h5 class="mt-1"><?=number_format($val['details']['price'])?></h5>
-                            <div class="d-flex flex-nowrap w-100">
+                            <div class="d-flex flex-nowrap w-100" id="checkout-button">
                                 <a href="<?=base_url('course/detail/'.$val['details']['id'])?>" class="btn btn-primary text-white w-100 mt-3">
 									Checkout
 								</a>
@@ -214,8 +185,8 @@
 	</section>
 	<!-- start instructures -->
 	<section id="instructures" class="container py-5 my-3">
-		<h3 class="text-center text-uppercase w-100 m-0">course teachers</h3>
-		<h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of teachers</h5>
+		<h3 class="text-center text-uppercase w-100 m-0 mb-4">Course Instructors</h3>
+		<!-- <h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of teachers</h5> -->
 		<div class="row">
 
 			<?php foreach($instructors as $key => $val):?>	
@@ -243,66 +214,7 @@
 					</figure>
 				</div>
 			<?php endforeach ?>
-			<!-- <div class="col-12 col-md-6 col-lg-3 text-center">
-				<figure class="figure material-shadow-1">
-					<img class="img-fluid" src="assets/images/person/1.jpg">
-					<div class="overlay px-3 py-2">
-						<h4 class="mb-0 w-100 text-uppercase text-shadow">bebek</h4>
-						<figcaption class="figcaption mb-3 text-capitalize text-shadow-sm text-secondary fw-semibold">electric guitar</figcaption>
-						<p class="text-justify text-shadow-sm mt-1">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-						</p>
-						<div class="row flex-nowrap">
-							<div class="col fw-bold">
-								<i class="fa-solid fa-users-line text-warning"></i> 24 Students
-							</div>
-							<div class="col fw-bold">
-								<i class="fa-solid fa-book text-warning"></i> 3 Courses
-							</div>
-						</div>
-					</div>
-				</figure>
-			</div>
-			<div class="col-12 col-md-6 col-lg-3 text-center">
-				<figure class="figure material-shadow-1">
-					<img class="img-fluid" src="assets/images/person/1.jpg">
-					<div class="overlay px-3 py-2">
-						<h4 class="mb-0 w-100 text-uppercase text-shadow">Jebir</h4>
-						<figcaption class="figcaption mb-3 text-capitalize text-shadow-sm text-secondary fw-semibold">astronout</figcaption>
-						<p class="text-justify text-shadow-sm mt-1">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-						</p>
-						<div class="row flex-nowrap">
-							<div class="col fw-bold">
-								<i class="fa-solid fa-users-line text-warning"></i> 24 Students
-							</div>
-							<div class="col fw-bold">
-								<i class="fa-solid fa-book text-warning"></i> 3 Courses
-							</div>
-						</div>
-					</div>
-				</figure>
-			</div>
-			<div class="col-12 col-md-6 col-lg-3 text-center">
-				<figure class="figure material-shadow-1">
-					<img class="img-fluid" src="assets/images/person/1.jpg">
-					<div class="overlay px-3 py-2">
-						<h4 class="mb-0 w-100 text-uppercase text-shadow">jamet</h4>
-						<figcaption class="figcaption mb-3 text-capitalize text-shadow text-secondary fw-semibold">Drawing</figcaption>
-						<p class="text-justify text-shadow-sm">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-						</p>
-						<div class="row flex-nowrap">
-							<div class="col fw-bold">
-								<i class="fa-solid fa-users-line text-warning"></i> 24 Students
-							</div>
-							<div class="col fw-bold">
-								<i class="fa-solid fa-book text-warning"></i> 3 Courses
-							</div>
-						</div>
-					</div>
-				</figure>
-			</div> -->
+			
 		</div>
 	</section>
 	<!-- end instructures -->

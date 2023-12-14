@@ -84,3 +84,16 @@
 #btn-create-new-course{
 	float: right;
 }
+
+#card-course {
+	min-height: 470px;
+	height: auto;
+}
+
+#checkout-button {
+	bottom: 10px;
+	position: absolute;
+	right: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
