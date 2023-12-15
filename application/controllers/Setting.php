@@ -77,4 +77,8 @@ class Setting extends MY_Controller {
 		$data = $this->db->get('settings')->row_array();
 		echo json_encode($data, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
 	}
+
+	public function page_not_found(){
+		$this->load->view('page_not_found');
+	}
 }
