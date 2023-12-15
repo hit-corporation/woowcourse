@@ -4,7 +4,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 <?php $this->start('css') ?>
 <link rel="stylesheet" href="https://pagination.js.org/dist/2.6.0/pagination.css">
-<!-- <link rel="stylesheet" href="assets/css/teacher.min.css"> -->
+<link rel="stylesheet" href="<?=base_url('assets/css/course.min.css')?>">
 <?php $this->end() ?>
 
 <?php $this->start('body') ?>

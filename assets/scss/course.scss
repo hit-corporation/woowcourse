@@ -1,0 +1,25 @@
+#card-course-2 {
+	height: 400px;
+	margin-bottom: 15px;
+}
+
+#card-course-2 {
+	button{
+		right: 10px;
+		left: 10px;
+	}
+}
+
+@media screen and (max-width: 770px) {
+	#card-course-2 {
+		height: 500px;
+		margin-bottom: 15px;
+	}
+
+	#card-course-2{
+		img {
+			height: 300px;
+		}
+	}
+}
+

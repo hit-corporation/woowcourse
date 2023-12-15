@@ -56,7 +56,7 @@ function load_data(page = 1, limit = 10){
 				$.each(response.data, function (key, value){
 					$('#list-course').append(`
 						<div class="col-12 col-md-4 col-lg-4 py-1">
-							<div class="card position-relative flex-nowrap" id="card-course">
+							<div class="card position-relative flex-nowrap" id="card-course-2">
 								<img class="img-fluid" src="${BASE_URL+'assets/files/upload/courses/'+value.course_img}">
 								<div class="card-body">
 									<h5 class="text-uppercase text-shadow"><a class="text-decoration-none" href="${BASE_URL+'course/detail/'+value.id}">${value.course_title}</a></h5>
@@ -66,6 +66,7 @@ function load_data(page = 1, limit = 10){
 											<span>${(value.rating != null) ? value.rating : 0}</span>
 										</span>
 									</div>
+									<span class="mt-3 label-harga">${new Intl.NumberFormat('id-ID', {style: "currency", currency: "IDR"}).format(value.price)}</span>
 									<div class="d-flex flex-nowrap py-3">
 										<div class="col border-right">
 											<i class="fa-solid fa-clock text-warning"></i><span class="ms-1">1 Week</span>
@@ -76,8 +77,8 @@ function load_data(page = 1, limit = 10){
 										
 									</div>
 									
-									<div class="row">
-										<div class="col-12 d-flex flex-nowrap justify-content-end">
+									<div class="row px-2">
+										<div class="col-12 d-flex flex-nowrap justify-content-end ps-2">
 											<button id="btn-subscribe" type="button" class="btn btn-sm btn-success text-uppercase">
 												<i class="fa-regular fa-handshake"></i>
 												Subscribe !!!
@@ -85,7 +86,6 @@ function load_data(page = 1, limit = 10){
 										</div>
 									</div>
 								</div>
-								<span class="label-harga">${new Intl.NumberFormat('id-ID', {style: "currency", currency: "IDR"}).format(value.price)}</span>
 							</div>
 						</div>`);
 				});
