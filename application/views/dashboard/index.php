@@ -231,7 +231,7 @@
 		<div class="row">
 			<?php foreach($popular_categories as $val): ?>
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6 pb-3">
-					<a href="<?=base_url('course/index')?>" class="btn btn-lg w-100 border rounded-0 h-100"><?=$val['category_name']?></a>
+					<a onclick="isiKategori(<?=$val['id']?>)" href="<?=base_url('course/index')?>" class="btn btn-lg w-100 border rounded-0 h-100"><?=$val['category_name']?></a>
 				</div>
 			<?php endforeach ?>
 		</div>
@@ -296,6 +296,12 @@
 	<script src="assets/js/index.js" async defer></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+	<script>
+		function isiKategori(id){
+			localStorage.setItem('category', id);
+		}
+	</script>
 
 	<script>
 		// SCRIPT ANIMATED JUMBOTRON HEADER
