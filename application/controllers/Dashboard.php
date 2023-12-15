@@ -23,6 +23,9 @@ class Dashboard extends MY_Controller {
 		// AMBIL DATA COURSE TERBARU LIMIT 12
 		$data['new_courses'] = $this->topics_model->get_new_courses();
 
+		// POPULAR CATEGORY
+		$data['popular_categories'] = $this->db->limit('12')->get('categories')->result_array();
+
 		// AMBIL DATA LIST INSTRUCTORS
 		$popularInstructor = $this->instructor_model->get_popular_instructors();
 		foreach ($popularInstructor as $key => $val) {

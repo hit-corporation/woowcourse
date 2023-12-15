@@ -226,6 +226,17 @@
 		</div>
 	</section>
 
+	<section id="popular-category" class="container py-2 my-3">
+		<h3 class="text-center w-100 m-0 mb-4">Popular Category</h3>
+		<div class="row">
+			<?php foreach($popular_categories as $val): ?>
+				<div class="col-3 pb-3">
+					<a href="<?=base_url('course/index')?>" class="btn btn-lg w-100 border rounded-0 h-100"><?=$val['category_name']?></a>
+				</div>
+			<?php endforeach ?>
+		</div>
+	</section>
+
 
 	<!-- start instructures -->
 	<section id="instructures" class="container py-5 my-3">
