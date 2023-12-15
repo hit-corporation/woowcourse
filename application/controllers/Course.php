@@ -37,7 +37,11 @@ class Course extends MY_Controller {
 	}
 
 	public function detail($id = ''){
+		if(!$id) redirect('setting/page_not_found');
+
 		$data['data'] = $this->topics_model->detail($id);
+		if(!$data['data']) redirect('setting/page_not_found');
+
 		$data['videos'] = $this->db->where('course_id', $id)->get('course_videos')->result_array();
 		$data['comments'] = $this->db->where('topic_id', $id)->join('members m', 'm.id = r.member_id')->get('ratings r')->result_array();
 		echo $this->template->render('course/detail', $data);
