@@ -73,8 +73,12 @@
                         <img class="overflow-hidden" src="assets/images/5514.jpg">
                         <div class="card-body bg-primary">
                             <div class="d-flex flex-nowrap mb-2 justify-content-center">
-                                <a href="<?=$facebook_link?>" class="icon-container rounded-circle border border-white text-white me-1"><i class="fa-brands fa-facebook fs-5"></i></a>
-                                <a href="<?=$google_link?>" class="icon-container rounded-circle border border-white text-white"><i class="fa-brands fa-google fs-5"></i></a>
+                                <a href="<?=$facebook_link?>" class="icon-container rounded-circle border border-white text-white text-decoration-none me-1">
+                                    <i class="fa-brands fa-facebook fs-5"></i>
+                                </a>
+                                <a href="<?=$google_link?>" class="icon-container rounded-circle border border-white text-decoration-none text-white">
+                                    <i class="fa-brands fa-google fs-5"></i>
+                                </a>
                             </div>
                             <div class="position-relative d-flex flex-nowrap justify-content-center align-items-center mt-3" id="login-separator">
                                 <span class="border border-light position-absolute w-100"></span>

@@ -75,17 +75,17 @@
 							</a>
 							<ul class="list-unstyled custom-dropdown collapse" id="collapse_1">
 								<li class="nav-item"><a class="nav-link">All</a></li>
+								<?php if(!empty($categories) && count($categories) > 0): ?>
+									<?php foreach ($categories as $key => $val) : ?>
+										<li class="nav-item" data="<?= $val['id'] ?>"><a class="nav-link"><?= $val['category_name'] ?></a></li>
 
-								<?php foreach ($categories as $key => $val) : ?>
-									<li class="nav-item" data="<?= $val['id'] ?>"><a class="nav-link"><?= $val['category_name'] ?></a></li>
-
-									<div class="child-1" style="display: none;">
-										<?php foreach ($val['child'] as $val2) : ?>
-											<li class="child-item"><a class="nav-link" href="<?= base_url('course') ?>" data="<?= $val2['id'] ?>" onclick="categoryClick('<?= $val2['id'] ?>')"><?= $val2['category_name'] ?></a></li>
-										<?php endforeach ?>
-									</div>
-								<?php endforeach ?>
-
+										<div class="child-1" style="display: none;">
+											<?php foreach ($val['child'] as $val2) : ?>
+												<li class="child-item"><a class="nav-link" href="<?= base_url('course') ?>" data="<?= $val2['id'] ?>" onclick="categoryClick('<?= $val2['id'] ?>')"><?= $val2['category_name'] ?></a></li>
+											<?php endforeach ?>
+										</div>
+									<?php endforeach ?>
+								<?php endif; ?>					
 							</ul>
 						</li>
 
@@ -113,7 +113,7 @@
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb breadcrumb-header">
 					<li class="breadcrumb-item active" aria-current="page">Home</li>
-					<li class="breadcrumb-item" aria-current="page"><?= ucfirst($uri1) ?></li>
+					<li class="breadcrumb-item" aria-current="page"><?= ucfirst($title) ?? trim('') ?></li>
 				</ol>
 			</nav>
 		</div>
@@ -145,7 +145,7 @@
                                      shadow pb-2">&#8679;</a>
 
 	<script>
-		const CATEGORIES = <?= json_encode($categories) ?>;
+		const CATEGORIES = <?= json_encode($categories) ?? '' ?>;
 	</script>
 	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -1,4 +1,4 @@
-<?php $this->layout('layouts::main_template', ['title' => 'Course']) ?>
+<?php $this->layout('layouts::main_template', ['title' => 'Email Verification']) ?>
 
 <?php $this->start('css') ?>
 <link rel="stylesheet" href="assets/css/teacher.min.css">
