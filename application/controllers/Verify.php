@@ -16,7 +16,6 @@ class Verify extends CI_Controller {
     {
         $_ver = explode(':', base64_decode($params));
 
-        header('Content-Type: text/plain');
         
         $aktif = $this->db->get_where('personal_access_tokens', ['user_no' => $_ver[1], 'token' => $_ver[0]]);
         // check token is exists or not
@@ -35,6 +34,16 @@ class Verify extends CI_Controller {
             return;
         }
 
-        echo "OK";
+        $row = $aktif->row_array();
+
+        $update = [
+            'last_used_at' => date('Y-m-d H:i:s')
+        ];
+
+        if(!$this->db->update('personal_access_tokens', $update, ['user_no' => $row['user_no'], 'token' => $row['token']]))
+        {
+            return;
+        }
+        echo $this->template->render('');
     }
 }

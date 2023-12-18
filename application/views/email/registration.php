@@ -332,8 +332,8 @@
           		<tr>
           			<td style="text-align: center; text-shadow: 0px 0px 1px rgba(0,0,0,0.25)">
 			            <h1 style="margin-bottom: 0px">
-                            <a href="javascript:void(0)" style="font-family: 'Bebas Neue', sans-serif; font-size: 48px;">
-                                <span style="color: #30e3ca">WOOW</span> COURSE
+                            <a href="javascript:void(0)" style="font-size: 48px;">
+                                <span style="color: #30e3ca;"><strong>WOOW</strong></span> <span style="color: #495057;"><strong>COURSE</strong></span>
                             </a>
                         </h1>
 			        </td>
@@ -356,8 +356,8 @@
             	<tr>
             		<td>
             			<div class="text" style="padding: 0 2.5em; text-align: center;">
-            				<h2 style="text-transform: uppercase">selamat bergabung</h2>
-            				<h3 style="font-weight: normal: text-align: center">Selangkah lagi untuk menjadi anggota kami</h3>
+            				<h2 style="text-transform: uppercase; color: #495057;">selamat bergabung</h2>
+            				<h3 style="font-weight: normal: text-align: center; color: #495057;">Selangkah lagi untuk menjadi anggota kami</h3>
             				<p>
                                 <a href="<?=base_url('verify/'.base64_encode($token.':'.$user_no))?>" style="box-shadow: 0px 0px 1px rgba(0,0,0,0.35); 
                                                    background-color: #30e3ca; 
