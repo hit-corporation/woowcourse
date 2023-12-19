@@ -29,7 +29,8 @@ class Instructor extends CI_Controller {
 			$data['is_instructor'] = true;
 		}
 
-		$data['data'] = $this->instructor_model->detail($id);
+		$instruktur = $this->instructor_model->detail($id);
+		$data['data'] = (!is_null($instruktur)) ? $instruktur : [];
 		$data['courses'] = $this->instructor_model->get_courses($id);
 		$data['is_instructor'];
 
