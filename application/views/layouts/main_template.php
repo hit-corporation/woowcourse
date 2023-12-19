@@ -145,7 +145,7 @@
                                      shadow pb-2">&#8679;</a>
 
 	<script>
-		const CATEGORIES = <?= json_encode($categories) ?? '' ?>;
+		const CATEGORIES = <?= json_encode(isset($categories)) ?? '' ?>;
 	</script>
 	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
