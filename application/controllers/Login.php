@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require 'User.php';
 
-class Login extends CI_Controller {
+class Login extends MY_Controller {
 
 	public function __construct(){
 		parent::__construct();

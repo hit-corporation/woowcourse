@@ -168,25 +168,37 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 									<div class="col-1"></div>
 								</div>
 
-								<br>
 								
-								<?php foreach($comments as $comment) : ?>
-								<div class="card p-3 mb-2 shadow">
-									<div class="row">
-										<div class="col-2">
-											<img class="rounded" src="<?=base_url('assets/images/members/').$comment['photo']?>" alt="profile image" width="50">
-										</div>
-										<div class="col-10">
-											<span><i class="fa fa-star text-yellow"></i></span>
-											<?=$comment['comment']?>
-										</div>
-									</div>
-								</div>
-								<?php endforeach ?>
+                            </div>
 							</div>
 						</div>
 
-						
+						<form class="row mt-3" name="form-comment">
+							<div class="col-12 mb-2">
+								<h6 class="mb-0">Rating</h6>
+								<div class="w-100">
+									<select class="star-rating" name="rating">
+										<option value="">Select a rating</option>
+										<option value="5">Excellent</option>
+										<option value="4">Very Good</option>
+										<option value="3">Average</option>
+										<option value="2">Poor</option>
+										<option value="1">Terrible</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-12 mb-4">
+								<label class="h6 mb-0">Review</label>
+								<textarea id="text-review" name="text-review" rows="4" 
+											class="form-control w-100" 
+											placeholder="Tulis review atau komentar anda"
+											required></textarea>
+								<button type="submit" class="btn btn-primary mt-2">Kirim</button>
+							</div>
+						</form>
+						<table class="table w-100" id="table-comment">
+							<tbody></tbody>
+						</table>
 					</div>
 					
 				</div>
@@ -230,5 +242,5 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 <?php $this->start('js') ?>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script src="assets/js/teacher.js" async defer></script>
+	<script src="assets/js/detail_course.js" async defer></script>
 <?php $this->end() ?>

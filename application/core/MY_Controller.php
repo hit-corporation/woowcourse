@@ -23,6 +23,22 @@ class MY_Controller extends CI_Controller
 
         // $this->settings = $this->db->get_where('settings', ['id' => 1])->row_array();
         // buat template
-        // $this->template->instance()->addData(['settings' => $this->settings]);
+        $this->template->instance()->addData(['categories' => $this->setCategories()]);
+        $this->template->instance()->addData(['uri1' => $this->uri->segment(1)]);
+    }
+
+
+    private function setCategories() {
+        $a = $this->db->where('parent_category', 0)->get('categories')->row_array() ?? [''];
+		$b = $this->db->where('parent_category', $a['id'])->get('categories')->result_array();
+
+		$i = 0;
+		foreach ($b as $key => $val) {
+			$c = $this->db->where('parent_category', $val['id'])->get('categories')->result_array();
+			$b[$i]['child'] = $c;
+			$i++;
+		}
+
+        return $b ?? [];
     }
 }
