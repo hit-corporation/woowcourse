@@ -4,6 +4,15 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 
 <?php $this->start('css') ?>
 	<link rel="stylesheet" href="assets/css/teacher.min.css">
+	<style>
+		#description{
+			display: -webkit-box;
+			max-width: 200px;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+	</style>
 <?php $this->end() ?>
 
 <?php $this->start('body') ?>
@@ -86,8 +95,8 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 										</div>
 										
 									</div>
-									<p class="text-justiy">
-										<?=$val['description']?>
+									<p class="text-justiy" id="description">
+										<?=strip_tags($val['description'])?>
 									</p>
 									<div class="row">
 										<div class="col-12 d-flex flex-nowrap justify-content-end">
