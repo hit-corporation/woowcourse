@@ -5,6 +5,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 <?php $this->start('css') ?>
 	<link rel="stylesheet" href="assets/css/teacher.min.css">
 	<link rel="stylesheet" href="assets/css/detail_course.min.css">
+	<link rel="stylesheet" href="assets/node_modules/star-rating.js/dist/star-rating.min.css">
 <?php $this->end() ?>
 
 <?php $this->start('body') ?>
@@ -170,7 +171,6 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 								
                             </div>
-							</div>
 						</div>
 
 						<form class="row mt-3" name="form-comment">
@@ -242,5 +242,6 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 <?php $this->start('js') ?>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="assets/node_modules/star-rating.js/dist/star-rating.min.js"></script>
 	<script src="assets/js/detail_course.js" async defer></script>
 <?php $this->end() ?>

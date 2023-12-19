@@ -6,6 +6,7 @@
     "fireworks-js": "^2.10.7",
     "install": "^0.13.0",
     "npm": "^10.2.0",
+    "star-rating.js": "^4.3.0",
     "sweetalert2": "^11.10.0"
   }
 }
