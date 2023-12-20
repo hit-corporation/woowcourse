@@ -45,17 +45,19 @@ class Rating extends MY_Controller {
                 return;
             }
 
+            $member = $this->db->get_where('members', ['email' => $_SESSION['user']['email']])->row_array() ?? [];
+
             $data = [
-                'rate'      => $rate,
-                'comments'  => $text,
-                'topic_id'  => $id,
-                'member_id' => $_SESSION['user']['id']
+                'rate'       => $rate,
+                'comments'   => $text,
+                'course_id'  => $id,
+                'member_id'  => $member['id']
             ];
 
-            if(!$this->db->insert('rating', $data))
+            if(!$this->db->insert('ratings', $data))
             {
                 http_response_code(422);
-                $resp = ['success' => false, 'message' => 'Data mandatori harus terisi !!!' ];
+                $resp = ['success' => false, 'message' => 'Data gagal di input !!!' ];
                 echo json_encode($resp, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
                 return;
             }

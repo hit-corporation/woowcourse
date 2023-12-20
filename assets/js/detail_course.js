@@ -27,6 +27,19 @@ async function addComment(e) {
         });
 
         const j = await f.json();
+        
+        if(!f.ok)
+        {
+            Swal.fire({
+                icon: 'error',
+                title: '<h5 class="text-danger">ERROR</h5>',
+                html: '<span class="text-danger fw-semibold">Komentar anda tidak dapat di masukan !!!</span>',
+                timer: 1200
+            });
+            return false;
+        }
+
+        await setComment(tbody, );
 
     }
     catch(err)
