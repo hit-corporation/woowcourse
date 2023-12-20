@@ -1,5 +1,5 @@
 'use strict';
-
+const detailId = document.querySelector('meta[name="detail_course"]');
 const frmComment=document.forms['form-comment'];
 const tableComment=document.getElementById('table-comment');
 const rating = new StarRating('.star-rating');
@@ -14,14 +14,24 @@ async function addComment(e) {
         const frmData = new FormData(e.target);
         const obj = Object.fromEntries(frmData.entries());
         
+        obj['det_id'] = detailId.content; 
+
         const tbody = tableComment.tBodies[0];
 
-        const f = await fetch('/');
+        const f = await fetch('/rating/store', {
+            method: 'POST',
+            body: new URLSearchParams(obj).toString(),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+
+        const j = await f.json();
 
     }
     catch(err)
     {
-
+        console.error(err);
     }   
 }
 

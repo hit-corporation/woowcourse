@@ -15,9 +15,8 @@ class Course_model extends CI_Model {
 
     }
 
-    public function get_all(): array {
+    public function get_all_ratings(): array {
         $query = $this->db->get('rating');
-
-        return $query->result_array();
+        return $query->result_array() ?? [];
     }
 }
