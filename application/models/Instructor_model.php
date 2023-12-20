@@ -30,4 +30,12 @@ class Instructor_model extends CI_Model {
 		$this->db->limit('12');
 		return $this->db->get()->result_array();
 	}
+
+	public function get_all($start = null, $limit = null, $filter = []):array{
+		$this->db->select('m.*, i.about, i.id as instructor_id');
+		$this->db->from('members m');
+		$this->db->join('instructors i', 'm.email = i.email', 'left');
+		$this->db->where('as_instructor', 'true');
+		return $this->db->get()->result_array();
+	}
 }

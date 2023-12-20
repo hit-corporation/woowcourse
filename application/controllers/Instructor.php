@@ -42,8 +42,13 @@ class Instructor extends MY_Controller {
 	}
 
 	public function all(){
-		$instructors = $this->db->where('as_instructor', true)->get('members')->result_array();
-		echo $this->template->render('instructor/all');
+		$data['instructors'] = $this->instructor_model->get_all();
+		foreach($data['instructors'] as $key => $val){
+			$data['instructors'][$key]['total_sub'] 	= $this->db->where('instructor_id', $val['instructor_id'])->get('subscriptions')->num_rows();
+			$data['instructors'][$key]['total_course'] 	= $this->db->where('instructor_id', $val['instructor_id'])->get('courses')->num_rows();
+		}
+
+		echo $this->template->render('instructor/all', $data);
 	}
 
 }
