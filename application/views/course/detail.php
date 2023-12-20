@@ -3,6 +3,8 @@
 $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 <?php $this->start('css') ?>
+	
+	<meta name="detail_course" content="<?=$id?>">
 	<link rel="stylesheet" href="assets/css/teacher.min.css">
 	<link rel="stylesheet" href="assets/css/detail_course.min.css">
 	<link rel="stylesheet" href="assets/node_modules/star-rating.js/dist/star-rating.min.css">
