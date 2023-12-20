@@ -172,7 +172,8 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 								
                             </div>
 						</div>
-
+						
+						<?php if(isset($_SESSION['user'])) : ?>
 						<form class="row mt-3" name="form-comment">
 							<div class="col-12 mb-2">
 								<h6 class="mb-0">Rating</h6>
@@ -199,6 +200,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 						<table class="table w-100" id="table-comment">
 							<tbody></tbody>
 						</table>
+						<?php endif ?>
 					</div>
 					
 				</div>
