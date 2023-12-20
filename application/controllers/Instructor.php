@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 // class User extends MY_Controller {
-class Instructor extends CI_Controller {
+class Instructor extends MY_Controller {
 	
 	public function __construct(){
 		parent::__construct();
@@ -25,6 +25,11 @@ class Instructor extends CI_Controller {
 		if(!$id){
 			$email = $this->session->userdata('user')['email'];
 			$cek = $this->db->where('email', $email)->get('instructors')->row_array();
+			
+			// JIKA DATA INSTRUKTOR TIDAK ADA MAKA REDIRECT KE LIST ALL INSTRUCTORS
+			if(is_null($cek)) redirect('instructor/all');
+
+
 			$id = $cek['id'];
 			$data['is_instructor'] = true;
 		}
@@ -32,9 +37,13 @@ class Instructor extends CI_Controller {
 		$instruktur = $this->instructor_model->detail($id);
 		$data['data'] = (!is_null($instruktur)) ? $instruktur : [];
 		$data['courses'] = $this->instructor_model->get_courses($id);
-		$data['is_instructor'];
 
 		echo $this->template->render('instructor/detail', $data);
+	}
+
+	public function all(){
+		$instructors = $this->db->where('as_instructor', true)->get('members')->result_array();
+		echo $this->template->render('instructor/all');
 	}
 
 }
