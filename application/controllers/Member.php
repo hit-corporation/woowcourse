@@ -311,7 +311,7 @@ class Member extends MY_Controller
 				$simpan = $this->db->insert('members', $data);
 
 				// jika as_instructor di check simpan data ke tabel instructors
-				if($post['as_instructor'] == true){
+				if($post['as_instructor'] == 'true'){
 					$data['address'] = $post['address'];
 					$data['about'] = base64_decode($post['about']);
 					unset($data['last_login_date']);

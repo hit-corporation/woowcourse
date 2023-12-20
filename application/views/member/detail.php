@@ -35,7 +35,7 @@
 					</div>
 
 					<div class="mb-3 form-check">
-						<input id="as_instructor" type="checkbox" class="form-check-input" id="exampleCheck1" style="width: 20px; height: 20px; cursor:pointer;" <?=isset($data['as_instructor']) ? 'checked' : '' ?>>
+						<input id="as_instructor" type="checkbox" class="form-check-input" id="exampleCheck1" style="width: 20px; height: 20px; cursor:pointer;" <?=(isset($data['as_instructor']) && $data['as_instructor'] == true) ? 'checked' : '' ?>>
 						<label class="form-check-label mx-2 mt-1" for="exampleCheck1">Daftar Sebagai Pengajar</label>
 					</div>
 
