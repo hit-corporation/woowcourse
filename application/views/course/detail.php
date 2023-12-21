@@ -20,6 +20,9 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 		<div class="row">
 			<div class="col-8">
 				<h1 class="text-uppercase text-shadow mb-1"><?=$data['course_title']?></h1>
+
+				<input name="course_id" type="hidden" value="<?=$data['id']?>">
+
 				<div class="separator"></div>
 				<div class="row mb-5 mt-4">
 					<div class="col">
