@@ -5,7 +5,7 @@ class Rating extends MY_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->model('course_model');
+        $this->load->model(['course_model', 'rating_model']);
     }
 
 
@@ -73,5 +73,14 @@ class Rating extends MY_Controller {
             log_message("error", $e->getMessage());
         }
     }
+
+	public function get_data(){
+		$get = $this->input->get();
+		$ratings = $this->rating_model->get_data($get['course_id']);
+		
+		http_response_code(200);
+		$ratings = ['success' => true, 'data' => $ratings];
+		echo json_encode($ratings, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
+	}
 
 }
