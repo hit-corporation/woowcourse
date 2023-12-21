@@ -92,4 +92,29 @@ async function setComment(tbody, data=null) {
     // return row;
 }
 
+$.ajax({
+	type: "GET",
+	url: BASE_URL+"rating/get_data",
+	data: {
+		course_id : $('input[name="course_id"]').val()
+	},
+	dataType: "JSON",
+	success: function (response) {
+		if(response.success){
+			const tr = tableComment.tBodies[0].insertRow();
+			const td = tr.insertCell(0);
+			let comment = '';
+			$.each(response.data, function (index, value) { 
+				comment += `<div class="row mb-3 border-bottom">
+					<div class="col-12">
+						<h4 class="mb-2">${value.first_name} - ${value.last_name}</h4>
+						<span>${value.rate}</span>
+						<p class="my-0">${value.comments}</p>
+					</div>
+				</div>`;
+			});
 
+			td.innerHTML = comment;
+		}
+	}
+});
