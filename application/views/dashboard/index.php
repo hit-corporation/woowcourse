@@ -81,7 +81,7 @@
 					<i class="fa-solid fa-bars"></i>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<ul class="navbar-nav mb-2 mb-lg-0">
 						<li class="nav-item rounded">
 							<a class="nav-link active" aria-current="page" href="#">Home</a>
 						</li>
@@ -125,7 +125,18 @@
 						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 						<button class="btn btn-outline-success" type="submit">Search</button>
 					</form>
+
+					<button type="button" class="btn btn-primary position-absolute" id="btn-chart">
+						Inbox
+						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+							99+
+							<span class="visually-hidden">unread messages</span>
+						</span>
+					</button>
+
 				</div>
+
+
 			</div>
 		</nav>
 		<div id="jumbotron" class="container py-4">
