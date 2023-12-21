@@ -97,3 +97,45 @@
 	padding-left: 10px;
 	padding-right: 10px;
 }
+
+@media screen and (min-width: 1400px){
+	#btn-chart{
+		right: 100px;
+		top: 10px;
+	}
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px){
+	#btn-chart{
+		right: 100px;
+		top: 10px;
+	}
+}
+
+@media screen and (min-width: 991px) and (max-width: 1200px){
+	#btn-chart{
+		right: 100px;
+		top: 10px;
+	}
+}
+
+@media screen and (min-width: 900px) and (max-width: 991px) {
+	#btn-chart{
+		right: 10px;
+		top: 10px;
+	}
+}
+
+@media screen and (min-width: 568px) and (max-width: 900px) {
+	#btn-chart{
+		right: 150px;
+		top: 10px;
+	}
+}
+
+@media screen and (max-width: 568px) {
+	#btn-chart{
+		right: 80px;
+		top: 10px;
+	}
+}
