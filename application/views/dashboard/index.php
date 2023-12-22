@@ -127,12 +127,32 @@
 					</form>
 
 					<button type="button" class="btn btn-primary position-absolute" id="btn-chart">
-						Inbox
+						<i class="fa fa-shopping-cart text-white"></i>
 						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 							99+
 							<span class="visually-hidden">unread messages</span>
 						</span>
 					</button>
+
+					<div class="bg-white p-2 rounded position-absolute text-secondary d-none" id="list-chart">
+						
+						<?php for($i=0; $i<=10; $i++):?>
+							<div class="row mb-1">
+								<div class="col-2">
+									<img src="https://picsum.photos/seed/picsum/200/300" alt="" width="40" height="40" class="d-inline-block">
+								</div>
+								<div class="col-7">
+									<a href="Cart">Judul Course</a><br>
+									<span>instructor</span>
+								</div>
+								<div class="col-3">
+									<span>Rp 100.000</span>
+								</div>
+							</div>
+							<hr>
+						<?php endfor?>
+						
+					</div>
 
 				</div>
 
@@ -305,6 +325,7 @@
 	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
 	<script src="assets/js/main.js" async defer></script>
 	<script src="assets/js/index.js" async defer></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>			
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
@@ -312,6 +333,17 @@
 		function isiKategori(id){
 			localStorage.setItem('category', id);
 		}
+
+		$('#btn-chart').click(function(e){
+			let listChart = $('#list-chart');
+			if(listChart.hasClass('d-block')){
+				listChart.addClass('d-none');
+				listChart.removeClass('d-block');
+			}else{
+				listChart.addClass('d-block');
+				listChart.removeClass('d-none')
+			}
+		});
 	</script>
 
 	<script>
