@@ -120,14 +120,14 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 					<!-- TAB 3 -->
 					<div class="tab-pane fade" id="review" role="tabpanel" tabindex="0">
 						<div class="row p-4">
-							<div class="col-4">
+							<div class="col-xl-4 col-lg-4">
 								<div class="card">
 									<div class="card-body">
-										<h1 id="total-score"><?=$data['rating']?></h1>
+										<h3 id="total-score"><?=$data['rating']?></h3>
 									</div>
 								</div>
 							</div>
-							<div class="col-8">
+							<div class="col-xl-8 col-lg-8">
 								<div class="row">
 									<div class="col-1"><h4 class="text-end">5</h4></div>
 									<div class="col-9">

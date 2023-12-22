@@ -59,7 +59,16 @@ img {
     }
 }
 
-#total-score {
-    font-size: 7rem;
-    text-align: center;
+@media screen and (min-width: 1400px) {
+	#total-score {
+		font-size: 7rem;
+		text-align: center;
+	}	
+}
+
+@media screen and (max-width: 1399px) {
+	#total-score {
+		font-size: 4rem;
+		text-align: center;
+	}	
 }
