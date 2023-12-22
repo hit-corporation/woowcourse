@@ -47,6 +47,13 @@ class Rating extends MY_Controller {
 
             $member = $this->db->get_where('members', ['email' => $_SESSION['user']['email']])->row_array() ?? [];
 
+			// update course rating
+				$rating = $this->db->select_avg('rate')->where('course_id', $id)->get('ratings')->row_array()['rate'];
+				$rating = round($rating,2);
+				
+				$update = $this->db->where('id', $id)->update('courses', ['rating' => $rating]);
+
+
             $data = [
                 'rate'       => $rate,
                 'comments'   => $text,
