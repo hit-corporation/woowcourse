@@ -4,7 +4,9 @@ const frmComment=document.forms['form-comment'];
 const tableComment=document.getElementById('table-comment');
 const rating = new StarRating('.star-rating');
 
-frmComment.addEventListener('submit', async e => await addComment(e));
+if(frmComment !== undefined){
+	frmComment.addEventListener('submit', async e => await addComment(e));
+}
 
 async function addComment(e) {
     e.preventDefault();
@@ -108,7 +110,7 @@ $.ajax({
 				comment += `<div class="row mb-3 border-bottom">
 					<div class="col-12">
 						<h4 class="mb-2">${value.first_name} - ${value.last_name}</h4>
-						<span>${value.rate}</span>
+						<span>${createStarRating(value.rate)}</span>
 						<p class="my-0">${value.comments}</p>
 					</div>
 				</div>`;
@@ -118,3 +120,11 @@ $.ajax({
 		}
 	}
 });
+
+function createStarRating(rating){
+	let star = '';
+	for(let i=1; i<=5; i++){
+		star += (i <= rating) ? '<i class="fas fa-star" style="color: #FFB900"></i>' : '<i class="fas fa-star text-secondary"></i>';
+	}
+	return star;
+}

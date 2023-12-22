@@ -202,10 +202,10 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 								<button type="submit" class="btn btn-primary mt-2">Kirim</button>
 							</div>
 						</form>
+						<?php endif ?>
 						<table class="table w-100" id="table-comment">
 							<tbody></tbody>
 						</table>
-						<?php endif ?>
 					</div>
 					
 				</div>
