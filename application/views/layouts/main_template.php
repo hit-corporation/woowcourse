@@ -101,11 +101,38 @@
 							<?php endif ?>
 						</li>
 
+						<form class="d-flex" role="search">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 200px;">
+							<button class="btn btn-outline-success" type="submit">Search</button>
+						</form>
 					</ul>
-					<form class="d-flex" role="search">
-						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">Search</button>
-					</form>
+					<button type="button" class="btn btn-primary position-absolute" id="btn-chart">
+						<i class="fa fa-shopping-cart text-white"></i>
+						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+							99+
+							<span class="visually-hidden">unread messages</span>
+						</span>
+					</button>
+
+					<div class="bg-white p-2 rounded position-absolute text-secondary d-none" id="list-chart">
+						
+						<?php for($i=0; $i<=10; $i++):?>
+							<div class="row mb-1">
+								<div class="col-2">
+									<img src="https://picsum.photos/seed/picsum/200/300" alt="" width="40" height="40" class="d-inline-block">
+								</div>
+								<div class="col-7">
+									<a href="Cart">Judul Course</a><br>
+									<span>instructor</span>
+								</div>
+								<div class="col-3">
+									<span>Rp 100.000</span>
+								</div>
+							</div>
+							<hr>
+						<?php endfor?>
+						
+					</div>
 				</div>
 			</div>
 		</nav>
@@ -144,6 +171,7 @@
                                      text-shadow 
                                      shadow pb-2">&#8679;</a>
 
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>	
 	<script>
 		const CATEGORIES = <?= json_encode(isset($categories)) ?? '' ?>;
 	</script>
