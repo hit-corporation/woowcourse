@@ -110,6 +110,7 @@ class Course extends MY_Controller {
 			$data = [
 				'course_code' => $this->random_string(5),
 				'course_title' => $post['course_title'],
+				'price' => $post['price'],
 				'course_img' => $upload_data_image['file_name'],
 				'description' => base64_decode($post['description']),
 				'instructor_id' => $instructor_id,
@@ -208,6 +209,7 @@ class Course extends MY_Controller {
 		
 		// UPDATE DATA COURSE 
 			$data['course_title'] = $post['course_title'];
+			$data['price'] = $post['price'];
 			$data['description'] = base64_decode($post['description']);
 			$data['category_id'] = $post['category_id'];
 			$data['updated_at'] = date('Y-m-d H:i:s');

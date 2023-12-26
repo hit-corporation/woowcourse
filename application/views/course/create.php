@@ -25,6 +25,11 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 						<input id="category_id" type="hidden" value="<?=isset($data['category_id']) ? $data['category_id'] : ''?>">
 						<div class="category border rounded pt-2"></div>
 					</div>
+					
+					<div class="mb-3">
+						<label for="price" class="form-label">Price</label>
+						<input type="number" name="price" class="form-control" id="price" value="<?=isset($data['price']) ? $data['price'] : ''?>">
+					</div>
 
 					<div class="mb-3">
 						<label for="formVideo" class="form-label">Course Video</label>

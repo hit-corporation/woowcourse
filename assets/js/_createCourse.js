@@ -151,7 +151,7 @@ const form 			= document.querySelector('form');
 formAdd.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
-	console.log(event);
+	// console.log(event);
 	event.preventDefault();
 	showPendingState();
 	uploadFiles(event);
