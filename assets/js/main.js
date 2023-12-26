@@ -39,3 +39,15 @@ function logout(){
 		}
 	  });
 }
+
+$('#btn-chart').click(function(e){
+	let listChart = $('#list-chart');
+	if(listChart.hasClass('d-block')){
+		listChart.addClass('d-none');
+		listChart.removeClass('d-block');
+	}else{
+		listChart.addClass('d-block');
+		listChart.removeClass('d-none')
+	}
+});
+	
