@@ -106,31 +106,33 @@
 							<button class="btn btn-outline-success" type="submit">Search</button>
 						</form>
 					</ul>
+					
 					<button type="button" class="btn btn-primary position-absolute" id="btn-chart">
 						<i class="fa fa-shopping-cart text-white"></i>
 						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-							99+
+							<?=count($carts)?>
 							<span class="visually-hidden">unread messages</span>
 						</span>
 					</button>
+					
 
 					<div class="bg-white p-2 rounded position-absolute text-secondary d-none" id="list-chart">
 						
-						<?php for($i=0; $i<=10; $i++):?>
+						<?php foreach($carts as $cart): ?>
 							<div class="row mb-1">
 								<div class="col-2">
 									<img src="https://picsum.photos/seed/picsum/200/300" alt="" width="40" height="40" class="d-inline-block">
 								</div>
 								<div class="col-7">
-									<a href="Cart">Judul Course</a><br>
-									<span>instructor</span>
+									<a href="Cart"><?=$cart['course_title']?></a><br>
+									<span><?=$cart['first_name']?> <?=$cart['last_name']?></span>
 								</div>
 								<div class="col-3">
-									<span>Rp 100.000</span>
+									<span>Rp <?=$cart['price']?></span>
 								</div>
 							</div>
 							<hr>
-						<?php endfor?>
+						<?php endforeach ?>
 						
 					</div>
 				</div>
