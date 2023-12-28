@@ -121,7 +121,7 @@
 						<?php foreach($carts as $cart): ?>
 							<div class="row mb-1">
 								<div class="col-2">
-									<img src="https://picsum.photos/seed/picsum/200/300" alt="" width="40" height="40" class="d-inline-block">
+									<img src="<?=base_url('assets/files/upload/courses/').$cart['course_img'] ?>" alt="" width="40" height="40" class="d-inline-block">
 								</div>
 								<div class="col-7">
 									<a href="Cart"><?=$cart['course_title']?></a><br>
