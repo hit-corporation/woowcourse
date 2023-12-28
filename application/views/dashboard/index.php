@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="assets/css/custom.css">
 	<link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/index.min.css">
+	<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>	 -->
 	<base href="<?=base_url()?>" >
 
 	<style>
@@ -129,28 +130,29 @@
 					<button type="button" class="btn btn-primary position-absolute" id="btn-chart">
 						<i class="fa fa-shopping-cart text-white"></i>
 						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-							99+
+							<?=count($carts)?>
 							<span class="visually-hidden">unread messages</span>
 						</span>
 					</button>
 
 					<div class="bg-white p-2 rounded position-absolute text-secondary d-none" id="list-chart">
 						
-						<?php for($i=0; $i<=10; $i++):?>
+						<?php foreach($carts as $cart):?>
 							<div class="row mb-1">
 								<div class="col-2">
-									<img src="https://picsum.photos/seed/picsum/200/300" alt="" width="40" height="40" class="d-inline-block">
+									<!-- <img src="<?//=base_url('assets/files/upload/courses/').$cart['course_img']?>" alt="" width="40" height="40" class="d-inline-block"> -->
+									
 								</div>
 								<div class="col-7">
-									<a href="Cart">Judul Course</a><br>
-									<span>instructor</span>
+									<a href="Cart"><?=$cart['course_title']?></a><br>
+									<span><?=$cart['first_name']?> <?=$cart['last_name']?></span>
 								</div>
 								<div class="col-3">
-									<span>Rp 100.000</span>
+									<span>Rp <?=number_format($cart['price'])?></span>
 								</div>
 							</div>
 							<hr>
-						<?php endfor?>
+						<?php endforeach?>
 						
 					</div>
 
@@ -274,18 +276,17 @@
 		<h3 class="text-center text-uppercase w-100 m-0 mb-4">Course Instructors</h3>
 		<!-- <h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of teachers</h5> -->
 		<div class="row">
-
-			<?php foreach($instructors as $key => $val):?>	
+			<?php foreach($instructors as $val):?>	
 				<div class="col-12 col-md-6 col-lg-3 text-center">
 					<figure class="figure material-shadow-1">
-						<img class="img-fluid" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/instructors/').$val['details']['photo'] : ''; ?>">
+						<img class="img-fluid" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/members/').$val['details']['member_photo'] : ''; ?>">
 						<div class="overlay py-2 px-3">
 							<a class="text-decoration-none" href="<?=base_url('instructor/detail/'.$val['details']['id'])?>">
 								<h4 class="mb-0 w-100 text-uppercase text-shadow"><?=$val['details']['first_name'].' '.$val['details']['last_name']?></h4>
 							</a>
-							<figcaption class="figcaption mb-3 text-capitalize text-shadow-sm text-secondary fw-semibold">machine learning</figcaption>
+							<figcaption class="figcaption mb-3 text-capitalize text-shadow-sm text-secondary fw-semibold"></figcaption>
 							<p class="text-justify text-shadow-sm mt-1">
-								<?= $val['details']['about'] ?>
+								<?=strip_tags($val['details']['about']) ?>
 							</p>
 							<div class="row flex-nowrap">
 								<div class="col fw-bold">
@@ -322,11 +323,11 @@
                                      text-white 
                                      text-shadow 
                                      shadow pb-2">&#8679;</a>
+									 
+	<script src="assets/js/jquery.js"></script>
 	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
 	<script src="assets/js/main.js" async defer></script>
-	<script src="assets/js/index.js" async defer></script>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>			
-
+	<script src="assets/js/index.js" async defer></script>		
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
 	<script>
@@ -334,16 +335,16 @@
 			localStorage.setItem('category', id);
 		}
 
-		$('#btn-chart').click(function(e){
-			let listChart = $('#list-chart');
-			if(listChart.hasClass('d-block')){
-				listChart.addClass('d-none');
-				listChart.removeClass('d-block');
-			}else{
-				listChart.addClass('d-block');
-				listChart.removeClass('d-none')
-			}
-		});
+		// $('#btn-chart').click(function(e){
+		// 	let listChart = $('#list-chart');
+		// 	if(listChart.hasClass('d-none')){
+		// 		listChart.addClass('d-block');
+		// 		listChart.removeClass('d-none')
+		// 	}else{
+		// 		listChart.removeClass('d-block');
+		// 		listChart.addClass('d-none');
+		// 	}
+		// });
 	</script>
 
 	<script>
