@@ -148,6 +148,7 @@ $('#add-to-chart').on('click', function(e){
 					timer: 1200
 				});
 			}
+			location.reload();
 		}
 	});
 });
