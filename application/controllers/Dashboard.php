@@ -29,9 +29,12 @@ class Dashboard extends MY_Controller {
 		// AMBIL DATA LIST INSTRUCTORS
 		$popularInstructor = $this->instructor_model->get_popular_instructors();
 		foreach ($popularInstructor as $key => $val) {
-			$popularInstructor[$key]['details'] = $this->db->where('id', $val['instructor_id'])->get('instructors')->row_array();
+			$popularInstructor[$key]['details'] = $this->db->select('instructors.*, members.photo as member_photo')
+													->from('instructors')
+													->where('members.id', $val['instructor_id'])
+													->join('members', 'members.email = instructors.email')
+													->get()->row_array();
 		}
-
 		$data['instructors'] = $popularInstructor ?? [];
 
 		// MENGGUNAKAN TEMPLATE ENGINE PLATES
