@@ -38,4 +38,19 @@ class Cart extends MY_Controller {
 			echo json_encode($res);
 		}
 	}
+
+	public function delete(){
+		$post = $this->input->post();
+		$delete = $this->db->where('id', $post['id'])->delete('carts');
+		
+		if($delete){
+			$res = ['success'=>true, 'message'=>'Data berhasil di hapus!'];
+		}else{
+			$res = ['success'=>false, 'message'=>'Data gagal di hapus!'];
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($res);
+	}
+
 }
