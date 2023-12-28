@@ -16,7 +16,7 @@
                     <div class="panel-body p-2">
                         <div class="row">
                             <div class="col-12 col-lg-4">
-                                <img class="img-fluid" src="assets/images/sm2.jpg">
+                                <img class="img-fluid" src="assets/files/upload/courses/<?=$value['course_img']?>">
                             </div>
                             <div class="col-12 col-lg-8 position-relative top-0 left-0">
                                 <div class="row h-75">
@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="d-flex justify-content-end">
-                                            <button type="button" class="btn btn-sm btn-primary shadow-sm ms-2 remove_cart">
+                                            <button type="button" class="btn btn-sm btn-primary shadow-sm ms-2 remove_cart" onclick="hapusList(<?=$value['id']?>)" >
                                                 <i class="fa-solid fa-trash text-white"></i>
                                             </button>
                                         </div>
@@ -79,4 +79,27 @@
         </div>
     </div>
 </section>
+
+<script>
+	function hapusList(id){
+		$.ajax({
+			type: "POST",
+			url: BASE_URL+"cart/delete",
+			data: {id: id},
+			dataType: "JSON",
+			success: function (res) {
+				if(res.success){
+					Swal.fire({
+						icon: 'success',
+						title: '<h5 class="text-success">Success</h5>',
+						html: '<span class="text-success fw-semibold">Berhasil di masukan ke daftar chart !!!</span>',
+						timer: 1200
+					});
+					window.location.href = BASE_URL+'cart';
+				}
+			}
+		});
+	}
+</script>
+
 <?php $this->end() ?>
