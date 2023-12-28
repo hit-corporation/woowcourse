@@ -25,6 +25,7 @@ class MY_Controller extends CI_Controller
         // buat template
         $this->template->instance()->addData(['categories' => $this->setCategories()]);
         $this->template->instance()->addData(['uri1' => $this->uri->segment(1)]);
+		$this->template->instance()->addData(['carts' => $this->getCart()]);
     }
 
 
@@ -41,4 +42,20 @@ class MY_Controller extends CI_Controller
 
         return $b ?? [];
     }
+
+	private function getCart(){
+		$carts = [];
+		$email = isset($this->session->userdata('user')['email']) ? $this->session->userdata('user')['email'] : '';
+		if($email){
+			$member = $this->db->where('email', $email)->get('members')->row_array();
+			$carts = $this->db->select('c.*, co.course_title, co.price, i.first_name, i.last_name')
+						->from('carts c')
+						->where('member_id', $member['id'])
+						->where('status', 'unpaid')
+						->join('courses co', 'co.id = c.course_id', 'left')
+						->join('instructors i', 'i.id = co.instructor_id', 'left')
+						->get()->result_array();
+		}
+		return $carts;
+	}
 }
