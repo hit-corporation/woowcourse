@@ -48,13 +48,15 @@ class MY_Controller extends CI_Controller
 		$email = isset($this->session->userdata('user')['email']) ? $this->session->userdata('user')['email'] : '';
 		if($email){
 			$member = $this->db->where('email', $email)->get('members')->row_array();
-			$carts = $this->db->select('c.*, co.course_title, co.price, i.first_name, i.last_name')
-						->from('carts c')
-						->where('member_id', $member['id'])
-						->where('status', 'unpaid')
-						->join('courses co', 'co.id = c.course_id', 'left')
-						->join('instructors i', 'i.id = co.instructor_id', 'left')
-						->get()->result_array();
+			if($member){
+				$carts = $this->db->select('c.*, co.course_title, co.price, i.first_name, i.last_name, co.course_img')
+							->from('carts c')
+							->where('member_id', $member['id'])
+							->where('status', 'unpaid')
+							->join('courses co', 'co.id = c.course_id', 'left')
+							->join('instructors i', 'i.id = co.instructor_id', 'left')
+							->get()->result_array();
+			}
 		}
 		return $carts;
 	}
