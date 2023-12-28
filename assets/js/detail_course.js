@@ -128,3 +128,26 @@ function createStarRating(rating){
 	}
 	return star;
 }
+
+// ADD TO CHART BUTTON
+$('#add-to-chart').on('click', function(e){
+	let courseId = $('input[name="course_id"]').val();
+	let email = $('input[name="email"]').val();
+
+	$.ajax({
+		type: "POST",
+		url: BASE_URL + 'cart/add',
+		data: {course_id: courseId, email: email},
+		dataType: "JSON",
+		success: function (res) {
+			if(res.success){
+				Swal.fire({
+					icon: 'success',
+					title: '<h5 class="text-success">Success</h5>',
+					html: '<span class="text-success fw-semibold">Berhasil di masukan ke daftar chart !!!</span>',
+					timer: 1200
+				});
+			}
+		}
+	});
+});
