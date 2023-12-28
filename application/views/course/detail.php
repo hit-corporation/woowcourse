@@ -22,6 +22,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 				<h1 class="text-uppercase text-shadow mb-1"><?=$data['course_title']?></h1>
 
 				<input name="course_id" type="hidden" value="<?=$data['id']?>">
+				<input name="email" type="hidden" value="<?=isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : '' ?>">
 
 				<div class="separator"></div>
 				<div class="row mb-5 mt-4">
@@ -230,6 +231,15 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 						</dt>
 						<dd class="col-6 py-1"><strong>240 Orang</strong></dd>
 					</dl>
+
+					<div class="row mb-2">
+						<div class="col-12 d-flex flex-column">
+							<button id="add-to-chart" type="button" class="btn btn-primary text-uppercase text-light fw-semibold">
+								<i class="fa-solid fa-trolley"></i> + Keranjang
+							</button>
+						</div>
+					</div>
+
 					<div class="row">
 						<div class="col-12 d-flex flex-column">
 							<button type="button" class="btn btn-primary text-uppercase text-light fw-semibold">
