@@ -36,7 +36,7 @@ class Instructor extends MY_Controller {
 
 		$instruktur = $this->instructor_model->detail($id);
 		$data['data'] = (!is_null($instruktur)) ? $instruktur : [];
-		$data['courses'] = $this->instructor_model->get_courses($id);
+		$data['courses'] = $this->instructor_model->get_courses($instruktur['id']);
 
 		echo $this->template->render('instructor/detail', $data);
 	}
