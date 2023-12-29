@@ -34,17 +34,17 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 				<h4 class="text-capitalize text-secondary text-shadow txt-teacher-subject">Instructor</h4>
 				
 				<p class="text-justify mt-3 fs-5">
-					<?=$data['about']?>
+					<?=isset($data['about']) ? $data['about'] : ''?>
 				</p>
 				<div class="col-12">
 				
 					<div class="row align-items-center mb-1">
 						<div class="col-1"><i class="fa-solid fa-location-dot fs-4 text-primary text-shadow"></i></div>
-						<div class="col-11 fw-semibold"><?=$data['address']?></div>
+						<div class="col-11 fw-semibold"><?=isset($data['address']) ? $data['address'] : ''?></div>
 					</div>
 					<div class="row align-items-center mb-1">
 						<div class="col-1"><i class="fa-solid fa-phone fs-4 text-primary text-shadow"></i></div>
-						<div class="col-11 fw-semibold"><?=$data['phone']?></div>
+						<div class="col-11 fw-semibold"><?=isset($data['phone']) ? $data['phone'] : ''?></div>
 					</div>
 					<div class="row align-items-center">
 						<div class="col-1"><i class="fa-solid fa-envelope fs-4 text-primary text-shadow"></i></div>
