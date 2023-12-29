@@ -10,9 +10,9 @@ class Instructor_model extends CI_Model {
 	}
 
 	public function detail($id){
-		$this->db->select('i.*, m.photo');
+		$this->db->select('m.*, m.photo');
 		$this->db->from('instructors i');
-		$this->db->where('i.id', $id);
+		$this->db->where('m.id', $id);
 		$this->db->join('members m', 'm.email = i.email');
 		return $this->db->get()->row_array();
 	}
