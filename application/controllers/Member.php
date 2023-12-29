@@ -333,12 +333,16 @@ class Member extends MY_Controller
 				
 				$update = $this->db->where('email', $post['email'])->update('members', $data);
 
-				// jika as_instructor di check update data tabel instructors
+				// jika as_instructor di check lakukan update data tabel instructors
 				if($post['as_instructor'] == true){
 					$data['address'] = $post['address'];
 					$data['about'] = base64_decode($post['about']);
 					unset($data['as_instructor']);
 					$update = $this->db->where('email', $post['email'])->update('instructors', $data);
+
+					// jika data belum ada di tabel intruktors maka lakukan insert data baru
+					$data['email'] = $post['email'];
+					$this->db->insert('instructors', $data);
 				}
 
 				$res = isset($update) ?  ['success' => true, 'message' => 'Data berhasil diubah.'] :  ['success' => false, 'message' => 'Data gagal diubah.'];
