@@ -21,7 +21,7 @@ let table = $('#table-main').DataTable({
 		{data: 'category_name'},
 		{data: 'tanggal_rating'},
 		{data: 'rate'},
-		{data: 'comment'},
+		{data: 'comments'},
 		{
 			data: false,
 			render(data, type, row, _meta){

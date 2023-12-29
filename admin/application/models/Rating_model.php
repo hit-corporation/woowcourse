@@ -20,9 +20,9 @@ class Rating_model extends CI_Model {
 	public function get_all(?array $filters=null, ?int $limit=null, int $offset=null): array {
 		if(!empty($filters[2]['search']['value'])) $categories = $this->get_categories($filters[2]['search']['value']);
 
-		$this->db->select('c.*, r.id, r.created_at as tanggal_rating, r.rate, r.comment, ct.category_name, m.first_name, m.last_name');
+		$this->db->select('c.*, r.id, r.created_at as tanggal_rating, r.rate, r.comments, ct.category_name, m.first_name, m.last_name');
 		$this->db->from('ratings r');
-		$this->db->join('courses c', 'r.topic_id = c.id', 'left');
+		$this->db->join('courses c', 'r.course_id = c.id', 'left');
 		$this->db->join('categories ct', 'c.category_id = ct.id', 'left');
 		$this->db->join('members m', 'm.id = r.member_id', 'left');
 		
@@ -45,9 +45,9 @@ class Rating_model extends CI_Model {
 
 	public function count_all(?array $filters=null): int {
 
-		$this->db->select('c.*, r.id, r.created_at as tanggal_rating, r.rate, r.comment, ct.category_name, m.first_name, m.last_name');
+		$this->db->select('c.*, r.id, r.created_at as tanggal_rating, r.rate, r.comments, ct.category_name, m.first_name, m.last_name');
 		$this->db->from('ratings r');
-		$this->db->join('courses c', 'r.topic_id = c.id', 'left');
+		$this->db->join('courses c', 'r.course_id = c.id', 'left');
 		$this->db->join('categories ct', 'c.category_id = ct.id', 'left');
 		$this->db->join('members m', 'm.id = r.member_id', 'left');
 

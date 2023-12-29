@@ -51,7 +51,7 @@ class Rating extends MY_Controller{
 		
 		$q = $this->db->select_avg('rate')
 			->from('ratings')
-			->where('topic_id', $courseId)
+			->where('course_id', $courseId)
 			->get()->row_array();
 
 		$rating = round($q['rate'], 2);
