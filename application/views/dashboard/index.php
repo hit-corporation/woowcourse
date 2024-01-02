@@ -193,15 +193,25 @@
                                     <h6 class="text-capitalize text-secondary fw-normal text-shadow"><?=$val['details']['first_name'].' '.$val['details']['last_name']?></h6>
                                 </span>
                             </div>
-                            <span class="w-100">
-                                <span class="fw-semibold me-2"><?=$val['details']['rating']?></span>
-                                <i class="fa-solid fa-star text-primary"></i>
-                                <i class="fa-solid fa-star text-primary"></i>
-                                <i class="fa-solid fa-star text-primary"></i>
-                                <i class="fa-solid fa-star text-secondary"></i>
-                                <i class="fa-solid fa-star text-secondary"></i>
-                            </span>
-                            <h5 class="mt-1"><?=number_format($val['details']['price'])?></h5>
+							<div class="row">
+								<div class="col-6">
+									<span class="w-100">
+										<span class="fw-semibold me-2"><?=($val['details']['rating']) ? $val['details']['rating'] : 0 ?></span>
+
+										<?php if($val['details']['rating']): ?>
+											<i class="fa-solid fa-star text-primary"></i>
+										<?php else: ?>
+											<i class="fa-solid fa-star text-secondary"></i>
+										<?php endif ?>
+
+									</span>
+								</div>
+								<div class="col-6 text-end">
+									<i class="fa fa-heart text-red fs-4 me-4"></i>
+								</div>
+							</div>
+                            
+                            <h5 class="mt-1">Rp <?=number_format($val['details']['price'])?></h5>
                             <div class="d-flex flex-nowrap w-100" id="checkout-button">
                                 <a href="<?=base_url('course/detail/'.$val['details']['id'])?>" class="btn btn-primary text-white w-100 mt-3">
 									Checkout
@@ -235,14 +245,27 @@
                                     <h6 class="text-capitalize text-secondary fw-normal text-shadow"><?=$val['first_name'].' '.$val['last_name']?></h6>
                                 </span>
                             </div>
-                            <span class="w-100">
-                                <span class="fw-semibold me-2">4.6</span>
-                                <i class="fa-solid fa-star text-primary"></i>
-                                <i class="fa-solid fa-star text-primary"></i>
-                                <i class="fa-solid fa-star text-primary"></i>
-                                <i class="fa-solid fa-star text-secondary"></i>
-                                <i class="fa-solid fa-star text-secondary"></i>
-                            </span>
+
+							<div class="row">
+								<div class="col-6">
+									<span class="w-100">
+										<span class="fw-semibold me-1"><?=($val['rating']) ? $val['rating'] : 0 ?></span>
+
+										<?php if($val['rating']) : ?>
+											<i class="fa-solid fa-star text-primary"></i>
+										<?php else : ?>
+											<i class="fa-solid fa-star text-secondary"></i>
+										<?php endif ?>
+
+									</span>
+								</div>
+								
+								<div class="col-6 text-end">
+									<i class="fa fa-heart text-red fs-4 me-4"></i>
+								</div>
+								
+							</div>
+                            
                             <h5 class="mt-1"><?=number_format($val['price'])?></h5>
                             <div class="d-flex flex-nowrap w-100" id="checkout-button">
                                 <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-primary text-white w-100 mt-3">
