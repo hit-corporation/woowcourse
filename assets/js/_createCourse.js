@@ -206,6 +206,10 @@ function uploadFiles(e){
 		checked = document.getElementsByClassName('treejs-node__checked')[0].nodeId;
 	}
 
+	// HITUNG TOTAL DURASI VIDEO
+	let allVideo = document.querySelectorAll('video');
+	let duration = countVideoDuration(allVideo);
+
 	// XHR and FormData instance creation is here
 	let videos = $('input[data="video"]');
 
@@ -220,6 +224,7 @@ function uploadFiles(e){
 	// data.append("course_title", document.getElementById('course_title').value);
 	data.append("category_id", checked);
 	data.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
+	data.append("duration", duration);
 	
 	// XHR and FormData instance creation along with 'loadend' listener are here
 	xhr.addEventListener('loadend', () => {
@@ -283,3 +288,11 @@ btnAddMoreVideo.addEventListener('click', (e) => {
 		<input name="course_video[${counter}]" id="course_video[${counter}]" onchange="changeVideo(this)" type="file" class="form-control" data="video">`);
 	counter++;
 });
+
+function countVideoDuration(videos){
+	let panjang = 0;
+	for(let i=0; i < videos.length; i++){
+		panjang += videos[i].duration;
+	}
+	return panjang;
+}

@@ -115,6 +115,7 @@ class Course extends MY_Controller {
 				'description' => base64_decode($post['description']),
 				'instructor_id' => $instructor_id,
 				'category_id' => $post['category_id'],
+				'duration' => $post['duration'],
 			];	
 			$this->db->insert('courses', $data);
 			$insert = $this->db->insert_id();
