@@ -79,7 +79,7 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 							<div class="card position-relative d-lg-flex flex-nowrap">
 								<img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img'])?>">
 								<div class="card-body">
-									<h5 class="text-uppercase text-shadow"><?=$val['course_title']?></h5>
+									<h5 class="text-uppercase text-shadow"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
 									<div class="pt-1">
 										<span>
 											<i class="fa fa-star text-primary"></i>
