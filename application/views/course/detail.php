@@ -223,9 +223,19 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 						</dt>
 						<dd class="col-6 py-1"><strong>Rp. <?=number_format($data['price'])?></strong></dd>
 						<dt class="col-6 mb-1">
-							<span class="text-secondary"><i class="fa-solid fa-clock me-1 text-warning"></i> Durasi</span>
+							<span class="text-secondary"><i class="fa-solid fa-clock me-1 text-warning"></i> Durasi Kursus</span>
 						</dt>
 						<dd class="col-6 py-1"><strong>3 Bulan</strong></dd>
+
+						<dt class="col-6 mb-1">
+							<span class="text-secondary"><i class="fa-solid fa-clock me-1 text-warning"></i> Total Durasi Video</span>
+						</dt>
+						<dd class="col-6 py-1">
+							<strong>
+								<?=round($data['duration']/60, 2) . ' Menit'?>
+							</strong>
+						</dd>
+
 						<dt class="col-6 py-1">
 							<span class="text-secondary"><i class="fa-solid fa-users me-1 text-warning"></i> Murid</span>
 						</dt>
