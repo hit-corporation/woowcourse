@@ -28,6 +28,12 @@ class Course extends MY_Controller {
 		$page = ($page - 1) * $limit;
 
 		$data['data'] 			= $this->topics_model->get_all($filter, $limit, $page);
+		
+		foreach ($data['data'] as $key => $value) {
+			$total_video = $this->db->where('course_id', $value['id'])->get('course_videos')->num_rows();
+			$data['data'][$key]['total_video'] = $total_video;
+		}
+
 		$data['total_records'] 	= $this->topics_model->get_total($filter);
 		$data['total_pages'] 	= ceil($data['total_records'] / $limit);
 

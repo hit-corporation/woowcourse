@@ -72,7 +72,7 @@ function load_data(page = 1, limit = 10){
 											<i class="fa-solid fa-clock text-warning"></i><span class="ms-1">1 Week</span>
 										</div>
 										<div class="col border-right">
-											<i class="fa-solid fa-calendar text-warning"></i><span class="ms-1">3 Session</span>
+											<i class="fa-solid fa-calendar text-warning"></i><span class="ms-1">${value.total_video} Videos</span>
 										</div>
 										
 									</div>
