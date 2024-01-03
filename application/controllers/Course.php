@@ -211,6 +211,7 @@ class Course extends MY_Controller {
 		// UPDATE DATA COURSE 
 			$data['course_title'] = $post['course_title'];
 			$data['price'] = $post['price'];
+			$data['duration'] = $post['duration'];
 			$data['description'] = base64_decode($post['description']);
 			$data['category_id'] = $post['category_id'];
 			$data['updated_at'] = date('Y-m-d H:i:s');
