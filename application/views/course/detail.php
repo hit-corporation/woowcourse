@@ -18,7 +18,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 	
 	<div class="container">
 		<div class="row">
-			<div class="col-8">
+			<div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 col-xs-12 mb-2">
 				<h1 class="text-uppercase text-shadow mb-1"><?=$data['course_title']?></h1>
 
 				<input name="course_id" type="hidden" value="<?=$data['id']?>">
@@ -84,7 +84,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 									</button>
 								</h2>
 								<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-									<div class="accordion-body">
+									<div class="accordion-body" style="overflow-x: auto;">
 										<?php foreach ($videos as $key => $value) : ?>
 											<video width="500" src="<?=!empty($value['video']) ? base_url('assets/files/upload/courses/').$value['video'] : '' ?>" controls></video>
 										<?php endforeach ?>
@@ -211,7 +211,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 					
 				</div>
 			</div>
-			<div class="col-4">
+			<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
 			<div class="card border-primary shadow-sm" id="card-details">
 				<div class="card-header bg-primary text-white text-uppercase">
 					<h4 class="m-0 text-shadow">details</h4>
