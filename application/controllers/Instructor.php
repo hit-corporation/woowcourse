@@ -38,6 +38,11 @@ class Instructor extends MY_Controller {
 		$data['data'] = (!is_null($instruktur)) ? $instruktur : [];
 		$data['courses'] = $this->instructor_model->get_courses($instruktur['id']);
 
+		foreach ($data['courses'] as $key => $value) {
+			$total_video = $this->db->where('course_id', $value['id'])->get('course_videos')->num_rows();
+			$data['courses'][$key]['total_video'] = $total_video;
+		}
+
 		echo $this->template->render('instructor/detail', $data);
 	}
 
