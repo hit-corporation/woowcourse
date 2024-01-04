@@ -98,55 +98,25 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 									</div>
 								</div>
 							</div>
+							
 							<div class="col-xl-8 col-lg-8">
-								<div class="row">
-									<div class="col-1"><h4 class="text-end">5</h4></div>
-									<div class="col-9">
-										<div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-											<div class="progress-bar bg-warning" style="width: 95%"></div>
+								<?php for($i=1; $i <= 5; $i++): ?>
+									<div class="row">
+										<div class="col-1"><h4 class="text-end"><?=$i?></h4></div>
+										<div class="col-9">
+											<div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+												<?php if((int)$data['rating'] == $i): ?>
+													<div class="progress-bar bg-warning" style="width: 100%"></div>
+												<?php else: ?>
+													<div class="progress-bar bg-warning" style="width: 0%"></div>
+												<?php endif ?>
+											</div>
 										</div>
+										<div class="col-1"></div>
 									</div>
-									<div class="col-1"></div>
-								</div>
-								<div class="row">
-									<div class="col-1"><h4 class="text-end">4</h4></div>
-									<div class="col-9">
-										<div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-											<div class="progress-bar bg-warning" style="width: 0%"></div>
-										</div>
-									</div>
-									<div class="col-1"></div>
-								</div>
-								<div class="row">
-									<div class="col-1"><h4 class="text-end">3</h4></div>
-									<div class="col-9">
-										<div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-											<div class="progress-bar bg-warning" style="width: 0%"></div>
-										</div>
-									</div>
-									<div class="col-1"></div>
-								</div>
-								<div class="row">
-									<div class="col-1"><h4 class="text-end">2</h4></div>
-									<div class="col-9">
-										<div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-											<div class="progress-bar bg-warning" style="width: 0%"></div>
-										</div>
-									</div>
-									<div class="col-1"></div>
-								</div>
-								<div class="row">
-									<div class="col-1"><h4 class="text-end">1</h4></div>
-									<div class="col-9">
-										<div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-											<div class="progress-bar bg-warning" style="width: 0%"></div>
-										</div>
-									</div>
-									<div class="col-1"></div>
-								</div>
-
-								
+								<?php endfor ?>
                             </div>
+
 						</div>
 						
 						<?php if(isset($_SESSION['user'])) : ?>
