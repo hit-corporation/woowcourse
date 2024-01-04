@@ -123,8 +123,8 @@
 						
 					</ul>
 					<form class="d-flex" role="search">
-						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">Search</button>
+						<input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+						<a class="btn btn-outline-success" id="btn-search" type="submit">Search</a>
 					</form>
 
 					<button type="button" class="btn btn-primary position-absolute" id="btn-chart">
@@ -184,7 +184,7 @@
                     <div class="card" id="card-course">
                         <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height:200px">
                         <div class="card-body">
-                            <h4 class="w-100 text-start text-capitalize mt-1"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['details']['id'])?>"><?=$val['details']['course_title']?></a></h4>
+                            <h5 class="w-100 text-start text-capitalize mt-1"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['details']['id'])?>"><?=$val['details']['course_title']?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
                                 <span class="border-end pe-2">
                                     <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/members/').$val['details']['photo'] : base_url('assets/images/images.jpg'); ?>" style="">
@@ -236,7 +236,7 @@
                     <div class="card" id="card-course">
                         <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
                         <div class="card-body">
-                            <h4 class="w-100 text-start text-capitalize mt-1"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h4>
+                            <h5 class="w-100 text-start text-capitalize mt-1"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
                                 <span class="border-end pe-2">
                                     <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : base_url('assets/images/image.png'); ?>" style="">
@@ -367,6 +367,10 @@
 		// 		listChart.addClass('d-none');
 		// 	}
 		// });
+
+		$('#btn-search').on('click', function(){
+			window.location.href = 'course/index';
+		});
 	</script>
 
 	<script>
