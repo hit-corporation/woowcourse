@@ -17,7 +17,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 					<div class="mb-3">
 						<label for="course_title" class="form-label">Course Title</label>
 						<input type="hidden" name="id" value="<?=isset($data['id']) ? $data['id'] : '' ?>">
-						<input type="text" class="form-control" name="course_title" id="course_title" name="course_title" value="<?=isset($data['course_title']) ? $data['course_title'] : '' ?>">
+						<input type="text" class="form-control" name="course_title" id="course_title" maxlength="50" name="course_title" value="<?=isset($data['course_title']) ? $data['course_title'] : '' ?>">
 					</div>
 
 					<div class="mb-3">
