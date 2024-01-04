@@ -126,58 +126,6 @@ $material-shadow-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23) !impo
             }
         }
 
-        // > .custom-dropdown {
-        //     padding-top: .35rem;
-        //     padding-left: .5rem;
-
-        //     @include media-breakpoint-up(lg) {
-        //         position: absolute;
-        //         top: 100%;
-        //         left: 0;
-        //         flex-direction: column;
-        //         justify-content: left;
-        //         align-items: start;
-        //         display: flex;
-        //         background-color: white;
-        //         min-width: 230px;
-        //         border-radius: 4px;
-        //         padding: .65rem;
-        //         margin-top: 6px;
-        //         cursor: pointer;
-        //         opacity: 0;
-        //         visibility: collapse;
-        //         overflow: hidden;
-        //         //transition: all 500ms linear;
-        //     }
-
-        //     &.show {
-        //          @include media-breakpoint-up(lg) {
-        //             opacity: 1;
-        //             visibility: visible;
-        //             transition: all 500ms linear;
-        //         }
-        //     }
-        // }
-        
-        // &:hover {
-        //     > .nav-link {
-        //         background-color: var(--bs-primary);
-        //         color: var(--bs-white);
-        //         border-radius: 4px;
-        //         padding-left: .5rem;
-        //         padding-right: .4rem;
-        //     }
-
-        //     .custom-dropdown {
-        //         @include media-breakpoint-up(lg) {
-                    
-        //             max-height: 1000px;
-        //             visibility: visible;
-        //             transition: all 500ms linear;
-        //         }
-        //     }
-        // }
-
         transition: background-color 300ms linear;
 
         @include media-breakpoint-up(lg) {
@@ -227,4 +175,8 @@ $material-shadow-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23) !impo
 	.col-xs-6 {
 		width: 50%;
 	}
+}
+
+.child-1 > .child-item {
+	margin-right: 20px;
 }
