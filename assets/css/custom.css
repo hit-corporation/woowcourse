@@ -88,6 +88,13 @@
 #card-course {
 	min-height: 470px;
 	height: auto;
+	border-color: #c7c7c700;
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 4px;
+	border-radius: 8px;
+}
+
+#card-course > img{
+	border-radius: 8px 8px 0px 0px;
 }
 
 #checkout-button {
