@@ -184,7 +184,7 @@
                     <div class="card" id="card-course">
                         <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height:200px">
                         <div class="card-body">
-                            <h5 class="w-100 text-start text-capitalize mt-1"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['details']['id'])?>"><?=$val['details']['course_title']?></a></h5>
+                            <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['details']['id'])?>"><?=$val['details']['course_title']?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
                                 <span class="border-end pe-2">
                                     <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/members/').$val['details']['photo'] : base_url('assets/images/images.jpg'); ?>" style="">
@@ -236,7 +236,7 @@
                     <div class="card" id="card-course">
                         <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
                         <div class="card-body">
-                            <h5 class="w-100 text-start text-capitalize mt-1"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
+                            <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
                                 <span class="border-end pe-2">
                                     <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : base_url('assets/images/image.png'); ?>" style="">
