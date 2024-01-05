@@ -56,35 +56,39 @@ function load_data(page = 1, limit = 10){
 				$.each(response.data, function (key, value){
 					$('#list-course').append(`
 						<div class="col-12 col-md-4 col-lg-4 py-1">
-							<div class="card position-relative flex-nowrap" id="card-course">
+							<div class="card position-relative flex-nowrap card-course">
 								<img height="150" class="" src="${BASE_URL+'assets/files/upload/courses/'+value.course_img}">
 								<div class="card-body">
-									<h5 class="text-uppercase text-shadow title-card"><a class="text-decoration-none" href="${BASE_URL+'course/detail/'+value.id}">${value.course_title}</a></h5>
+									<h5 class="text-uppercase text-shadow title-card mb-2" tyle=""><a class="text-decoration-none" href="${BASE_URL+'course/detail/'+value.id}">${value.course_title}</a></h5>
 									
-									<div class="row w-100 d-flex flex-nowrap align-items-center mb-2">
-										<span class="col-4 border-end pe-2">
-											<img width="35" class=" teacher-icon rounded-circle border-1 shadow-sm" src="${BASE_URL+`assets/images/members/`+value.photo_instructor}" style="">
-										</span>
-										<span class="col-8 ms-2">
-											<h6 class="text-capitalize text-secondary fw-normal text-shadow">${value.first_name+` `+value.last_name}</h6>
-										</span>
-									</div>
+									<div class="">
 									
-									<div class="pt-1">
-										<span>
-											<i class="fa fa-star text-primary"></i>
-											<span>${(value.rating != null) ? value.rating : 0}</span>
-										</span>
-									</div>
-									<span class="mt-3 label-harga">${new Intl.NumberFormat('id-ID', {style: "currency", currency: "IDR"}).format(value.price)}</span>
-									<div class="d-flex flex-nowrap py-3">
-										<div class="col border-right">
-											<i class="fa-solid fa-clock text-warning"></i><span class="ms-1">1 Week</span>
-										</div>
-										<div class="col border-right">
-											<i class="fa-solid fa-calendar text-warning"></i><span class="ms-1">${value.total_video} Videos</span>
+										<div class="row w-100 d-flex flex-nowrap align-items-center mb-2">
+											<span class="col-4 border-end pe-2">
+												<img width="35" class=" teacher-icon rounded-circle border-1 shadow-sm" src="${BASE_URL+`assets/images/members/`+value.photo_instructor}" style="">
+											</span>
+											<span class="col-8 ms-2">
+												<h6 class="text-capitalize text-secondary fw-normal text-shadow">${value.first_name+` `+value.last_name}</h6>
+											</span>
 										</div>
 										
+										<div class="pt-1">
+											<span>
+												<i class="fa fa-star text-primary"></i>
+												<span>${(value.rating != null) ? value.rating : 0}</span>
+											</span>
+										</div>
+										<span class="mt-3 label-harga">${new Intl.NumberFormat('id-ID', {style: "currency", currency: "IDR"}).format(value.price)}</span>
+										<div class="d-flex flex-nowrap py-3">
+											<div class="col border-right">
+												<i class="fa-solid fa-clock text-warning"></i><span class="ms-1">1 Week</span>
+											</div>
+											<div class="col border-right">
+												<i class="fa-solid fa-calendar text-warning"></i><span class="ms-1">${value.total_video} Videos</span>
+											</div>
+											
+										</div>
+
 									</div>
 									
 									<div class="row px-2">

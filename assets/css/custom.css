@@ -32,8 +32,9 @@
 }
 
 @media (min-width: 1200px) {
-	#card-course{
+	.card-course{
 		height: 400px;
+
 	}
 
 	#btn-subscribe{
@@ -47,7 +48,7 @@
 }
 
 @media screen and (max-width: 1199px) and (min-width: 993px){
-	#card-course.card.position-relative.flex-nowrap{
+	.card-course.card.position-relative.flex-nowrap{
 		height: 350px;
 	}
 
@@ -62,7 +63,7 @@
 }
 
 @media screen and (max-width: 991px) and (min-width: 770px){
-	#card-course{
+	.card-course{
 		height: 350px;
 	}
 	#btn-subscribe{
@@ -85,15 +86,15 @@
 	float: right;
 }
 
-#card-course {
-	min-height: 470px;
-	height: auto;
+.card-course {
+	min-height: 400px;
+	/* height: auto; */
 	border-color: #c7c7c700;
 	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 4px;
 	border-radius: 8px;
 }
 
-#card-course img{
+.card-course > img{
 	border-radius: 8px 8px 0px 0px;
 }
 
@@ -184,4 +185,8 @@
 		overflow-y: auto;
 		overflow-x: hidden;
 	}
+}
+
+.title-card {
+	height: 45px;
 }
