@@ -56,10 +56,20 @@ function load_data(page = 1, limit = 10){
 				$.each(response.data, function (key, value){
 					$('#list-course').append(`
 						<div class="col-12 col-md-4 col-lg-4 py-1">
-							<div class="card position-relative flex-nowrap" id="card-course-2">
-								<img class="img-fluid" src="${BASE_URL+'assets/files/upload/courses/'+value.course_img}">
+							<div class="card position-relative flex-nowrap" id="card-course">
+								<img height="150" class="" src="${BASE_URL+'assets/files/upload/courses/'+value.course_img}">
 								<div class="card-body">
-									<h5 class="text-uppercase text-shadow"><a class="text-decoration-none" href="${BASE_URL+'course/detail/'+value.id}">${value.course_title}</a></h5>
+									<h5 class="text-uppercase text-shadow title-card"><a class="text-decoration-none" href="${BASE_URL+'course/detail/'+value.id}">${value.course_title}</a></h5>
+									
+									<div class="row w-100 d-flex flex-nowrap align-items-center mb-2">
+										<span class="col-4 border-end pe-2">
+											<img width="35" class=" teacher-icon rounded-circle border-1 shadow-sm" src="${BASE_URL+`assets/images/members/`+value.photo_instructor}" style="">
+										</span>
+										<span class="col-8 ms-2">
+											<h6 class="text-capitalize text-secondary fw-normal text-shadow">${value.first_name+` `+value.last_name}</h6>
+										</span>
+									</div>
+									
 									<div class="pt-1">
 										<span>
 											<i class="fa fa-star text-primary"></i>
