@@ -214,7 +214,7 @@
                             <h5 class="mt-1">Rp <?=number_format($val['details']['price'])?></h5>
                             <div class="d-flex flex-nowrap w-100" id="checkout-button">
                                 <a href="<?=base_url('course/detail/'.$val['details']['id'])?>" class="btn btn-primary text-white w-100 mt-3">
-									Checkout
+									Detail
 								</a>
                             </div>
                            
@@ -269,7 +269,7 @@
                             <h5 class="mt-1">Rp <?=number_format($val['price'])?></h5>
                             <div class="d-flex flex-nowrap w-100" id="checkout-button">
                                 <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-primary text-white w-100 mt-3">
-									Checkout
+									Detail
 								</a>
                             </div>
                            
