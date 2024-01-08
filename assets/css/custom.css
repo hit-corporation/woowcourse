@@ -34,7 +34,10 @@
 @media (min-width: 1200px) {
 	.card-course{
 		height: 400px;
+	}
 
+	.card-course > img{
+		height: 175px;
 	}
 
 	#btn-subscribe{
@@ -49,7 +52,11 @@
 
 @media screen and (max-width: 1199px) and (min-width: 993px){
 	.card-course.card.position-relative.flex-nowrap{
-		height: 350px;
+		height: 450px;
+	}
+
+	.card-course > img{
+		height: 175px;
 	}
 
 	#btn-subscribe{
@@ -64,8 +71,13 @@
 
 @media screen and (max-width: 991px) and (min-width: 770px){
 	.card-course{
-		height: 350px;
+		height: 500px;
 	}
+
+	.card-course > img{
+		height: 230px;
+	}
+
 	#btn-subscribe{
 		position: absolute;
 		bottom: 10px;
@@ -79,6 +91,10 @@
 @media screen and (max-width: 767px) and (min-width: 576px){
 	#card-course-landing-page{
 		height: 450px;
+	}
+
+	.card-course > img{
+		height: 300px;
 	}
 }
 
