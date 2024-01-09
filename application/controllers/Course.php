@@ -5,6 +5,8 @@ class Course extends MY_Controller {
     public function __construct() {
         parent::__construct();
 		$this->load->model(['topics_model']);
+
+		$this->load->library('form_validation');
     }
 
     /**
@@ -65,6 +67,19 @@ class Course extends MY_Controller {
 	public function store(){
 		$post = $this->input->post();
 
+		$this->form_validation->set_rules('course_title', 'Course Title', 'required');
+		$this->form_validation->set_rules('category_id', 'Category', 'required');
+		$this->form_validation->set_rules('price', 'Price', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('course_title', 'Course Title Wajib di isi!');
+			$this->session->set_flashdata('price', 'Harga Wajib di isi!');
+
+			$res = ['success'=>false, 'message'=>'Data gagal di simpan!'];
+			echo json_encode($res);
+			die;
+		}
+
 		// PROSES UPLOAD VIDEO
 			$this->load->helper('file');
 
@@ -116,7 +131,7 @@ class Course extends MY_Controller {
 			$data = [
 				'course_code' => $this->random_string(5),
 				'course_title' => $post['course_title'],
-				'price' => $post['price'],
+				'price' => htmlspecialchars($post['price']),
 				'course_img' => $upload_data_image['file_name'],
 				'description' => base64_decode($post['description']),
 				'instructor_id' => $instructor_id,
@@ -215,7 +230,7 @@ class Course extends MY_Controller {
 			}
 		
 		// UPDATE DATA COURSE 
-			$data['course_title'] = $post['course_title'];
+			$data['course_title'] = htmlspecialchars($post['course_title']);
 			$data['price'] = $post['price'];
 			$data['duration'] = $post['duration'];
 			$data['description'] = base64_decode($post['description']);

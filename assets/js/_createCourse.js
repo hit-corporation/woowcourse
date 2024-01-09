@@ -255,7 +255,18 @@ function uploadFiles(e){
 				});
 				setInterval(() => {
 					window.location.href = BASE_URL+'course';
-				}, 2000);
+				}, 1000);
+			}
+
+			if(res.success == false){
+				Swal.fire({
+					title: "Gagal!",
+					text: "Data Gagal di simpan!",
+					icon: "error"
+				});
+				setInterval(() => {
+					location.reload();
+				}, 1000);
 			}
 		}
 	};

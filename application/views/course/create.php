@@ -15,24 +15,33 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 			<div class="row">
 				<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
 					<div class="mb-3">
-						<label for="course_title" class="form-label">Course Title</label>
+						<label for="course_title" class="form-label">Course Title <span class="text-red">*</span></label>
 						<input type="hidden" name="id" value="<?=isset($data['id']) ? $data['id'] : '' ?>">
-						<input type="text" class="form-control" name="course_title" id="course_title" maxlength="50" name="course_title" value="<?=isset($data['course_title']) ? $data['course_title'] : '' ?>">
+						<input required type="text" class="form-control" name="course_title" id="course_title" maxlength="50" name="course_title" value="<?=isset($data['course_title']) ? $data['course_title'] : '' ?>">
+						
+						<span class="text-red mb-2">
+							<?= (isset($_SESSION['course_title'])) ? $_SESSION['course_title'] : '' ?>
+						</span>
 					</div>
 
 					<div class="mb-3">
-						<label for="course_category" class="form-label">Course Category</label>
+						<label for="course_category" class="form-label">Course Category <span class="text-red">*</span></label>
 						<input id="category_id" type="hidden" value="<?=isset($data['category_id']) ? $data['category_id'] : ''?>">
 						<div class="category border rounded pt-2"></div>
 					</div>
 					
 					<div class="mb-3">
-						<label for="price" class="form-label">Price</label>
-						<input type="number" name="price" class="form-control" id="price" value="<?=isset($data['price']) ? $data['price'] : ''?>">
+						<label for="price" class="form-label">Price <span class="text-red">*</span></label>
+						<input required type="number" name="price" class="form-control" id="price" value="<?=isset($data['price']) ? $data['price'] : ''?>">
+
+						<span class="text-red mb-2">
+							<?= (isset($_SESSION['price'])) ? $_SESSION['price'] : '' ?>
+						</span>
+
 					</div>
 
 					<div class="mb-3">
-						<label for="formVideo" class="form-label">Course Video</label>
+						<label for="formVideo" class="form-label">Course Video <span class="text-red">*</span></label>
 						<br>
 						<div class="course-video-container">
 							<?php if(isset($videos[0]['video'])){?>
@@ -53,7 +62,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 					<br>
 
 					<!-- Create the editor container -->
-					<label for="" class="mb-2">Description</label>
+					<label for="" class="mb-2">Description <span class="text-red">*</span></label>
 					<div id="editor" class="form-control mb-3"><?=isset($data['description']) ? $data['description'] : '' ?></div>
 				</div>
 				
@@ -61,9 +70,8 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 					<div class="text-center p-3">
 						<img id="img-preview" class="d-inline-flex rounded border" width="250" src="<?=isset($data['course_img']) ? base_url('assets/files/upload/courses/'.$data['course_img']) : base_url('assets/images/no-image.jpg')?>" alt="photo profile">
 						<br>
-						<label for="formFile" class="form-label">Course Image</label>
-						<input id="filetag" name="image" type="file" class="mt-3 form-control">
-						
+						<label for="formFile" class="form-label">Course Image <span class="text-red">*</span></label>
+						<input required id="filetag" name="image" type="file" class="mt-3 form-control">
 						<br>
 					</div>
 				</div>
@@ -105,5 +113,5 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 	<!-- Include the Quill library -->
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	<script src="<?=base_url('assets/node_modules/@widgetjs/tree/dist/tree.min.js')?>"></script>
-	<script src="<?=base_url('assets/js/_createCourse.js')?>"></script>
+	<script src="<?=base_url('assets/js/_createCourse.js')?>" defer></script>
 <?php $this->end() ?>
