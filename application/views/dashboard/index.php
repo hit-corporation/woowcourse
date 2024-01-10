@@ -39,7 +39,7 @@
 		<nav id="nav-top" class="navbar bg-primary">
 			<div class="container">
 				<ul class="w-100 list-unstyled row align-items-center mb-0">
-					<li class="col-12 col-md-6 d-flex flex-column flex-sm-row flex-nowrap">
+					<li class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-6 d-flex flex-column flex-sm-row flex-nowrap">
 						<a class="link-offset-2 link-underline link-underline-opacity-0 text-white mb-1 mb-lg-0" href="tel:+81289617462">
 							<span class="me-1">&#9742;</span>081289617462
 						</a>
@@ -49,7 +49,7 @@
 					</li>
 
 					<?php if(!isset($_SESSION['user'])): ?>
-						<li class="col-12 col-md-6 d-flex flex-column flex-sm-row flex-nowrap justify-content-end">
+						<li class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-6 d-flex flex-column flex-sm-row flex-nowrap justify-content-end">
 							<a class="link-offset-2 link-underline link-underline-opacity-0 text-white me-3 mb-1 mb-lg-0" href="<?= base_url('login') ?>">
 								<i class="fa-solid fa-right-to-bracket"></i><span class="ms-2">Login</span>
 							</a>
@@ -126,6 +126,13 @@
 						<input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
 						<a class="btn btn-outline-success" id="btn-search" type="submit">Search</a>
 					</form>
+
+					<button type="button" class="btn btn-primary position-absolute" id="btn-heart">
+						<i class="fa fa-heart text-white"></i>
+						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+							<?=count($carts)?>
+						</span>
+					</button>
 
 					<button type="button" class="btn btn-primary position-absolute" id="btn-chart">
 						<i class="fa fa-shopping-cart text-white"></i>

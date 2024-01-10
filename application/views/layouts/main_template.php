@@ -6,7 +6,7 @@
 <html>
 
 <head>
-	<base href="<?= base_url() ?>">
+	<base	 href="<?= base_url() ?>">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title><?= $title ?></title>
@@ -106,7 +106,17 @@
 							<button class="btn btn-outline-success" type="submit">Search</button>
 						</form>
 					</ul>
+
 					
+						
+					<button type="button" class="btn btn-primary position-absolute" id="btn-heart">
+						<i class="fa fa-heart text-white"></i>
+						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+							<?=count($carts)?>
+						</span>
+					</button>
+				
+				
 					<button type="button" class="btn btn-primary position-absolute" id="btn-chart">
 						<i class="fa fa-shopping-cart text-white"></i>
 						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -114,6 +124,7 @@
 							<span class="visually-hidden">unread messages</span>
 						</span>
 					</button>
+				
 					
 
 					<div class="bg-white p-2 rounded position-absolute text-secondary d-none" id="list-chart">
