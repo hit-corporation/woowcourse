@@ -130,9 +130,29 @@
 					<button type="button" class="btn btn-primary position-absolute" id="btn-heart">
 						<i class="fa fa-heart text-white"></i>
 						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-							<?=count($carts)?>
+							<?=count($wishlists)?>
 						</span>
 					</button>
+					<div class="p-2 rounded position-absolute text-secondary d-none" id="list-wishlist">
+						
+						<?php foreach($wishlists as $wishlist):?>
+							<div class="row mb-1">
+								<div class="col-2">
+									<img src="<?=base_url('assets/files/upload/courses/').$wishlist['course_img']?>" alt="" width="40" height="40" class="d-inline-block">
+								</div>
+								<div class="col-7">
+									<a href="wishlist"><?=$wishlist['course_title']?></a><br>
+									<span><?=$wishlist['first_name']?> <?=$wishlist['last_name']?></span>
+								</div>
+								<div class="col-3">
+									<span>Rp <?=number_format($wishlist['price'])?></span>
+								</div>
+							</div>
+							<hr>
+						<?php endforeach?>
+						
+					</div>
+					
 
 					<button type="button" class="btn btn-primary position-absolute" id="btn-chart">
 						<i class="fa fa-shopping-cart text-white"></i>
