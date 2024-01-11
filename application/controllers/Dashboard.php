@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Dashboard extends MY_Controller {
 	public function __construct(){
 		parent::__construct();
-		$this->load->model(['user_model', 'member_model', 'dashboard_model', 'topics_model', 'instructor_model']);
+		$this->load->model(['user_model', 'member_model', 'dashboard_model', 'topics_model', 'instructor_model', 'wishlist_model']);
 
 		$this->load->library('form_validation');
 		
@@ -12,6 +12,15 @@ class Dashboard extends MY_Controller {
 
 	public function index(){
 		$data = [];
+		$user = [];
+		$member = [];
+		$wishlists = [];
+
+		if(isset($_SESSION['user'])) {
+			$user = $_SESSION['user'];
+			$member = $this->db->where('email', $user['email'])->get('members')->row_array();
+		} 
+
 		// AMBIL DATA COURSE YANG SUDAH DI SUBSCRIBE OLEH MEMBER
 		$topicSubsc = $this->topics_model->get_topic_subscribe();
 		foreach ($topicSubsc as $key => $val) {
@@ -36,6 +45,15 @@ class Dashboard extends MY_Controller {
 													->get()->row_array();
 		}
 		$data['instructors'] = $popularInstructor ?? [];
+
+		if($member){
+			$filter = ['member_id' => $member['id']];
+			$wishlists = $this->wishlist_model->get_all($filter);
+		}
+
+		$data['wishlists'] = $wishlists;
+
+		// var_dump($data['wishlists']);die;
 
 		// MENGGUNAKAN TEMPLATE ENGINE PLATES
 		echo $this->template->render('index', $data);
