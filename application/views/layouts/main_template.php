@@ -115,6 +115,25 @@
 							<?=count($carts)?>
 						</span>
 					</button>
+					<div class="bg-white p-2 rounded position-absolute text-secondary d-none" id="list-wishlist">
+						
+						<?php foreach($carts as $cart):?>
+							<div class="row mb-1">
+								<div class="col-2">
+									<img src="<?=base_url('assets/files/upload/courses/').$cart['course_img']?>" alt="" width="40" height="40" class="d-inline-block">
+								</div>
+								<div class="col-7">
+									<a href="Cart"><?=$cart['course_title']?></a><br>
+									<span><?=$cart['first_name']?> <?=$cart['last_name']?></span>
+								</div>
+								<div class="col-3">
+									<span>Rp <?=number_format($cart['price'])?></span>
+								</div>
+							</div>
+							<hr>
+						<?php endforeach?>
+						
+					</div>
 				
 				
 					<button type="button" class="btn btn-primary position-absolute" id="btn-chart">
@@ -190,7 +209,7 @@
 	</script>
 	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script src="assets/js/main.js" async defer></script>
+	<script src="assets/js/main.js" defer></script>
 	<?= $this->section('js') ?>
 
 </body>
