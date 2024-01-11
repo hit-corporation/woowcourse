@@ -50,4 +50,15 @@ $('#btn-chart').click(function(e){
 		listChart.removeClass('d-none')
 	}
 });
+
+$('#btn-heart').click(function(e){
+	let listWishlist = $('#list-wishlist');
+	if(listWishlist.hasClass('d-block')){
+		listWishlist.addClass('d-none');
+		listWishlist.removeClass('d-block');
+	}else{
+		listWishlist.addClass('d-block');
+		listWishlist.removeClass('d-none')
+	}
+});
 	
