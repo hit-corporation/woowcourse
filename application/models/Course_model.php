@@ -29,4 +29,14 @@ class Course_model extends CI_Model {
 		return $this->db->get()->result_array() ?? [];
 		
 	}
+
+	public function get_all_wishlist($id): array{
+		$this->db->select('c.*, co.course_title, co.course_img, co.price');
+		$this->db->from('carts c');
+		$this->db->join('members m', 'm.id = c.member_id');
+		$this->db->join('courses co', 'co.id = c.course_id');
+		$this->db->where('member_id', $id);
+		return $this->db->get()->result_array() ?? [];
+		
+	}
 }
