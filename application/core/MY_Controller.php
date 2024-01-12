@@ -26,6 +26,7 @@ class MY_Controller extends CI_Controller
         $this->template->instance()->addData(['categories' => $this->setCategories()]);
         $this->template->instance()->addData(['uri1' => $this->uri->segment(1)]);
 		$this->template->instance()->addData(['carts' => $this->getCart()]);
+		$this->template->instance()->addData(['wishlists' => $this->getWishlist()]);
     }
 
 
@@ -59,5 +60,22 @@ class MY_Controller extends CI_Controller
 			}
 		}
 		return $carts;
+	}
+
+	private function getWishlist(){
+		$wishlist = [];
+		$email = isset($this->session->userdata('user')['email']) ? $this->session->userdata('user')['email'] : '';
+		if($email){
+			$member = $this->db->where('email', $email)->get('members')->row_array();
+			if($member){
+				$wishlist = $this->db->select('w.*, co.course_title, co.price, i.first_name, i.last_name, co.course_img')
+							->from('wishlists w')
+							->where('member_id', $member['id'])
+							->join('courses co', 'co.id = w.course_id', 'left')
+							->join('instructors i', 'i.id = co.instructor_id', 'left')
+							->get()->result_array();
+			}
+		}
+		return $wishlist;
 	}
 }
