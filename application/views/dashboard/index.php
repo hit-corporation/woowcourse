@@ -209,12 +209,12 @@
 			<?php foreach ($courses as $key => $val): ?>
 				  <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
                     <div class="card" id="card-course">
-                        <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height:200px">
+                        <img onerror="imgError(this);" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height:200px">
                         <div class="card-body">
                             <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['details']['id'])?>"><?=$val['details']['course_title']?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
                                 <span class="border-end pe-2">
-                                    <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/members/').$val['details']['photo'] : base_url('assets/images/images.jpg'); ?>" style="">
+                                    <img class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/members/').$val['details']['photo'] : base_url('assets/images/images.jpg'); ?>" style="">
                                 </span>
                                 <span class="ms-2">
                                     <h6 class="text-capitalize text-secondary fw-normal text-shadow"><?=$val['details']['first_name'].' '.$val['details']['last_name']?></h6>
@@ -261,7 +261,7 @@
 			<?php foreach ($new_courses as $key => $val): ?>
 				  <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
                     <div class="card" id="card-course">
-                        <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
+                        <img onerror="imgError(this);" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
                         <div class="card-body">
                             <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
@@ -423,6 +423,14 @@
 		}).add({
 		});
 
+	</script>
+
+	<script>
+		function imgError(image) {
+			image.onerror = "";
+			image.src = "assets/images/default-course.jpeg";
+			return true;
+		}
 	</script>
 </body>
 
