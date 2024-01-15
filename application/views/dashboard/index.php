@@ -376,28 +376,12 @@
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
 	<script src="assets/js/main.js" async defer></script>
-	<script src="assets/js/index.js" async defer></script>		
+	<script src="assets/js/index.js" async defer></script>
+	<script src="assets/js/_dashboard.js" async defer></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
 	<script>
-		function isiKategori(id){
-			localStorage.setItem('category', id);
-		}
-
-		// $('#btn-chart').click(function(e){
-		// 	let listChart = $('#list-chart');
-		// 	if(listChart.hasClass('d-none')){
-		// 		listChart.addClass('d-block');
-		// 		listChart.removeClass('d-none')
-		// 	}else{
-		// 		listChart.removeClass('d-block');
-		// 		listChart.addClass('d-none');
-		// 	}
-		// });
-
-		$('#btn-search').on('click', function(){
-			window.location.href = 'course/index';
-		});
+		
 	</script>
 
 	<script>
