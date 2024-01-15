@@ -202,5 +202,5 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 <?php $this->start('js') ?>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script src="assets/node_modules/star-rating.js/dist/star-rating.min.js"></script>
-	<script src="assets/js/detail_course.js" async defer></script>
+	<script src="assets/js/detail_course.js" defer></script>
 <?php $this->end() ?>
