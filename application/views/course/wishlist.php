@@ -1,7 +1,11 @@
 <?php $this->layout('layouts::main_template', ['title' => 'Wishlist']) ?>
 
 <?php $this->start('css') ?>
-
+	<style>
+		.wishlist-icon{
+			cursor: pointer;
+		}
+	</style>
 <?php $this->end() ?>
 
 <?php $this->start('body') ?>
@@ -12,12 +16,12 @@
 			<?php foreach ($wishlists as $key => $val): ?>
 				  <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
                     <div class="card" id="card-course">
-                        <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
+                        <img class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px" onerror="imgError(this);">
                         <div class="card-body">
                             <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
                                 <span class="border-end pe-2">
-                                    <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : base_url('assets/images/images.jpg'); ?>" style="">
+                                    <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : base_url('assets/images/image.png'); ?>" width="30">
                                 </span>
                                 <span class="ms-2">
                                     <h6 class="text-capitalize text-secondary fw-normal text-shadow"><?=$val['first_name'].' '.$val['last_name']?></h6>
@@ -60,5 +64,13 @@
 </section>
 
 <script src="assets/js/_wishlist.js"></script>
+
+<script>
+	function imgError(image) {
+		image.onerror = "";
+		image.src = "assets/images/default-course.jpeg";
+		return true;
+	}
+</script>
 
 <?php $this->end() ?>
