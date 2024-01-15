@@ -68,11 +68,12 @@ class MY_Controller extends CI_Controller
 		if($email){
 			$member = $this->db->where('email', $email)->get('members')->row_array();
 			if($member){
-				$wishlist = $this->db->select('w.*, co.course_title, co.price, i.first_name, i.last_name, co.course_img')
+				$wishlist = $this->db->select('w.*, co.course_title, co.price, i.first_name, i.last_name, co.course_img, m.photo')
 							->from('wishlists w')
 							->where('member_id', $member['id'])
 							->join('courses co', 'co.id = w.course_id', 'left')
 							->join('instructors i', 'i.id = co.instructor_id', 'left')
+							->join('members m', 'm.email = i.email', 'left')
 							->get()->result_array();
 			}
 		}
