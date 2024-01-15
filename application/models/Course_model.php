@@ -31,7 +31,7 @@ class Course_model extends CI_Model {
 	}
 
 	public function get_all_wishlist($id): array{
-		$this->db->select('w.*, co.course_title, co.course_img, co.price, co.rating, m.first_name, m.last_name');
+		$this->db->select('w.*, co.course_title, co.course_img, co.price, co.rating, m.first_name, m.last_name, m.photo');
 		$this->db->from('wishlists w');
 		$this->db->join('members m', 'm.id = w.member_id');
 		$this->db->join('courses co', 'co.id = w.course_id');
