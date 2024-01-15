@@ -46,7 +46,7 @@ async function addComment(e) {
 			icon: 'success',
 			title: '<h5 class="text-success">Success</h5>',
 			html: '<span class="text-success fw-semibold">Komentar anda berhasil di tambahkan !!!</span>',
-			timer: 1200
+			timer: 3000
 		});
 
 		let data = j.data;
@@ -59,7 +59,7 @@ async function addComment(e) {
 			icon: 'error',
 			title: '<h5 class="text-danger">ERROR</h5>',
 			html: '<span class="text-danger fw-semibold">Komentar anda tidak dapat di masukan !!!</span>',
-			timer: 1200
+			timer: 3000
 		});
     }   
 }
