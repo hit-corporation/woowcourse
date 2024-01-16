@@ -34,7 +34,7 @@ wishlistIcon.forEach(function(value, key, arr){
 						icon: 'warning',
 						title: '<h5 class="text-success">Warning</h5>',
 						html: `<span class="text-success fw-semibold">${res.message}</span>`,
-						timer: 3000
+						timer: 1500
 					});
 				}
 
@@ -43,7 +43,7 @@ wishlistIcon.forEach(function(value, key, arr){
 						icon: 'success',
 						title: '<h5 class="text-success">Sukses</h5>',
 						html: `<span class="text-success fw-semibold">${res.message}</span>`,
-						timer: 3000
+						timer: 1500
 					});
 				}
 
