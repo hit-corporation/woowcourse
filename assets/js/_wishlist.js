@@ -10,7 +10,7 @@ function hapusList(id){
 					icon: 'success',
 					title: '<h5 class="text-success">Success</h5>',
 					html: '<span class="text-success fw-semibold">Berhasil di masukan ke daftar chart !!!</span>',
-					timer: 1200
+					timer: 3000
 				});
 				window.location.href = BASE_URL+'cart';
 			}
