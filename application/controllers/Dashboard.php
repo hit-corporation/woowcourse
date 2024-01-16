@@ -21,16 +21,41 @@ class Dashboard extends MY_Controller {
 			$member = $this->db->where('email', $user['email'])->get('members')->row_array();
 		} 
 
-		// AMBIL DATA COURSE YANG SUDAH DI SUBSCRIBE OLEH MEMBER
+		// AMBIL SEMUA DATA COURSE YANG SUDAH DI SUBSCRIBE OLEH MEMBER
 		$topicSubsc = $this->topics_model->get_topic_subscribe();
 		foreach ($topicSubsc as $key => $val) {
 			$topicSubsc[$key]['details'] = $this->topics_model->get_course($val['topic_id']);
+
+			// cek wishlist
+			if($member){ // jika sudah login lakukan pengecekan pada tabel wishlist
+				$cek = $this->db->where('member_id', $member['id'])->where('course_id', $val['topic_id'])->get('wishlists')->row_array();
+				if($cek){
+					$topicSubsc[$key]['is_wishlist'] = true;
+				}else{
+					$topicSubsc[$key]['is_wishlist'] = false;
+				}
+			}else{
+				$topicSubsc[$key]['is_wishlist'] = false;
+			}
 		}
 
 		$data['courses'] = $topicSubsc ?? [];
 
 		// AMBIL DATA COURSE TERBARU LIMIT 12
 		$data['new_courses'] = $this->topics_model->get_new_courses() ?? [];
+			// CEK DATA WISHLIST
+			foreach ($data['new_courses'] as $key => $val) {
+				if($member){ // jika sudah login lakukan pengecekan pada tabel wishlist
+					$cek = $this->db->where('member_id', $member['id'])->where('course_id', $val['id'])->get('wishlists')->row_array();
+					if($cek){
+						$data['new_courses'][$key]['is_wishlist'] = true;
+					}else{
+						$data['new_courses'][$key]['is_wishlist'] = false;
+					}
+				}else{
+					$data['new_courses'][$key]['is_wishlist'] = false;
+				}
+			}
 
 		// POPULAR CATEGORY
 		$data['popular_categories'] = $this->db->limit('12')->get('categories')->result_array() ?? [];
@@ -46,6 +71,7 @@ class Dashboard extends MY_Controller {
 		}
 		$data['instructors'] = $popularInstructor ?? [];
 
+		// GET SEMUA WISHLIST USER JIKA SUDAH LOGIN
 		if($member){
 			$filter = ['member_id' => $member['id']];
 			$wishlists = $this->wishlist_model->get_all($filter);
@@ -53,7 +79,7 @@ class Dashboard extends MY_Controller {
 
 		$data['wishlists'] = $wishlists;
 
-		// var_dump($data['wishlists']);die;
+		
 
 		// MENGGUNAKAN TEMPLATE ENGINE PLATES
 		echo $this->template->render('index', $data);
