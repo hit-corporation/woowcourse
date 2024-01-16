@@ -32,4 +32,48 @@ class Wishlist extends MY_Controller {
 		header('Content-Type: application/json; charset=utf-8');
 		echo json_encode($res);
 	}
+
+	public function store(){
+		$post = $this->input->post();
+		$id = $post['id'];
+		
+		$email = isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : null;
+		
+		if(!$email){ // cek apakah sudah login
+			$res = ['success' => false, 'message' => 'Silahkan login terlebih dahulu!'];
+			header('Content-Type: application/json; charset=utf-8');
+			echo json_encode($res);
+			die;
+		}
+		
+		$member = $this->db->where('email', $email)->get('members')->row_array();
+
+		// CEK APAKAH SUDAH ADA DI WISHLIST
+		$cek = $this->db->where('member_id', $member['id'])->where('course_id', $id)->get('wishlists')->num_rows();
+		if($cek > 0){
+			$delete = $this->db->where('member_id', $member['id'])->where('course_id', $id)->delete('wishlists');
+			if($delete){
+				$res = ['success' => true, 'message' => 'Berhasil menghapus wishlists.'];
+				header('Content-Type: application/json; charset=utf-8');
+				echo json_encode($res);
+				die;
+			}
+		}
+
+		$data = [
+			'member_id' => $member['id'],
+			'course_id' => $id
+		];
+
+		$q = $this->db->insert('wishlists', $data);
+
+		if($q){
+			$res = ['success' => true, 'message' => 'Wishlist berhasil di tambah!'];
+		} else {
+			$res = ['success' => false, 'message' => 'Gagal menambah wishlist!'];
+		}
+
+		header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($res);
+	}
 }
