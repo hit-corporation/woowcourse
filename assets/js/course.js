@@ -57,7 +57,7 @@ function load_data(page = 1, limit = 10){
 					$('#list-course').append(`
 						<div class="col-12 col-md-4 col-lg-4 py-1">
 							<div class="card position-relative flex-nowrap card-course">
-								<img height="150" class="" src="${BASE_URL+'assets/files/upload/courses/'+value.course_img}">
+								<img onerror="imgError(this);" height="150" class="" src="${BASE_URL+'assets/files/upload/courses/'+value.course_img}">
 								<div class="card-body">
 									<h5 class="text-uppercase text-shadow title-card mb-2" tyle=""><a class="text-decoration-none" href="${BASE_URL+'course/detail/'+value.id}">${value.course_title}</a></h5>
 									
