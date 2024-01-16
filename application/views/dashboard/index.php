@@ -234,7 +234,11 @@
 									</span>
 								</div>
 								<div class="col-6 text-end">
-									<i class="fa fa-heart text-red fs-4 me-4"></i>
+									<?php if($val['is_wishlist']): ?>
+										<i class="fa fa-heart text-red fs-4 me-4 wishlist-icon" data="<?=$val['details']['id']?>"></i>
+									<?php else: ?>
+										<i class="fa fa-heart text-secondary fs-4 me-4 wishlist-icon" data="<?=$val['details']['id']?>"></i>
+									<?php endif ?>
 								</div>
 							</div>
                             
@@ -288,7 +292,11 @@
 								</div>
 								
 								<div class="col-6 text-end">
-									<i class="fa fa-heart text-red fs-4 me-4"></i>
+									<?php if($val['is_wishlist']): ?>
+										<i class="fa fa-heart text-red fs-4 me-4 wishlist-icon" data="<?=$val['id']?>"></i>
+									<?php else: ?>
+										<i class="fa fa-heart text-secondary fs-4 me-4 wishlist-icon" data="<?=$val['id']?>"></i>
+									<?php endif ?>
 								</div>
 								
 							</div>
@@ -372,13 +380,6 @@
                                      text-white 
                                      text-shadow 
                                      shadow pb-2">&#8679;</a>
-									 
-	<script src="assets/js/jquery.js"></script>
-	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
-	<script src="assets/js/main.js" async defer></script>
-	<script src="assets/js/index.js" async defer></script>
-	<script src="assets/js/_dashboard.js" async defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
 	<script>
 		function imgError(image) {
@@ -387,6 +388,16 @@
 			return true;
 		}
 	</script>
+									 
+	<script src="assets/js/jquery.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" async defer></script>
+	<script src="assets/js/main.js" async defer></script>
+	<script src="assets/js/index.js" async defer></script>
+	<script src="assets/js/_dashboard.js" async defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+	
 
 	<script>
 		// SCRIPT ANIMATED JUMBOTRON HEADER
