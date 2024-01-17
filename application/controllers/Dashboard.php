@@ -71,6 +71,9 @@ class Dashboard extends MY_Controller {
 		}
 		$data['instructors'] = $popularInstructor ?? [];
 
+		// GET DATA NEW INSTRUCTORS
+		$data['new_instructors'] = $this->db->select('m.*')->join('members m', 'm.email=i.email')->limit('10')->order_by('id','desc')->get('instructors i')->result_array();
+
 		// GET SEMUA WISHLIST USER JIKA SUDAH LOGIN
 		if($member){
 			$filter = ['member_id' => $member['id']];

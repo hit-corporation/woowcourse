@@ -13,6 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
 	<link rel="stylesheet" href="assets/css/style.min.css">
 	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="assets/css/dashboard.css">
 	<link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/index.min.css">
 	<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>	 -->
@@ -201,6 +202,29 @@
 			</div>
 		</div>
 	</main>
+
+
+	<!-- IMAGE DRAGABLE SLIDER - TEMUKAN GURU KURSUS YANG TEPAT -->
+	<section class="container py-5 my-3">
+		<h3 class="text-center w-100 m-0 mb-5">Temukan Instuktur Kursus yang tepat untuk anda</h3>
+		<h5 class="text-center w-100 m-0 mb-5">Dengan lebih dari 1000 Instruktur kursus dan 1 juta+ member, kami memahami pembelajaran terbaik untuk anda</h5>
+		<div class="wrapper">
+			<i id="left" class="fa-solid fa-angle-left"></i>
+			<ul class="carousel">
+				<?php // var_dump($instructors) ?>
+				<?php foreach($new_instructors as $key => $val): ?>
+					<li class="card">
+						<div class="img mb-2"><img src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : ''; ?>" alt="img" draggable="false"></div>
+						<h4><?=$val['first_name'].' '.$val['last_name']?></h4>
+						<span>lecturer</span>
+					</li>
+				<?php endforeach ?>
+			</ul>
+			<i id="right" class="fa-solid fa-angle-right"></i>
+		</div>
+	</section>
+
+
 	<section id="popular-courses" class="container py-5 my-3">
 		<h3 class="text-center w-100 m-0 mb-4">POPULAR COURSES</h3>
 		<!-- <h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of popular courses</h5> -->
@@ -362,6 +386,11 @@
 		</div>
 	</section>
 	<!-- end instructures -->
+
+
+	<section id="instructures" class="container py-5 my-3">
+
+	</section>
 
 	<!-- START FOOTER -->
 	<footer class="py-3">
