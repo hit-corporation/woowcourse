@@ -80,6 +80,9 @@ class Dashboard extends MY_Controller {
 			$wishlists = $this->wishlist_model->get_all($filter);
 		}
 
+		// GET RATING LIMIT 5
+		$data['ratings'] = $this->db->select('r.*, m.first_name, m.last_name, m.photo')->where('rate >=', 4)->join('members m', 'm.id=r.member_id')->limit(5)->order_by('id', 'desc')->get('ratings r')->result_array();
+
 		$data['wishlists'] = $wishlists;
 
 		

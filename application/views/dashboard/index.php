@@ -16,6 +16,9 @@
 	<link rel="stylesheet" href="assets/css/dashboard.css">
 	<link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/index.min.css">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 	<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>	 -->
 	<base href="<?=base_url()?>" >
 
@@ -213,9 +216,9 @@
 			<ul class="carousel">
 				<?php // var_dump($instructors) ?>
 				<?php foreach($new_instructors as $key => $val): ?>
-					<li class="card">
+					<li class="card p-2">
 						<div class="img mb-2"><img src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : ''; ?>" alt="img" draggable="false"></div>
-						<h4><?=$val['first_name'].' '.$val['last_name']?></h4>
+						<h5><?=$val['first_name'].' '.$val['last_name']?></h5>
 						<span>lecturer</span>
 					</li>
 				<?php endforeach ?>
@@ -387,8 +390,42 @@
 	</section>
 	<!-- end instructures -->
 
-
-	<section id="instructures" class="container py-5 my-3">
+	<!-- SECTION TESTIMONIAL -->
+	<section class="container py-5 my-3">
+		
+		<section class="testimonials">
+			<div class="container">
+				<div class="section-header">
+					<h2 class="title">What Our Client Say</h2>
+				</div>
+				<div class="testimonials-content">
+					<div class="swiper testimonials-slider js-testimonials-slider">
+						<div class="swiper-wrapper">
+							<?php foreach($ratings as $rating): ?>
+								<div class="swiper-slide testimonials-item">
+									<div class="info">
+										<img src="<?=base_url('assets/images/members/').$rating['photo']?>" width="100" height="100" alt="">
+										<div class="text-box">
+											<h3 class="name"><?=$rating['first_name']?></h3>
+											<span class="job"><?=$rating['last_name']?></span>
+										</div>
+									</div>
+									<p><?=$rating['comments']?></p>
+									<div class="rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div>
+							<?php endforeach ?>
+						</div>
+					</div>
+					<div class="swiper-pagination js-testimonials-pagination"></div>
+				</div>
+			</div>
+		</section>
 
 	</section>
 
@@ -425,6 +462,10 @@
 	<script src="assets/js/index.js" async defer></script>
 	<script src="assets/js/_dashboard.js" async defer></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+	
+	<!-- untuk slider testimonial -->
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> 
 
 	
 
@@ -468,6 +509,23 @@
 		});
 
 	</script>
+
+	<script>
+		const swiper = new Swiper('.js-testimonials-slider', {
+			grabCursor: true,
+			spaceBetween: 30,
+			pagination: {
+				el: '.js-testimonials-pagination',
+				clickable: true
+			}, 
+			breakpoints: {
+				767: {
+					slidesPerView: 2
+				}
+			}
+		});
+	</script>
+
 </body>
 
 </html>
