@@ -36,6 +36,7 @@ update.addEventListener('click', async () => {
 	formData.append("first_name", document.getElementById('first_name').value);
 	formData.append("last_name", document.getElementById('last_name').value);
 	formData.append("phone", document.getElementById('phone').value);
+	formData.append("job", document.getElementById('job').value);
 	formData.append("email", document.getElementById('email').value);
 	formData.append("address", document.getElementById('address').value);
 	formData.append("about", btoa(document.getElementById('editor').__quill.root.innerHTML));

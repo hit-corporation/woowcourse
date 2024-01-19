@@ -301,6 +301,7 @@ class Member extends MY_Controller
 					'first_name' => $post['first_name'],
 					'last_name' => $post['last_name'],
 					'phone' => $post['phone'],
+					'job' => $post['job'],
 					'email' => $post['email'],
 					'photo' => isset($upload_data['file_name']) ? $upload_data['file_name'] : null,
 					'last_login_date' => date('Y-m-d H:i:s'),
@@ -316,6 +317,7 @@ class Member extends MY_Controller
 					$data['about'] = base64_decode($post['about']);
 					unset($data['last_login_date']);
 					unset($data['as_instructor']);
+					unset($data['job']);
 					$simpan = $this->db->insert('instructors', $data);
 				}
 
@@ -328,6 +330,7 @@ class Member extends MY_Controller
 					'first_name' 	=> $post['first_name'],
 					'last_name' 	=> $post['last_name'],
 					'phone' 		=> $post['phone'],
+					'job' 			=> $post['job'],
 					'as_instructor' => $post['as_instructor'],
 				];
 				
@@ -338,6 +341,7 @@ class Member extends MY_Controller
 					$data['address'] = $post['address'];
 					$data['about'] = base64_decode($post['about']);
 					unset($data['as_instructor']);
+					unset($data['job']);
 					$update = $this->db->where('email', $post['email'])->update('instructors', $data);
 
 					// jika data belum ada di tabel intruktors maka lakukan insert data baru

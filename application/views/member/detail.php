@@ -14,20 +14,24 @@
 			<div class="row">
 				<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
 					<div class="mb-3">
-						<label for="first_name" class="form-label">First Name</label>
+						<label for="first_name" class="form-label">Nama Depan</label>
 						<input type="hidden" name="id" value="<?=isset($data['id']) ? $data['id'] : '' ?>">
 						<input type="text" class="form-control" id="first_name" name="first_name" value="<?=isset($data['first_name']) ? $data['first_name'] : '' ?>">
 					</div>
 					<div class="mb-3">
-						<label for="last_name" class="form-label">Last Name</label>
+						<label for="last_name" class="form-label">Nama Belakang</label>
 						<input type="text" class="form-control" id="last_name" name="last_name" value="<?=isset($data['last_name']) ? $data['last_name'] : '' ?>">
 					</div>
 					<div class="mb-3">
 						<input hidden type="email" class="form-control" id="email" name="email" readonly value="<?=isset($data['email']) ? $data['email'] : $_SESSION['user']['email'] ?>">
 					</div>
 					<div class="mb-3">
-						<label for="phone" class="form-label">Phone</label>
+						<label for="phone" class="form-label">Telp</label>
 						<input type="text" class="form-control" id="phone" name="phone" value="<?=isset($data['phone']) ? $data['phone'] : '' ?>">
+					</div>
+					<div class="mb-3">
+						<label for="Job" class="form-label">Pekerjaan</label>
+						<input type="text" class="form-control" id="job" name="job" value="<?=isset($data['job']) ? $data['job'] : '' ?>">
 					</div>
 					<div class="form-floating mb-3">
 						<textarea class="form-control" placeholder="Masukan Alamat Instruktor" id="address"><?=isset($data['address']) ? $data['address'] : '' ?></textarea>
