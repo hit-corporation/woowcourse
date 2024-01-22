@@ -195,3 +195,16 @@ body{
 	width: 12px;
 	background-color: hsl(0, 0%, 35%);
 }
+
+
+section.container{
+	position: relative;
+	transform: translateY(150px);
+	opacity: 0;
+	transition: all 2s ease;
+}
+
+section.container.active{
+	transform: translateY(0px);
+	opacity: 1;
+}

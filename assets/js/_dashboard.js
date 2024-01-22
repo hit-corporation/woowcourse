@@ -140,3 +140,28 @@ document.addEventListener("mouseup", dragStop);
 carousel.addEventListener("scroll", infiniteScroll);
 wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
 wrapper.addEventListener("mouseleave", autoPlay);
+
+// ===========================================================================
+
+// ANIMATION ON SCROLL
+
+// ===========================================================================
+
+let sections = document.querySelectorAll('section.container');
+sections[0].classList.add('active');
+
+window.addEventListener('scroll', section);
+
+function section(){
+
+	for(let i=0; i < sections.length; i++){
+		let windowHeight = window.innerHeight;
+		let sectionTop = sections[i].getBoundingClientRect().top;
+
+		if(sectionTop < windowHeight){
+			sections[i].classList.add('active')
+		}else{
+			sections[i].classList.remove('active');
+		}
+	}
+}
