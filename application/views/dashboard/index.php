@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
 	<link rel="stylesheet" href="assets/css/style.min.css">
 	<link rel="stylesheet" href="assets/css/custom.css">
-	<link rel="stylesheet" href="assets/css/dashboard.css">
+	<link rel="stylesheet" href="assets/css/dashboard.min.css">
 	<link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/index.min.css">
 
