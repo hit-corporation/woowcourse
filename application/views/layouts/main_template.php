@@ -120,7 +120,7 @@
 						<?php foreach($wishlists as $wishlist):?>
 							<div class="row mb-1">
 								<div class="col-2">
-									<img onerror="imgError(this);" src="<?=base_url('assets/files/upload/courses/').$wishlist['course_img']?>" alt="" width="40" height="40" class="d-inline-block">
+									<img onerror="this.onerror=null;this.src='assets/images/default-course.jpeg';" src="<?=base_url('assets/files/upload/courses/').$wishlist['course_img']?>" alt="" width="40" height="40" class="d-inline-block">
 								</div>
 								<div class="col-7">
 									<a href="wishlist"><?=$wishlist['course_title']?></a><br>
@@ -211,14 +211,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="assets/js/main.js" defer></script>
 	<?= $this->section('js') ?>
-
-	<script>
-		function imgError(image) {
-			image.onerror = "";
-			image.src = "assets/images/default-course.jpeg";
-			return true;
-		}
-	</script>
 
 </body>
 

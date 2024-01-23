@@ -142,7 +142,7 @@
 						<?php foreach($wishlists as $wishlist):?>
 							<div class="row mb-1">
 								<div class="col-2">
-									<img onerror="imgError(this);" src="<?=base_url('assets/files/upload/courses/').$wishlist['course_img']?>" alt="" width="40" height="40" class="d-inline-block">
+									<img onerror="this.onerror=null;this.src='assets/images/default-course.jpeg';" src="<?=base_url('assets/files/upload/courses/').$wishlist['course_img']?>" alt="" width="40" height="40" class="d-inline-block">
 								</div>
 								<div class="col-7">
 									<a href="wishlist"><?=$wishlist['course_title']?></a><br>
@@ -219,7 +219,7 @@
 					<li class="card p-2">
 						<div class="img mb-2"><img src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : ''; ?>" alt="img" draggable="false"></div>
 						<h5><?=$val['first_name'].' '.$val['last_name']?></h5>
-						<span>lecturer</span>
+						<span><?=$val['job']?></span>
 					</li>
 				<?php endforeach ?>
 			</ul>
@@ -236,7 +236,7 @@
 			<?php foreach ($courses as $key => $val): ?>
 				  <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
                     <div class="card" id="card-course">
-                        <img onerror="imgError(this);" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height:200px">
+                        <img onerror="this.onerror=null;this.src='assets/images/default-course.jpeg';" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height:200px">
                         <div class="card-body">
                             <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['details']['id'])?>"><?=$val['details']['course_title']?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
@@ -292,7 +292,7 @@
 			<?php foreach ($new_courses as $key => $val): ?>
 				  <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
                     <div class="card" id="card-course">
-                        <img onerror="imgError(this);" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
+                        <img onerror="this.onerror=null;this.src='assets/images/default-course.jpeg';" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
                         <div class="card-body">
                             <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
@@ -369,6 +369,7 @@
 								<h4 class="mb-0 w-100 text-uppercase text-shadow"><?=$val['details']['first_name'].' '.$val['details']['last_name']?></h4>
 							</a>
 							<figcaption class="figcaption mb-3 text-capitalize text-shadow-sm text-secondary fw-semibold"></figcaption>
+							<p><?=$val['details']['job']?></p>
 							<p class="text-justify text-shadow-sm mt-1">
 								<?=strip_tags($val['details']['about']) ?>
 							</p>
@@ -446,14 +447,6 @@
                                      text-white 
                                      text-shadow 
                                      shadow pb-2">&#8679;</a>
-
-	<script>
-		function imgError(image) {
-			image.onerror = "";
-			image.src = "assets/images/default-course.jpeg";
-			return true;
-		}
-	</script>
 									 
 	<script src="assets/js/jquery.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
