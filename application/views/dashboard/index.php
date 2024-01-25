@@ -207,27 +207,6 @@
 	</main>
 
 
-	<!-- IMAGE DRAGABLE SLIDER - TEMUKAN GURU KURSUS YANG TEPAT -->
-	<section class="container py-5 my-3">
-		<h3 class="text-center w-100 m-0 mb-5">Temukan Instuktur Kursus yang tepat untuk anda</h3>
-		<h5 class="text-center w-100 m-0 mb-5">Dengan lebih dari 1000 Instruktur kursus dan 1 juta+ member, kami memahami pembelajaran terbaik untuk anda</h5>
-		<div class="wrapper">
-			<i id="left" class="fa-solid fa-angle-left"></i>
-			<ul class="carousel">
-				<?php // var_dump($instructors) ?>
-				<?php foreach($new_instructors as $key => $val): ?>
-					<li class="card p-2">
-						<div class="img mb-2"><img src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : ''; ?>" alt="img" draggable="false"></div>
-						<h5><?=$val['first_name'].' '.$val['last_name']?></h5>
-						<span><?=$val['job']?></span>
-					</li>
-				<?php endforeach ?>
-			</ul>
-			<i id="right" class="fa-solid fa-angle-right"></i>
-		</div>
-	</section>
-
-
 	<section id="popular-courses" class="container py-5 my-3">
 		<h3 class="text-center w-100 m-0 mb-4">POPULAR COURSES</h3>
 		<!-- <h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of popular courses</h5> -->
@@ -236,23 +215,23 @@
 			<?php foreach ($courses as $key => $val): ?>
 				  <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
                     <div class="card" id="card-course">
-                        <img onerror="this.onerror=null;this.src='assets/images/default-course.jpeg';" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['details']['course_img']); ?>" style="height:200px">
+                        <img onerror="this.onerror=null;this.src='assets/images/default-course.jpeg';" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
                         <div class="card-body">
-                            <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['details']['id'])?>"><?=$val['details']['course_title']?></a></h5>
+                            <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
                                 <span class="border-end pe-2">
-                                    <img class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/members/').$val['details']['photo'] : base_url('assets/images/images.jpg'); ?>" style="">
+                                    <img class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : base_url('assets/images/images.jpg'); ?>" style="">
                                 </span>
                                 <span class="ms-2">
-                                    <h6 class="text-capitalize text-secondary fw-normal text-shadow"><?=$val['details']['first_name'].' '.$val['details']['last_name']?></h6>
+                                    <h6 class="text-capitalize text-secondary fw-normal text-shadow"><?=$val['first_name'].' '.$val['last_name']?></h6>
                                 </span>
                             </div>
 							<div class="row">
 								<div class="col-6">
 									<span class="w-100">
-										<span class="fw-semibold me-2"><?=($val['details']['rating']) ? $val['details']['rating'] : 0 ?></span>
+										<span class="fw-semibold me-2"><?=($val['rating']) ? $val['rating'] : 0 ?></span>
 
-										<?php if($val['details']['rating']): ?>
+										<?php if($val['rating']): ?>
 											<i class="fa-solid fa-star text-primary"></i>
 										<?php else: ?>
 											<i class="fa-solid fa-star text-secondary"></i>
@@ -262,16 +241,16 @@
 								</div>
 								<div class="col-6 text-end">
 									<?php if($val['is_wishlist']): ?>
-										<i class="fa fa-heart text-red fs-4 me-4 wishlist-icon" data="<?=$val['details']['id']?>"></i>
+										<i class="fa fa-heart text-red fs-4 me-4 wishlist-icon" data="<?=$val['id']?>"></i>
 									<?php else: ?>
-										<i class="fa fa-heart text-secondary fs-4 me-4 wishlist-icon" data="<?=$val['details']['id']?>"></i>
+										<i class="fa fa-heart text-secondary fs-4 me-4 wishlist-icon" data="<?=$val['id']?>"></i>
 									<?php endif ?>
 								</div>
 							</div>
                             
-                            <h5 class="mt-1">Rp <?=number_format($val['details']['price'])?></h5>
+                            <h5 class="mt-1">Rp <?=number_format($val['price'])?></h5>
                             <div class="d-flex flex-nowrap w-100" id="checkout-button">
-                                <a href="<?=base_url('course/detail/'.$val['details']['id'])?>" class="btn btn-primary text-white w-100 mt-3">
+                                <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-primary text-white w-100 mt-3">
 									Detail
 								</a>
                             </div>
@@ -428,6 +407,27 @@
 			</div>
 		</section>
 
+	</section>
+
+
+	<!-- IMAGE DRAGABLE SLIDER - TEMUKAN GURU KURSUS YANG TEPAT -->
+	<section class="container py-5 my-3">
+		<h3 class="text-center w-100 m-0 mb-5">Temukan Instuktur Kursus yang tepat untuk anda</h3>
+		<h5 class="text-center w-100 m-0 mb-5">Dengan lebih dari 1000 Instruktur kursus dan 1 juta+ member, kami memahami pembelajaran terbaik untuk anda</h5>
+		<div class="wrapper">
+			<i id="left" class="fa-solid fa-angle-left"></i>
+			<ul class="carousel">
+				<?php // var_dump($instructors) ?>
+				<?php foreach($new_instructors as $key => $val): ?>
+					<li class="card p-2">
+						<div class="img mb-2"><img src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : ''; ?>" alt="img" draggable="false"></div>
+						<h5><?=$val['first_name'].' '.$val['last_name']?></h5>
+						<span><?=$val['job']?></span>
+					</li>
+				<?php endforeach ?>
+			</ul>
+			<i id="right" class="fa-solid fa-angle-right"></i>
+		</div>
 	</section>
 
 	<!-- START FOOTER -->

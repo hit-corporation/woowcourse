@@ -22,24 +22,7 @@ class Dashboard extends MY_Controller {
 		} 
 
 		// AMBIL SEMUA DATA COURSE YANG SUDAH DI SUBSCRIBE OLEH MEMBER
-		$topicSubsc = $this->topics_model->get_topic_subscribe();
-		foreach ($topicSubsc as $key => $val) {
-			$topicSubsc[$key]['details'] = $this->topics_model->get_course($val['topic_id']);
-
-			// cek wishlist
-			if($member){ // jika sudah login lakukan pengecekan pada tabel wishlist
-				$cek = $this->db->where('member_id', $member['id'])->where('course_id', $val['topic_id'])->get('wishlists')->row_array();
-				if($cek){
-					$topicSubsc[$key]['is_wishlist'] = true;
-				}else{
-					$topicSubsc[$key]['is_wishlist'] = false;
-				}
-			}else{
-				$topicSubsc[$key]['is_wishlist'] = false;
-			}
-		}
-
-		$data['courses'] = $topicSubsc ?? [];
+		$data['courses'] = $this->get_course_subscribe($member) ?? [];
 
 		// AMBIL DATA COURSE TERBARU LIMIT 12
 		$data['new_courses'] = $this->topics_model->get_new_courses() ?? [];
@@ -91,6 +74,47 @@ class Dashboard extends MY_Controller {
 		echo $this->template->render('index', $data);
 	}
 
-	public function dashboard2(){
+	private function get_course_subscribe($member){
+		
+		// AMBIL SEMUA DATA COURSE YANG SUDAH DI SUBSCRIBE OLEH MEMBER
+
+		$topicSubsc = $this->topics_model->get_topic_subscribe();
+
+		// Jika kursus yang sudah di subscribe di bawah 6, tambahkan data kursus dari yang ada
+		if(count($topicSubsc) < 6){
+			$get_all = $this->topics_model->get_all([], 12, null);
+			
+			foreach ($get_all as $value) { // looping untuk menggabungkan data
+				$topicSubsc[] = $value;
+			}
+			
+			// ambil topic id nya aja
+			$topicIds = [];
+			foreach ($topicSubsc as $key => $value) {
+				$topicIds[] = $value['topic_id'];
+			}
+			$topicIds = array_unique($topicIds);
+		}	
+
+		$topicSubsc = array_slice($topicIds, 0, 12);
+
+		$final_topic_subs = [];
+		foreach ($topicSubsc as $key => $val) {
+			$final_topic_subs[] = $this->topics_model->get_course($val);
+
+			// cek wishlist
+			if($member){ // jika sudah login lakukan pengecekan pada tabel wishlist
+				$cek = $this->db->where('member_id', $member['id'])->where('course_id', $val)->get('wishlists')->row_array();
+				if($cek){
+					$final_topic_subs[$key]['is_wishlist'] = true;
+				}else{
+					$final_topic_subs[$key]['is_wishlist'] = false;
+				}
+			}else{
+				$final_topic_subs[$key]['is_wishlist'] = false;
+			}
+		}
+
+		return $final_topic_subs;
 	}
 }

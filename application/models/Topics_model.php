@@ -15,7 +15,7 @@ class Topics_model extends CI_Model {
 			$this->db->where_in('co.category_id', $category);
 		}
 
-		$this->db->select('co.*, m.photo as photo_instructor, m.first_name, m.last_name');
+		$this->db->select('co.*, co.id as topic_id, m.photo as photo_instructor, m.first_name, m.last_name');
 		$this->db->from('courses co');
 		$this->db->join('instructors i', 'co.instructor_id = i.id', 'left');
         $this->db->join('members m', 'm.email = i.email', 'left');
