@@ -336,21 +336,21 @@
 
 	<!-- start instructures -->
 	<section id="instructures" class="container py-5 my-3">
-		<h3 class="text-center text-uppercase w-100 m-0 mb-4">Course Instructors</h3>
+		<h3 class="text-center text-uppercase w-100 m-0 mb-4">Popular Instructor</h3>
 		<!-- <h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of teachers</h5> -->
 		<div class="row">
-			<?php foreach($instructors as $val):?>	
+			<?php foreach($instructors as $val):?>
 				<div class="col-12 col-md-6 col-lg-3 text-center">
 					<figure class="figure material-shadow-1">
-						<img class="img-fluid" src="<?=!empty($val['details']['photo']) ? base_url('assets/images/members/').$val['details']['member_photo'] : ''; ?>">
+						<img class="img-fluid" src="<?=!empty($val['member_photo']) ? base_url('assets/images/members/').$val['member_photo'] : ''; ?>">
 						<div class="overlay py-2 px-3">
-							<a class="text-decoration-none" href="<?=base_url('instructor/detail/'.$val['details']['id'])?>">
-								<h4 class="mb-0 w-100 text-uppercase text-shadow"><?=$val['details']['first_name'].' '.$val['details']['last_name']?></h4>
+							<a class="text-decoration-none" href="<?=base_url('instructor/detail/'.$val['id'])?>">
+								<h4 class="mb-0 w-100 text-uppercase text-shadow"><?=$val['first_name'].' '.$val['last_name']?></h4>
 							</a>
 							<figcaption class="figcaption mb-3 text-capitalize text-shadow-sm text-secondary fw-semibold"></figcaption>
-							<p><?=$val['details']['job']?></p>
+							<p><?=$val['job']?></p>
 							<p class="text-justify text-shadow-sm mt-1">
-								<?=strip_tags($val['details']['about']) ?>
+								<?=strip_tags($val['about']) ?>
 							</p>
 							<div class="row flex-nowrap">
 								<div class="col fw-bold">

@@ -44,15 +44,7 @@ class Dashboard extends MY_Controller {
 		$data['popular_categories'] = $this->db->limit('12')->get('categories')->result_array() ?? [];
 
 		// AMBIL DATA LIST INSTRUCTORS
-		$popularInstructor = $this->instructor_model->get_popular_instructors();
-		foreach ($popularInstructor as $key => $val) {
-			$popularInstructor[$key]['details'] = $this->db->select('instructors.*, members.photo as member_photo, members.job')
-													->from('instructors')
-													->where('members.id', $val['instructor_id'])
-													->join('members', 'members.email = instructors.email')
-													->get()->row_array();
-		}
-		$data['instructors'] = $popularInstructor ?? [];
+		$data['instructors'] = $this->popular_instructor() ?? [];
 
 		// GET DATA NEW INSTRUCTORS
 		$data['new_instructors'] = $this->db->select('m.*')->join('members m', 'm.email=i.email')->limit('10')->order_by('id','desc')->get('instructors i')->result_array();
@@ -116,5 +108,42 @@ class Dashboard extends MY_Controller {
 		}
 
 		return $final_topic_subs;
+	}
+
+	private function popular_instructor(){
+		$instructorIds = [];
+
+		$popularInstructor = $this->instructor_model->get_popular_instructors();
+
+		// Jika instruktor yang sudah di subscribe di bawah 6, tambahkan data instructor dari yang ada
+		if(count($popularInstructor) < 6){
+			$a = $this->instructor_model->get_all();
+
+			foreach ($a as $key => $value) {
+				$popularInstructor[] = $value;
+			}
+
+			// ambil instruktor id nya
+			foreach ($popularInstructor as $key => $value) {
+				$instructorIds[] = $value['instructor_id'];
+			}
+			$instructorIds = array_unique($instructorIds); // buang id instruktor yg duplikat
+			$instructorIds = array_slice($instructorIds, 0, 12); // ambil hanya 12 id saja
+		}else{
+			foreach ($popularInstructor as $key => $value) {
+				$instructorIds[] = $value['instructor_id'];
+			}
+		}
+
+		$res = [];
+		foreach ($instructorIds as $key => $val) {
+			$res[$key] = $this->db->select('instructors.*, members.photo as member_photo, members.job, members.first_name, members.last_name')
+									->from('instructors')
+									->where('instructors.id', $val)
+									->join('members', 'members.email = instructors.email', 'left')
+									->get()->row_array();
+		}
+
+		return $res;
 	}
 }
