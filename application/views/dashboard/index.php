@@ -12,7 +12,7 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
 	<link rel="stylesheet" href="assets/css/style.min.css">
-	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="assets/css/custom.min.css">
 	<link rel="stylesheet" href="assets/css/dashboard.min.css">
 	<link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/index.min.css">
@@ -344,8 +344,8 @@
 					<figure class="figure material-shadow-1">
 						<img class="img-fluid" src="<?=!empty($val['member_photo']) ? base_url('assets/images/members/').$val['member_photo'] : ''; ?>">
 						<div class="overlay py-2 px-3">
-							<a class="text-decoration-none" href="<?=base_url('instructor/detail/'.$val['id'])?>">
-								<h4 class="mb-0 w-100 text-uppercase text-shadow"><?=$val['first_name'].' '.$val['last_name']?></h4>
+							<a class="text-decoration-none" href="<?=base_url('instructor/detail/'.$val['member_id'])?>">
+								<h6 class="mb-0 w-100 text-uppercase text-shadow"><?=$val['first_name'].' '.$val['last_name']?></h6>
 							</a>
 							<figcaption class="figcaption mb-3 text-capitalize text-shadow-sm text-secondary fw-semibold"></figcaption>
 							<p><?=$val['job']?></p>

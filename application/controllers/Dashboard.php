@@ -137,7 +137,7 @@ class Dashboard extends MY_Controller {
 
 		$res = [];
 		foreach ($instructorIds as $key => $val) {
-			$res[$key] = $this->db->select('instructors.*, members.photo as member_photo, members.job, members.first_name, members.last_name')
+			$res[$key] = $this->db->select('instructors.*, members.photo as member_photo, members.job, members.first_name, members.last_name, members.id as member_id')
 									->from('instructors')
 									->where('instructors.id', $val)
 									->join('members', 'members.email = instructors.email', 'left')
