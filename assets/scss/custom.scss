@@ -1,0 +1,254 @@
+.child-item{
+	color: #20c997;
+	position: relative;
+  	left: 20px;
+}
+
+.child-item:hover{
+	background-color: var(--bs-primary);
+	color: var(--bs-white);
+	border-radius: .25rem;
+	padding-left: .5rem;
+	padding-right: .5rem;
+}
+
+@media only screen and (max-width: 991px) {
+	.child-item > a.nav-link {
+	 	color: white;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	ul#collapse_1.list-unstyled.custom-dropdown.collapse {
+		min-width: 25rem;
+	}
+}
+
+.photo-profile{
+	height: 250px;
+	width: 250px;
+	border-radius: 50%;
+	border: 1px solid #20c997;
+}
+
+@media (min-width: 1200px) {
+	.card-course{
+		height: 400px;
+	}
+
+	.card-course > img{
+		height: 175px;
+	}
+
+	#btn-subscribe{
+		position: absolute;
+		bottom: 10px;
+	}
+
+	#card-course-landing-page{
+		height: 500px;
+	}
+}
+
+@media screen and (max-width: 1199px) and (min-width: 993px){
+	.card-course.card.position-relative.flex-nowrap{
+		height: 450px;
+	}
+
+	.card-course > img{
+		height: 175px;
+	}
+
+	#btn-subscribe{
+		position: absolute;
+		bottom: 10px;
+	}
+
+	#card-course-landing-page{
+		height: 450px;
+	}
+}
+
+@media screen and (max-width: 991px) and (min-width: 770px){
+	.card-course{
+		height: 500px;
+	}
+
+	.card-course > img{
+		height: 230px;
+	}
+
+	#btn-subscribe{
+		position: absolute;
+		bottom: 10px;
+	}
+
+	#card-course-landing-page{
+		height: 500px;
+	}
+}
+
+@media screen and (max-width: 767px) and (min-width: 576px){
+	#card-course-landing-page{
+		height: 450px;
+	}
+
+	.card-course > img{
+		height: 300px;
+	}
+}
+
+#btn-create-new-course{
+	float: right;
+}
+
+.card-course {
+	min-height: 400px;
+	/* height: auto; */
+	border-color: #c7c7c700;
+	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 4px;
+	border-radius: 8px;
+}
+
+.card-course > img{
+	border-radius: 8px 8px 0px 0px;
+}
+
+#checkout-button {
+	bottom: 10px;
+	position: absolute;
+	right: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+@media screen and (min-width: 991px){
+	#btn-chart{
+		right: 100px;
+		top: 10px;
+	}
+
+	#list-chart{
+		height: 400px;
+		width: 400px;
+		right: 100px;
+		top: 45px;
+		border-color: #c4c4c4;
+		border-style: solid;
+		border-width: 1px;
+		box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+}
+
+@media screen and (min-width: 900px) and (max-width: 991px) {
+	#btn-chart{
+		right: 10px;
+		top: 10px;
+	}
+
+	#list-chart{
+		height: 400px;
+		width: 400px;
+		right: 100px;
+		top: 45px;
+		border-color: #c4c4c4;
+		border-style: solid;
+		border-width: 1px;
+		box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+}
+
+@media screen and (min-width: 568px) and (max-width: 900px) {
+	#btn-chart{
+		right: 150px;
+		top: 10px;
+	}
+
+	#list-chart{
+		height: 400px;
+		width: 400px;
+		right: 100px;
+		top: 45px;
+		border-color: #c4c4c4;
+		border-style: solid;
+		border-width: 1px;
+		box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+}
+
+@media screen and (max-width: 568px) {
+	#btn-chart{
+		right: 80px;
+		top: 10px;
+	}
+
+	#list-chart{
+		height: 400px;
+		width: 400px;
+		right: 0px;
+		top: 45px;
+		border-color: #c4c4c4;
+		border-style: solid;
+		border-width: 1px;
+		box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+}
+
+.title-card {
+	height: 45px;
+}
+
+@media screen and (min-width: 960px) {
+	#btn-heart{
+		right: 154px;
+	}
+}
+
+@media screen and (min-width: 900px) and (max-width: 990px) {
+	#btn-heart{
+		top: 10px;
+		right: 62px;
+	}
+}
+
+@media screen and (min-width:540px) and (max-width: 900px) {
+	#btn-heart{
+		top: 10px;
+		right: 205px;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	#btn-heart{
+		top: 10px;
+		right: 130px;
+	}
+}
+
+#list-wishlist {
+	top: 50px;
+	right: 10px;
+	width: 400px;
+	height: 400px;
+
+	/* From https://css.glass */
+	background: rgba( 255, 255, 255, 0.85 );
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 3.5px );
+	-webkit-backdrop-filter: blur( 3.5px );
+	border-radius: 10px;
+	border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.wishlist-icon{
+	cursor: pointer;
+}
