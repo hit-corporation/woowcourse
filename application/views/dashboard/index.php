@@ -238,6 +238,11 @@
 										<?php endif ?>
 
 									</span>
+										
+									<span class="fw-semibold ms-2">
+										| 
+										<?= $val['total_subscriber'].' Subs' ?>
+									</span>
 								</div>
 								<div class="col-6 text-end">
 									<?php if($val['is_wishlist']): ?>

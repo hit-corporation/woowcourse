@@ -88,7 +88,7 @@ class Dashboard extends MY_Controller {
 			$topicIds = array_unique($topicIds);
 		}	
 
-		$topicSubsc = array_slice($topicIds, 0, 12);
+		$topicSubsc = array_slice($topicIds, 0, 12); // isinya hanya topic id saja cth: [1,2,3,4]
 
 		$final_topic_subs = [];
 		foreach ($topicSubsc as $key => $val) {
@@ -105,6 +105,9 @@ class Dashboard extends MY_Controller {
 			}else{
 				$final_topic_subs[$key]['is_wishlist'] = false;
 			}
+
+			// ISI TOTAL SUBSCRIBE
+			$final_topic_subs[$key]['total_subscriber'] = $this->db->where('topic_id', $val)->get('subscriptions')->num_rows();
 		}
 
 		return $final_topic_subs;
