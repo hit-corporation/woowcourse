@@ -227,9 +227,9 @@
                                 </span>
                             </div>
 							<div class="row">
-								<div class="col-6">
+								<div class="col-8">
 									<span class="w-100">
-										<span class="fw-semibold me-2"><?=($val['rating']) ? $val['rating'] : 0 ?></span>
+										<span class="fw-semibold me-1"><?=($val['rating']) ? $val['rating'] : 0 ?></span>
 
 										<?php if($val['rating']): ?>
 											<i class="fa-solid fa-star text-primary"></i>
@@ -239,16 +239,16 @@
 
 									</span>
 										
-									<span class="fw-semibold ms-2">
+									<span class="fw-semibold ms-1">
 										| 
 										<?= $val['total_subscriber'].' Subs' ?>
 									</span>
 								</div>
-								<div class="col-6 text-end">
+								<div class="col-4 text-end">
 									<?php if($val['is_wishlist']): ?>
-										<i class="fa fa-heart text-red fs-4 me-4 wishlist-icon" data="<?=$val['id']?>"></i>
+										<i class="fa fa-heart text-red fs-4 me-2 wishlist-icon" data="<?=$val['id']?>"></i>
 									<?php else: ?>
-										<i class="fa fa-heart text-secondary fs-4 me-4 wishlist-icon" data="<?=$val['id']?>"></i>
+										<i class="fa fa-heart text-secondary fs-4 me-2 wishlist-icon" data="<?=$val['id']?>"></i>
 									<?php endif ?>
 								</div>
 							</div>
