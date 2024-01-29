@@ -74,7 +74,7 @@
 								Categories
 							</a>
 							<ul class="list-unstyled custom-dropdown collapse" id="collapse_1">
-								<li class="nav-item"><a class="nav-link">All</a></li>
+								<li class="nav-item"><a class="nav-link" href="<?= base_url('course') ?>" data="1" onclick="categoryClick('1')">All</a></li>
 								<?php if(!empty($categories) && count($categories) > 0): ?>
 									<?php foreach ($categories as $key => $val) : ?>
 										<li class="nav-item" data="<?= $val['id'] ?>"><a class="nav-link"><?= $val['category_name'] ?></a></li>
