@@ -90,11 +90,20 @@ class Login extends MY_Controller {
 			];
 
 			// simpan ke tabel users
-			if(!$this->db->insert('users', $data)) {
+			$save_user = $this->db->insert('users', $data);
+			if(!$save_user) {
 				// create session success / error
 				$this->session->set_flashdata('error', ['message' => 'Registrasi gagal !!!']);
 				redirect(base_url('login/register'));
 				return;
+			}else{
+				$data_member = [
+					'created_at'	=> date('Y-m-d H:i:s'),
+					'created_at'	=> date('Y-m-d H:i:s'),
+					'email'			=> trim($post['email']),
+					'last_login_date'=> date('Y-m-d H:i:s'),
+				];
+				$this->db->insert('members', $data_member); 
 			}
 
 			$activation = [
