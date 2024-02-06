@@ -1,6 +1,6 @@
 <?php
 
-class Verify extends CI_Controller {
+class Verify extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -44,6 +44,6 @@ class Verify extends CI_Controller {
         {
             return;
         }
-        echo $this->template->render('');
+        echo $this->template->render('verify', [], 'login');
     }
 }
