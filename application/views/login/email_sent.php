@@ -16,8 +16,8 @@
             </p>
             <div class="d-flex flex-nowrap mt-3 align-items-center">
                 <a class="btn btn-sm btn-primary text-white fs-6" href="<?=base_url()?>">Homepage</a>
-                <!-- <span class="fs-6 mx-2">Or</span> -->
-                <!-- <a href="javascript:void(0)" class="fs-6">Resend activation mail</a> -->
+                <span class="fs-6 mx-2">Or</span>
+                <a href="javascript:void(0)" class="fs-6">Resend activation mail</a>
             </div>
         </div>
     </div>
