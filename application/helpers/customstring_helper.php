@@ -1,10 +1,10 @@
 <?php
 
 /**
- * 
+ *  CREATE RANDOM STRING CHAR
  *
  * @param integer $num
- * @return void
+ * @return string
  */
 function str_random(int $num = 10): string {
     $out = '';

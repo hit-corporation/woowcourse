@@ -81,7 +81,7 @@ class Login extends MY_Controller {
 			$data = [
 				'user_code'		=> $uuid,
 				'email' 		=> trim($post['email']),
-				'active'		=> 1,
+				'active'		=> 0,
 				'user_level'	=> 2,
 				'password'		=> password_hash($post['password'], PASSWORD_DEFAULT),
 				'last_login'	=> date('Y-m-d H:i:s'),
@@ -120,6 +120,9 @@ class Login extends MY_Controller {
 				redirect(base_url('login/register'));
 				return;
 			}
+
+			// create cookie untuk menyimpan user_no
+			setcookie('user_no', $uuid, time() + (86400 * 30), "/");
 
 			$this->config->load('email', TRUE);
 			$config = $this->config->item('email');

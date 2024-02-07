@@ -359,7 +359,7 @@
             				<h2 style="text-transform: uppercase; color: #495057;">selamat bergabung</h2>
             				<h3 style="font-weight: normal: text-align: center; color: #495057;">Selangkah lagi untuk menjadi anggota kami</h3>
             				<p>
-                                <a href="<?=base_url('verify/'.base64_encode($token.':'.$user_no))?>" style="box-shadow: 0px 0px 1px rgba(0,0,0,0.35); 
+                                <a href="<?=base_url('verify/index/'.base64_encode($token.':'.$user_no))?>" style="box-shadow: 0px 0px 1px rgba(0,0,0,0.35); 
                                                    background-color: #30e3ca; 
                                                    padding: .85rem 1rem 1rem 1rem; 
                                                    border-radius: 8px;
