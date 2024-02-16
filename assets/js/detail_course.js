@@ -147,6 +147,13 @@ $('#add-to-chart').on('click', function(e){
 					html: '<span class="text-success fw-semibold">Berhasil di masukan ke daftar chart !!!</span>',
 					timer: 1200
 				});
+			} else {
+				Swal.fire({
+					icon: 'warning',
+					title: '<h5 class="text-warning">Warning</h5>',
+					html: '<span class="text-warning fw-semibold">'+ res.message +'</span>',
+					timer: 1200
+				});
 			}
 			location.reload();
 		}

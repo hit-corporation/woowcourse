@@ -19,6 +19,14 @@ class Cart extends MY_Controller {
 	public function add(){
 		$post = $this->input->post();
 
+		// cek session
+		if(!isset($_SESSION['user'])) {
+			header('Content-Type: application/json');
+			$res = ['success'=>false, 'message'=>'Silahkan login terlebih dahulu!'];
+			echo json_encode($res);
+			exit;
+		}
+
 		$member = $this->db->where('email', $post['email'])->get('members')->row_array();
 
 		$data = [
