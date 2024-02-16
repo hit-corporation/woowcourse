@@ -203,7 +203,7 @@
                                      text-shadow 
                                      shadow pb-2">&#8679;</a>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>	
+	<script src="<?=base_url('assets/js/jquery-3.7.1.js')?>"></script>	
 	<script>
 		const CATEGORIES = <?= json_encode(isset($categories)) ?? '' ?>;
 	</script>

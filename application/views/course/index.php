@@ -3,7 +3,8 @@
 $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 <?php $this->start('css') ?>
-<link rel="stylesheet" href="https://pagination.js.org/dist/2.6.0/pagination.css">
+<!-- <link rel="stylesheet" href="https://pagination.js.org/dist/2.6.0/pagination.css"> -->
+<link rel="stylesheet" href="<?=base_url('assets/css/pagination.css')?>">
 <link rel="stylesheet" href="<?=base_url('assets/css/course.min.css')?>">
 <?php $this->end() ?>
 
@@ -77,7 +78,8 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 <?php $this->start('js') ?>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://pagination.js.org/dist/2.6.0/pagination.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+<!-- <script src="<?//=base_url('assets/js/jquery-3.7.1.js')?>"></script> -->
+<script src="<?=base_url('assets/js/pagination.js')?>"></script>
 <script src="assets/js/course.js" async defer></script>
 <?php $this->end() ?>
