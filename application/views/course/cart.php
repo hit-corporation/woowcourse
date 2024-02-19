@@ -1,8 +1,7 @@
 <?php $this->layout('layouts::main_template', ['title' => 'Shopping Cart']) ?>
 
 <?php $this->start('css') ?>
-<link rel="stylesheet" href="assets/css/teacher.min.css">
-
+	<link rel="stylesheet" href="<?=base_url('assets/css/custom.min.css')?>">
 <?php $this->end() ?>
 
 <?php $this->start('body') ?>
@@ -70,6 +69,12 @@
                         <div class="d-flex w-100">
                             <h5 class="ms-auto fw-semibold">Rp <?=number_format($course_price + $ppn) ?></h5>
                         </div>
+
+						<div class="row mt-3 mb-3">
+							<dd class="col-6 text-capitalize mb-0 fs-6">Pilih Pembayaran</dd>
+                            <dt class="col-6 text-end fs-6 pilih-pembayaran">Mandiri Virtual Account ></dt>
+						</div>
+
                         <button type="button" class="btn btn-primary w-100 text-center text-capitalize text-white fw-semibold mt-3">
                             checkout
                         </button>
@@ -79,6 +84,24 @@
         </div>
     </div>
 </section>
+
+<div id="myModal" class="modal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">Pilih Pembayaran</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<p>Modal body text goes here.</p>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+		</div>
+	</div>
+</div>
 
 <script>
 	function hapusList(id){
@@ -101,5 +124,13 @@
 		});
 	}
 </script>
+
+<script>
+	let pilihPembayaran = document.querySelector('.pilih-pembayaran');
+	pilihPembayaran.addEventListener('click', function(e){
+		$('#myModal').modal('show');
+	});
+</script>
+
 
 <?php $this->end() ?>
