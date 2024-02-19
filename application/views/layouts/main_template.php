@@ -67,7 +67,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item rounded">
-							<a class="nav-link active" aria-current="page" href="#">Home</a>
+							<a class="nav-link active" aria-current="page" href="<?=base_url()?>">Home</a>
 						</li>
 						<li class="nav-item position-relative rounded">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#collapse_1" aria-expanded="false">
@@ -171,7 +171,7 @@
 		<div id="jumbotron" class="container py-4">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb breadcrumb-header">
-					<li class="breadcrumb-item active" aria-current="page">Home</li>
+					<li class="breadcrumb-item active" aria-current="page"><a class="text-decoration-none" href="<?=base_url()?>">Home</a></li>
 					<li class="breadcrumb-item" aria-current="page"><?= ucfirst($title) ?? trim('') ?></li>
 				</ol>
 			</nav>
