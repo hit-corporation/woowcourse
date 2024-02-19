@@ -137,6 +137,7 @@ class Course extends MY_Controller {
 				'instructor_id' => $instructor_id,
 				'category_id' => $post['category_id'],
 				'duration' => $post['duration'],
+				'duration' => $post['course_duration'],
 			];	
 			$this->db->insert('courses', $data);
 			$insert = $this->db->insert_id();
@@ -232,7 +233,7 @@ class Course extends MY_Controller {
 		// UPDATE DATA COURSE 
 			$data['course_title'] = htmlspecialchars($post['course_title']);
 			$data['price'] = $post['price'];
-			$data['duration'] = $post['duration'];
+			$data['duration'] = $post['course_duration'];
 			$data['description'] = base64_decode($post['description']);
 			$data['category_id'] = $post['category_id'];
 			$data['updated_at'] = date('Y-m-d H:i:s');
