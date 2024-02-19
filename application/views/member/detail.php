@@ -12,7 +12,7 @@
 	<div class="container">
 		<div class="row mb-4">
 			<div class="col-12">
-				<button class="btn btn-lg btn-light border bg-blue">Course History</button>
+				<a href="<?=base_url('History')?>" class="btn btn-lg btn-light border bg-blue">Course History</a>
 			</div>
 		</div>
 
