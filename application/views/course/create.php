@@ -32,12 +32,20 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 					
 					<div class="mb-3">
 						<label for="price" class="form-label">Price <span class="text-red">*</span></label>
-						<input required type="number" name="price" class="form-control" id="price" value="<?=isset($data['price']) ? $data['price'] : ''?>">
+						<input required type="number" name="price" class="form-control" id="price" value="<?=isset($data['price']) ? $data['price'] : ''; ?>">
 
 						<span class="text-red mb-2">
 							<?= (isset($_SESSION['price'])) ? $_SESSION['price'] : '' ?>
 						</span>
 
+					</div>
+
+					<div class="mb-3">
+						<div class="col-2">
+							<label for="course_duration" class="form-label">Duration (Day)<span class="text-red">*</span></label>
+							<input type="number" required name="course_duration" class="form-control" value="<?=isset($data['duration']) ? $data['duration'] : ''; ?>">
+						</div>
+					
 					</div>
 
 					<div class="mb-3">
@@ -71,7 +79,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 						<img id="img-preview" class="d-inline-flex rounded border" width="250" src="<?=isset($data['course_img']) ? base_url('assets/files/upload/courses/'.$data['course_img']) : base_url('assets/images/no-image.jpg')?>" alt="photo profile">
 						<br>
 						<label for="formFile" class="form-label">Course Image <span class="text-red">*</span></label>
-						<input required id="filetag" name="image" type="file" class="mt-3 form-control">
+						<input <?=isset($data['course_img']) ? '' : 'required'?> id="filetag" name="image" type="file" class="mt-3 form-control">
 						<br>
 					</div>
 				</div>
