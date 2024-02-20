@@ -195,7 +195,7 @@
 			<div class="row py-4 mt-4 position-relative">
 				<div class="col-12">
 					<h1 class="top text-center text-uppercase mt-4 pt-5 ml2">
-						<span class="text-primary">Woow</span>
+						<span class="text-blue">Woow</span>
 						<span class="text-white">Course</span>
 					</h1>
 					<h3 class="text-center text-white text-shadow ml3 letters">
@@ -255,7 +255,7 @@
                             
                             <h5 class="mt-1">Rp <?=number_format($val['price'])?></h5>
                             <div class="d-flex flex-nowrap w-100" id="checkout-button">
-                                <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-primary text-white w-100 mt-3">
+                                <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-subscribe text-white w-100 mt-3">
 									Detail
 								</a>
                             </div>
@@ -314,7 +314,7 @@
                             
                             <h5 class="mt-1">Rp <?=number_format($val['price'])?></h5>
                             <div class="d-flex flex-nowrap w-100" id="checkout-button">
-                                <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-primary text-white w-100 mt-3">
+                                <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-subscribe text-white w-100 mt-3">
 									Detail
 								</a>
                             </div>
@@ -487,10 +487,10 @@
 		});
 
 		let letters = document.querySelectorAll('.letter');
-		letters[0].style.color = '#20c997';
-		letters[1].style.color = '#20c997';
-		letters[2].style.color = '#20c997';
-		letters[3].style.color = '#20c997';
+		letters[0].style.color = '#556ee5';
+		letters[1].style.color = '#556ee5';
+		letters[2].style.color = '#556ee5';
+		letters[3].style.color = '#556ee5';
 
 		// Wrap every letter in a span
 		var textWrapper = document.querySelector('.ml3');
