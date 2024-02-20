@@ -93,7 +93,7 @@ function load_data(page = 1, limit = 10){
 									
 									<div class="row px-2">
 										<div class="col-12 d-flex flex-nowrap justify-content-end ps-2">
-											<button id="btn-subscribe" type="button" class="btn btn-sm btn-success text-uppercase">
+											<button id="btn-subscribe" type="button" class="btn btn-sm btn-subscribe text-uppercase">
 												<i class="fa-regular fa-handshake"></i>
 												Subscribe !!!
 											</button>
