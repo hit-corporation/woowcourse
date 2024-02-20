@@ -26,6 +26,7 @@ class Course_model extends CI_Model {
 		$this->db->join('members m', 'm.id = c.member_id');
 		$this->db->join('courses co', 'co.id = c.course_id');
 		$this->db->where('member_id', $id);
+		$this->db->where('status', 'unpaid');
 		return $this->db->get()->result_array() ?? [];
 		
 	}
