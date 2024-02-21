@@ -10,7 +10,7 @@
 	<div class="container">
         <div class="row">
             <div class="col-lg-8">
-				<?php foreach($carts as $value) : ?>
+				<?php foreach($data as $value) : ?>
                 <!-- START CARD-->
                 <div class="panel shadow-sm bg-white text-dark mb-3">
                     <div class="panel-body p-2">
@@ -49,26 +49,8 @@
     </div>
 </section>
 
-<script>
-	function hapusList(id){
-		$.ajax({
-			type: "POST",
-			url: BASE_URL+"cart/delete",
-			data: {id: id},
-			dataType: "JSON",
-			success: function (res) {
-				if(res.success){
-					Swal.fire({
-						icon: 'success',
-						title: '<h5 class="text-success">Success</h5>',
-						html: '<span class="text-success fw-semibold">Berhasil di masukan ke daftar chart !!!</span>',
-						timer: 1200
-					});
-					window.location.href = BASE_URL+'cart';
-				}
-			}
-		});
-	}
-</script>
-
 <?php $this->end() ?>
+
+<?php $this->start('js')?>
+
+<?php $this->end()?>
