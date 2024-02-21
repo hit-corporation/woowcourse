@@ -125,13 +125,22 @@ class Course extends MY_Controller {
 		// upload success
 		$upload_data_image = $this->upload->data();
 		$email = $this->session->userdata('user')['email'];
-		$instructor_id = $this->db->where('email', $email)->get('instructors')->row_array()['id'];
+		$instructor_id = $this->db->where('email', $email)->get('instructors')->row_array();
+
+		if(!$instructor_id){
+			$res = ['success'=>false, 'message'=>'Anda belum terdaftar sebagai instruktur!'];
+			header('Content-Type: application/json; charset=utf-8');
+			echo json_encode($res);
+			die;
+		}
+
+		$instructor_id = $instructor_id['id'];
 		
 		// INSERT COURSE
 			$data = [
 				'course_code' => $this->random_string(5),
 				'course_title' => $post['course_title'],
-				'price' => htmlspecialchars($post['price']),
+				'price' => str_replace([',','.'], '', htmlspecialchars($post['price'])),
 				'course_img' => $upload_data_image['file_name'],
 				'description' => base64_decode($post['description']),
 				'instructor_id' => $instructor_id,
