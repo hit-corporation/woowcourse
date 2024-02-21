@@ -31,8 +31,8 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 					</div>
 					
 					<div class="mb-3">
-						<label for="price" class="form-label">Price <span class="text-red">*</span></label>
-						<input required type="number" name="price" class="form-control" id="price" value="<?=isset($data['price']) ? $data['price'] : ''; ?>">
+						<label for="price" class="form-label">Price (IDR) <span class="text-red">*</span></label>
+						<input required type="text" name="price" class="form-control" id="price" value="<?=isset($data['price']) ? $data['price'] : ''; ?>">
 
 						<span class="text-red mb-2">
 							<?= (isset($_SESSION['price'])) ? $_SESSION['price'] : '' ?>
@@ -42,7 +42,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 
 					<div class="mb-3">
 						<div class="col-2">
-							<label for="course_duration" class="form-label">Duration (Day)<span class="text-red">*</span></label>
+							<label for="course_duration" class="form-label">Duration (Day) <span class="text-red">*</span></label>
 							<input type="number" required name="course_duration" class="form-control" value="<?=isset($data['duration']) ? $data['duration'] : ''; ?>">
 						</div>
 					
@@ -50,6 +50,8 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 
 					<div class="mb-3">
 						<label for="formVideo" class="form-label">Course Video <span class="text-red">*</span></label>
+						<br>
+						<span>Video format upload must .MP4</span>
 						<br>
 						<div class="course-video-container">
 							<?php if(isset($videos[0]['video'])){?>
@@ -122,4 +124,15 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	<script src="<?=base_url('assets/node_modules/@widgetjs/tree/dist/tree.min.js')?>"></script>
 	<script src="<?=base_url('assets/js/_createCourse.js')?>" defer></script>
+
+	<script>
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+		}
+
+		let price = document.querySelector('input[name="price"]');
+		price.addEventListener('focusout', function(){
+			price.value = numberWithCommas(price.value);
+		});
+	</script>
 <?php $this->end() ?>
