@@ -239,7 +239,6 @@ function uploadFiles(e){
 
 	
 	xhr.upload.addEventListener('progress', event => {
-		console.log(event);
 		updateStatusMessage(`⏳ Uploaded ${event.loaded} bytes of ${event.total}`);
 		updateProgressBar(event.loaded / event.total);
 	});
@@ -261,7 +260,7 @@ function uploadFiles(e){
 			if(res.success == false){
 				Swal.fire({
 					title: "Gagal!",
-					text: "Data Gagal di simpan!",
+					text: res.message,
 					icon: "error"
 				});
 				setInterval(() => {
