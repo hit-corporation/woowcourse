@@ -364,14 +364,33 @@ class Login extends MY_Controller {
 			$valid_email = $this->user_model->check_user_email($facebook_user_info['email']);
 			if($valid_email->num_rows() > 0) {
 				$row_user = $valid_email->result();
-				// $data_user['last_login'] = date('d-m-Y h:i:s');
-				$this->db->where('userid', $row_user[0]->userid)->update('users', ['last_login'=>date('d-m-Y h:i:s')]);
-				// $this->user_model->update_record($data_user, $row_user[0]->user_id);
+				$this->db->where('id', $row_user[0]->id)->update('users', ['last_login'=>date('d-m-Y h:i:s')]);
 			}else{
-				// $data_user['created_at'] = date('d-m-Y h:i:s');
-				// $result = $this->user_model->add($data_user);		
-				$this->session->set_flashdata('error', ['message' => 'Email tidak ditemukan, Harap melakukan registrasi!']);
-				redirect('login');				
+				// insert ke tabel users
+					$data_insert_user = [
+						'created_at' => date('Y-m-d H:i:s'),
+						'updated_at' => date('Y-m-d H:i:s'),
+						'user_code' => create_uuid4(),
+						'first_name' => $fb_name[0],
+						'last_name' => $fb_name[1],
+						'email'	=>	$facebook_user_info['email'],
+						'password' => password_hash(123456, PASSWORD_DEFAULT),
+						'user_level' => 2,
+						'last_login' => date('Y-m-d H:i:s'),
+						'active' => 1
+					];
+					$this->user_model->insert($data_insert_user);
+
+				// insert ke tabel members
+					unset($data_insert_user['user_code']);
+					unset($data_insert_user['password']);
+					unset($data_insert_user['user_level']);
+					unset($data_insert_user['last_login']);
+					unset($data_insert_user['active']);
+
+					$data_insert_user['last_login_date'] = date('Y-m-d H:i:s');
+
+					$this->db->insert('members', $data_insert_user);
 			}
 			
 			$user_rec = $this->user_model->check_user_email($facebook_user_info['email']);
