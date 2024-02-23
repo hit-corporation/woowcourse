@@ -42,17 +42,9 @@ class Instructor extends MY_Controller {
 		foreach ($data['courses'] as $key => $value) {
 			$total_video = $this->db->where('course_id', $value['id'])->get('course_videos')->num_rows();
 			$total_subscriber = $this->db->where('course_id', $value['id'])->where('status', 'paid')->get('carts')->num_rows();
-			$wishlist = $this->db->where('course_id', $value['id'])->where('member_id', $member_id)->get('wishlists')->num_rows();
-
-			if($wishlist > 0){
-				$is_wishlist = true;
-			}else{
-				$is_wishlist = false;
-			}
-
+			
 			$data['courses'][$key]['total_video'] = $total_video;
 			$data['courses'][$key]['total_subscriber'] = $total_subscriber;
-			$data['courses'][$key]['is_wishlist'] = $is_wishlist;
 		}
 
 		echo $this->template->render('instructor/detail', $data);
