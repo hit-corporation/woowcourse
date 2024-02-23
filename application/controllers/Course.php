@@ -52,6 +52,7 @@ class Course extends MY_Controller {
 
 		$data['videos'] = $this->db->where('course_id', $id)->get('course_videos')->result_array();
 		$data['comments'] = $this->db->where('course_id', $id)->join('members m', 'm.id = r.member_id')->get('ratings r')->result_array();
+		$data['total_murid'] = $this->db->where('course_id', $id)->where('status', 'paid')->get('carts')->num_rows();
 		$data['id'] = $id; 
 
 		echo $this->template->render('course/detail', $data);

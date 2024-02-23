@@ -191,7 +191,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 						<dt class="col-6 py-1">
 							<span class="text-secondary"><i class="fa-solid fa-users me-1 text-warning"></i> Murid</span>
 						</dt>
-						<dd class="col-6 py-1"><strong>240 Orang</strong></dd>
+						<dd class="col-6 py-1"><strong><?=$total_murid?> Orang</strong></dd>
 					</dl>
 
 					<div class="row mb-2">
