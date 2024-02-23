@@ -79,47 +79,56 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 				<div class="row">
 					<?php foreach($courses as $key => $val): ?>
 
-						<div class="col-12 col-md-6 col-lg-4 col-xl-3 mt-2">
-							<div class="card position-relative d-lg-flex flex-nowrap card-course">
-								<img class="" src="<?=base_url('assets/files/upload/courses/'.$val['course_img'])?>">
-								<div class="card-body">
-									<h5 class="text-uppercase text-shadow"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
-									<div class="pt-1">
-										<span>
-											<i class="fa fa-star text-primary"></i>
-											<span><?=$val['rating']?></span>
-										</span>
-									</div>
-									<div class="d-flex flex-nowrap py-3">
-										<div class="col border-right">
-											<i class="fa-solid fa-clock text-warning"></i><span class="ms-1">1 Week</span>
-										</div>
-										<div class="col border-right">
-											<i class="fa-solid fa-calendar text-warning"></i><span class="ms-1"><?=$val['total_video']?> Videos</span>
-										</div>
+						<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="card" id="card-course">
+                        <img onerror="this.onerror=null;this.src='assets/images/default-course.jpeg';" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
+                        <div class="card-body">
+                            <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
+                            <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
+                                <span class="border-end pe-2">
+                                    <img class=" teacher-icon rounded-circle border-1 shadow-sm" width="30" src="<?=!empty($data['photo']) ? base_url('assets/images/members/').$data['photo'] : base_url('assets/images/images.jpg'); ?>" style="">
+                                </span>
+                                <span class="ms-2">
+                                    <h6 class="text-capitalize text-secondary fw-normal text-shadow"><?=$data['first_name'].' '.$data['last_name']?></h6>
+                                </span>
+                            </div>
+							<div class="row">
+								<div class="col-8">
+									<span class="w-100">
+										<span class="fw-semibold me-1"><?=($val['rating']) ? $val['rating'] : 0 ?></span>
+
+										<?php if($val['rating']): ?>
+											<i class="fa-solid fa-star text-primary"></i>
+										<?php else: ?>
+											<i class="fa-solid fa-star text-secondary"></i>
+										<?php endif ?>
+
+									</span>
 										
-									</div>
-									
-									<div class="row">
-										<div class="col-12 d-flex flex-nowrap justify-content-end">
-
-											<?php if($is_instructor):?>
-												<a href="<?=base_url('Course/edit/').$val['id']?>" class="btn btn-sm btn-success text-uppercase me-1">
-													<i class="fa-regular fa-edit"></i>
-												</a>
-											<?php endif ?>
-
-											<button type="button" class="btn btn-sm btn-success text-uppercase">
-												<i class="fa-regular fa-handshake"></i>
-												Subscribe !!!
-											</button>
-										</div>
-									</div>
+									<span class="fw-semibold ms-1">
+										| 
+										<?= $val['total_subscriber'].' Subs' ?>
+									</span>
 								</div>
-								<span class="label-harga">Rp. <?=number_format($val['price'])?></span>
+								<div class="col-4 text-end">
+									<?php if($val['is_wishlist']): ?>
+										<i class="fa fa-heart text-red fs-4 me-2 wishlist-icon" data="<?=$val['id']?>"></i>
+									<?php else: ?>
+										<i class="fa fa-heart text-secondary fs-4 me-2 wishlist-icon" data="<?=$val['id']?>"></i>
+									<?php endif ?>
+								</div>
 							</div>
-							
-						</div>
+                            
+                            <h5 class="mt-1">Rp <?=number_format($val['price'])?></h5>
+                            <div class="d-flex flex-nowrap w-100" id="checkout-button">
+                                <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-subscribe text-white w-100 mt-3">
+									Detail
+								</a>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
 
 					<?php endforeach ?>
 					<!-- <div class="col-12 col-md-6 col-lg-4 col-xl-3 mt-2">
