@@ -32,7 +32,7 @@ class Instructor extends MY_Controller {
 
 			$member = $this->db->where('email', $email)->get('members')->row_array();
 			$member_id = $member['id'];
-			$data['is_instructor'] = true;
+			$data['is_instructor'] = $member['as_instructor'];
 		}
 
 		$instruktur = $this->instructor_model->detail($member_id);
