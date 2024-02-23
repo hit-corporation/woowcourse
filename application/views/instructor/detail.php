@@ -111,11 +111,7 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 									</span>
 								</div>
 								<div class="col-4 text-end">
-									<?php if($val['is_wishlist']): ?>
-										<i class="fa fa-heart text-red fs-4 me-2 wishlist-icon" data="<?=$val['id']?>"></i>
-									<?php else: ?>
-										<i class="fa fa-heart text-secondary fs-4 me-2 wishlist-icon" data="<?=$val['id']?>"></i>
-									<?php endif ?>
+									
 								</div>
 							</div>
                             
