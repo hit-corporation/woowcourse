@@ -80,7 +80,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 								<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
 									<div class="accordion-body" style="overflow-x: auto;">
 										<?php foreach ($videos as $key => $value) : ?>
-											<video width="500" src="<?=!empty($value['video']) ? base_url('assets/files/upload/courses/').$value['video'] : '' ?>" controls></video>
+											<video width="500" src="<?=!empty($value['video']) ? base_url('assets/files/upload/courses/').$value['video'] : '' ?>" controls controlsList="nodownload"></video>
 										<?php endforeach ?>
 									</div>
 								</div>
