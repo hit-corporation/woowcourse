@@ -165,7 +165,19 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 						<dt class="col-6 mb-1">
 							<span class="text-secondary"><i class="fa-solid fa-clock me-1 text-warning"></i> Durasi Kursus</span>
 						</dt>
-						<dd class="col-6 py-1"><strong>3 Bulan</strong></dd>
+						<dd class="col-6 py-1">
+							<strong>
+								<?php
+									$result = array($data['duration']);
+
+									$sub_struct_month = ($result[0] / 30) ;
+									$sub_struct_month = floor($sub_struct_month); 
+									$sub_struct_days = ($result[0] % 30); // the rest of days
+									$sub_struct = $sub_struct_month."m ".$sub_struct_days."d";
+									
+									echo $sub_struct;
+								?>
+							</strong></dd>
 
 						<dt class="col-6 mb-1">
 							<span class="text-secondary"><i class="fa-solid fa-clock me-1 text-warning"></i> Total Durasi Video</span>
