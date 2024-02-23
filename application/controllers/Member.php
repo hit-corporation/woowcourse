@@ -338,15 +338,23 @@ class Member extends MY_Controller
 
 				// jika as_instructor di check lakukan update data tabel instructors
 				if($post['as_instructor'] == true){
+					// JIKA DATA SUDAH ADA DI TABEL INSTRUKTOR MAKA LAKUKAN UPDATE JIKA BELUM ADA LAKUKAN INSERT
+					$cek = $this->db->where('email', $post['email'])->get('instructors')->row_array();
+
 					$data['address'] = $post['address'];
 					$data['about'] = base64_decode($post['about']);
 					unset($data['as_instructor']);
 					unset($data['job']);
-					$update = $this->db->where('email', $post['email'])->update('instructors', $data);
 
-					// jika data belum ada di tabel intruktors maka lakukan insert data baru
-					$data['email'] = $post['email'];
-					$this->db->insert('instructors', $data);
+					if($cek){
+						$data['updated_at'] = date('Y-m-d H:i:s');
+						$update = $this->db->where('email', $post['email'])->update('instructors', $data);
+					}else{
+						$data['created_at'] = date('Y-m-d H:i:s');
+						$data['updated_at'] = date('Y-m-d H:i:s');
+						$data['email'] = $post['email'];
+						$this->db->insert('instructors', $data);
+					}
 				}
 
 				$res = isset($update) ?  ['success' => true, 'message' => 'Data berhasil diubah.'] :  ['success' => false, 'message' => 'Data gagal diubah.'];
