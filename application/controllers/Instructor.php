@@ -19,22 +19,23 @@ class Instructor extends MY_Controller {
 		echo $this->template->render('index');
 	}
 
-	public function detail($id = ''){
-		// CEK APAKAH USER SUDAH TERDAFTAR SEBAGAI INSTRUKTOR
+	public function detail($member_id = ''){
 		$data['is_instructor'] = false;
-		if(!$id){
+
+		// CEK APAKAH USER SUDAH TERDAFTAR SEBAGAI INSTRUKTOR
+		if(!$member_id){
 			$email = $this->session->userdata('user')['email'];
 			$cek = $this->db->where('email', $email)->get('instructors')->row_array();
 			
 			// JIKA DATA INSTRUKTOR TIDAK ADA MAKA REDIRECT KE LIST ALL INSTRUCTORS
 			if(is_null($cek)) redirect('instructor/all');
 
-
-			$id = $cek['id'];
+			$member = $this->db->where('email', $email)->get('members')->row_array();
+			$member_id = $member['id'];
 			$data['is_instructor'] = true;
 		}
 
-		$instruktur = $this->instructor_model->detail($id);
+		$instruktur = $this->instructor_model->detail($member_id);
 		$data['data'] = (!is_null($instruktur)) ? $instruktur : [];
 		$data['courses'] = $this->instructor_model->get_courses($instruktur['id']);
 
