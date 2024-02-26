@@ -67,6 +67,7 @@ class Course extends MY_Controller {
 	// SIMPAN COURSE
 	public function store(){
 		$post = $this->input->post();
+		$video_descriptions = (json_decode($post['video_descriptions']));
 
 		$this->form_validation->set_rules('course_title', 'Course Title', 'required');
 		$this->form_validation->set_rules('category_id', 'Category', 'required');
@@ -158,6 +159,7 @@ class Course extends MY_Controller {
 					'course_id' => $insert,
 					'video' => $val['video'],
 					'seq' => $val['seq'],
+					'video_description' => $video_descriptions[$key]
 				];
 				$this->db->insert('course_videos', $dataVideo);
 			}

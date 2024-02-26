@@ -211,7 +211,14 @@ function uploadFiles(e){
 	let duration = countVideoDuration(allVideo);
 
 	// XHR and FormData instance creation is here
-	let videos = $('input[data="video"]');
+
+	// VIDEO DESCRIPTIONS
+	const videoDescriptions = [];
+	let inputVideoDescriptions = $('input[name="video_description"]');
+	for(let a=0; a < inputVideoDescriptions.length; a++){
+		videoDescriptions.push(inputVideoDescriptions[a].value);
+	}
+
 
 	let url 		= BASE_URL+"course/store";
 
@@ -223,6 +230,7 @@ function uploadFiles(e){
 	const data 		= new FormData(e.target);
 	// data.append("course_title", document.getElementById('course_title').value);
 	data.append("category_id", checked);
+	data.append("video_descriptions", JSON.stringify(videoDescriptions));
 	data.append("description", btoa(document.getElementById('editor').__quill.root.innerHTML));
 	data.append("duration", duration);
 	
@@ -294,8 +302,11 @@ btnAddMoreVideo.addEventListener('click', (e) => {
 		alert('Maksimal 5 Video'); return;
 	}
 
-	$('.course-video-container').append(`<video width="300" class="" poster="${BASE_URL}assets/images/no-video.png" id="video-preview[${counter}]" src="" controls></video>
-		<input name="course_video[${counter}]" id="course_video[${counter}]" onchange="changeVideo(this)" type="file" class="form-control" data="video">`);
+	$('.course-video-container').append(`
+		<video width="300" class="" poster="${BASE_URL}assets/images/no-video.png" id="video-preview[${counter}]" src="" controls></video>
+		<input name="course_video[${counter}]" id="course_video[${counter}]" onchange="changeVideo(this)" type="file" class="form-control" data="video">
+		<input type="text" name="video_description" class="form-control mt-2" placeholder="Masukan Deskripsi Video">
+	`);
 	counter++;
 });
 

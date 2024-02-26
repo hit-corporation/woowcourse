@@ -53,7 +53,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 						<br>
 						<span>Video format upload must .MP4</span>
 						<br>
-						<div class="course-video-container">
+						<div class="course-video-container border rounded p-3">
 							<?php if(isset($videos[0]['video'])){?>
 								<?php foreach ($videos as $key => $value) : ?>
 									<video width="300" class="" poster="<?=base_url('assets/images/no-video.png')?>" id="video-preview[<?=$key?>]" src="<?=isset($value['video']) ? base_url('assets/files/upload/courses/').$value['video'] : '' ?>" controls></video>
@@ -64,6 +64,7 @@ $this->layout('layouts::main_template', ['title' => 'Create New Course']) ?>
 							<?php if(!isset($videos[0]['video'])){?>
 								<video width="300" class="" poster="<?=base_url('assets/images/no-video.png')?>" id="video-preview[0]" src="<?=isset($value['video']) ? base_url('assets/files/upload/courses/').$value['video'] : '' ?>" controls></video>
 								<input name="course_video[0]" id="course_video[0]" type="file" data="video" class="form-control" value="">
+								<input type="text" name="video_description" class="form-control mt-2" placeholder="Masukan Deskripsi Video">
 							<?php } ?>
 						</div>
 
