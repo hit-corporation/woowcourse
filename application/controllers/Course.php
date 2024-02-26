@@ -50,6 +50,18 @@ class Course extends MY_Controller {
 		$data['data'] = $this->topics_model->detail($id);
 		if(!$data['data']) redirect('setting/page_not_found');
 
+		// cek kursus ini sudah di beli dan masih aktif atau belum
+			$email = $_SESSION['user']['email'];
+			$member = $this->db->where('email', $email)->get('members')->row_array();
+
+			$cek = $this->db->where('member_id', $member['id'])
+					->where('course_id', $id)
+					->where('end_dt >=', date('Y-m-d H:i:s'))
+					->where('status', 'paid')
+					->get('carts')->row_array();
+
+			$data['show_video'] = ($cek) ? true : false;
+
 		$data['videos'] = $this->db->where('course_id', $id)->get('course_videos')->result_array();
 		$data['comments'] = $this->db->where('course_id', $id)->join('members m', 'm.id = r.member_id')->get('ratings r')->result_array();
 		$data['total_murid'] = $this->db->where('course_id', $id)->where('status', 'paid')->get('carts')->num_rows();
