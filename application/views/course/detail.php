@@ -70,23 +70,25 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 					<!-- TAB 2 -->
 					<div class="tab-pane fade" id="topic" role="tabpanel" tabindex="0">
 						<!-- ACCORDION -->
+						<?php foreach ($videos as $key => $value) : ?>
 						<div class="accordion" id="accordion-lesson">
 							<div class="accordion-item">
 								<h2 class="accordion-header">
-									<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-										Course Videos
+									<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<?=$key?>" aria-expanded="true" aria-controls="collapseOne<?=$key?>">
+										<?=$value['video_description']?>
 									</button>
 								</h2>
-								<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+								<div id="collapseOne<?=$key?>" class="accordion-collapse collapse <?=($key == 0) ? 'show' : ''?>" data-bs-parent="#accordionExample">
 									<div class="accordion-body" style="overflow-x: auto;">
-										<?php foreach ($videos as $key => $value) : ?>
+										<?php // foreach ($videos as $key => $value) : ?>
 											<video width="500" src="<?=!empty($value['video']) ? base_url('assets/files/upload/courses/').$value['video'] : '' ?>" controls controlsList="nodownload"></video>
-										<?php endforeach ?>
+										<?php // endforeach ?>
 									</div>
 								</div>
 							</div>
 						</div>
-							<!-- END ACCOURDIUON -->
+						<?php endforeach ?>
+						<!-- END ACCOURDIUON -->
 					</div>
 					<!-- TAB 3 -->
 					<div class="tab-pane fade" id="review" role="tabpanel" tabindex="0">
