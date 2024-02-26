@@ -38,7 +38,14 @@ class Transaction extends MY_Controller {
 				$this->db->insert('transaction_details', $data_detail);
 
 				// update status menjadi paid di tabel cart
-				$this->db->update('carts', ['status' => 'paid'], ['member_id' => $memberId, 'course_id' => $val]);
+				$course = $this->db->where('id', $val)->get('courses')->row_array(); // get data kursus
+
+				$data_cart = [
+					'status' => 'paid',
+					'start_dt' => date('Y-m-d H:i:s'),
+					'end_dt' => date('Y-m-d H:i:s', strtotime('+'.$course['duration'].' day', time())),
+				];
+				$this->db->update('carts', $data_cart, ['member_id' => $memberId, 'course_id' => $val]);
 			}
 
     }
