@@ -21,7 +21,7 @@
                             <div class="col-12 col-lg-8 position-relative top-0 left-0">
                                 <div class="row h-75">
                                     <div class="col-lg-9">
-                                        <h4 class="mb-1"><strong><?=$value['course_title']?></strong></h4>
+                                        <h4 class="mb-1"><strong><a class="text-decoration-none" href="<?=base_url('course/detail/').$value['course_id']?>"><?=$value['course_title']?></a></strong></h4>
                                         <p class="text-secondary">8 lessons</p>
 										<p>Tanggal dibuat: <?=date('d M Y H:i',strtotime($value['created_at']))?></p>
 										<p>Tanggal berakhir: <?=date('d M Y H:i',strtotime($value['created_at']))?></p>
