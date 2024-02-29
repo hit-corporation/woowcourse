@@ -72,11 +72,6 @@
                             <h5 class="ms-auto fw-semibold total-pembelian">Rp <?=number_format($course_price + $ppn) ?></h5>
                         </div>
 
-						<div class="row mt-3 mb-3">
-							<dd class="col-6 text-capitalize mb-0 fs-6">Pilih Pembayaran</dd>
-                            <dt class="col-6 text-end fs-6 pilih-pembayaran">silahkan pilih ></dt>
-						</div>
-
                         <button id="checkoutBtn" type="button" class="btn btn-primary w-100 text-center text-capitalize text-white fw-semibold mt-3">
                             checkout
                         </button>
@@ -87,58 +82,10 @@
     </div>
 </section>
 
-<div id="myModal" class="modal" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title">Pilih Pembayaran</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
+<div id="snap-container"></div>
+<pre class="d-none"><div id="result-json">JSON result will appear here after payment:<br></div></pre>
 
-		
-		<div class="mb-3 ms-3 mt-3 pe-3">
-			<label for="rek-member" class="form-label">Masukan Nomor Rekening Anda <span class="text-red">*</span></label>
-			<input type="text" class="form-control" id="rek-member" placeholder="123xxx">
-		</div>
-		
-
-		<div class="modal-body">
-			<p class="fw-bold" style="cursor: pointer;" data-bs-dismiss="modal" data="transfer bank bca" rek="437163682">Transfer bank BCA - 437163682 ></p>
-			<p class="fw-bold" style="cursor: pointer;" data-bs-dismiss="modal" data="transfer bank mandiri" rek="392864272">Transfer bank Mandiri - 392864272 ></p>
-			<p class="fw-bold" style="cursor: pointer;" data-bs-dismiss="modal" data="transfer bank bni" rek="239828343432">Transfer bank BNI - 2398282 ></p>
-		</div>
-
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		</div>
-		</div>
-	</div>
-</div>
-
-<div id="checkoutModal" class="modal" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title">Checkout Pembayaran</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-
-		<div class="modal-body">
-			<p class="" style="cursor: pointer;" data-bs-dismiss="modal">
-				Harap melakukan pembayaran
-				<span class="fw-bold bank-name"> </span>
-				<span class="rek_number"> </span> a/n Woowcourse
-			</p>
-			<p>Nominal Transfer: <span class="nominal-transfer"></span></p>
-		</div>
-
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			<button type="submit" id="save" class="btn btn-primary text-white">Save</button>
-		</div>
-		</div>
-	</div>
-</div>
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<Set your ClientKey here>"></script>
 
 <script>
 	function hapusList(id){
@@ -162,35 +109,16 @@
 	}
 </script>
 
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-vaoPLqzIF6aDGQX9"></script>
+
 <script>
-	let pilihPembayaran = document.querySelector('.pilih-pembayaran');
 	let checkoutBtn = document.querySelector('#checkoutBtn');
-	let modalBody = document.querySelector('.modal-body').children;
-	let bankName = document.querySelector('.bank-name');
-	let rekNumber = document.querySelector('.rek_number');
 	let totalPembelian = document.querySelector('.total-pembelian');
-	let nominalTransfer = document.querySelector('.nominal-transfer');
-	let save = document.querySelector('#save');
-
-	pilihPembayaran.addEventListener('click', function(e){
-		$('#myModal').modal('show');
-	});
-
-	// looping modal body jenis pembayaran
-	for(let i=0; i < modalBody.length; i++){
-		modalBody[i].addEventListener('click', function(){
-			pilihPembayaran.innerHTML = this.attributes.data.value;
-			rekNumber.innerHTML = this.attributes.rek.value;
-		});
-	}
 
 	checkoutBtn.addEventListener('click', function(){
-		bankName.innerHTML = pilihPembayaran.innerHTML;
-		nominalTransfer.innerHTML = totalPembelian.innerHTML;
+		// nominalTransfer.innerHTML = totalPembelian.innerHTML;
 		$('#checkoutModal').modal('show');
-	});
 
-	save.addEventListener('click', function(){
 		let inputCourseId = document.querySelectorAll('input[name="course_id"]');
 		let inputPrice = document.querySelectorAll('input[name="price"]');
 
@@ -205,20 +133,56 @@
 			type: "POST",
 			url: BASE_URL + "transaction/store",
 			data: {
-				total_bayar: nominalTransfer.innerHTML,
+				total_bayar: totalPembelian.innerHTML,
 				discount: 0,
-				jenis_pembayaran: pilihPembayaran.innerHTML,
-				no_rekening_member: $('#rek-member').val(),
-				no_rekening_tujuan: rekNumber.innerHTML,
 				courses_ids: courseIds,
 				course_prices: coursePrices
 			},
 			dataType: "JSON",
 			success: function (res) {
-				
+				$('#checkoutModal').modal('hide');
+
+				// SnapToken acquired from previous step
+				snap.pay(res.data.snap_token, {
+					// Optional
+					onSuccess: function(result){
+						/* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+						$.ajax({
+							type: "POST",
+							url: BASE_URL+"Transaction/midtrans_update",
+							data: result,
+							dataType: "JSON",
+							success: function (response) {
+							}
+						});
+						return;
+					},
+					// Optional
+					onPending: function(result){
+						console.log(result);
+						$.ajax({
+							type: "POST",
+							url: BASE_URL+"Transaction/midtrans_update",
+							data: result,
+							dataType: "JSON",
+							success: function (response) {
+								
+							}
+						});
+
+						/* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+						return;
+					},
+					// Optional
+					onError: function(result){
+						/* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+					}
+				});
 			}
 		});
+
 	});
+
 </script>
 
 <?php $this->end() ?>
