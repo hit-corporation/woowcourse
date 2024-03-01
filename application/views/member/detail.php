@@ -13,6 +13,7 @@
 		<div class="row mb-4">
 			<div class="col-12">
 				<a href="<?=base_url('History')?>" class="btn btn-lg btn-light border bg-blue">Course History</a>
+				<a href="<?=base_url('Transaction/list')?>" class="btn btn-lg btn-light border bg-blue">My Order</a>
 			</div>
 		</div>
 

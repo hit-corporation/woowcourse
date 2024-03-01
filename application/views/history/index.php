@@ -22,16 +22,17 @@
                                 <div class="row h-75">
                                     <div class="col-lg-9">
                                         <h4 class="mb-1"><strong><a class="text-decoration-none" href="<?=base_url('course/detail/').$value['course_id']?>"><?=$value['course_title']?></a></strong></h4>
-                                        <p class="text-secondary">8 lessons</p>
-										<p>Tanggal dibuat: <?=date('d M Y H:i',strtotime($value['created_at']))?></p>
-										<p>Tanggal berakhir: <?=date('d M Y H:i',strtotime($value['created_at']))?></p>
+                                        <p class="text-secondary">
+											<img src="<?=base_url('assets/images/members/'.$value['photo'])?>" alt="" width="20" class="rounded mt-2"><?=$value['first_name'].' '.$value['last_name']?>
+										</p>
+										<p>Tanggal dibuat: <?=date('d M Y H:i',strtotime($value['start_dt']))?></p>
+										<p>Tanggal berakhir: <?=date('d M Y H:i',strtotime($value['end_dt']))?></p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <hr class="m-0 p-0 text-secondary">
                                         <div class="w-100 d-flex mt-1">
-                                            <a href="javascript:void(0)" class="text-secondary text-capitalize mt-1">simpan ke <i>Wishlist</i> </a>
                                             <h5 class="fw-semibold text-end py-1 ms-auto text-shadow">Rp. <?=number_format($value['price'])?></h5>
                                         </div>
                                     </div>

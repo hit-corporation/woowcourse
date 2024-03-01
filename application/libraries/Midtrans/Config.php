@@ -13,13 +13,13 @@ class Config
      * 
      * @static
      */
-    public static $serverKey = 'SB-Mid-server-Kk4WUNC1k7dZkgpJcX0WMdie';
+    public static $serverKey = 'SB-Mid-server-EkeiQahc5akveyuj8TWM5cJL';
     /**
      * Your merchant's client key
      * 
      * @static
      */
-    public static $clientKey = 'SB-Mid-client-vaoPLqzIF6aDGQX9';
+    public static $clientKey = 'SB-Mid-client-B_ETo09-G-tDuTdB';
     /**
      * True for production
      * false for sandbox mode

@@ -109,7 +109,7 @@
 	}
 </script>
 
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-vaoPLqzIF6aDGQX9"></script>
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-B_ETo09-G-tDuTdB"></script>
 
 <script>
 	let checkoutBtn = document.querySelector('#checkoutBtn');
