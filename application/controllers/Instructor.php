@@ -25,7 +25,8 @@ class Instructor extends MY_Controller {
 		// CEK APAKAH USER SUDAH TERDAFTAR SEBAGAI INSTRUKTOR
 		if(!$member_id){
 			$email = $this->session->userdata('user')['email'];
-			$cek = $this->db->where('email', $email)->get('instructors')->row_array();
+			// $cek = $this->db->where('email', $email)->get('instructors')->row_array();
+			$cek = $this->db->where('email', $email)->where('as_instructor', true)->get('members')->row_array();
 			
 			// JIKA DATA INSTRUKTOR TIDAK ADA MAKA REDIRECT KE LIST ALL INSTRUCTORS
 			if(is_null($cek)) redirect('instructor/all');
