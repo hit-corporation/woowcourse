@@ -13,7 +13,10 @@ class Transaction extends MY_Controller {
     public function __construct() {
         parent::__construct();
 
+		$this->load->model('transaction_model');
+
 		require_once APPPATH . "libraries/Midtrans/midtrans.php";
+		require_once APPPATH . '../vendor/autoload.php';
 
 		$this->server_key = Midtrans\Config::$serverKey;
 		$this->client_key = Midtrans\Config::$clientKey;
@@ -186,46 +189,58 @@ class Transaction extends MY_Controller {
 	public function detail(){
 		$get = $this->input->get();
 
-		$data['data'] = $this->db->where('code', $get['code'])->get('transactions')->row_array();
-		$data['details'] = $this->db->where('transaction_id', $data['data']['id'])
-			->join('courses c', 'c.id = transaction_details.course_id')
-			->join('instructors i', 'i.id = c.instructor_id')
-			->get('transaction_details')->result_array();
+		$data['data'] = $this->transaction_model->get_data($get['code']);
+		$data['details'] = $this->transaction_model->get_detail($data['data']['id']);
 
 		// JALANKAN API KE MIDTRANS UNTUK CEK TRANSAKSI YANG MASIH PENDING
 		if($data['data']['status'] == 'pending'){
-	
-			// persiapkan curl
-			$ch = curl_init(); 
+
+			$client = new \GuzzleHttp\Client();
+
+			$basic_auth = base64_encode($this->server_key.':');
+			$response = $client->request('GET', $this->midtrans_base_url.'/'.$data['data']['transaction_id'].'/status', [
+			'headers' => [
+				'accept' => 'application/json',
+				'authorization' => 'Basic '.$basic_auth,
+			],
+			]);
+
+			// echo $response->getBody();
+			$res = json_decode($response->getBody(), true);
 			
-			$url = $this->midtrans_base_url.'/'.$data['data']['transaction_id']."/status";
+			if($res['status_code'] == '200'){ 
+				// jika sudah 200 maka lakukan update transaksi menjadi paid
+				$data_update = [
+					'status' 			=> 'paid', 
+					'status_message' 	=> $res['status_message'],
+					'transaction_dt' 	=> $res['settlement_time'],
+					'updated_at'		=> $res['settlement_time'],
+				];
+				$this->db->update('transactions', $data_update, ['transaction_id' => $data['data']['transaction_id']]);
 
-			var_dump($url);die;
+				// update cart menjadi paid & start_dt, end_dt update menjadi terbaru
+				// looping dulu detail transaksi nya
+				foreach ($data['details'] as $key => $value) {
+					$where = [
+						'member_id' => $data['data']['member_id'], 
+						'course_id' => $value['course_id'], 
+						'status' => 'pending'
+					];
 
-			// set url 
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-		
-			// return the transfer as a string 
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-	
-			$headers = [
-				'Content-Type' => 'application/json',
-				'Accept'=> 'application/json',
-				'Authorization' => 'Basic '.base64_encode($this->server_key.':')
-			];
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	
-			// $output contains the output string 
-			$output = curl_exec($ch); 
-		
-			// tutup curl 
-			curl_close($ch);      
-		
-			// menampilkan hasil curl
-			echo $output;die;
+					$data_cart = [
+						'updated_at' 	=> $res['settlement_time'],
+						'status'		=> 'paid',
+						'start_dt'		=> $res['settlement_time'],
+						'end_dt'		=>  date('Y-m-d H:i:s', strtotime('+'.$value['duration'].' day', strtotime($res['settlement_time']))),
+					];
+
+					
+					$this->db->update('carts', $data_cart, $where);
+				}
+			}
 		}
 
+		$data['data'] = $this->transaction_model->get_data($get['code']); // get data yg terbaru
 		echo $this->template->render('transaction/detail', $data);
 	}
 
