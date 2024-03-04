@@ -120,7 +120,9 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 									<h6 class="mt-1 mb-5 card-price">Rp <?=number_format($val['price'])?></h6>
 								</div>
 								<div class="col-6 text-end">
-									<a href="<?=base_url('course/edit/'.$val['id'])?>" class="btn btn-sm btn-light btn-edit"><i class="fa fa-pencil"></i></a>
+									<?php if($is_instructor) : ?>
+										<a href="<?=base_url('course/edit/'.$val['id'])?>" class="btn btn-sm btn-light btn-edit"><i class="fa fa-pencil"></i></a>
+									<?php endif ?>
 								</div>
 							</div>
 
