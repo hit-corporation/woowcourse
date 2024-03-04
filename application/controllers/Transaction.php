@@ -205,7 +205,7 @@ class Transaction extends MY_Controller {
 			],
 			]);
 
-			// echo $response->getBody();
+			// echo $response->getBody();die;
 			$res = json_decode($response->getBody(), true);
 			
 			if($res['status_code'] == '200'){ 
@@ -237,6 +237,8 @@ class Transaction extends MY_Controller {
 					
 					$this->db->update('carts', $data_cart, $where);
 				}
+			}elseif($res['status_code'] == '407'){
+				$this->db->update('transactions', ['status' => $res['transaction_status']], ['transaction_id' => $data['data']['transaction_id']]);
 			}
 		}
 
