@@ -37,7 +37,7 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 				<h1 class="text-uppercase text-shadow mb-0 txt-teacher-name"><?=$data['first_name'].' '.$data['last_name']?></h1>
 				<h4 class="text-capitalize text-secondary text-shadow txt-teacher-subject">Instructor</h4>
 				
-				<p class="text-justify mt-3 fs-5">
+				<p class="text-justify fs-6">
 					<?=isset($data['about']) ? $data['about'] : ''?>
 				</p>
 				<div class="col-12">
@@ -114,8 +114,17 @@ $this->layout('layouts::main_template', ['title' => 'Instructor']) ?>
 									
 								</div>
 							</div>
+
+                            <div class="row">
+								<div class="col-6">
+									<h6 class="mt-1 mb-5 card-price">Rp <?=number_format($val['price'])?></h6>
+								</div>
+								<div class="col-6 text-end">
+									<a href="<?=base_url('course/edit/'.$val['id'])?>" class="btn btn-sm btn-light btn-edit"><i class="fa fa-pencil"></i></a>
+								</div>
+							</div>
+
                             
-                            <h5 class="mt-1">Rp <?=number_format($val['price'])?></h5>
                             <div class="d-flex flex-nowrap w-100" id="checkout-button">
                                 <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-subscribe text-white w-100 mt-3">
 									Detail
