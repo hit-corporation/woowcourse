@@ -9,6 +9,27 @@ class Dashboard_model extends CI_Model {
 		parent::__construct();
 	}
 
+	public function get_new_instructor():array{
+		$q = $this->db->select('m.*')
+				->join('members m', 'm.email=i.email')
+				->limit('10')
+				->order_by('id','desc')
+				->where('as_instructor', true)
+				->get('instructors i');
+
+		return $q->result_array();
+	}
+
+	public function get_member_by_rating(): array{
+		$q =  $this->db->select('r.*, m.first_name, m.last_name, m.photo')
+				->where('rate >=', 4)
+				->join('members m', 'm.id=r.member_id')
+				->limit(5)->order_by('id', 'desc')
+				->get('ratings r');
+
+		return $q->result_array();
+	}
+
 	public function running_fine(){
 		$running_fine = $this->db->select('*')
 			->from('reports')

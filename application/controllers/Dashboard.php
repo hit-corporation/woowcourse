@@ -47,7 +47,7 @@ class Dashboard extends MY_Controller {
 		$data['instructors'] = $this->popular_instructor() ?? [];
 
 		// GET DATA NEW INSTRUCTORS
-		$data['new_instructors'] = $this->db->select('m.*')->join('members m', 'm.email=i.email')->limit('10')->order_by('id','desc')->get('instructors i')->result_array();
+		$data['new_instructors'] = $this->dashboard_model->get_new_instructor();
 
 		// GET SEMUA WISHLIST USER JIKA SUDAH LOGIN
 		if($member){
@@ -56,7 +56,7 @@ class Dashboard extends MY_Controller {
 		}
 
 		// GET RATING LIMIT 5
-		$data['ratings'] = $this->db->select('r.*, m.first_name, m.last_name, m.photo')->where('rate >=', 4)->join('members m', 'm.id=r.member_id')->limit(5)->order_by('id', 'desc')->get('ratings r')->result_array();
+		$data['ratings'] = $this->dashboard_model->get_member_by_rating();
 
 		$data['wishlists'] = $wishlists;
 
