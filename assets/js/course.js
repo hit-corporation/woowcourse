@@ -55,7 +55,7 @@ function load_data(page = 1, limit = 10){
 			if(response.data.length !== 0){
 				$.each(response.data, function (key, value){
 					$('#list-course').append(`
-						<div class="col-12 col-md-4 col-lg-4 py-1">
+						<div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-xs-6 py-1">
 							<div class="card position-relative flex-nowrap card-course">
 								<img onerror="this.onerror=null;this.src='assets/images/default-course.jpeg';" height="150" class="" src="${BASE_URL+'assets/files/upload/courses/'+value.course_img}">
 								<div class="card-body">

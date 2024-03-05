@@ -33,7 +33,7 @@
 
 @media (min-width: 1200px) {
 	.card-course{
-		height: 400px;
+		height: 450px;
 	}
 
 	.card-course > img{
@@ -102,11 +102,11 @@
 	float: right;
 }
 
-.card-course {
-	min-height: 400px;
+#card-course {
+	min-height: 450px;
 	/* height: auto; */
-	border-color: #c7c7c700;
-	box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 4px;
+	border-color: #ebeaeaec;
+	box-shadow: rgba(241, 241, 241, 0.616) 0px 1px 4px;
 	border-radius: 8px;
 }
 
