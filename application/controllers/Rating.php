@@ -54,6 +54,15 @@ class Rating extends MY_Controller {
 				$update = $this->db->where('id', $id)->update('courses', ['rating' => $rating]);
 
 
+			// cek di tabel rating, jika sudah pernah memberikan rating maka tidak boleh memberikan rating lagi
+			$cek = $this->db->where('course_id', $id)->where('member_id', $member['id'])->get('ratings')->num_rows();
+			if($cek > 0){
+				http_response_code(400);
+                $resp = ['success' => false, 'message' => 'Pemberian rating hanya boleh dilakukan sekali !!!' ];
+                echo json_encode($resp, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
+                return;
+			}
+
             $data = [
                 'rate'       => $rate,
                 'comments'   => $text,
