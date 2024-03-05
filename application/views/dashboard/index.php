@@ -217,7 +217,7 @@
                     <div class="card" id="card-course">
                         <img onerror="this.onerror=null;this.src='assets/images/default-course.jpeg';" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
                         <div class="card-body">
-                            <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
+                            <h5 class="w-100 text-start text-capitalize mt-1 mb-3 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=ucfirst(strtolower($val['course_title']))?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
                                 <span class="border-end pe-2">
                                     <img class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : base_url('assets/images/images.jpg'); ?>" style="">
@@ -253,7 +253,7 @@
 								</div>
 							</div>
                             
-                            <h5 class="mt-1">Rp <?=number_format($val['price'])?></h5>
+                            <span class="mt-2">Rp <?=number_format($val['price'])?></span>
                             <div class="d-flex flex-nowrap w-100" id="checkout-button">
                                 <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-subscribe text-white w-100 mt-3">
 									Detail
@@ -278,7 +278,7 @@
                     <div class="card" id="card-course">
                         <img onerror="this.onerror=null;this.src='assets/images/default-course.jpeg';" class="img-fluid" src="<?=base_url('assets/files/upload/courses/'.$val['course_img']); ?>" style="height:200px">
                         <div class="card-body">
-                            <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=$val['course_title']?></a></h5>
+                            <h5 class="w-100 text-start text-capitalize mt-1 title-card"><a class="text-decoration-none" href="<?=base_url('course/detail/'.$val['id'])?>"><?=ucfirst(strtolower($val['course_title']))?></a></h5>
                             <div class="w-100 d-flex flex-nowrap align-items-center mb-2">
                                 <span class="border-end pe-2">
                                     <img  class=" teacher-icon rounded-circle border-1 shadow-sm" src="<?=!empty($val['photo']) ? base_url('assets/images/members/').$val['photo'] : base_url('assets/images/image.png'); ?>" style="">
@@ -312,7 +312,7 @@
 								
 							</div>
                             
-                            <h5 class="mt-1">Rp <?=number_format($val['price'])?></h5>
+                            <span class="mt-2">Rp <?=number_format($val['price'])?></span>
                             <div class="d-flex flex-nowrap w-100" id="checkout-button">
                                 <a href="<?=base_url('course/detail/'.$val['id'])?>" class="btn btn-subscribe text-white w-100 mt-3">
 									Detail
