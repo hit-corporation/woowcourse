@@ -17,7 +17,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 	<!-- START SECTION BODY -->
 	
 	<div class="container">
-		<div class="row">
+		<div class="row pt-5 mt-2">
 			<div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 col-xs-12 mb-2">
 				<h1 class="text-uppercase text-shadow mb-1"><?=$data['course_title']?></h1>
 

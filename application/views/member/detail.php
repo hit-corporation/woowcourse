@@ -9,7 +9,7 @@
 
 	<!-- START SECTION BODY -->
 
-	<div class="container">
+	<div class="container mt-5">
 		<div class="row mb-4">
 			<div class="col-12">
 				<a href="<?=base_url('History')?>" class="btn btn-lg btn-light border bg-blue">Course History</a>

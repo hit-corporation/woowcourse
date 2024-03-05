@@ -8,13 +8,13 @@
 @import './bootstrap/mixins';
 @import './bootstrap/utilities';
 
-#content {
-    background-image: url('../images/bg1.jpg');
-    background-blend-mode: overlay;
-    background-color: color.adjust($gray-900, $alpha: -0.4);
-    background-size: cover;
-    min-height: 30vh;
-}
+// #content {
+//     background-image: url('../images/bg1.jpg');
+//     background-blend-mode: overlay;
+//     background-color: color.adjust($gray-900, $alpha: -0.4);
+//     background-size: cover;
+//     min-height: 30vh;
+// }
 
 .txt-teacher-name, .txt-teacher-subject {
     text-align: center;

@@ -10,7 +10,7 @@ $this->layout('layouts::main_template', ['title' => 'Course']) ?>
 
 <?php $this->start('body') ?>
 <div class="container">
-	<div class="row">
+	<div class="row pt-5">
 		<div class="col-lg-3">
 			<div class="offcanvas-lg offcanvas-start" id="filter-categories">
 				<div class="offcanvas-header justify-content-end">

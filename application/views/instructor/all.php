@@ -14,7 +14,7 @@
 
 <?php $this->start('body') ?>
 	<!-- start instructures -->
-	<section id="instructures" class="container my-3">
+	<section id="instructures" class="container my-3 pt-5">
 		<h3 class="text-center text-uppercase w-100 m-0 mb-5">Course Instructors</h3>
 		<!-- <h5 class="text-center fs-5 fw-normal w-100 mb-4">sample of teachers</h5> -->
 		<div class="row">

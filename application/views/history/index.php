@@ -8,7 +8,7 @@
 <?php $this->start('body') ?>
 
 	<div class="container">
-        <div class="row">
+        <div class="row pt-5 mt-2">
             <div class="col-lg-8">
 				<?php foreach($data as $value) : ?>
                 <!-- START CARD-->
