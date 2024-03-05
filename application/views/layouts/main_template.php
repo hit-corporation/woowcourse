@@ -179,7 +179,7 @@
 	</main>
 
 	<!-- START SECTION BODY -->
-	<section id="body" class="mt-5 bg-light py-5">
+	<section id="body" class="bg-light">
 		<?= $this->section('body') ?>
 	</section>
 	<!-- END SECTION BODY -->
