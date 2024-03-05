@@ -51,16 +51,20 @@ class Course extends MY_Controller {
 		if(!$data['data']) redirect('setting/page_not_found');
 
 		// cek kursus ini sudah di beli dan masih aktif atau belum
-			$email = $_SESSION['user']['email'];
-			$member = $this->db->where('email', $email)->get('members')->row_array();
+			$email = isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : null;	// jika belum login kasih null ajah
 
-			$cek = $this->db->where('member_id', $member['id'])
-					->where('course_id', $id)
-					->where('end_dt >=', date('Y-m-d H:i:s'))
-					->where('status', 'paid')
-					->get('carts')->row_array();
-
-			$data['show_video'] = ($cek) ? true : false;
+			$data['show_video'] = false;
+			if($email){ // jika sudah login cek apakah member sudah membeli atau belum
+				$member = $this->db->where('email', $email)->get('members')->row_array();
+	
+				$cek = $this->db->where('member_id', $member['id'])
+						->where('course_id', $id)
+						->where('end_dt >=', date('Y-m-d H:i:s'))
+						->where('status', 'paid')
+						->get('carts')->row_array();
+	
+				$data['show_video'] = ($cek) ? true : false;
+			}
 
 		$data['videos'] = $this->db->where('course_id', $id)->get('course_videos')->result_array();
 		$data['comments'] = $this->db->where('course_id', $id)->join('members m', 'm.id = r.member_id')->get('ratings r')->result_array();
