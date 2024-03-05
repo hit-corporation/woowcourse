@@ -58,7 +58,7 @@ class Rating extends MY_Controller {
                 'rate'       => $rate,
                 'comments'   => $text,
                 'course_id'  => $id,
-                'member_id'  => $member['id']
+                'member_id'  => $member['id'],
             ];
 
             if(!$this->db->insert('ratings', $data))
@@ -70,7 +70,7 @@ class Rating extends MY_Controller {
             }
 
             // $this->db->insert('ratings', $data);
-
+			$data['member_name'] = $member['first_name'].' '.$member['last_name'];
             http_response_code(200);
             $ratings = ['success' => true, 'message' => 'Komentar anda berhasil di masukkan', 'data' => $data];
             echo json_encode($ratings, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
