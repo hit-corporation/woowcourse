@@ -82,7 +82,7 @@ async function setComment(tbody, data=null) {
 
     const inner =   '<div class="row">' +
                         '<div class="col-12">' +
-                            '<h4 class="mb-2">JAMED</h4>' +
+                            '<h4 class="mb-2">'+ data.member_name +'</h4>' +
                             '<span>' + rateString + '</span>' +
                             '<p class="my-0">'+data.comments+'</p>' +
                         '</div>' +
