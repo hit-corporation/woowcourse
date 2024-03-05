@@ -79,9 +79,10 @@ class Topics_model extends CI_Model {
 	}
 
 	public function get_topic_subscribe(){
-		$this->db->select('topic_id, count(topic_id) as jumlah');
-		$this->db->from('subscriptions s');
-		$this->db->group_by('topic_id');
+		$this->db->select('c.course_id as topic_id, count(course_id) as jumlah');
+		$this->db->from('carts c');
+		$this->db->where('status', 'paid');
+		$this->db->group_by('c.course_id');
 		$this->db->order_by('jumlah', 'desc');
 		$this->db->limit('12');
 		return $this->db->get()->result_array();

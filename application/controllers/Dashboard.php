@@ -72,7 +72,7 @@ class Dashboard extends MY_Controller {
 
 		$topicSubsc = $this->topics_model->get_topic_subscribe();
 
-		// Jika kursus yang sudah di subscribe di bawah 6, tambahkan data kursus dari yang ada
+		// Jika kursus yang sudah di subscribe di bawah 6, tambahkan data kursus dari yang ada di database
 		if(count($topicSubsc) < 6){
 			$get_all = $this->topics_model->get_all([], 12, null);
 			
@@ -88,7 +88,7 @@ class Dashboard extends MY_Controller {
 			$topicIds = array_unique($topicIds);
 		}	
 
-		$topicSubsc = array_slice($topicIds, 0, 12); // isinya hanya topic id saja cth: [1,2,3,4]
+		$topicSubsc = array_slice($topicIds, 0, 12); // hasil akhir isinya hanya topic id saja cth: [1,2,3,4]
 
 		$final_topic_subs = [];
 		foreach ($topicSubsc as $key => $val) {
@@ -107,7 +107,7 @@ class Dashboard extends MY_Controller {
 			}
 
 			// ISI TOTAL SUBSCRIBE
-			$final_topic_subs[$key]['total_subscriber'] = $this->db->where('topic_id', $val)->get('subscriptions')->num_rows();
+			$final_topic_subs[$key]['total_subscriber'] = $this->db->where('course_id', $val)->where('status', 'paid')->get('carts')->num_rows();
 		}
 
 		return $final_topic_subs;
