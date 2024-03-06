@@ -154,6 +154,12 @@
             </li>
 
 			<li class="nav-item <?=$CI->uri->segment(1) == 'course' ? 'active' : '' ?>">
+                <a class="nav-link" href="<?=base_url('payment')?>">
+                    <i class="fas fa-fw fa-money-bill-alt"></i>
+                    <span>Payment</span></a>
+            </li>
+
+			<li class="nav-item <?=$CI->uri->segment(1) == 'course' ? 'active' : '' ?>">
                 <a class="nav-link" href="<?=base_url('course')?>">
                     <i class="fas fa-fw fa-video"></i>
                     <span>Course</span></a>

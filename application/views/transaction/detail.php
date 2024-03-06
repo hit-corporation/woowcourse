@@ -6,8 +6,8 @@
 
 <?php $this->start('body') ?>
 
-	<div class="container border rounded">
-        <div class="row">
+	<div class="container border rounded mt-5">
+        <div class="row ">
             <div class="col-lg-12 pt-3 px-4">
 
 				<div class="row mb-2">
