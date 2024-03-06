@@ -100,7 +100,21 @@ const getAll = async () => {
     $('#table-main').on('click', 'button.view_data', e => {
         let row = tableMain.row($(e.target).parents('tr')[0]).data();
         
-		console.log(row);
+		$.ajax({
+			type: "POST",
+			url: BASE_URL + "payment/get_payment",
+			data: { id: row.id },
+			dataType: "JSON",
+			success: function (res) {
+				console.log(res);
+
+				$('.status-transaksi').html(res.data.status + ' - ' + res.data.status_message);
+				$('.transaction-code').html(res.data.code);
+				$('.created-at').html(moment(res.data.created_at).format('D MMM Y, HH:mm:ss'));
+				$('.transaction-dt').html(moment(res.data.transaction_dt).format('D MMM Y, HH:mm:ss'));
+				
+			}
+		});
 
         $('#modal-input').modal('show');
     });

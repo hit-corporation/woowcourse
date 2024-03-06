@@ -104,7 +104,7 @@
 
 
 <div id="modal-input" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title">Modal Title</h5>
@@ -122,9 +122,9 @@
 									<h4>Detail Transaksi</h4>
 								</div>
 								<div class="col-6 text-end">
-									<?php if($data['status'] == 'pending'): ?>
-										<a href="<?=($data['pdf_url'])?>" class="btn btn-md btn-light border rounded">Cara Pembayaran</a>
-									<?php endif ?>
+									<?php // if($data['status'] == 'pending'): ?>
+										<!-- <a href="<?//=($data['pdf_url'])?>" class="btn btn-md btn-light border rounded">Cara Pembayaran</a> -->
+									<?php // endif ?>
 								</div>
 							</div>
 
@@ -134,7 +134,7 @@
 										<h5>Status Transaksi</h5>
 									</div>
 									<div class="col-6">
-										<h5 class="text-success text-end"><?=$data['status'].' - '.$data['status_message']?></h5>
+										<h5 class="text-success text-end status-transaksi"></h5>
 									</div>
 								</div>
 
@@ -142,17 +142,17 @@
 
 								<div class="row">
 									<div class="col-6">Kode Transaksi</div>
-									<div class="col-6 text-success text-end"><?=$data['code']?></div>
+									<div class="col-6 text-success text-end transaction-code"></div>
 								</div>
 
 								<div class="row">
 									<div class="col-6">Tanggal Dibuat</div>
-									<div class="col-6 text-end"><?=date('d M Y, H:i', strtotime($data['created_at']))?></div>
+									<div class="col-6 text-end created-at"></div>
 								</div>
 
 								<div class="row">
 									<div class="col-6">Tanggal Pembayaran</div>
-									<div class="col-6 text-end"><?=date('d M Y, H:i', strtotime($data['transaction_dt']))?></div>
+									<div class="col-6 text-end transaction-dt"></div>
 								</div>
 							</div>
 
