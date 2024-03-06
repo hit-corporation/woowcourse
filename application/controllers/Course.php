@@ -39,7 +39,7 @@ class Course extends MY_Controller {
 		$data['total_records'] 	= $this->topics_model->get_total($filter);
 		$data['total_pages'] 	= ceil($data['total_records'] / $limit);
 
-		// create json header	
+		// create json header
 		header('Content-Type: application/json');
 		echo json_encode($data);
 	}

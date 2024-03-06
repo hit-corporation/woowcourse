@@ -81,7 +81,7 @@ function load_data(page = 1, limit = 10){
 										<span class="mt-3 label-harga">${new Intl.NumberFormat('id-ID', {style: "currency", currency: "IDR"}).format(value.price)}</span>
 										<div class="d-flex flex-nowrap py-3">
 											<div class="col border-right">
-												<i class="fa-solid fa-clock text-warning"></i><span class="ms-1">1 Week</span>
+												<i class="fa-solid fa-clock text-warning"></i><span class="ms-1">${value.duration} days</span>
 											</div>
 											<div class="col border-right">
 												<i class="fa-solid fa-calendar text-warning"></i><span class="ms-1">${value.total_video} Videos</span>
