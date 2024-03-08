@@ -24,18 +24,8 @@
 			<h1 class="h3 mb-0 text-gray-800">Payment</h1>
 			
 			<div class="row">
-				<button id="btn-add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mr-2" data-toggle="modal" data-target="#modal-input" >
-					<i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
-				</button>
-				<div class="dropdown">
-					<button id="btn-import" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						<i class="fa fa-download" aria-hidden="true"></i> 
-						Import Data
-					</button>
-					<div class="dropdown-menu">
-						<a role="button" class="dropdown-item" href="<?=$this->e(base_url('assets/files/download/template/member_template.xlsx'))?>" download>Unduh Berkas Templat</a>
-						<a role="button" class="dropdown-item" data-target="#modal-import" data-toggle="modal">Unggah Dari Templat Excel</a>
-					</div>
+				<div class="col-12">
+					<button id="download" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</button>
 				</div>
 			</div>
 			
@@ -50,10 +40,25 @@
 							<input type="text" class="form-control form-control-sm" name="s_first_name" placeholder="Nama Instruktur">
 						</div>
 						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-2">
-							<input type="date" class="form-control form-control-sm" name="s_tanggal_transaksi" placeholder="Tanggal Transaksi">
+							<div class="input-group">
+								<div class="input-group-prepend" style="height: 29px">
+									<div class="input-group-text">start</div>
+								</div>
+								<input type="date" class="form-control" name="s_start_dt" style="height:29px">
+							</div>
+
+						</div>
+						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-2">
+							<div class="input-group">
+								<div class="input-group-prepend" style="height: 29px">
+									<div class="input-group-text">end</div>
+								</div>
+								<input type="date" class="form-control" name="s_end_dt" style="height:29px">
+							</div>
 						</div>
 						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-2">
 							<select class="form-control form-control-sm" name="s_payment_method">
+								<option value="">-- Pilih Payment Method --</option>
 								<?php foreach($payment_methods as $val): ?>
 									<option value="<?=$val['payment_method']?>"><?=$val['payment_method']?></option>
 								<?php endforeach ?>
@@ -61,6 +66,7 @@
 						</div>
 						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-2">
 							<select class="form-control form-control-sm" name="s_status">
+								<option value="">-- Pilih status --</option>
 								<?php foreach($status as $val): ?>
 									<option value="<?=$val['status']?>"><?=$val['status']?></option>
 								<?php endforeach ?>
@@ -164,19 +170,6 @@
 									</tr>
 								</thead>
 								<tbody id="table-body">
-									<?php 
-										// $total_harga_kursus = 0;
-										// foreach($details as $key => $val):
-										// 	$total_harga_kursus += $val['price'];
-									?>
-										<!-- <tr>
-											<td><img class="" src="<?//=base_url('assets/files/upload/courses/'.$val['course_img'])?>" alt="" width="100"></td>
-											<td><?//=$val['course_title']?></td>
-											<td><?//=$val['first_name'].' '.$val['last_name']?></td>
-											<td><?//='Rp '.str_replace(',','.', number_format($val['price']))?></td>
-										</tr> -->
-
-									<?php //endforeach ?>
 								</tbody>
 							</table>
 
@@ -210,46 +203,6 @@
 					</div>
 				</div>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- modal import -->
-<div id="modal-import" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <div class="modal-header bg-indigo text-white">
-                <h5 class="modal-title">Import Data Excel</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form name="form-input" action="<?=$this->e(base_url('member/import'))?>" class="modal-body" method="POST" enctype="multipart/form-data">
-                <fieldset class="row">
-                    <div class="col-12">
-						<span>* Data harus beformat ms. excel / xlsx</span>
-						<br>
-						<span>* Data harus memiliki sususanan nama kolom yang sesuai</span>
-						<br>
-						<span>* Data tidak bisa lebih dari 5000 data</span>
-						<br>
-						<div class="form-group row mt-3 border rounded-lg mx-3 shadow">
-							<label class="col-sm-2 col-form-label">File Excel</label>
-							<div class="col-sm-10">
-								<input type="file" name="file" class="my-2" required>
-							</div>
-						</div>
-                        
-                    </div>
-                    
-                </fieldset>
-                <fieldset class="row justify-content-end mt-4 border-top pt-3 px-2">
-                    <button type="reset" class="btn btn-sm btn-secondary"><i class="fas fa-sync"></i> Ulangi</button>
-                    <button type="submit" class="btn btn-sm btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>
-                </fieldset>
-            </form>
-
         </div>
     </div>
 </div>

@@ -88,14 +88,6 @@ const getAll = async () => {
        ]
     });
     
-
-    // store
-    document.getElementById('btn-add').addEventListener('click', e => {
-        form.reset();
-        form.action = BASE_URL + 'payment/store';
-
-    });
-
     // view
     $('#table-main').on('click', 'button.view_data', e => {
         let row = tableMain.row($(e.target).parents('tr')[0]).data();
@@ -165,7 +157,10 @@ const getAll = async () => {
 		
         // if(formSearch['s_member_name'].value)
 		tableMain.columns(1).search(formSearch['s_first_name'].value).draw();
-		tableMain.columns(2).search(formSearch['s_email'].value).draw();
+		tableMain.columns(2).search(formSearch['s_start_dt'].value).draw();
+		tableMain.columns(3).search(formSearch['s_end_dt'].value).draw();
+		tableMain.columns(4).search(formSearch['s_payment_method'].value).draw();
+		tableMain.columns(5).search(formSearch['s_status'].value).draw();
         
     });
 
@@ -181,6 +176,11 @@ const getAll = async () => {
 		tableMain.columns(3).search('').draw();
 		formSearch['s_no_induk'].value = '';
 
+	});
+
+	$('#download').click(function(e){
+		let start = $('input[name="s_start_dt"]').val();
+		window.open('payment/download_payment?startdt='+start, '_blank');
 	});
 
 })(jQuery);

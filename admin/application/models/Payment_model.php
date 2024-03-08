@@ -10,17 +10,24 @@ class Payment_model extends CI_Model {
         $this->db->select('t.*, m.first_name, m.last_name');
         $this->db->from('transactions t');
 
-		if(!empty($filter[1]['search']['value']))
-			$this->db->where('LOWER(first_name) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
-		
-		if(!empty($filter[1]['search']['value']))
-			$this->db->where('LOWER(last_name) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
+		if(!empty($filter[1]['search']['value'])){
+			$this->db->group_start();
+				$this->db->where('LOWER(m.first_name) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
+				$this->db->or_where('LOWER(m.last_name) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
+			$this->db->group_end();
+		}
 
 		if(!empty($filter[2]['search']['value']))
-			$this->db->where('LOWER(card_number) LIKE \'%'.trim(strtolower($filter[2]['search']['value'])).'%\'', NULL, FALSE);
+			$this->db->where('date(t.created_at) >= ', $filter[2]['search']['value'], NULL, FALSE);
 
 		if(!empty($filter[3]['search']['value']))
-			$this->db->where('LOWER(no_induk) LIKE \'%'.trim(strtolower($filter[3]['search']['value'])).'%\'', NULL, FALSE);
+			$this->db->where('date(t.created_at) <= ', $filter[3]['search']['value'], NULL, FALSE);
+		
+		if(!empty($filter[4]['search']['value']))
+			$this->db->where('t.payment_method', $filter[4]['search']['value'], NULL, FALSE);
+
+		if(!empty($filter[5]['search']['value']))
+			$this->db->where('t.status', $filter[5]['search']['value'], NULL, FALSE);
 	
 		if(!empty($limit) && !is_null($offset))
 			$this->db->limit($limit, $offset);
