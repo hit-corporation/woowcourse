@@ -44,8 +44,11 @@ class Payment extends MY_Controller {
 	public function get_payment(){
 		$post = $this->input->post();
 
-		$data['data'] = $this->db->where('id', $post['id'])->get('transactions')->row_array();
-		$data['details'] = $this->db->where('transaction_id', $post['id'])->get('transaction_details')->result_array();
+		$data['data'] = $this->db->where('id', $post['id'])->get('transactions')->row_array() ?? [];
+		$data['details'] = $this->db->where('transaction_id', $post['id'])
+							->join('courses c','c.id = t.course_id','left')
+							->join('instructors i','i.id = c.instructor_id','left')
+							->get('transaction_details t')->result_array();
 
 		echo json_encode($data, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
 	}

@@ -106,13 +106,30 @@ const getAll = async () => {
 			data: { id: row.id },
 			dataType: "JSON",
 			success: function (res) {
-				console.log(res);
 
 				$('.status-transaksi').html(res.data.status + ' - ' + res.data.status_message);
 				$('.transaction-code').html(res.data.code);
 				$('.created-at').html(moment(res.data.created_at).format('D MMM Y, HH:mm:ss'));
 				$('.transaction-dt').html(moment(res.data.transaction_dt).format('D MMM Y, HH:mm:ss'));
-				
+				$('.payment-method').html(res.data.payment_method);
+
+				let detailContent;
+				let totalHargaKursus = 0;
+				for(let i=0; i<res.details.length; i++){
+					totalHargaKursus += res.details[i].price;
+					detailContent += `<tr>
+						<td><img src="${BASE_URL.replace('/admin/','/')+`assets/files/upload/courses/` + res.details[i].course_img}" alt="" width="100"></td>
+						<td>${res.details[i].course_title}</td>
+						<td>${res.details[i].first_name + ' ' + res.details[i].last_name}</td>
+						<td>${res.details[i].price.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</td>
+					</tr>`;
+				}
+
+				$('.total_harga_kursus').html(totalHargaKursus.toLocaleString("id-ID", {style:"currency", currency:"IDR"}));
+				$('.total-ppn').html((totalHargaKursus*11/100).toLocaleString("id-ID", {style:"currency", currency:"IDR"}));
+				$('.amount').html(res.data.amount.toLocaleString("id-ID", {style:"currency", currency:"IDR"}));
+
+				$('#table-body').html(detailContent);
 			}
 		});
 
